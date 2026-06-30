@@ -1,0 +1,29 @@
+# Maven / build output
+target/
+build/
+
+# Quarkus
+.quarkus/
+
+# AWS SAM build/deploy artifacts
+.aws-sam/
+packaged.yaml
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+
+# Local secrets / env (절대 커밋 금지)
+.env
+.env.local
+*.local
+secrets.properties
