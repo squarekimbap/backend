@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: tour-api - Quarkus on AWS Lambda (Function URL, no API Gateway)
+
+Resources:
+  TourApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: tour-api
+      # Quarkus amazon-lambda-http 핸들러 (Function URL의 v2 페이로드도 처리)
+      Handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
+      Runtime: java21
+      CodeUri: target/function.zip
+      MemorySize: 512
+      Timeout: 15
+      # Lambda 기본 실행 역할(로그 권한). SAM이 IAM 역할 자동 생성
+      Policies: AWSLambdaBasicExecutionRole
+      # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능
+      FunctionUrlConfig:
+        AuthType: NONE
+
+Outputs:
+  FunctionUrl:
+    Description: "앱이 호출할 주소 (Lambda Function URL)"
+    Value: !GetAtt TourApiUrl.FunctionUrl
