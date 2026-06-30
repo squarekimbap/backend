@@ -1,0 +1,57 @@
+# CLAUDE.md — 프로젝트 작업 컨텍스트
+
+이 파일은 향후 작업 시 빠르게 맥락을 잡기 위한 메모다. (사람용 개요는 [README.md](README.md))
+
+## 이 프로젝트가 뭔가
+한 앱의 **전체 백엔드 서버**(서버리스). 인증/로그인 + 사용자 DB + 기능 API.
+**첫 기능 도메인 = 관광/러닝 추천**(외부 API 프록시·집계). 관광은 전부가 아니라 첫 도메인.
+
+## 위치 · 원격
+- 로컬: `/Users/mega/Downloads/tour-api` — **반드시 ASCII 경로.** 한글 폴더(`서버`)에 두면 IntelliJ 런처가 깨짐(이전에 발생, 그래서 이리로 이동).
+- GitHub: `https://github.com/squarekimbap/backend` (origin/main, HTTPS, 자격증명 store됨)
+
+## 스택 (결정 + 이유)
+- **AWS Lambda (java21) + Function URL** — Function URL은 API Gateway의 12개월-후-과금을 피하려고 선택(무료 유지).
+- **Java 21 + Quarkus 3.37** (`quarkus-amazon-lambda-http`) + **RESTEasy(JAX-RS)**. Java는 사용자의 Spring/Java 경험 활용. Quarkus는 콜드스타트(native) 목적.
+- **Maven** 빌드, **AWS SAM**(`template.yaml`) 배포.
+- *(예정)* **Cognito**(로그인/인증), **DynamoDB**(사용자 데이터+캐시, provisioned 25/25), **SSM Parameter Store**(시크릿).
+- 리전 **ap-northeast-2**(서울).
+
+## AWS 계정
+- account `038832652275`, IAM user `kimbap`(AdministratorAccess 부여됨), **Paid 플랜**(기존 계정이라 $200 크레딧 없음 — always-free는 적용).
+
+## 배포된 것 (현재)
+- Lambda `tour-api`(Active, java21), 스택 `tour-api`(CREATE_COMPLETE).
+- Function URL(고정): `https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws/`
+- `GET /hello` → `"hello jaxrs"`. 콜드 ~3.5s / 워밍 ~52ms. (AuthType NONE = 현재 공개)
+
+## ⚠️ 빌드 주의
+Homebrew Maven이 JDK 25를 끌어와서, **빌드/실행 시 JAVA_HOME을 21로 지정**해야 한다:
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+```
+(시스템 `java`는 21로 잡혀 있음. Android Studio는 자체 JBR 17 사용 — 영향 없음.)
+
+## 명령
+```bash
+JAVA_HOME=$(/usr/libexec/java_home -v 21) mvn quarkus:dev          # 로컬(자동리로드) → localhost:8080
+JAVA_HOME=$(/usr/libexec/java_home -v 21) mvn clean package        # 빌드 → target/function.zip, target/sam.*.yaml
+sam deploy --template-file template.yaml --stack-name tour-api \
+  --region ap-northeast-2 --capabilities CAPABILITY_IAM --resolve-s3 --no-confirm-changeset
+sam delete --stack-name tour-api --region ap-northeast-2
+```
+
+## 코딩 규칙
+- 계층: `routes/`(얇게) → `services/`(외부 API 호출+가공) → `lib/`(정규화·거리·캐시·지역코드).
+- 공공데이터 함정은 `lib`에 가둔다: `items.item` 배열/객체/빈값 정규화, `resultCode=="0000"` 체크, `mapX/mapx` 정규화, serviceKey 인코딩 통일.
+- **TMAP·Google Elevation은 내부 전용**(앱에 노출 금지, 키 보호).
+- 시크릿은 SSM/환경변수로, **코드/깃에 절대 안 박음**(`.gitignore`로 `.env`·`target/` 제외).
+- 빌드 산출 SAM 템플릿(`target/sam.jvm.yaml`)은 매 빌드 덮어써지므로 쓰지 말고, 직접 관리하는 루트 `template.yaml`(Function URL 방식)을 쓴다.
+
+## 사용자 컨텍스트
+- 안드로이드 개발자, Spring Boot/EC2 경험. **무료** 강하게 선호. **하면서 배우는** 방식(긴 학습 X). 한국어.
+- 러닝/난이도 판정: km당 상승고도 10m↓=하 / 25m↓=중 / 초과=상.
+
+## 현재 위치 (로드맵)
+hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → 캐시 → 인증/로그인(Cognito)+DB → 러닝 Phase A/B → native/rate limit.
+첫 실제 엔드포인트 `/v1/tour/nearby` 작업엔 **공공데이터포털 인증키** 필요.
