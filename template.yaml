@@ -20,8 +20,9 @@ Resources:
       Handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
       Runtime: java21
       CodeUri: target/function.zip
-      MemorySize: 512
-      Timeout: 15
+      MemorySize: 1024
+      # /popular은 느린 집중률 공공 API를 호출하므로 여유(콜드+업스트림 합산). 캐시 붙이면 낮춰도 됨
+      Timeout: 30
       # 코드는 TOUR_API_KEY 환경변수에서 인증키를 읽는다
       Environment:
         Variables:

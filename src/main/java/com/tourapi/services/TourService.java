@@ -51,6 +51,9 @@ public class TourService {
     @ConfigProperty(name = "tour.api.concentration-max-pages", defaultValue = "6")
     int concentrationMaxPages;
 
+    @ConfigProperty(name = "tour.api.concentration-page-size", defaultValue = "5000")
+    int concentrationPageSize;
+
     // ── 좌표 주변 관광 정보(거리순) ──────────────────────────────
     public PlacesResponse nearbyPlaces(double lat, double lng, int radius,
                                        Integer contentTypeId, int page, int size) {
@@ -100,7 +103,7 @@ public class TourService {
             p.put("MobileOS", "ETC");
             p.put("MobileApp", mobileApp);
             p.put("_type", "json");
-            p.put("numOfRows", "1000");
+            p.put("numOfRows", Integer.toString(concentrationPageSize));
             p.put("pageNo", Integer.toString(page));
             p.put("areaCd", region.areaCd());
             p.put("signguCd", region.signguCd());

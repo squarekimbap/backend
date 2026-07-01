@@ -29,6 +29,9 @@ public class TourApiClient {
     @ConfigProperty(name = "tour.api.service-key", defaultValue = "")
     String serviceKey;
 
+    @ConfigProperty(name = "tour.api.request-timeout-seconds", defaultValue = "20")
+    int requestTimeoutSeconds;
+
     @Inject
     ObjectMapper mapper;
 
@@ -58,7 +61,7 @@ public class TourApiClient {
 
         String url = base + "/" + operation + "?" + query(params);
         HttpRequest req = HttpRequest.newBuilder(URI.create(url))
-                .timeout(Duration.ofSeconds(8))
+                .timeout(Duration.ofSeconds(requestTimeoutSeconds))
                 .header("Accept", "application/json")
                 .GET()
                 .build();
