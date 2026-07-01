@@ -3,6 +3,7 @@ package com.tourapi.routes;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.PlacesResponse;
+import com.tourapi.model.PopularResponse;
 import com.tourapi.services.TourService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -96,6 +97,53 @@ public class TourResource {
             return Response.status(502).entity(new ApiError("upstream_error", e.getMessage())).build();
         } catch (Exception e) {
             LOG.error("places 처리 중 예외", e);
+            return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
+        }
+    }
+
+    /**
+     * 좌표 주변 인기 관광지 순위(집중률, 30일 평균).
+     * 예: /v1/tour/popular?lat=37.5665&lng=126.9780&size=20
+     */
+    @GET
+    @Path("/popular")
+    @Operation(summary = "좌표 주변 인기 관광지 순위(집중률)",
+            description = "좌표를 시군구로 변환(locationBasedList2 법정동코드) 후, 관광지 집중률(tatsCnctrRatedList)을 향후 30일 평균 기준으로 정렬해 반환한다.")
+    @APIResponses({
+            @APIResponse(responseCode = "200", description = "집중률 순위",
+                    content = @Content(schema = @Schema(implementation = PopularResponse.class))),
+            @APIResponse(responseCode = "400", description = "잘못된 파라미터",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "502", description = "업스트림(TourAPI) 오류 / 지역 특정 실패",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+    })
+    public Response popular(
+            @Parameter(description = "위도(WGS84)", required = true, example = "37.5665")
+            @QueryParam("lat") String latStr,
+            @Parameter(description = "경도(WGS84)", required = true, example = "126.9780")
+            @QueryParam("lng") String lngStr,
+            @Parameter(description = "반환 순위 개수. 기본 20, 최대 100", example = "20")
+            @QueryParam("size") String sizeStr) {
+        double lat;
+        double lng;
+        int size;
+        try {
+            lat = requireDouble("lat", latStr, -90, 90);
+            lng = requireDouble("lng", lngStr, -180, 180);
+            size = clamp("size", sizeStr, defaultSize, 1, maxSize);
+        } catch (BadParam e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ApiError("bad_request", e.getMessage())).build();
+        }
+
+        try {
+            PopularResponse body = tourService.popular(lat, lng, size);
+            return Response.ok(body).build();
+        } catch (UpstreamException e) {
+            LOG.warnf("popular upstream 실패: %s", e.getMessage());
+            return Response.status(502).entity(new ApiError("upstream_error", e.getMessage())).build();
+        } catch (Exception e) {
+            LOG.error("popular 처리 중 예외", e);
             return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
         }
     }

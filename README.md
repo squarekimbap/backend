@@ -90,7 +90,7 @@ flowchart LR
 | 관광정보 | `locationBasedList2` · `searchFestival2` · `detailImage2` | 프록시 |
 | 걷기 | 두루누비 `courseList` | 프록시 |
 | 오디오 | Odii `themeSearchList`→`storyBasedList` | 프록시(2단계) |
-| 중심관광지/집중률 | `areaBasedList1` · `tatsCnctrRatedList` | 내부(러닝) |
+| 중심관광지/집중률 | `areaBasedList1` · `tatsCnctrRatedList` | 집중률은 `/popular`로 프록시 · `areaBasedList1`은 내부(러닝) |
 | 경로/고도 | TMAP `pedestrian` · Google `elevation` | **🔒 내부 전용** |
 
 ### 엔드포인트
@@ -98,6 +98,7 @@ flowchart LR
 | --- | --- | --- | --- |
 | GET | `/hello` | 샘플(검증용) | ✅ 배포됨(교체 예정) |
 | GET | `/v1/tour/places` · `/festivals` · `/images` · `/hubs` | 관광 프록시 | `/places` ✅ · 나머지 🚧 |
+| GET | `/v1/tour/popular` | 좌표→시군구 인기 관광지 순위(집중률 30일 평균) | ✅ 로컬(미배포) |
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보 | 🚧 |
 | POST | `/v1/running/routes` (Phase B) | 경로 추천 | 🚧 |

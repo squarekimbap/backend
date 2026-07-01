@@ -58,3 +58,6 @@ sam delete --stack-name tour-api --region ap-northeast-2
 ## 현재 위치 (로드맵)
 hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → 캐시 → 인증/로그인(Cognito)+DB → 러닝 Phase A/B → native/rate limit.
 첫 실제 엔드포인트 `/v1/tour/places`(위치기반 관광정보, TourAPI `locationBasedList2` 프록시) 구현됨 — 호출엔 **공공데이터포털 인증키**(`TOUR_API_KEY`) 필요.
+둘째 엔드포인트 `/v1/tour/popular`(좌표 주변 인기 관광지 **집중률 순위**, `TatsCnctrRateService/tatsCnctrRatedList`, 30일 평균 정렬) 구현됨(로컬 검증, **미배포**). 핵심 트릭:
+- **좌표→시군구**: `locationBasedList2`의 `lDongRegnCd`(시도2) + `lDongSignguCd`(시군구3, 좌측 0패딩) 이어붙여 `signguCd`(5자리) 생성 → 추가 키 불필요(`lib/RegionResolver`).
+- **집중률 서비스 함정**: base가 `TatsCnctrRateService`(별도), 파라미터 `areaCd`+`signguCd` 필수, **에러 응답이 flat**(`{resultCode,resultMsg}`) / 성공은 nested → `PublicData.ensureOk`가 둘 다 처리. 시군구당 (관광지×30일)행이라 페이지 수집 후 관광지별 집계.

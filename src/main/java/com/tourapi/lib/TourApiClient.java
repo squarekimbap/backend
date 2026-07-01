@@ -43,11 +43,20 @@ public class TourApiClient {
      * @param params    serviceKey 를 제외한 쿼리 파라미터(삽입 순서 유지 권장)
      */
     public JsonNode get(String operation, Map<String, String> params) {
+        return getFrom(baseUrl, operation, params);
+    }
+
+    /**
+     * 기본 base-url 대신 다른 서비스 base(예: TatsCnctrRateService)를 지정해 호출한다.
+     *
+     * @param base 서비스 base URL (오퍼레이션 이름 제외)
+     */
+    public JsonNode getFrom(String base, String operation, Map<String, String> params) {
         if (serviceKey == null || serviceKey.isBlank()) {
             throw new UpstreamException("TOUR_API_KEY 미설정 (공공데이터포털 인증키 필요)");
         }
 
-        String url = baseUrl + "/" + operation + "?" + query(params);
+        String url = base + "/" + operation + "?" + query(params);
         HttpRequest req = HttpRequest.newBuilder(URI.create(url))
                 .timeout(Duration.ofSeconds(8))
                 .header("Accept", "application/json")

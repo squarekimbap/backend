@@ -24,8 +24,12 @@ public final class PublicData {
     public static void ensureOk(JsonNode root) {
         JsonNode header = root.path("response").path("header");
         String code = header.path("resultCode").asText("");
+        // 데이터랩 계열(집중률 등)은 에러를 평평한 {resultCode,resultMsg}로 준다(성공은 KorService와 동일 nested)
+        if (code.isEmpty()) {
+            code = root.path("resultCode").asText("");
+        }
         if (!OK.equals(code)) {
-            String msg = header.path("resultMsg").asText("UNKNOWN");
+            String msg = header.path("resultMsg").asText(root.path("resultMsg").asText("UNKNOWN"));
             throw new UpstreamException("TourAPI resultCode=" + (code.isEmpty() ? "?" : code) + " (" + msg + ")");
         }
     }
