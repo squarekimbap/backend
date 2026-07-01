@@ -97,7 +97,7 @@ flowchart LR
 | 메서드 | 경로 | 설명 | 상태 |
 | --- | --- | --- | --- |
 | GET | `/hello` | 샘플(검증용) | ✅ 배포됨(교체 예정) |
-| GET | `/v1/tour/nearby` · `/festivals` · `/images` · `/hubs` | 관광 프록시 | 🚧 |
+| GET | `/v1/tour/places` · `/festivals` · `/images` · `/hubs` | 관광 프록시 | `/places` ✅ · 나머지 🚧 |
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보 | 🚧 |
 | POST | `/v1/running/routes` (Phase B) | 경로 추천 | 🚧 |

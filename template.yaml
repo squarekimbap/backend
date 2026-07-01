@@ -2,6 +2,15 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: tour-api - Quarkus on AWS Lambda (Function URL, no API Gateway)
 
+Parameters:
+  # 공공데이터포털 TourAPI '디코딩(Decoding)' 키. 깃엔 안 박고 배포 때 주입:
+  #   sam deploy ... --parameter-overrides TourApiKey=xxxxxx
+  TourApiKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: 공공데이터포털 TourAPI 인증키(Decoding, raw)
+
 Resources:
   TourApi:
     Type: AWS::Serverless::Function
@@ -13,6 +22,10 @@ Resources:
       CodeUri: target/function.zip
       MemorySize: 512
       Timeout: 15
+      # 코드는 TOUR_API_KEY 환경변수에서 인증키를 읽는다
+      Environment:
+        Variables:
+          TOUR_API_KEY: !Ref TourApiKey
       # Lambda 기본 실행 역할(로그 권한). SAM이 IAM 역할 자동 생성
       Policies: AWSLambdaBasicExecutionRole
       # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능

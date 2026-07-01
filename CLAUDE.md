@@ -23,7 +23,10 @@
 ## 배포된 것 (현재)
 - Lambda `tour-api`(Active, java21), 스택 `tour-api`(CREATE_COMPLETE).
 - Function URL(고정): `https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws/`
-- `GET /hello` → `"hello jaxrs"`. 콜드 ~3.5s / 워밍 ~52ms. (AuthType NONE = 현재 공개)
+- `GET /hello` → `"hello jaxrs"`. 콜드 ~3.9s / 워밍 ~수십ms. (AuthType NONE = 현재 공개)
+- `GET /v1/tour/places?lat&lng[&radius&type&page&size]` → 위치기반 관광정보(TourAPI `locationBasedList2` 프록시). 라이브 검증됨(2026-07-01 배포).
+- Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
+- 인증키는 SAM 파라미터 `TourApiKey`(NoEcho) → Lambda 환경변수 `TOUR_API_KEY`로 주입(깃 미포함). 배포: `sam deploy ... --parameter-overrides TourApiKey=<디코딩키>`.
 
 ## ⚠️ 빌드 주의
 Homebrew Maven이 JDK 25를 끌어와서, **빌드/실행 시 JAVA_HOME을 21로 지정**해야 한다:
@@ -54,4 +57,4 @@ sam delete --stack-name tour-api --region ap-northeast-2
 
 ## 현재 위치 (로드맵)
 hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → 캐시 → 인증/로그인(Cognito)+DB → 러닝 Phase A/B → native/rate limit.
-첫 실제 엔드포인트 `/v1/tour/nearby` 작업엔 **공공데이터포털 인증키** 필요.
+첫 실제 엔드포인트 `/v1/tour/places`(위치기반 관광정보, TourAPI `locationBasedList2` 프록시) 구현됨 — 호출엔 **공공데이터포털 인증키**(`TOUR_API_KEY`) 필요.

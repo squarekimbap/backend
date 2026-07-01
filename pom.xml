@@ -37,6 +37,16 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy</artifactId>
         </dependency>
+        <!-- JSON: 응답 직렬화(record→JSON) + ObjectMapper(업스트림 파싱) -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-resteasy-jackson</artifactId>
+        </dependency>
+        <!-- OpenAPI 스펙(/q/openapi) + Swagger UI(/q/swagger-ui) -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
         <!-- AWS Lambda HTTP: HTTP 요청을 Lambda(Function URL)로 연결 -->
         <dependency>
             <groupId>io.quarkus</groupId>
