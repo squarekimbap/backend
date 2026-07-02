@@ -2,6 +2,7 @@ package com.tourapi.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.tourapi.lib.PublicData;
+import com.tourapi.lib.RankingCache;
 import com.tourapi.lib.RegionResolver;
 import com.tourapi.lib.TourApiClient;
 import com.tourapi.lib.UpstreamException;
@@ -9,11 +10,16 @@ import com.tourapi.model.Place;
 import com.tourapi.model.PlacesResponse;
 import com.tourapi.model.PopularPlace;
 import com.tourapi.model.PopularResponse;
+import com.tourapi.model.RankingSnapshot;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -25,12 +31,16 @@ import java.util.Map;
 public class TourService {
 
     private static final Logger LOG = Logger.getLogger(TourService.class);
+    private static final ZoneId KST = ZoneId.of("Asia/Seoul");
 
     @Inject
     TourApiClient client;
 
     @Inject
     RegionResolver regionResolver;
+
+    @Inject
+    RankingCache cache;
 
     @ConfigProperty(name = "tour.api.mobile-app", defaultValue = "tour-api")
     String mobileApp;
@@ -91,6 +101,26 @@ public class TourService {
             throw new UpstreamException("좌표 주변에서 지역(시군구)을 특정할 수 없음");
         }
 
+        // 집중률은 일 단위(baseYmd) 데이터 → "시군구+KST날짜"로 하루 캐시 (size 자르기 전 전체를 저장)
+        String today = LocalDate.now(KST).format(DateTimeFormatter.BASIC_ISO_DATE);
+        String cacheKey = "popular#" + region.signguCd() + "#" + today;
+        RankingSnapshot snap = cache.get(cacheKey, RankingSnapshot.class);
+        if (snap == null) {
+            snap = fetchRanking(region);
+            cache.put(cacheKey, snap, Duration.ofHours(26)); // 날짜 넘어간 항목은 TTL이 청소
+        } else {
+            LOG.infof("집중률 캐시 히트: %s", cacheKey);
+        }
+
+        List<PopularPlace> top = snap.items().size() > size
+                ? List.copyOf(snap.items().subList(0, size))
+                : snap.items();
+        return new PopularResponse(lat, lng, region.areaCd(), region.signguCd(),
+                snap.areaNm(), snap.signguNm(), snap.items().size(), top.size(), top);
+    }
+
+    /** 집중률 전 페이지 수집 → 관광지별 30일 평균 집계 → 전체 순위(내림차순). */
+    private RankingSnapshot fetchRanking(RegionResolver.Region region) {
         Map<String, Acc> byName = new LinkedHashMap<>();
         String areaNm = "";
         String signguNm = "";
@@ -142,7 +172,6 @@ public class TourService {
         List<PopularPlace> ranked = new ArrayList<>();
         byName.entrySet().stream()
                 .sorted(Comparator.comparingDouble((Map.Entry<String, Acc> e) -> e.getValue().avg()).reversed())
-                .limit(size)
                 .forEach(e -> ranked.add(new PopularPlace(
                         ranked.size() + 1,
                         e.getKey(),
@@ -150,8 +179,7 @@ public class TourService {
                         round1(e.getValue().peak),
                         e.getValue().count)));
 
-        return new PopularResponse(lat, lng, region.areaCd(), region.signguCd(),
-                areaNm, signguNm, byName.size(), ranked.size(), ranked);
+        return new RankingSnapshot(areaNm, signguNm, ranked);
     }
 
     // ── 매핑/집계 헬퍼 ───────────────────────────────────────────

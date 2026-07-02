@@ -47,6 +47,28 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-openapi</artifactId>
         </dependency>
+        <!-- DynamoDB 캐시(AWS SDK v2). 기본 http 클라이언트(netty/apache)는 제외하고
+             Lambda에 가벼운 url-connection-client 사용 -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>dynamodb</artifactId>
+            <version>2.46.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>netty-nio-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>apache-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>url-connection-client</artifactId>
+            <version>2.46.7</version>
+        </dependency>
         <!-- AWS Lambda HTTP: HTTP 요청을 Lambda(Function URL)로 연결 -->
         <dependency>
             <groupId>io.quarkus</groupId>

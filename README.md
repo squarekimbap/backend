@@ -14,7 +14,7 @@
 | 영역 | 내용 | 추가 기술 |
 | --- | --- | --- |
 | 🔐 인증/로그인 | 회원가입·로그인·토큰 검증 | Amazon Cognito *(예정)* |
-| 🗄️ 데이터 | 사용자 데이터 · 응답 캐시 | DynamoDB *(예정)* |
+| 🗄️ 데이터 | 사용자 데이터 *(예정)* · 응답 캐시 ✅ | DynamoDB |
 | 🧩 기능 API | 첫 도메인=관광/러닝, 이후 확장 | Quarkus(JAX-RS) |
 | 🔌 외부 API 프록시·집계 | 키 은닉 · 가공 · 캐싱 | — |
 
@@ -55,7 +55,7 @@ flowchart LR
 | 프레임워크 | **Quarkus** + `quarkus-amazon-lambda-http` | 빠른 콜드스타트(native 가능), Function URL 지원 |
 | REST | **RESTEasy (JAX-RS)** | `@Path`/`@GET` |
 | 인증/로그인 *(예정)* | **Amazon Cognito** | 관리형 사용자 풀, 토큰 |
-| DB / 캐시 *(예정)* | **DynamoDB** (provisioned 25/25, TTL) | always-free |
+| DB / 캐시 | **DynamoDB** (캐시 테이블 ✅ provisioned 5/5 + TTL · 사용자 데이터는 예정) | always-free |
 | 시크릿 *(예정)* | **SSM Parameter Store** (standard) | 무료 |
 | 빌드 / 배포 | **Maven** / **AWS SAM** (`template.yaml`) | Java 1급 지원 |
 | 리전 | **ap-northeast-2** (서울) | 한국 지연 최소 |
@@ -161,7 +161,7 @@ sam delete --stack-name tour-api --region ap-northeast-2
 
 - [x] 서버리스 골조 + **hello world 배포·작동 확인** (`GET /hello` 200, 콜드 ~3.5s / 워밍 ~52ms)
 - [ ] 공통 유틸(정규화·resultCode·응답 봉투) · 시크릿(SSM) · 좌표→지역코드
-- [ ] 프록시 엔드포인트(`/v1/tour/*` 등) · 캐시(DynamoDB)
+- [x] 캐시(DynamoDB, `/popular` 일 단위) — 나머지 프록시 엔드포인트(`/v1/tour/*` 등)는 진행 중
 - [ ] **인증/로그인(Cognito)** · 사용자 데이터(DynamoDB)
 - [ ] 러닝 추천 Phase A/B
 - [ ] native image(콜드스타트) · rate limit(쿼터 보호)

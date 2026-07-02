@@ -27,11 +27,34 @@ Resources:
       Environment:
         Variables:
           TOUR_API_KEY: !Ref TourApiKey
-      # Lambda 기본 실행 역할(로그 권한). SAM이 IAM 역할 자동 생성
-      Policies: AWSLambdaBasicExecutionRole
+          CACHE_TABLE: !Ref CacheTable
+      # Lambda 기본 실행 역할(로그 권한) + 캐시 테이블 읽기/쓰기
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CacheTable
       # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능
       FunctionUrlConfig:
         AuthType: NONE
+
+  # 집중률 순위 등 일 단위 응답 캐시. provisioned 5/5 = always-free(계정 합산 25/25) 한도 내
+  CacheTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: tour-api-cache
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      # ttl(epoch초) 지나면 자동 삭제 — 날짜 지난 캐시 청소
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
 
 Outputs:
   FunctionUrl:
