@@ -100,8 +100,8 @@ flowchart LR
 | GET | `/v1/tour/places` · `/festivals` · `/images` · `/hubs` | 관광 프록시 | `/places` ✅ · 나머지 🚧 |
 | GET | `/v1/tour/popular` | 좌표→시군구 인기 관광지 순위(집중률 30일 평균) | ✅ 배포됨 |
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
-| POST | `/v1/running/candidates` (Phase A) | 경유지 후보 | 🚧 |
-| POST | `/v1/running/routes` (Phase B) | 경로 추천 | 🚧 |
+| POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
+| POST | `/v1/running/routes` (Phase B) | 코스 추천(TMAP 경로 + 고도 난이도, 최대 3개) | ✅ 배포됨 |
 
 ### 러닝 추천 흐름 (사용자 선택이 중간에 껴서 2단계)
 ```mermaid

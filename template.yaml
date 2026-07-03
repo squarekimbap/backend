@@ -10,6 +10,16 @@ Parameters:
     NoEcho: true
     Default: ""
     Description: 공공데이터포털 TourAPI 인증키(Decoding, raw)
+  TmapAppKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: TMAP appKey (보행 경로 — 내부 전용, 앱 노출 금지)
+  GoogleMapsApiKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Google Maps API 키 (Elevation — 내부 전용, 앱 노출 금지)
 
 Resources:
   TourApi:
@@ -27,6 +37,8 @@ Resources:
       Environment:
         Variables:
           TOUR_API_KEY: !Ref TourApiKey
+          TMAP_APP_KEY: !Ref TmapAppKey
+          GOOGLE_MAPS_API_KEY: !Ref GoogleMapsApiKey
           CACHE_TABLE: !Ref CacheTable
           USER_POOL_ID: !Ref UserPool
           USER_POOL_CLIENT_ID: !Ref UserPoolClient

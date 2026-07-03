@@ -26,8 +26,10 @@
 - `GET /hello` → `"hello jaxrs"`. 콜드 ~3.9s / 워밍 ~수십ms. (AuthType NONE = 현재 공개)
 - `GET /v1/tour/places?lat&lng[&radius&type&page&size]` → 위치기반 관광정보(TourAPI `locationBasedList2` 프록시). 라이브 검증됨(2026-07-01 배포).
 - `GET /v1/tour/popular?lat&lng[&size]` → 좌표 주변 인기 관광지 **집중률 순위**(30일 평균). **DynamoDB 캐시 적용**(키 `popular#<signguCd>#<KST yyyyMMdd>`, TTL 26h, size 자르기 전 전체 순위 저장): 시군구당 하루 첫 1회만 느림(~10s) → 이후 ~1.5s(워밍 히트, 로그 "집중률 캐시 히트"로 검증, 2026-07-02). 남은 최적화: 히트 시에도 좌표→시군구 역지오코딩(locationBasedList2 ~1s)은 매번 호출 — L1 인메모리로 줄일 수 있음.
+- `POST /v1/running/candidates` (러닝 Phase A) → 설문(lat·lng·distanceKm·shape[loop|oneway]·count) → 주변 관광지(타입 12·14·28) + 집중률 순위 매칭 후보. data.go.kr 4콜(타입3+지역)을 **전용 풀로 병렬화**(순차 6~12s → ~2s; Lambda 저코어라 commonPool 금지). 라이브 검증(2026-07-03): 콜드 6.8s / 워밍 0.4s.
+- `POST /v1/running/routes` (러닝 Phase B) → start+waypoints(1~5)+shape[+targetDistanceKm] → 순서 후보(선택/역순/근접, 중복 제거) → TMAP 보행 경로 + Google 고도(경로 100점 샘플) → 난이도(km당 상승 10↓하/25↓중/초과 상) → 코스 최대 3개(경로 path 최대 200점). 라이브 검증: ~0.8s.
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
-- 인증키는 SAM 파라미터 `TourApiKey`(NoEcho) → Lambda 환경변수 `TOUR_API_KEY`로 주입(깃 미포함). 배포: `sam deploy ... --parameter-overrides TourApiKey=<디코딩키>`.
+- 키 3개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`. 배포: `sam deploy ... --parameter-overrides TourApiKey=<키> TmapAppKey=<키> GoogleMapsApiKey=<키>`. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
 ## ⚠️ 빌드 주의
 Homebrew Maven이 JDK 25를 끌어와서, **빌드/실행 시 JAVA_HOME을 21로 지정**해야 한다:
@@ -57,7 +59,8 @@ sam delete --stack-name tour-api --region ap-northeast-2
 - 러닝/난이도 판정: km당 상승고도 10m↓=하 / 25m↓=중 / 초과=상.
 
 ## 현재 위치 (로드맵)
-hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → ~~캐시~~(✅ DynamoDB, /popular 적용) → 인증/로그인(Cognito)+DB → 러닝 Phase A/B → native/rate limit.
+hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → ~~캐시~~(✅ DynamoDB, /popular 적용) → ~~러닝 Phase A/B~~(✅ 배포됨, 2026-07-03) → 인증/로그인(Cognito)+DB → 나머지 프록시(festivals·images 등) → native/rate limit.
+러닝 구현 메모: 후보 정렬은 집중률 순위 우선(이름 정규화 매칭: 완전일치→포함관계 4자↑), Phase B의 walkDurationS는 TMAP 도보 기준(러닝 환산은 앱 몫). `.env`는 `KEY=값` 형식 유지(예전에 `KEY ="값"` 형식이라 dev 로더가 TMAP/Google 키를 못 읽었음 — 정규화함, 2026-07-03).
 캐시 구현 주의: `cache.table`은 env `CACHE_TABLE`로만 주입(MP-Config 자동 매핑). **properties에 `${CACHE_TABLE:}`로 쓰면 빈값이 '값 없음' 처리돼 기동 실패** → `RankingCache`는 `Optional<String>` 주입. 캐시 실패는 요청을 죽이지 않고 업스트림 폴백.
 첫 실제 엔드포인트 `/v1/tour/places`(위치기반 관광정보, TourAPI `locationBasedList2` 프록시) 구현됨 — 호출엔 **공공데이터포털 인증키**(`TOUR_API_KEY`) 필요.
 둘째 엔드포인트 `/v1/tour/popular`(좌표 주변 인기 관광지 **집중률 순위**, `TatsCnctrRateService/tatsCnctrRatedList`, 30일 평균 정렬) 구현됨(**배포됨**, 2026-07-01). 핵심 트릭:

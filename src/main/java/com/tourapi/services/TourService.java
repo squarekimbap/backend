@@ -101,6 +101,17 @@ public class TourService {
             throw new UpstreamException("좌표 주변에서 지역(시군구)을 특정할 수 없음");
         }
 
+        RankingSnapshot snap = rankingForRegion(region);
+
+        List<PopularPlace> top = snap.items().size() > size
+                ? List.copyOf(snap.items().subList(0, size))
+                : snap.items();
+        return new PopularResponse(lat, lng, region.areaCd(), region.signguCd(),
+                snap.areaNm(), snap.signguNm(), snap.items().size(), top.size(), top);
+    }
+
+    /** 시군구 단위 집중률 순위(하루 캐시). /tour/popular과 러닝 후보(Phase A)가 공유한다. */
+    public RankingSnapshot rankingForRegion(RegionResolver.Region region) {
         // 집중률은 일 단위(baseYmd) 데이터 → "시군구+KST날짜"로 하루 캐시 (size 자르기 전 전체를 저장)
         String today = LocalDate.now(KST).format(DateTimeFormatter.BASIC_ISO_DATE);
         String cacheKey = "popular#" + region.signguCd() + "#" + today;
@@ -111,12 +122,7 @@ public class TourService {
         } else {
             LOG.infof("집중률 캐시 히트: %s", cacheKey);
         }
-
-        List<PopularPlace> top = snap.items().size() > size
-                ? List.copyOf(snap.items().subList(0, size))
-                : snap.items();
-        return new PopularResponse(lat, lng, region.areaCd(), region.signguCd(),
-                snap.areaNm(), snap.signguNm(), snap.items().size(), top.size(), top);
+        return snap;
     }
 
     /** 집중률 전 페이지 수집 → 관광지별 30일 평균 집계 → 전체 순위(내림차순). */
