@@ -28,11 +28,26 @@ Resources:
         Variables:
           TOUR_API_KEY: !Ref TourApiKey
           CACHE_TABLE: !Ref CacheTable
-      # Lambda 기본 실행 역할(로그 권한) + 캐시 테이블 읽기/쓰기
+          USER_POOL_ID: !Ref UserPool
+          USER_POOL_CLIENT_ID: !Ref UserPoolClient
+          USERS_TABLE: !Ref UsersTable
+      # Lambda 기본 실행 역할(로그 권한) + 캐시/사용자 테이블 읽기/쓰기 + Cognito 인증 API
       Policies:
         - AWSLambdaBasicExecutionRole
         - DynamoDBCrudPolicy:
             TableName: !Ref CacheTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UsersTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - cognito-idp:SignUp
+                - cognito-idp:ConfirmSignUp
+                - cognito-idp:AdminInitiateAuth
+                - cognito-idp:AdminGetUser
+                - cognito-idp:AdminCreateUser
+                - cognito-idp:AdminSetUserPassword
+              Resource: !GetAtt UserPool.Arn
       # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능
       FunctionUrlConfig:
         AuthType: NONE
@@ -55,6 +70,47 @@ Resources:
       TimeToLiveSpecification:
         AttributeName: ttl
         Enabled: true
+
+  # 인증: Cognito User Pool. 이메일은 '속성'(로그인 ID 아님) — username은 백엔드가 생성
+  # (email_<sha256 32자> / kakao_<회원번호>). 가입 시 이메일 확인코드 자동 발송.
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: app-users
+      AutoVerifiedAttributes: [email]
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireUppercase: true
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+
+  # 백엔드 전용 클라이언트 (앱은 Cognito를 직접 호출하지 않음)
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: backend
+      UserPoolId: !Ref UserPool
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_ADMIN_USER_PASSWORD_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+
+  # 사용자 최소 프로필. 캐시 5/5와 합산 10/10 — always-free(계정 합산 25/25) 내
+  UsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: app-users
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
 
 Outputs:
   FunctionUrl:
