@@ -69,6 +69,27 @@
             <artifactId>url-connection-client</artifactId>
             <version>2.46.7</version>
         </dependency>
+        <!-- Cognito (인증). dynamodb와 동일하게 무거운 http 클라이언트 제외 -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>cognitoidentityprovider</artifactId>
+            <version>2.46.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>netty-nio-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>apache-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- 보호 API의 Cognito JWT 검증 (@Authenticated + JWKS) -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-jwt</artifactId>
+        </dependency>
         <!-- AWS Lambda HTTP: HTTP 요청을 Lambda(Function URL)로 연결 -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -82,6 +103,18 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 테스트: @TestSecurity + @JwtSecurity로 JWT 클레임 주입 -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-test-security-jwt</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 테스트: @InjectMock (CDI 빈 목킹) -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5-mockito</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
