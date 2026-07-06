@@ -103,6 +103,8 @@ flowchart LR
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
 | POST | `/v1/running/routes` (Phase B) | 코스 추천(TMAP 경로 + 고도 난이도, 최대 3개) | ✅ 배포됨 |
 
+> 📱 **앱 연동은 [docs/app-api-flow.md](docs/app-api-flow.md)** — 앱이 부르는 건 러닝 2개뿐(호출 순서·요청/응답 예시·에러 처리 체크리스트).
+
 ### 러닝 추천 흐름 (사용자 선택이 중간에 껴서 2단계)
 ```mermaid
 flowchart TD

@@ -60,6 +60,7 @@ sam delete --stack-name tour-api --region ap-northeast-2
 
 ## 현재 위치 (로드맵)
 hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → ~~캐시~~(✅ DynamoDB, /popular 적용) → ~~러닝 Phase A/B~~(✅ 배포됨, 2026-07-03) → 인증/로그인(Cognito)+DB → 나머지 프록시(festivals·images 등) → native/rate limit.
+**앱 사용 API는 러닝 2개뿐**(candidates·routes — 설문→인기순 후보→선택→코스). `/tour/places`·`/tour/popular`는 앱 미사용이지만 유지 결정(2026-07-06): 디버깅·순위 캐시 확인·향후 관광 화면용. candidates가 내부에서 이 둘의 로직(nearbyPlaces·rankingForRegion)을 재사용하므로 삭제 금지.
 러닝 구현 메모: 후보 정렬은 집중률 순위 우선(이름 정규화 매칭: 완전일치→포함관계 4자↑), Phase B의 walkDurationS는 TMAP 도보 기준(러닝 환산은 앱 몫). `.env`는 `KEY=값` 형식 유지(예전에 `KEY ="값"` 형식이라 dev 로더가 TMAP/Google 키를 못 읽었음 — 정규화함, 2026-07-03).
 캐시 구현 주의: `cache.table`은 env `CACHE_TABLE`로만 주입(MP-Config 자동 매핑). **properties에 `${CACHE_TABLE:}`로 쓰면 빈값이 '값 없음' 처리돼 기동 실패** → `RankingCache`는 `Optional<String>` 주입. 캐시 실패는 요청을 죽이지 않고 업스트림 폴백.
 첫 실제 엔드포인트 `/v1/tour/places`(위치기반 관광정보, TourAPI `locationBasedList2` 프록시) 구현됨 — 호출엔 **공공데이터포털 인증키**(`TOUR_API_KEY`) 필요.
