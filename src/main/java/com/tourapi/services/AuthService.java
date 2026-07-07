@@ -2,6 +2,7 @@ package com.tourapi.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.tourapi.lib.CognitoAuth;
+import com.tourapi.lib.KakaoVerifier;
 import com.tourapi.lib.TokenPayload;
 import com.tourapi.lib.UserStore;
 import com.tourapi.model.TokenResponse;
@@ -9,6 +10,7 @@ import com.tourapi.model.UserProfile;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthenticationResultType;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 
 import java.time.Instant;
 
@@ -21,6 +23,9 @@ public class AuthService {
 
     @Inject
     UserStore userStore;
+
+    @Inject
+    KakaoVerifier kakaoVerifier;
 
     public void signup(String email, String password, String nickname) {
         cognito.signUp(email, password, nickname);
@@ -39,6 +44,23 @@ public class AuthService {
 
     public TokenResponse refresh(String refreshToken) {
         return toResponse(cognito.refresh(refreshToken));
+    }
+
+    /**
+     * 카카오 브릿지: 토큰 검증 → kakao_<id> 사용자 확보 → 비밀번호 회전 로그인.
+     * 동시 로그인이 서로의 회전 비밀번호를 덮어쓰면 NotAuthorized가 나므로 1회 재시도한다.
+     */
+    public TokenResponse kakaoLogin(String kakaoAccessToken) {
+        KakaoVerifier.KakaoUser ku = kakaoVerifier.verify(kakaoAccessToken);
+        String username = cognito.ensureKakaoUser(ku.id(), ku.nickname());
+        AuthenticationResultType r;
+        try {
+            r = cognito.rotatePasswordAndLogin(username);
+        } catch (NotAuthorizedException e) {
+            r = cognito.rotatePasswordAndLogin(username);
+        }
+        upsertFromIdToken(r, "kakao");
+        return toResponse(r);
     }
 
     /**

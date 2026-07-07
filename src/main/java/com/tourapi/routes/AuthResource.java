@@ -1,7 +1,10 @@
 package com.tourapi.routes;
 
+import com.tourapi.lib.InvalidKakaoTokenException;
+import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.ConfirmRequest;
+import com.tourapi.model.KakaoLoginRequest;
 import com.tourapi.model.LoginRequest;
 import com.tourapi.model.RefreshRequest;
 import com.tourapi.model.SignupRequest;
@@ -91,6 +94,25 @@ public class AuthResource {
             return error(401, "invalid_credentials", BAD_CREDENTIALS);
         } catch (CognitoIdentityProviderException e) {
             return upstream("login", e);
+        }
+    }
+
+    @POST
+    @Path("/kakao")
+    @Operation(summary = "카카오 로그인(첫 로그인 = 자동 가입) → 토큰 3종")
+    public Response kakao(KakaoLoginRequest req) {
+        if (req == null || blank(req.kakaoAccessToken())) {
+            return bad("kakaoAccessToken 필수");
+        }
+        try {
+            return Response.ok(authService.kakaoLogin(req.kakaoAccessToken())).build();
+        } catch (InvalidKakaoTokenException e) {
+            return error(401, "invalid_kakao_token", "카카오 토큰이 유효하지 않음");
+        } catch (UpstreamException e) {
+            LOG.warnf("kakao upstream 실패: %s", e.getMessage());
+            return error(502, "upstream_error", "카카오 연동 일시 오류");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("kakao", e);
         }
     }
 

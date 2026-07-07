@@ -1,6 +1,8 @@
 package com.tourapi;
 
 import com.tourapi.lib.CognitoAuth;
+import com.tourapi.lib.InvalidKakaoTokenException;
+import com.tourapi.lib.KakaoVerifier;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
@@ -20,6 +22,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -32,6 +35,9 @@ public class AuthResourceTest {
 
     @InjectMock
     CognitoAuth cognito;
+
+    @InjectMock
+    KakaoVerifier kakao;
 
     /** Cognito가 발급한 것처럼 sub/email/nickname 클레임을 담은 가짜 토큰 3종 생성. */
     static AuthenticationResultType tokens(String sub) {
@@ -139,5 +145,34 @@ public class AuthResourceTest {
         given().contentType(ContentType.JSON).body("{\"refreshToken\":\"bad\"}")
                 .post("/v1/auth/refresh").then().statusCode(401)
                 .body("error", equalTo("invalid_refresh_token"));
+    }
+
+    @Test
+    public void kakao_성공시_토큰3종_경합시_1회재시도() {
+        when(kakao.verify("kt")).thenReturn(new KakaoVerifier.KakaoUser(7, "kim"));
+        when(cognito.ensureKakaoUser(7, "kim")).thenReturn("kakao_7");
+        when(cognito.rotatePasswordAndLogin("kakao_7"))
+                .thenThrow(NotAuthorizedException.builder().build()) // 동시 로그인 경합 1회
+                .thenReturn(tokens("u-7"));                          // 재시도 성공
+        given().contentType(ContentType.JSON).body("{\"kakaoAccessToken\":\"kt\"}")
+                .post("/v1/auth/kakao").then().statusCode(200)
+                .body("accessToken", notNullValue())
+                .body("refreshToken", equalTo("rt"));
+        verify(cognito, times(2)).rotatePasswordAndLogin("kakao_7");
+    }
+
+    @Test
+    public void kakao_무효토큰_401() {
+        when(kakao.verify(any())).thenThrow(new InvalidKakaoTokenException());
+        given().contentType(ContentType.JSON).body("{\"kakaoAccessToken\":\"bad\"}")
+                .post("/v1/auth/kakao").then().statusCode(401)
+                .body("error", equalTo("invalid_kakao_token"));
+    }
+
+    @Test
+    public void kakao_토큰누락_400() {
+        given().contentType(ContentType.JSON).body("{}")
+                .post("/v1/auth/kakao").then().statusCode(400)
+                .body("error", equalTo("bad_request"));
     }
 }
