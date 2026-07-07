@@ -29,7 +29,7 @@
 
 ```mermaid
 flowchart LR
-    App["앱 (Android)"] -->|HTTPS + 토큰| FU["Lambda Function URL"]
+    App["앱 (iOS)"] -->|HTTPS + 토큰| FU["Lambda Function URL"]
     FU --> L["Quarkus Lambda (backend)"]
     L <-->|로그인 / 토큰 검증| COG["Amazon Cognito"]
     L <-->|사용자 데이터 · 캐시| DDB[("DynamoDB")]
