@@ -2,6 +2,8 @@ package com.tourapi.routes;
 
 import com.tourapi.model.ApiError;
 import com.tourapi.model.ConfirmRequest;
+import com.tourapi.model.LoginRequest;
+import com.tourapi.model.RefreshRequest;
 import com.tourapi.model.SignupRequest;
 import com.tourapi.services.AuthService;
 import jakarta.inject.Inject;
@@ -19,6 +21,9 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.CognitoIden
 import software.amazon.awssdk.services.cognitoidentityprovider.model.ExpiredCodeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidParameterException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidPasswordException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
 
 /** 인증 라우트. 얇게 유지: 요청 검증 → 서비스 위임 → Cognito 예외를 HTTP로 매핑. */
@@ -29,6 +34,8 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExi
 public class AuthResource {
 
     private static final Logger LOG = Logger.getLogger(AuthResource.class);
+    // 계정 존재 여부를 누설하지 않는 단일 메시지 (틀린 비밀번호든 없는 계정이든 동일)
+    private static final String BAD_CREDENTIALS = "이메일 또는 비밀번호가 올바르지 않음";
 
     @Inject
     AuthService authService;
@@ -66,6 +73,40 @@ public class AuthResource {
             return error(400, "invalid_code", "확인코드가 올바르지 않거나 만료됨");
         } catch (CognitoIdentityProviderException e) {
             return upstream("confirm", e);
+        }
+    }
+
+    @POST
+    @Path("/login")
+    @Operation(summary = "이메일 로그인 → 토큰 3종(access/id/refresh)")
+    public Response login(LoginRequest req) {
+        if (req == null || blank(req.email()) || blank(req.password())) {
+            return bad("email·password 필수");
+        }
+        try {
+            return Response.ok(authService.login(req.email(), req.password())).build();
+        } catch (UserNotConfirmedException e) {
+            return error(403, "user_not_confirmed", "이메일 확인이 필요함");
+        } catch (NotAuthorizedException | UserNotFoundException e) {
+            return error(401, "invalid_credentials", BAD_CREDENTIALS);
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("login", e);
+        }
+    }
+
+    @POST
+    @Path("/refresh")
+    @Operation(summary = "refresh 토큰으로 access 토큰 갱신")
+    public Response refresh(RefreshRequest req) {
+        if (req == null || blank(req.refreshToken())) {
+            return bad("refreshToken 필수");
+        }
+        try {
+            return Response.ok(authService.refresh(req.refreshToken())).build();
+        } catch (NotAuthorizedException e) {
+            return error(401, "invalid_refresh_token", "refresh 토큰이 유효하지 않음");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("refresh", e);
         }
     }
 
