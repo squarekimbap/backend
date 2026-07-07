@@ -102,6 +102,9 @@ flowchart LR
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
 | POST | `/v1/running/routes` (Phase B) | 코스 추천(TMAP 경로 + 고도 난이도, 최대 3개) | ✅ 배포됨 |
+| POST | `/v1/auth/signup` · `/confirm` · `/login` · `/refresh` | 이메일 인증(Cognito 프록시) | ✅ 구현(배포 대기) |
+| POST | `/v1/auth/kakao` | 카카오 로그인(토큰 검증→Cognito 브릿지, 첫 로그인=자동 가입) | ✅ 구현(배포 대기) |
+| GET | `/v1/users/me` | 내 프로필 (**JWT 필수**) | ✅ 구현(배포 대기) |
 
 > 📱 **앱 연동은 [docs/app-api-flow.md](docs/app-api-flow.md)** — 앱이 부르는 건 러닝 2개뿐(호출 순서·요청/응답 예시·에러 처리 체크리스트).
 
@@ -164,6 +167,6 @@ sam delete --stack-name tour-api --region ap-northeast-2
 - [x] 서버리스 골조 + **hello world 배포·작동 확인** (`GET /hello` 200, 콜드 ~3.5s / 워밍 ~52ms)
 - [ ] 공통 유틸(정규화·resultCode·응답 봉투) · 시크릿(SSM) · 좌표→지역코드
 - [x] 캐시(DynamoDB, `/popular` 일 단위) — 나머지 프록시 엔드포인트(`/v1/tour/*` 등)는 진행 중
-- [ ] **인증/로그인(Cognito)** · 사용자 데이터(DynamoDB)
+- [x] **인증/로그인(Cognito)** · 사용자 프로필(DynamoDB `app-users`) — 이메일+카카오 브릿지 구현·테스트 완료, **배포 대기**
 - [ ] 러닝 추천 Phase A/B
 - [ ] native image(콜드스타트) · rate limit(쿼터 보호)

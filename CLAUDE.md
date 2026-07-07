@@ -31,12 +31,24 @@
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
 - 키 3개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`. 배포: `sam deploy ... --parameter-overrides TourApiKey=<키> TmapAppKey=<키> GoogleMapsApiKey=<키>`. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
+## 구현됨 — 인증/로그인 (⚠️ 배포 대기, 2026-07-07)
+- **이메일+카카오 인증 전체 구현·테스트 완료(34개 그린), 아직 미배포.** template.yaml에 UserPool(`app-users`)·UserPoolClient(backend)·UsersTable(`app-users`, pk `userId`=sub) 정의됨 — 다음 `sam deploy`에서 생성(추가 파라미터 불필요, 기존 키 3개 그대로).
+- 엔드포인트: `POST /v1/auth/{signup,confirm,login,refresh,kakao}` (공개) · `GET /v1/users/me` (`@Authenticated`, Cognito JWT). `/v1/tour/*` 등 기존 API는 계속 공개(단계적 전환 예정).
+- **핵심 트릭**: ① username은 백엔드 생성 — 이메일 `email_<sha256(정규화 이메일) 32자>` / 카카오 `kakao_<회원번호>` (이메일을 username으로 안 쓴 이유: 카카오 공존 + 중복가입이 username 충돌로 차단). ② 카카오는 **연합 IdP 금지**(무료 50 MAU 함정) — 백엔드가 kapi `/v2/user/me`로 토큰 검증 후 일반 사용자로 연결, **AdminSetUserPassword 회전**(랜덤 64자 설정→즉시 로그인→폐기, 경합 시 1회 재시도)으로 토큰 발급 → 10,000 MAU 무료 유지. ③ JWT 검증은 `quarkus-smallrye-jwt`+Cognito JWKS(`mp.jwt.verify.*`, `${USER_POOL_ID:unset}` placeholder — 빈 default 금지 함정 회피).
+- 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
+- 배포 후 검증 시나리오: signup(실수신 메일)→confirm(메일 코드)→login→`/v1/users/me`(Bearer 200 / 무토큰 401)→refresh. 카카오는 실제 앱 토큰 필요. 주의: kakao_* 계정은 이메일 속성 없음 → forgot-password 구현 시 provider=kakao 요청은 400 처리할 것.
+
 ## ⚠️ 빌드 주의
 Homebrew Maven이 JDK 25를 끌어와서, **빌드/실행 시 JAVA_HOME을 21로 지정**해야 한다:
 ```bash
 export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 ```
 (시스템 `java`는 21로 잡혀 있음. Android Studio는 자체 JBR 17 사용 — 영향 없음.)
+
+kimdongjoo 맥(2026-07 확인): `mvn`·`sam`·`aws` CLI와 `~/.aws` 자격증명, `.env` 전부 없음 —
+- Maven은 IntelliJ 내장으로 대체: `"/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin/mvn"`
+- 테스트는 `TOUR_API_KEY=dummy-for-tests` env 필요(없으면 기동 실패). 예: `JAVA_HOME=$(/usr/libexec/java_home -v 21) TOUR_API_KEY=dummy-for-tests "<위 mvn 경로>" test -q`
+- **배포하려면**: `brew install maven aws-sam-cli` + `aws configure`(IAM kimbap 키) 필요.
 
 ## 명령
 ```bash
