@@ -1,0 +1,131 @@
+# main 푸시 → 테스트 → SAM 배포 → 스모크 테스트.
+# PR에서는 테스트/빌드만 하고 AWS는 건드리지 않는다.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+    # 문서만 바뀌면 돌리지 않는다 (비공개 저장소라 Actions 분이 과금 대상)
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
+  pull_request:
+  workflow_dispatch:
+
+# 배포가 겹치면 CloudFormation이 충돌한다. 앞 배포가 끝날 때까지 대기(취소 금지).
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write   # OIDC로 AWS 역할을 맡기 위해 필요
+
+jobs:
+  deploy:
+    name: 빌드 · 테스트 · 배포
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      AWS_REGION: ap-northeast-2
+      STACK_NAME: tour-api
+      FUNCTION_URL: https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws
+      # main 브랜치 푸시/수동 실행일 때만 AWS 단계를 켠다
+      DEPLOY: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # 테스트는 실제 키가 필요 없다(외부 호출은 전부 모킹). 값이 비어 있으면 기동이 실패해서 더미를 넣는다.
+      - name: 테스트 + 패키지
+        env:
+          TOUR_API_KEY: dummy-for-tests
+        run: mvn -B clean package
+
+      # ── 여기부터 main 에서만 ───────────────────────────────────────
+
+      # template.yaml의 키 파라미터에는 Default: "" 가 있어서, 시크릿이 비어 있으면
+      # 운영 중인 API 키가 빈값으로 덮어써진다. 배포 전에 여기서 끊는다.
+      - name: 시크릿 확인
+        if: env.DEPLOY == 'true'
+        env:
+          TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
+          TMAP_APP_KEY: ${{ secrets.TMAP_APP_KEY }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          AWS_DEPLOY_ROLE_ARN: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+        run: |
+          missing=0
+          for k in TOUR_API_KEY TMAP_APP_KEY GOOGLE_MAPS_API_KEY AWS_DEPLOY_ROLE_ARN; do
+            if [ -z "${!k}" ]; then
+              echo "::error::GitHub Secret '$k' 가 비어 있음 — 빈 키로 덮어쓰지 않도록 배포를 중단함"
+              missing=1
+            fi
+          done
+          exit $missing
+
+      - name: AWS 자격증명 (OIDC · 액세스 키 없음)
+        if: env.DEPLOY == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: SAM CLI 설치
+        if: env.DEPLOY == 'true'
+        uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+
+      # sam deploy 는 파라미터 값을 로그에 찍지만, GitHub Secrets 에서 온 값이라 *** 로 마스킹된다.
+      - name: SAM 배포
+        if: env.DEPLOY == 'true'
+        env:
+          TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
+          TMAP_APP_KEY: ${{ secrets.TMAP_APP_KEY }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        run: |
+          sam deploy \
+            --template-file template.yaml \
+            --stack-name "$STACK_NAME" \
+            --region "$AWS_REGION" \
+            --capabilities CAPABILITY_IAM \
+            --resolve-s3 \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset \
+            --parameter-overrides \
+              TourApiKey="$TOUR_API_KEY" \
+              TmapAppKey="$TMAP_APP_KEY" \
+              GoogleMapsApiKey="$GOOGLE_MAPS_API_KEY"
+
+      # 배포 자체가 성공해도 키가 잘못 들어가면 런타임에서만 드러난다. 실제로 호출해 본다.
+      - name: 스모크 테스트
+        if: env.DEPLOY == 'true'
+        run: |
+          fail() { echo "::error::$1"; exit 1; }
+
+          echo "── /hello (콜드스타트라 느릴 수 있음)"
+          curl -sf --max-time 60 --retry 3 --retry-delay 5 "$FUNCTION_URL/hello" \
+            || fail "/hello 응답 없음 — 배포는 끝났지만 함수가 기동하지 않음"
+          echo
+
+          echo "── /v1/tour/places (TOUR_API_KEY 주입 확인)"
+          code=$(curl -s -o /tmp/places.json -w '%{http_code}' --max-time 60 \
+                   "$FUNCTION_URL/v1/tour/places?lat=37.5665&lng=126.9780")
+          if [ "$code" != "200" ]; then
+            head -c 500 /tmp/places.json
+            fail "/v1/tour/places 가 HTTP $code — 키 주입 실패이거나 공공데이터 API 장애(배포 자체는 완료됨)"
+          fi
+
+          echo "── /v1/users/me 무토큰 → 401 (JWT 보호 동작 확인)"
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 "$FUNCTION_URL/v1/users/me")
+          [ "$code" = "401" ] || fail "무토큰 /v1/users/me 가 401이 아님(HTTP $code) — 인증이 걸려 있지 않음"
+
+          echo "✅ 스모크 테스트 통과"
