@@ -38,6 +38,13 @@
 - 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
 - 배포 후 검증 시나리오: signup(실수신 메일)→confirm(메일 코드)→login→`/v1/users/me`(Bearer 200 / 무토큰 401)→refresh. 카카오는 실제 앱 토큰 필요. 주의: kakao_* 계정은 이메일 속성 없음 → forgot-password 구현 시 provider=kakao 요청은 400 처리할 것.
 
+## CI/CD (GitHub Actions)
+- `.github/workflows/deploy.yml` — **main 푸시 → 테스트 → `sam deploy` → 스모크 테스트**. PR은 빌드/테스트만(AWS 미접근), 문서만 바뀌면 아예 안 돎(`paths-ignore`, 비공개 저장소라 Actions 분이 과금 대상 — 무료 2,000분/월).
+- 인증은 **OIDC**(액세스 키 없음). 역할은 `infra/github-oidc.yaml`로 생성 — `github-actions-tour-api-deploy`, 신뢰 조건은 `repo:squarekimbap/backend:ref:refs/heads/main` 하나뿐. 권한은 PowerUserAccess + `tour-api-*` 역할 IAM 쓰기(PowerUser는 IAM을 막아서 SAM의 Lambda 실행 역할 생성이 실패함).
+- GitHub Secrets 4개: `AWS_DEPLOY_ROLE_ARN`, `TOUR_API_KEY`, `TMAP_APP_KEY`, `GOOGLE_MAPS_API_KEY`.
+- **함정 방어**: `template.yaml`의 키 파라미터에 `Default: ""`가 있어 `--parameter-overrides` 없이 배포하면 **운영 키가 빈값으로 덮어써진다**. 워크플로가 배포 전 시크릿 공백을 검사하고, 배포 후 `/v1/tour/places` 200 · 무토큰 `/v1/users/me` 401을 실제로 호출해 확인한다.
+- 나중에 GitHub Environment(승인 게이트)를 붙이면 OIDC `sub`가 `repo:...:environment:<이름>`으로 바뀌므로 `infra/github-oidc.yaml`의 신뢰 조건도 같이 고칠 것.
+
 ## ⚠️ 빌드 주의
 Homebrew Maven이 JDK 25를 끌어와서, **빌드/실행 시 JAVA_HOME을 21로 지정**해야 한다:
 ```bash

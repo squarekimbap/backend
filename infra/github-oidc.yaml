@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: GitHub Actions가 액세스 키 없이(OIDC) tour-api 스택을 배포하기 위한 IAM 역할
+
+Parameters:
+  GitHubRepo:
+    Type: String
+    Default: squarekimbap/backend
+    Description: "owner/repo 형식"
+  GitHubBranch:
+    Type: String
+    Default: main
+    Description: 이 브랜치에서 실행될 때만 역할을 넘겨준다
+  CreateOidcProvider:
+    Type: String
+    Default: "yes"
+    AllowedValues: ["yes", "no"]
+    Description: >-
+      계정에 GitHub OIDC 공급자가 이미 있으면 "no". 확인 명령:
+      aws iam list-open-id-connect-providers
+
+Conditions:
+  MakeProvider: !Equals [!Ref CreateOidcProvider, "yes"]
+
+Resources:
+  # 계정당 1개만 존재할 수 있다. 이미 있으면 CreateOidcProvider=no 로 건너뛸 것.
+  # 지문(thumbprint)은 최신 IAM이 신뢰할 수 있는 CA로 직접 검증하므로 형식만 맞으면 된다.
+  GitHubOidcProvider:
+    Type: AWS::IAM::OIDCProvider
+    Condition: MakeProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList: [sts.amazonaws.com]
+      ThumbprintList:
+        - 6938fd4d98bab03faadb97b34396831e3780aea1
+        - 1c58a3a8518e8759bf075b76b750d4f2df264fcd
+
+  DeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: github-actions-tour-api-deploy
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub arn:aws:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+                # 이 저장소의 이 브랜치에서 실행될 때만 통과.
+                # 나중에 GitHub Environment를 쓰면 sub가
+                # repo:<owner>/<repo>:environment:<이름> 으로 바뀌므로 여기도 같이 고칠 것.
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubRepo}:ref:refs/heads/${GitHubBranch}
+      # IAM을 뺀 대부분의 권한. Cognito·DynamoDB·Lambda·CloudFormation·S3가 여기 포함된다.
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/PowerUserAccess
+      Policies:
+        # PowerUserAccess는 IAM 쓰기를 전부 막아서, 그대로 두면 SAM이 Lambda 실행 역할을
+        # 만들지 못해 배포가 실패한다. tour-api-* 역할에 한정해서만 열어 준다.
+        - PolicyName: tour-api-role-management
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - iam:CreateRole
+                  - iam:DeleteRole
+                  - iam:GetRole
+                  - iam:PassRole
+                  - iam:TagRole
+                  - iam:UntagRole
+                  - iam:ListRoleTags
+                  - iam:AttachRolePolicy
+                  - iam:DetachRolePolicy
+                  - iam:PutRolePolicy
+                  - iam:DeleteRolePolicy
+                  - iam:GetRolePolicy
+                  - iam:ListRolePolicies
+                  - iam:ListAttachedRolePolicies
+                  - iam:UpdateAssumeRolePolicy
+                Resource: !Sub arn:aws:iam::${AWS::AccountId}:role/tour-api-*
+
+Outputs:
+  RoleArn:
+    Description: GitHub Secret AWS_DEPLOY_ROLE_ARN 에 넣을 값
+    Value: !GetAtt DeployRole.Arn
