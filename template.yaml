@@ -87,6 +87,10 @@ Resources:
   # (email_<sha256 32자> / kakao_<회원번호>). 가입 시 이메일 확인코드 자동 발송.
   UserPool:
     Type: AWS::Cognito::UserPool
+    # 위와 같은 이유. UpdateReplacePolicy는 Schema 변경 등으로 CloudFormation이
+    # 풀을 '교체'하려 할 때 기존 풀(=가입자 전원)이 삭제되는 것도 함께 막는다.
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       UserPoolName: app-users
       AutoVerifiedAttributes: [email]
@@ -112,6 +116,10 @@ Resources:
   # 사용자 최소 프로필. 캐시 5/5와 합산 10/10 — always-free(계정 합산 25/25) 내
   UsersTable:
     Type: AWS::DynamoDB::Table
+    # 스택을 지워도(sam delete) 가입자 데이터는 남긴다. 비밀번호 해시는 백업 수단이
+    # 없어 한 번 지우면 복구 불가 — 전원 재가입 외엔 방법이 없다.
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       TableName: app-users
       AttributeDefinitions:
