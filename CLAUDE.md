@@ -7,7 +7,7 @@
 **첫 기능 도메인 = 관광/러닝 추천**(외부 API 프록시·집계). 관광은 전부가 아니라 첫 도메인.
 
 ## 위치 · 원격
-- 로컬: `/Users/mega/Downloads/tour-api` — **반드시 ASCII 경로.** 한글 폴더(`서버`)에 두면 IntelliJ 런처가 깨짐(이전에 발생, 그래서 이리로 이동).
+- 로컬: `/Users/mega/Downloads/tour-api` (kimdongjoo 맥은 `~/Developer/personal/backend`) — **반드시 ASCII 경로.** 한글 폴더(`서버`)에 두면 IntelliJ 런처가 깨짐(이전에 발생, 그래서 이리로 이동).
 - GitHub: `https://github.com/squarekimbap/backend` (origin/main, HTTPS, 자격증명 store됨)
 
 ## 스택 (결정 + 이유)
@@ -31,12 +31,13 @@
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
 - 키 3개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`. 배포: `sam deploy ... --parameter-overrides TourApiKey=<키> TmapAppKey=<키> GoogleMapsApiKey=<키>`. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
-## 구현됨 — 인증/로그인 (⚠️ 배포 대기, 2026-07-07)
-- **이메일+카카오 인증 전체 구현·테스트 완료(34개 그린), 아직 미배포.** template.yaml에 UserPool(`app-users`)·UserPoolClient(backend)·UsersTable(`app-users`, pk `userId`=sub) 정의됨 — 다음 `sam deploy`에서 생성(추가 파라미터 불필요, 기존 키 3개 그대로).
+## 배포됨 — 인증/로그인 (2026-07-07 배포, 2026-08-19 라이브 재확인)
+- **이메일+카카오 인증 전체 구현·테스트 완료(34개 그린) 후 배포 완료.** UserPool(`app-users`, `ap-northeast-2_eaLSAOL0A`)·UserPoolClient(backend)·UsersTable(`app-users`, pk `userId`=sub) 모두 2026-07-07 12:48 생성됨.
+- 라이브 검증(2026-08-19): `/v1/users/me` 무토큰 **401**, `/v1/auth/login` 빈 바디 **400**, OpenAPI에 인증 5개 경로 노출. UsersTable에 사용자 1명 존재. ⚠️ 문서가 한동안 '배포 대기'로 남아 있었음 — 배포 후 이 파일 갱신할 것.
 - 엔드포인트: `POST /v1/auth/{signup,confirm,login,refresh,kakao}` (공개) · `GET /v1/users/me` (`@Authenticated`, Cognito JWT). `/v1/tour/*` 등 기존 API는 계속 공개(단계적 전환 예정).
 - **핵심 트릭**: ① username은 백엔드 생성 — 이메일 `email_<sha256(정규화 이메일) 32자>` / 카카오 `kakao_<회원번호>` (이메일을 username으로 안 쓴 이유: 카카오 공존 + 중복가입이 username 충돌로 차단). ② 카카오는 **연합 IdP 금지**(무료 50 MAU 함정) — 백엔드가 kapi `/v2/user/me`로 토큰 검증 후 일반 사용자로 연결, **AdminSetUserPassword 회전**(랜덤 64자 설정→즉시 로그인→폐기, 경합 시 1회 재시도)으로 토큰 발급 → 10,000 MAU 무료 유지. ③ JWT 검증은 `quarkus-smallrye-jwt`+Cognito JWKS(`mp.jwt.verify.*`, `${USER_POOL_ID:unset}` placeholder — 빈 default 금지 함정 회피).
 - 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
-- 배포 후 검증 시나리오: signup(실수신 메일)→confirm(메일 코드)→login→`/v1/users/me`(Bearer 200 / 무토큰 401)→refresh. 카카오는 실제 앱 토큰 필요. 주의: kakao_* 계정은 이메일 속성 없음 → forgot-password 구현 시 provider=kakao 요청은 400 처리할 것.
+- 남은 실검증: 카카오 로그인(`/v1/auth/kakao`)은 실제 앱 토큰이 필요해 아직 미확인 — 특히 `AdminCreateUser`로 이메일 없이 kakao_* 사용자를 만드는 경로. 주의: kakao_* 계정은 이메일 속성 없음 → forgot-password 구현 시 provider=kakao 요청은 400 처리할 것.
 
 ## CI/CD (GitHub Actions)
 - `.github/workflows/deploy.yml` — **main 푸시 → 테스트 → `sam deploy` → 스모크 테스트**. PR은 빌드/테스트만(AWS 미접근), 문서만 바뀌면 아예 안 돎(`paths-ignore`, 비공개 저장소라 Actions 분이 과금 대상 — 무료 2,000분/월).
