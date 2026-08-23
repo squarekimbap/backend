@@ -8,6 +8,7 @@ import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.json.JsonString;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.Path;
@@ -75,6 +76,21 @@ public class UserResource {
             return error(502, "upstream_error", "프로필 저장 실패 — 잠시 후 다시 시도");
         }
         return Response.ok(userService.find(jwt.getSubject())).build();
+    }
+
+    @DELETE
+    @Path("/me")
+    @Operation(summary = "회원 탈퇴 — 프로필과 계정을 모두 삭제")
+    public Response deleteMe() {
+        try {
+            userService.delete(cognitoUsername(), jwt.getSubject());
+        } catch (UserNotFoundException e) {
+            // 이미 지워진 계정 — DELETE는 멱등해야 하므로 성공으로 본다
+        } catch (SdkException e) {
+            LOG.warnf("탈퇴 실패: %s", e.toString());
+            return error(502, "upstream_error", "탈퇴 처리 실패 — 잠시 후 다시 시도");
+        }
+        return Response.noContent().build();
     }
 
     // ── 내부 헬퍼 ────────────────────────────────────────────────────

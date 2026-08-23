@@ -125,6 +125,14 @@ public class CognitoAuth {
                 .userAttributes(AttributeType.builder().name("nickname").value(nickname).build()));
     }
 
+    /**
+     * 계정 삭제(탈퇴). refresh 토큰이 즉시 무효화되므로 재로그인·자동로그인이 막힌다.
+     * 이미 발급된 access 토큰은 JWKS 검증 방식상 만료(최대 1시간)까지는 유효하다.
+     */
+    public void deleteUser(String username) {
+        client().adminDeleteUser(b -> b.userPoolId(poolId()).username(username));
+    }
+
     /** kakao_<id> 사용자 조회, 없으면 생성(이메일 발송 억제). username 반환. */
     public String ensureKakaoUser(long kakaoId, String nickname) {
         String username = "kakao_" + kakaoId;

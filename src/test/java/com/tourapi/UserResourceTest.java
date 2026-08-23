@@ -11,9 +11,15 @@ import io.quarkus.test.security.jwt.JwtSecurity;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
+import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 
 import static io.restassured.RestAssured.given;
+import static org.mockito.ArgumentMatchers.any;
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -115,5 +121,40 @@ public class UserResourceTest {
         given().contentType(ContentType.JSON).body("{\"nickname\":\"012345678901234567890\"}")
                 .patch("/v1/users/me").then().statusCode(400)
                 .body("error", equalTo("bad_request"));
+    }
+
+    @Test
+    public void 탈퇴_토큰없으면_401() {
+        RestAssured.when().delete("/v1/users/me").then().statusCode(401);
+    }
+
+    @Test
+    @TestSecurity(user = "u-1", roles = {})
+    @JwtSecurity(claims = {
+            @Claim(key = "sub", value = "u-1"),
+            @Claim(key = "cognito:username", value = "email_abc")})
+    public void 탈퇴시_프로필_먼저_계정_나중() { // 재시도 안전을 위한 순서
+        given().delete("/v1/users/me").then().statusCode(204);
+        InOrder o = inOrder(userStore, cognito);
+        o.verify(userStore).delete("u-1");
+        o.verify(cognito).deleteUser("email_abc");
+    }
+
+    @Test
+    @TestSecurity(user = "u-1", roles = {})
+    @JwtSecurity(claims = {@Claim(key = "sub", value = "u-1")})
+    public void 이미_지워진_계정도_204() { // DELETE 멱등
+        doThrow(UserNotFoundException.builder().build()).when(cognito).deleteUser(any());
+        given().delete("/v1/users/me").then().statusCode(204);
+    }
+
+    @Test
+    @TestSecurity(user = "u-1", roles = {})
+    @JwtSecurity(claims = {@Claim(key = "sub", value = "u-1")})
+    public void 탈퇴_실패시_502() {
+        doThrow(DynamoDbException.builder().message("boom").build())
+                .when(userStore).delete(any());
+        given().delete("/v1/users/me").then().statusCode(502)
+                .body("error", equalTo("upstream_error"));
     }
 }

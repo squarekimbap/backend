@@ -61,6 +61,7 @@ Resources:
                 - cognito-idp:AdminSetUserPassword
                 - cognito-idp:RevokeToken
                 - cognito-idp:AdminUpdateUserAttributes
+                - cognito-idp:AdminDeleteUser
               Resource: !GetAtt UserPool.Arn
       # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능
       FunctionUrlConfig:
