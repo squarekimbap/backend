@@ -119,6 +119,12 @@ public class CognitoAuth {
         client().revokeToken(b -> b.clientId(clientId()).token(refreshToken));
     }
 
+    /** 닉네임 속성 변경. users 테이블이 아니라 신원 저장소 쪽 값이다. */
+    public void updateNickname(String username, String nickname) {
+        client().adminUpdateUserAttributes(b -> b.userPoolId(poolId()).username(username)
+                .userAttributes(AttributeType.builder().name("nickname").value(nickname).build()));
+    }
+
     /** kakao_<id> 사용자 조회, 없으면 생성(이메일 발송 억제). username 반환. */
     public String ensureKakaoUser(long kakaoId, String nickname) {
         String username = "kakao_" + kakaoId;
