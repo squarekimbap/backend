@@ -56,6 +56,37 @@ public class UserStore {
         }
     }
 
+    /** 프로필 삭제(탈퇴). 없는 행을 지워도 성공 — 재시도 안전. 실패는 위로 던진다. */
+    public void delete(String userId) {
+        if (!enabled()) {
+            return;
+        }
+        client().deleteItem(b -> b.tableName(tableOpt.orElseThrow())
+                .key(Map.of("userId", AttributeValue.fromS(userId))));
+    }
+
+    /**
+     * 닉네임 변경. 프로필 행이 없으면 false(조회의 404와 같은 처리를 위해).
+     * putIfAbsent와 달리 실패를 삼키지 않는다 — 사용자가 명시적으로 요청한 변경이
+     * 조용히 사라지면 안 되므로 예외는 그대로 위로 던진다.
+     */
+    public boolean updateNickname(String userId, String nickname) {
+        if (!enabled()) {
+            return false;
+        }
+        try {
+            client().updateItem(b -> b.tableName(tableOpt.orElseThrow())
+                    .key(Map.of("userId", AttributeValue.fromS(userId)))
+                    .updateExpression("SET #nick = :nick")
+                    .expressionAttributeNames(Map.of("#nick", "nickname"))
+                    .expressionAttributeValues(Map.of(":nick", AttributeValue.fromS(nickname)))
+                    .conditionExpression("attribute_exists(userId)"));
+            return true;
+        } catch (ConditionalCheckFailedException e) {
+            return false;
+        }
+    }
+
     /** 프로필 조회. 없음/비활성/오류 모두 null. */
     public UserProfile get(String userId) {
         if (!enabled()) {

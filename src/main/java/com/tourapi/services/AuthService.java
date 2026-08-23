@@ -35,6 +35,18 @@ public class AuthService {
         cognito.confirm(email, code);
     }
 
+    public void resendCode(String email) {
+        cognito.resendConfirmationCode(email);
+    }
+
+    public void forgotPassword(String email) {
+        cognito.forgotPassword(email);
+    }
+
+    public void resetPassword(String email, String code, String newPassword) {
+        cognito.confirmForgotPassword(email, code, newPassword);
+    }
+
     public TokenResponse login(String email, String password) {
         AuthenticationResultType r =
                 cognito.loginWithPassword(CognitoAuth.usernameForEmail(email), password);
@@ -42,8 +54,20 @@ public class AuthService {
         return toResponse(r);
     }
 
+    /**
+     * 자동로그인. 앱이 보관한 refresh 토큰으로 access 토큰을 다시 받는다.
+     * 로그인 때 프로필 저장이 실패했으면(UserStore가 삼킨다) /users/me가 계속 404로 남으므로,
+     * 여기서 한 번 더 시도해 스스로 복구시킨다.
+     */
     public TokenResponse refresh(String refreshToken) {
-        return toResponse(cognito.refresh(refreshToken));
+        AuthenticationResultType r = cognito.refresh(refreshToken);
+        upsertFromIdToken(r);
+        return toResponse(r);
+    }
+
+    /** 로그아웃. refresh 토큰을 폐기해 자동로그인을 끊는다(발급된 access 토큰도 무효화). */
+    public void logout(String refreshToken) {
+        cognito.revokeRefreshToken(refreshToken);
     }
 
     /**
@@ -68,7 +92,16 @@ public class AuthService {
      * 저장 실패는 UserStore가 삼키므로 로그인 응답에는 영향 없다.
      */
     void upsertFromIdToken(AuthenticationResultType r, String provider) {
+        upsert(TokenPayload.payload(r.idToken()), provider);
+    }
+
+    /** provider를 알 수 없는 경로(자동로그인) — username 규약으로 되짚는다. */
+    void upsertFromIdToken(AuthenticationResultType r) {
         JsonNode claims = TokenPayload.payload(r.idToken());
+        upsert(claims, CognitoAuth.providerOfUsername(claims.path("cognito:username").asText("")));
+    }
+
+    private void upsert(JsonNode claims, String provider) {
         String email = claims.path("email").asText("");
         userStore.putIfAbsent(new UserProfile(
                 claims.path("sub").asText(),

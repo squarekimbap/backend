@@ -34,6 +34,9 @@ public class CognitoAuth {
     private static final String DIGIT = "0123456789";
     private static final String ALL = LOWER + UPPER + DIGIT;
     private static final int ROTATION_PASSWORD_LENGTH = 64;
+    private static final String EMAIL_PREFIX = "email_";
+    private static final String KAKAO_PREFIX = "kakao_";
+    private static final int EMAIL_HASH_LENGTH = 32;
 
     @ConfigProperty(name = "user.pool.id")
     Optional<String> poolIdOpt;
@@ -53,10 +56,18 @@ public class CognitoAuth {
         try {
             byte[] h = MessageDigest.getInstance("SHA-256")
                     .digest(normalized.getBytes(StandardCharsets.UTF_8));
-            return "email_" + HexFormat.of().formatHex(h).substring(0, 32);
+            return EMAIL_PREFIX + HexFormat.of().formatHex(h).substring(0, EMAIL_HASH_LENGTH);
         } catch (Exception e) {
             throw new IllegalStateException("SHA-256 미지원", e);
         }
+    }
+
+    /**
+     * username 규약으로 로그인 수단 판정. 자동로그인(refresh)은 사용자가 처음 어떤 수단으로
+     * 로그인했는지 요청만 봐서는 알 수 없어서, 이미 정해둔 접두사로 되짚는다.
+     */
+    public static String providerOfUsername(String username) {
+        return username != null && username.startsWith(KAKAO_PREFIX) ? "kakao" : "email";
     }
 
     public void signUp(String email, String password, String nickname) {
@@ -71,6 +82,28 @@ public class CognitoAuth {
     public void confirm(String email, String code) {
         client().confirmSignUp(b -> b.clientId(clientId())
                 .username(usernameForEmail(email)).confirmationCode(code));
+    }
+
+    /** 가입 확인코드 재발송. 이미 확인된 계정이면 InvalidParameterException. */
+    public void resendConfirmationCode(String email) {
+        client().resendConfirmationCode(b -> b.clientId(clientId())
+                .username(usernameForEmail(email)));
+    }
+
+    /**
+     * 비밀번호 재설정 코드 발송. 확인된 이메일이 있어야 하며(미확인 계정은
+     * InvalidParameterException), 카카오 사용자는 username 규약이 달라 애초에 조회되지 않는다.
+     */
+    public void forgotPassword(String email) {
+        client().forgotPassword(b -> b.clientId(clientId())
+                .username(usernameForEmail(email)));
+    }
+
+    /** 재설정 코드 검증 + 새 비밀번호 적용. */
+    public void confirmForgotPassword(String email, String code, String newPassword) {
+        client().confirmForgotPassword(b -> b.clientId(clientId())
+                .username(usernameForEmail(email))
+                .confirmationCode(code).password(newPassword));
     }
 
     public AuthenticationResultType loginWithPassword(String username, String password) {
@@ -89,9 +122,31 @@ public class CognitoAuth {
         return res.authenticationResult();
     }
 
+    /**
+     * refresh 토큰 폐기(= 로그아웃). 이 토큰으로 발급된 access 토큰도 함께 무효화된다.
+     * 클라이언트에 EnableTokenRevocation이 꺼져 있으면 UnsupportedTokenTypeException.
+     */
+    public void revokeRefreshToken(String refreshToken) {
+        client().revokeToken(b -> b.clientId(clientId()).token(refreshToken));
+    }
+
+    /** 닉네임 속성 변경. users 테이블이 아니라 신원 저장소 쪽 값이다. */
+    public void updateNickname(String username, String nickname) {
+        client().adminUpdateUserAttributes(b -> b.userPoolId(poolId()).username(username)
+                .userAttributes(AttributeType.builder().name("nickname").value(nickname).build()));
+    }
+
+    /**
+     * 계정 삭제(탈퇴). refresh 토큰이 즉시 무효화되므로 재로그인·자동로그인이 막힌다.
+     * 이미 발급된 access 토큰은 JWKS 검증 방식상 만료(최대 1시간)까지는 유효하다.
+     */
+    public void deleteUser(String username) {
+        client().adminDeleteUser(b -> b.userPoolId(poolId()).username(username));
+    }
+
     /** kakao_<id> 사용자 조회, 없으면 생성(이메일 발송 억제). username 반환. */
     public String ensureKakaoUser(long kakaoId, String nickname) {
-        String username = "kakao_" + kakaoId;
+        String username = KAKAO_PREFIX + kakaoId;
         try {
             client().adminGetUser(b -> b.userPoolId(poolId()).username(username));
         } catch (UserNotFoundException e) {
