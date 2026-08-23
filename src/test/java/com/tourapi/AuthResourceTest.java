@@ -3,10 +3,13 @@ package com.tourapi;
 import com.tourapi.lib.CognitoAuth;
 import com.tourapi.lib.InvalidKakaoTokenException;
 import com.tourapi.lib.KakaoVerifier;
+import com.tourapi.lib.UserStore;
+import com.tourapi.model.UserProfile;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthenticationResultType;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.CodeMismatchException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidParameterException;
@@ -23,6 +26,7 @@ import java.util.Base64;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -44,10 +48,19 @@ public class AuthResourceTest {
     @InjectMock
     KakaoVerifier kakao;
 
+    @InjectMock
+    UserStore userStore;
+
     /** Cognito가 발급한 것처럼 sub/email/nickname 클레임을 담은 가짜 토큰 3종 생성. */
     static AuthenticationResultType tokens(String sub) {
+        return tokens(sub, "email_abc");
+    }
+
+    /** username 클레임까지 지정 — 자동로그인의 provider 판정 검증용. */
+    static AuthenticationResultType tokens(String sub, String username) {
         String payload = Base64.getUrlEncoder().withoutPadding()
-                .encodeToString(("{\"sub\":\"" + sub + "\",\"email\":\"a@b.c\",\"nickname\":\"nick\"}").getBytes());
+                .encodeToString(("{\"sub\":\"" + sub + "\",\"email\":\"a@b.c\",\"nickname\":\"nick\""
+                        + ",\"cognito:username\":\"" + username + "\"}").getBytes());
         String jwt = "eyJhbGciOiJub25lIn0." + payload + ".sig";
         return AuthenticationResultType.builder()
                 .accessToken(jwt).idToken(jwt).refreshToken("rt").expiresIn(3600).build();
@@ -327,5 +340,26 @@ public class AuthResourceTest {
         given().contentType(ContentType.JSON).body("{}")
                 .post("/v1/auth/kakao").then().statusCode(400)
                 .body("error", equalTo("bad_request"));
+    }
+
+    @Test
+    public void refresh_자동로그인시_프로필_자가복구() { // 로그인 때 저장이 실패했어도 복구
+        when(cognito.refresh("rt")).thenReturn(tokens("u-1", "email_abc"));
+        given().contentType(ContentType.JSON).body("{\"refreshToken\":\"rt\"}")
+                .post("/v1/auth/refresh").then().statusCode(200);
+        ArgumentCaptor<UserProfile> c = ArgumentCaptor.forClass(UserProfile.class);
+        verify(userStore).putIfAbsent(c.capture());
+        assertEquals("u-1", c.getValue().userId());
+        assertEquals("email", c.getValue().provider());
+    }
+
+    @Test
+    public void refresh_카카오사용자는_username_규약으로_provider_판정() {
+        when(cognito.refresh("rt")).thenReturn(tokens("u-7", "kakao_7"));
+        given().contentType(ContentType.JSON).body("{\"refreshToken\":\"rt\"}")
+                .post("/v1/auth/refresh").then().statusCode(200);
+        ArgumentCaptor<UserProfile> c = ArgumentCaptor.forClass(UserProfile.class);
+        verify(userStore).putIfAbsent(c.capture());
+        assertEquals("kakao", c.getValue().provider());
     }
 }

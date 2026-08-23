@@ -34,6 +34,9 @@ public class CognitoAuth {
     private static final String DIGIT = "0123456789";
     private static final String ALL = LOWER + UPPER + DIGIT;
     private static final int ROTATION_PASSWORD_LENGTH = 64;
+    private static final String EMAIL_PREFIX = "email_";
+    private static final String KAKAO_PREFIX = "kakao_";
+    private static final int EMAIL_HASH_LENGTH = 32;
 
     @ConfigProperty(name = "user.pool.id")
     Optional<String> poolIdOpt;
@@ -53,10 +56,18 @@ public class CognitoAuth {
         try {
             byte[] h = MessageDigest.getInstance("SHA-256")
                     .digest(normalized.getBytes(StandardCharsets.UTF_8));
-            return "email_" + HexFormat.of().formatHex(h).substring(0, 32);
+            return EMAIL_PREFIX + HexFormat.of().formatHex(h).substring(0, EMAIL_HASH_LENGTH);
         } catch (Exception e) {
             throw new IllegalStateException("SHA-256 미지원", e);
         }
+    }
+
+    /**
+     * username 규약으로 로그인 수단 판정. 자동로그인(refresh)은 사용자가 처음 어떤 수단으로
+     * 로그인했는지 요청만 봐서는 알 수 없어서, 이미 정해둔 접두사로 되짚는다.
+     */
+    public static String providerOfUsername(String username) {
+        return username != null && username.startsWith(KAKAO_PREFIX) ? "kakao" : "email";
     }
 
     public void signUp(String email, String password, String nickname) {
@@ -135,7 +146,7 @@ public class CognitoAuth {
 
     /** kakao_<id> 사용자 조회, 없으면 생성(이메일 발송 억제). username 반환. */
     public String ensureKakaoUser(long kakaoId, String nickname) {
-        String username = "kakao_" + kakaoId;
+        String username = KAKAO_PREFIX + kakaoId;
         try {
             client().adminGetUser(b -> b.userPoolId(poolId()).username(username));
         } catch (UserNotFoundException e) {

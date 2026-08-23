@@ -118,6 +118,15 @@ Resources:
       # 로그아웃(RevokeToken)이 동작하려면 켜져 있어야 한다. 신규 클라이언트 기본값이지만
       # 꺼지면 로그아웃이 조용히 무력화되므로 명시한다.
       EnableTokenRevocation: true
+      # 자동로그인: 앱이 refresh 토큰을 보관해 재실행 때 /v1/auth/refresh로 세션을 잇는다.
+      # 기본 30일이면 한 달 안 열면 로그아웃되므로 1년으로 늘린다(최대 3650일).
+      AccessTokenValidity: 1
+      IdTokenValidity: 1
+      RefreshTokenValidity: 365
+      TokenValidityUnits:
+        AccessToken: hours
+        IdToken: hours
+        RefreshToken: days
 
   # 사용자 최소 프로필. 캐시 5/5와 합산 10/10 — always-free(계정 합산 25/25) 내
   UsersTable:
