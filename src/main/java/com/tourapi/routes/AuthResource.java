@@ -8,6 +8,7 @@ import com.tourapi.model.KakaoLoginRequest;
 import com.tourapi.model.LoginRequest;
 import com.tourapi.model.LogoutRequest;
 import com.tourapi.model.RefreshRequest;
+import com.tourapi.model.ResendCodeRequest;
 import com.tourapi.model.SignupRequest;
 import com.tourapi.services.AuthService;
 import jakarta.inject.Inject;
@@ -25,9 +26,11 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.CognitoIden
 import software.amazon.awssdk.services.cognitoidentityprovider.model.ExpiredCodeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidParameterException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidPasswordException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.LimitExceededException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.TooManyRequestsException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UnsupportedTokenTypeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
 
@@ -78,6 +81,30 @@ public class AuthResource {
             return error(400, "invalid_code", "확인코드가 올바르지 않거나 만료됨");
         } catch (CognitoIdentityProviderException e) {
             return upstream("confirm", e);
+        }
+    }
+
+    @POST
+    @Path("/resend-code")
+    @Operation(summary = "가입 확인코드 재발송")
+    public Response resendCode(ResendCodeRequest req) {
+        if (req == null || blank(req.email())) {
+            return bad("email 필수");
+        }
+        try {
+            authService.resendCode(req.email());
+            return Response.noContent().build();
+        } catch (UserNotFoundException e) {
+            // 없는 계정도 204 — 재발송으로 가입 여부를 캐낼 수 없게 한다
+            return Response.noContent().build();
+        } catch (InvalidParameterException e) {
+            // 이미 확인된 계정. signup이 이미 409로 존재를 알려주므로 새로 누설되는 정보는 없고,
+            // "로그인하세요"로 안내할 수 있어 앱에 유용하다
+            return error(400, "already_confirmed", "이미 인증이 끝난 계정 — 로그인할 것");
+        } catch (LimitExceededException | TooManyRequestsException e) {
+            return error(429, "too_many_requests", "요청이 너무 잦음 — 잠시 후 다시 시도");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("resend-code", e);
         }
     }
 

@@ -73,6 +73,12 @@ public class CognitoAuth {
                 .username(usernameForEmail(email)).confirmationCode(code));
     }
 
+    /** 가입 확인코드 재발송. 이미 확인된 계정이면 InvalidParameterException. */
+    public void resendConfirmationCode(String email) {
+        client().resendConfirmationCode(b -> b.clientId(clientId())
+                .username(usernameForEmail(email)));
+    }
+
     public AuthenticationResultType loginWithPassword(String username, String password) {
         AdminInitiateAuthResponse res = client().adminInitiateAuth(b -> b
                 .userPoolId(poolId()).clientId(clientId())

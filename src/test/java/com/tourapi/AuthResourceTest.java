@@ -9,6 +9,8 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthenticationResultType;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.CodeMismatchException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidParameterException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.LimitExceededException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UnsupportedTokenTypeException;
@@ -89,6 +91,46 @@ public class AuthResourceTest {
                 .body("{\"email\":\"a@b.c\",\"code\":\"000000\"}")
                 .post("/v1/auth/confirm").then().statusCode(400)
                 .body("error", equalTo("invalid_code"));
+    }
+
+    @Test
+    public void resendCode_성공시_204() {
+        given().contentType(ContentType.JSON).body("{\"email\":\"a@b.c\"}")
+                .post("/v1/auth/resend-code").then().statusCode(204);
+        verify(cognito).resendConfirmationCode("a@b.c");
+    }
+
+    @Test
+    public void resendCode_없는계정도_204() { // 가입 여부 누설 금지
+        doThrow(UserNotFoundException.builder().build())
+                .when(cognito).resendConfirmationCode(any());
+        given().contentType(ContentType.JSON).body("{\"email\":\"x@b.c\"}")
+                .post("/v1/auth/resend-code").then().statusCode(204);
+    }
+
+    @Test
+    public void resendCode_이미확인된계정_400() {
+        doThrow(InvalidParameterException.builder().build())
+                .when(cognito).resendConfirmationCode(any());
+        given().contentType(ContentType.JSON).body("{\"email\":\"a@b.c\"}")
+                .post("/v1/auth/resend-code").then().statusCode(400)
+                .body("error", equalTo("already_confirmed"));
+    }
+
+    @Test
+    public void resendCode_과다요청_429() {
+        doThrow(LimitExceededException.builder().build())
+                .when(cognito).resendConfirmationCode(any());
+        given().contentType(ContentType.JSON).body("{\"email\":\"a@b.c\"}")
+                .post("/v1/auth/resend-code").then().statusCode(429)
+                .body("error", equalTo("too_many_requests"));
+    }
+
+    @Test
+    public void resendCode_이메일누락_400() {
+        given().contentType(ContentType.JSON).body("{}")
+                .post("/v1/auth/resend-code").then().statusCode(400)
+                .body("error", equalTo("bad_request"));
     }
 
     @Test

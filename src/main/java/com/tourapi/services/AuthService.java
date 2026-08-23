@@ -35,6 +35,10 @@ public class AuthService {
         cognito.confirm(email, code);
     }
 
+    public void resendCode(String email) {
+        cognito.resendConfirmationCode(email);
+    }
+
     public TokenResponse login(String email, String password) {
         AuthenticationResultType r =
                 cognito.loginWithPassword(CognitoAuth.usernameForEmail(email), password);
