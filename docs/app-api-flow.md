@@ -25,7 +25,7 @@ sequenceDiagram
 | --- | --- |
 | Base URL | `https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws` |
 | Content-Type | `application/json` (요청·응답 모두) |
-| 인증 | 현재 없음 (Cognito 도입 예정 — 도입 시 이 문서 갱신) |
+| 인증 | 러닝 API는 현재 없음(공개). 계정/로그인 API는 [auth-api-flow.md](auth-api-flow.md) 참고 |
 | API 문서 | Swagger UI `{BASE}/q/swagger-ui` · OpenAPI 스펙 `{BASE}/q/openapi?format=json` |
 
 **에러 응답(공통 형식)** — 상태코드와 함께 항상 이 JSON:

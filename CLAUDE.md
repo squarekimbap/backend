@@ -34,10 +34,22 @@
 ## 배포됨 — 인증/로그인 (2026-07-07 배포, 2026-08-19 라이브 재확인)
 - **이메일+카카오 인증 전체 구현·테스트 완료(34개 그린) 후 배포 완료.** UserPool(`app-users`, `ap-northeast-2_eaLSAOL0A`)·UserPoolClient(backend)·UsersTable(`app-users`, pk `userId`=sub) 모두 2026-07-07 12:48 생성됨.
 - 라이브 검증(2026-08-19): `/v1/users/me` 무토큰 **401**, `/v1/auth/login` 빈 바디 **400**, OpenAPI에 인증 5개 경로 노출. UsersTable에 사용자 1명 존재. ⚠️ 문서가 한동안 '배포 대기'로 남아 있었음 — 배포 후 이 파일 갱신할 것.
-- 엔드포인트: `POST /v1/auth/{signup,confirm,login,refresh,kakao}` (공개) · `GET /v1/users/me` (`@Authenticated`, Cognito JWT). `/v1/tour/*` 등 기존 API는 계속 공개(단계적 전환 예정).
+- 엔드포인트: `POST /v1/auth/{signup,confirm,resend-code,login,logout,refresh,forgot-password,reset-password,kakao}` (공개) · `GET|PATCH|DELETE /v1/users/me` (`@Authenticated`, Cognito JWT). `/v1/tour/*` 등 기존 API는 계속 공개(단계적 전환 예정).
 - **핵심 트릭**: ① username은 백엔드 생성 — 이메일 `email_<sha256(정규화 이메일) 32자>` / 카카오 `kakao_<회원번호>` (이메일을 username으로 안 쓴 이유: 카카오 공존 + 중복가입이 username 충돌로 차단). ② 카카오는 **연합 IdP 금지**(무료 50 MAU 함정) — 백엔드가 kapi `/v2/user/me`로 토큰 검증 후 일반 사용자로 연결, **AdminSetUserPassword 회전**(랜덤 64자 설정→즉시 로그인→폐기, 경합 시 1회 재시도)으로 토큰 발급 → 10,000 MAU 무료 유지. ③ JWT 검증은 `quarkus-smallrye-jwt`+Cognito JWKS(`mp.jwt.verify.*`, `${USER_POOL_ID:unset}` placeholder — 빈 default 금지 함정 회피).
 - 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
-- 남은 실검증: 카카오 로그인(`/v1/auth/kakao`)은 실제 앱 토큰이 필요해 아직 미확인 — 특히 `AdminCreateUser`로 이메일 없이 kakao_* 사용자를 만드는 경로. 주의: kakao_* 계정은 이메일 속성 없음 → forgot-password 구현 시 provider=kakao 요청은 400 처리할 것.
+- 남은 실검증: 카카오 로그인(`/v1/auth/kakao`)은 실제 앱 토큰이 필요해 아직 미확인 — 특히 `AdminCreateUser`로 이메일 없이 kakao_* 사용자를 만드는 경로.
+
+## 계정 수명주기 (2026-08-23 구현, **배포 대기**)
+로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정. 테스트 65개 그린, 라이브 미검증.
+- **로그아웃** `POST /v1/auth/logout` — RevokeToken으로 refresh 토큰 폐기(발급된 access 토큰도 무효화). 이미 폐기된 토큰도 204. `EnableTokenRevocation`이 꺼지면 로그아웃이 조용히 무력화되므로 `UnsupportedTokenType`은 502로 드러낸다.
+- **자동로그인** — 기존 `/v1/auth/refresh`가 그대로 쓰인다. 서버 쪽은 ① `RefreshTokenValidity` 30일(기본)→**365일**, ② refresh 때도 프로필 `putIfAbsent` 호출(로그인 시 저장 실패를 자가복구). provider는 요청만 봐선 몰라서 username 접두사로 되짚는다(`CognitoAuth.providerOfUsername`).
+- **탈퇴** `DELETE /v1/users/me` — **프로필 행 → Cognito 계정 순서.** 행 삭제가 멱등이라 Cognito 삭제 실패 시 같은 요청 재시도가 통한다. 역순이면 재시도가 UserNotFound로 끊겨 남은 행을 치울 길이 없다. 발급된 access 토큰은 만료(1h)까지 유효 — 앱도 로컬 토큰을 지울 것.
+- **비밀번호 찾기** `POST /v1/auth/forgot-password` → `/reset-password`. 카카오 사용자는 username이 `kakao_*`라 이메일로 조회되지 않아 자동으로 UserNotFound → 204. **provider 분기 불필요**(예전 메모 정정). 미확인 계정은 403 `user_not_confirmed`.
+- **확인코드 재발송** `POST /v1/auth/resend-code` — 없는 계정 204(누설 금지), 이미 확인된 계정 400 `already_confirmed`, 한도 초과 429.
+- **프로필 수정** `PATCH /v1/users/me` (닉네임, ≤20자) — Cognito 속성 → UsersTable 순서. 행이 없으면 404지만 Cognito는 이미 바뀌어 다음 로그인에 새 닉네임으로 생성됨. `UserStore.updateNickname`은 putIfAbsent와 달리 **실패를 삼키지 않는다**(명시적 변경이 조용히 사라지면 안 됨).
+- 누설 방지 원칙: 계정 존재 여부는 `login`·`forgot-password`·`reset-password`·`resend-code(없는 계정)`에서 구분해 주지 않는다. 단 `signup` 409와 `resend-code` 400은 예외(이미 signup이 알려주므로 새 누설 없음 + 앱 UX 이득).
+- 관리자 API용 username은 `cognito:username`(ID 토큰) → `username`(access 토큰) → `sub` 순서로 읽는다(`UserResource.cognitoUsername`).
+- 추가된 IAM: `RevokeToken`, `AdminUpdateUserAttributes`, `AdminDeleteUser`.
 
 ## CI/CD (GitHub Actions)
 - `.github/workflows/deploy.yml` — **main 푸시 → 테스트 → `sam deploy` → 스모크 테스트**. PR은 빌드/테스트만(AWS 미접근), 문서만 바뀌면 아예 안 돎(`paths-ignore`, 비공개 저장소라 Actions 분이 과금 대상 — 무료 2,000분/월).
