@@ -79,6 +79,22 @@ public class CognitoAuth {
                 .username(usernameForEmail(email)));
     }
 
+    /**
+     * 비밀번호 재설정 코드 발송. 확인된 이메일이 있어야 하며(미확인 계정은
+     * InvalidParameterException), 카카오 사용자는 username 규약이 달라 애초에 조회되지 않는다.
+     */
+    public void forgotPassword(String email) {
+        client().forgotPassword(b -> b.clientId(clientId())
+                .username(usernameForEmail(email)));
+    }
+
+    /** 재설정 코드 검증 + 새 비밀번호 적용. */
+    public void confirmForgotPassword(String email, String code, String newPassword) {
+        client().confirmForgotPassword(b -> b.clientId(clientId())
+                .username(usernameForEmail(email))
+                .confirmationCode(code).password(newPassword));
+    }
+
     public AuthenticationResultType loginWithPassword(String username, String password) {
         AdminInitiateAuthResponse res = client().adminInitiateAuth(b -> b
                 .userPoolId(poolId()).clientId(clientId())

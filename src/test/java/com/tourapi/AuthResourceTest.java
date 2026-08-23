@@ -10,9 +10,11 @@ import org.junit.jupiter.api.Test;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthenticationResultType;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.CodeMismatchException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidParameterException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidPasswordException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.LimitExceededException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.TooManyFailedAttemptsException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UnsupportedTokenTypeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
@@ -130,6 +132,83 @@ public class AuthResourceTest {
     public void resendCode_이메일누락_400() {
         given().contentType(ContentType.JSON).body("{}")
                 .post("/v1/auth/resend-code").then().statusCode(400)
+                .body("error", equalTo("bad_request"));
+    }
+
+    @Test
+    public void forgotPassword_성공시_204() {
+        given().contentType(ContentType.JSON).body("{\"email\":\"a@b.c\"}")
+                .post("/v1/auth/forgot-password").then().statusCode(204);
+        verify(cognito).forgotPassword("a@b.c");
+    }
+
+    @Test
+    public void forgotPassword_없는계정도_204() { // 가입 여부 누설 금지(카카오 사용자도 여기로)
+        doThrow(UserNotFoundException.builder().build()).when(cognito).forgotPassword(any());
+        given().contentType(ContentType.JSON).body("{\"email\":\"x@b.c\"}")
+                .post("/v1/auth/forgot-password").then().statusCode(204);
+    }
+
+    @Test
+    public void forgotPassword_미확인계정_403() { // 재설정 대신 가입 확인으로 유도
+        doThrow(InvalidParameterException.builder().build()).when(cognito).forgotPassword(any());
+        given().contentType(ContentType.JSON).body("{\"email\":\"a@b.c\"}")
+                .post("/v1/auth/forgot-password").then().statusCode(403)
+                .body("error", equalTo("user_not_confirmed"));
+    }
+
+    @Test
+    public void resetPassword_성공시_204() {
+        given().contentType(ContentType.JSON)
+                .body("{\"email\":\"a@b.c\",\"code\":\"123456\",\"newPassword\":\"Newpw1234\"}")
+                .post("/v1/auth/reset-password").then().statusCode(204);
+        verify(cognito).confirmForgotPassword("a@b.c", "123456", "Newpw1234");
+    }
+
+    @Test
+    public void resetPassword_코드틀리면_400() {
+        doThrow(CodeMismatchException.builder().build())
+                .when(cognito).confirmForgotPassword(any(), any(), any());
+        given().contentType(ContentType.JSON)
+                .body("{\"email\":\"a@b.c\",\"code\":\"000000\",\"newPassword\":\"Newpw1234\"}")
+                .post("/v1/auth/reset-password").then().statusCode(400)
+                .body("error", equalTo("invalid_code"));
+    }
+
+    @Test
+    public void resetPassword_없는계정도_코드오류와_같은_400() { // 계정 존재 여부 누설 금지
+        doThrow(UserNotFoundException.builder().build())
+                .when(cognito).confirmForgotPassword(any(), any(), any());
+        given().contentType(ContentType.JSON)
+                .body("{\"email\":\"x@b.c\",\"code\":\"123456\",\"newPassword\":\"Newpw1234\"}")
+                .post("/v1/auth/reset-password").then().statusCode(400)
+                .body("error", equalTo("invalid_code"));
+    }
+
+    @Test
+    public void resetPassword_약한비밀번호_400() {
+        doThrow(InvalidPasswordException.builder().build())
+                .when(cognito).confirmForgotPassword(any(), any(), any());
+        given().contentType(ContentType.JSON)
+                .body("{\"email\":\"a@b.c\",\"code\":\"123456\",\"newPassword\":\"abc\"}")
+                .post("/v1/auth/reset-password").then().statusCode(400)
+                .body("error", equalTo("weak_password"));
+    }
+
+    @Test
+    public void resetPassword_시도과다_429() {
+        doThrow(TooManyFailedAttemptsException.builder().build())
+                .when(cognito).confirmForgotPassword(any(), any(), any());
+        given().contentType(ContentType.JSON)
+                .body("{\"email\":\"a@b.c\",\"code\":\"123456\",\"newPassword\":\"Newpw1234\"}")
+                .post("/v1/auth/reset-password").then().statusCode(429)
+                .body("error", equalTo("too_many_requests"));
+    }
+
+    @Test
+    public void resetPassword_필드누락_400() {
+        given().contentType(ContentType.JSON).body("{\"email\":\"a@b.c\"}")
+                .post("/v1/auth/reset-password").then().statusCode(400)
                 .body("error", equalTo("bad_request"));
     }
 

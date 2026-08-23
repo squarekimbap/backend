@@ -4,11 +4,13 @@ import com.tourapi.lib.InvalidKakaoTokenException;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.ConfirmRequest;
+import com.tourapi.model.ForgotPasswordRequest;
 import com.tourapi.model.KakaoLoginRequest;
 import com.tourapi.model.LoginRequest;
 import com.tourapi.model.LogoutRequest;
 import com.tourapi.model.RefreshRequest;
 import com.tourapi.model.ResendCodeRequest;
+import com.tourapi.model.ResetPasswordRequest;
 import com.tourapi.model.SignupRequest;
 import com.tourapi.services.AuthService;
 import jakarta.inject.Inject;
@@ -30,6 +32,7 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.LimitExceed
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.TooManyFailedAttemptsException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.TooManyRequestsException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UnsupportedTokenTypeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
@@ -105,6 +108,52 @@ public class AuthResource {
             return error(429, "too_many_requests", "요청이 너무 잦음 — 잠시 후 다시 시도");
         } catch (CognitoIdentityProviderException e) {
             return upstream("resend-code", e);
+        }
+    }
+
+    @POST
+    @Path("/forgot-password")
+    @Operation(summary = "비밀번호 재설정 코드 발송")
+    public Response forgotPassword(ForgotPasswordRequest req) {
+        if (req == null || blank(req.email())) {
+            return bad("email 필수");
+        }
+        try {
+            authService.forgotPassword(req.email());
+            return Response.noContent().build();
+        } catch (UserNotFoundException e) {
+            // 없는 계정도 204 — 가입 여부 누설 금지.
+            // 카카오 사용자는 username이 kakao_* 라 이메일로는 조회되지 않아 여기로 온다
+            return Response.noContent().build();
+        } catch (InvalidParameterException e) {
+            // 확인된 이메일이 없는 계정 = 가입 확인 미완료. 재설정 대신 가입 확인으로 보낸다
+            return error(403, "user_not_confirmed", "이메일 확인이 필요함 — 확인코드 재발송 후 인증할 것");
+        } catch (LimitExceededException | TooManyRequestsException e) {
+            return error(429, "too_many_requests", "요청이 너무 잦음 — 잠시 후 다시 시도");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("forgot-password", e);
+        }
+    }
+
+    @POST
+    @Path("/reset-password")
+    @Operation(summary = "재설정 코드로 새 비밀번호 적용")
+    public Response resetPassword(ResetPasswordRequest req) {
+        if (req == null || blank(req.email()) || blank(req.code()) || blank(req.newPassword())) {
+            return bad("email·code·newPassword 필수");
+        }
+        try {
+            authService.resetPassword(req.email(), req.code(), req.newPassword());
+            return Response.noContent().build();
+        } catch (CodeMismatchException | ExpiredCodeException | UserNotFoundException e) {
+            // 없는 계정도 코드 오류와 같은 응답 — 여기서 계정 존재를 구분해 주면 안 된다
+            return error(400, "invalid_code", "재설정 코드가 올바르지 않거나 만료됨");
+        } catch (InvalidPasswordException | InvalidParameterException e) {
+            return error(400, "weak_password", "비밀번호 정책 미달(8자 이상, 대/소문자·숫자 포함)");
+        } catch (TooManyFailedAttemptsException | LimitExceededException | TooManyRequestsException e) {
+            return error(429, "too_many_requests", "시도가 너무 잦음 — 잠시 후 다시 시도");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("reset-password", e);
         }
     }
 
