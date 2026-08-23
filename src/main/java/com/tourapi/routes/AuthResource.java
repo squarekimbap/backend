@@ -6,6 +6,7 @@ import com.tourapi.model.ApiError;
 import com.tourapi.model.ConfirmRequest;
 import com.tourapi.model.KakaoLoginRequest;
 import com.tourapi.model.LoginRequest;
+import com.tourapi.model.LogoutRequest;
 import com.tourapi.model.RefreshRequest;
 import com.tourapi.model.SignupRequest;
 import com.tourapi.services.AuthService;
@@ -27,6 +28,7 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.InvalidPass
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.UnsupportedTokenTypeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
 
 /** 인증 라우트. 얇게 유지: 요청 검증 → 서비스 위임 → Cognito 예외를 HTTP로 매핑. */
@@ -130,6 +132,27 @@ public class AuthResource {
         } catch (CognitoIdentityProviderException e) {
             return upstream("refresh", e);
         }
+    }
+
+    @POST
+    @Path("/logout")
+    @Operation(summary = "로그아웃 — refresh 토큰 폐기(자동로그인 해제)")
+    public Response logout(LogoutRequest req) {
+        if (req == null || blank(req.refreshToken())) {
+            return bad("refreshToken 필수");
+        }
+        try {
+            authService.logout(req.refreshToken());
+        } catch (NotAuthorizedException e) {
+            // 이미 폐기됐거나 형식이 틀린 토큰 — 앱 입장에선 로그아웃된 상태와 같다
+        } catch (UnsupportedTokenTypeException e) {
+            // 조용히 성공시키면 "로그아웃했는데 세션이 살아있는" 상태가 된다 — 반드시 드러낸다
+            LOG.error("토큰 폐기 비활성 — UserPoolClient의 EnableTokenRevocation 확인 필요");
+            return error(502, "upstream_error", "인증 서비스 일시 오류");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("logout", e);
+        }
+        return Response.noContent().build();
     }
 
     // ── 공용 헬퍼 (routes 계층 책임: 검증·매핑) ─────────────────────

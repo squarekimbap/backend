@@ -59,6 +59,7 @@ Resources:
                 - cognito-idp:AdminGetUser
                 - cognito-idp:AdminCreateUser
                 - cognito-idp:AdminSetUserPassword
+                - cognito-idp:RevokeToken
               Resource: !GetAtt UserPool.Arn
       # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능
       FunctionUrlConfig:
@@ -112,6 +113,9 @@ Resources:
       ExplicitAuthFlows:
         - ALLOW_ADMIN_USER_PASSWORD_AUTH
         - ALLOW_REFRESH_TOKEN_AUTH
+      # 로그아웃(RevokeToken)이 동작하려면 켜져 있어야 한다. 신규 클라이언트 기본값이지만
+      # 꺼지면 로그아웃이 조용히 무력화되므로 명시한다.
+      EnableTokenRevocation: true
 
   # 사용자 최소 프로필. 캐시 5/5와 합산 10/10 — always-free(계정 합산 25/25) 내
   UsersTable:

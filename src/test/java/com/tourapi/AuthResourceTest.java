@@ -11,6 +11,7 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.Authenticat
 import software.amazon.awssdk.services.cognitoidentityprovider.model.CodeMismatchException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotConfirmedException;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.UnsupportedTokenTypeException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
 
@@ -145,6 +146,37 @@ public class AuthResourceTest {
         given().contentType(ContentType.JSON).body("{\"refreshToken\":\"bad\"}")
                 .post("/v1/auth/refresh").then().statusCode(401)
                 .body("error", equalTo("invalid_refresh_token"));
+    }
+
+    @Test
+    public void logout_성공시_204_토큰폐기() {
+        given().contentType(ContentType.JSON).body("{\"refreshToken\":\"rt\"}")
+                .post("/v1/auth/logout").then().statusCode(204);
+        verify(cognito).revokeRefreshToken("rt");
+    }
+
+    @Test
+    public void logout_이미_폐기된_토큰도_204() { // 앱 입장에선 이미 로그아웃된 상태
+        doThrow(NotAuthorizedException.builder().build())
+                .when(cognito).revokeRefreshToken(any());
+        given().contentType(ContentType.JSON).body("{\"refreshToken\":\"gone\"}")
+                .post("/v1/auth/logout").then().statusCode(204);
+    }
+
+    @Test
+    public void logout_폐기기능_비활성이면_502() { // 조용히 성공시키면 안 되는 설정 오류
+        doThrow(UnsupportedTokenTypeException.builder().build())
+                .when(cognito).revokeRefreshToken(any());
+        given().contentType(ContentType.JSON).body("{\"refreshToken\":\"rt\"}")
+                .post("/v1/auth/logout").then().statusCode(502)
+                .body("error", equalTo("upstream_error"));
+    }
+
+    @Test
+    public void logout_토큰누락_400() {
+        given().contentType(ContentType.JSON).body("{}")
+                .post("/v1/auth/logout").then().statusCode(400)
+                .body("error", equalTo("bad_request"));
     }
 
     @Test

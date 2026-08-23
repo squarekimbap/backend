@@ -89,6 +89,14 @@ public class CognitoAuth {
         return res.authenticationResult();
     }
 
+    /**
+     * refresh 토큰 폐기(= 로그아웃). 이 토큰으로 발급된 access 토큰도 함께 무효화된다.
+     * 클라이언트에 EnableTokenRevocation이 꺼져 있으면 UnsupportedTokenTypeException.
+     */
+    public void revokeRefreshToken(String refreshToken) {
+        client().revokeToken(b -> b.clientId(clientId()).token(refreshToken));
+    }
+
     /** kakao_<id> 사용자 조회, 없으면 생성(이메일 발송 억제). username 반환. */
     public String ensureKakaoUser(long kakaoId, String nickname) {
         String username = "kakao_" + kakaoId;

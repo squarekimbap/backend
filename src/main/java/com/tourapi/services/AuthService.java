@@ -46,6 +46,11 @@ public class AuthService {
         return toResponse(cognito.refresh(refreshToken));
     }
 
+    /** 로그아웃. refresh 토큰을 폐기해 자동로그인을 끊는다(발급된 access 토큰도 무효화). */
+    public void logout(String refreshToken) {
+        cognito.revokeRefreshToken(refreshToken);
+    }
+
     /**
      * 카카오 브릿지: 토큰 검증 → kakao_<id> 사용자 확보 → 비밀번호 회전 로그인.
      * 동시 로그인이 서로의 회전 비밀번호를 덮어쓰면 NotAuthorized가 나므로 1회 재시도한다.
