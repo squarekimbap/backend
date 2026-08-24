@@ -102,6 +102,7 @@ flowchart LR
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
 | POST | `/v1/running/routes` (Phase B) | 코스 추천(TMAP 경로 + 고도 난이도, 최대 3개) | ✅ 배포됨 |
+| GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그(수집본 42코스·24도시, 홈 피드/상세) | ✅ |
 | POST | `/v1/auth/signup` · `/confirm` · `/login` · `/refresh` | 이메일 인증(Cognito 프록시) | ✅ 구현(배포 대기) |
 | POST | `/v1/auth/kakao` | 카카오 로그인(토큰 검증→Cognito 브릿지, 첫 로그인=자동 가입) | ✅ 구현(배포 대기) |
 | GET | `/v1/users/me` | 내 프로필 (**JWT 필수**) | ✅ 구현(배포 대기) |

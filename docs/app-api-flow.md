@@ -1,6 +1,10 @@
 # 앱 API 호출 가이드 (러닝 코스 추천)
 
-앱이 호출하는 API는 **2개뿐**이다. 순서는 고정:
+앱이 호출하는 API는 두 묶음이다:
+- **코스 생성 플로우 2개** (아래 ①~③) — 설문으로 새 코스 만들기
+- **편집 코스 카탈로그 2개** — 홈 피드·코스 상세 화면용 ([맨 아래 4️⃣](#4️⃣-편집-코스-카탈로그--get-v1courses) 참고)
+
+생성 플로우 순서는 고정:
 
 ```
 [화면1 설문] → ① POST /v1/running/candidates → [화면2 경유지 선택(앱 내부)] → ② POST /v1/running/routes → [화면3 코스 표시]
@@ -188,6 +192,21 @@ sequenceDiagram
 - [ ] 502 → 1회 재시도 후 안내. 400은 앱 버그(검증 로직 확인)
 - [ ] 타임아웃 30초 + 첫 호출 로딩 UI(스켈레톤) — 하루 첫 호출/콜드는 몇 초 걸림
 - [ ] `waypoints` 6개 이상 선택 못 하게 UI에서 제한 (서버도 400으로 막음)
+
+## 4️⃣ 편집 코스 카탈로그 — `GET /v1/courses`
+
+홈 피드와 코스 상세 화면은 서버가 서빙하는 **수집본 원고**(42코스·24도시)를 쓴다.
+
+| 호출 | 용도 | 응답 |
+| --- | --- | --- |
+| `GET /v1/courses` | 홈 피드 전체 | `{count, items:[요약]}` — 요약 = id·n·city·cityId·region·km·min·lv·mood·tags·headline·subhead·photo·photoTitle·photoLicense |
+| `GET /v1/courses?city=서울` (또는 `city=seoul`) | 도시 탭 | 위와 동일(필터됨) |
+| `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + `body[]`(어떤 길인지) · `deep[]`(더 알아두면) · `ops[]`(가기 전에) · `unsure[]`(확인 중) · `poi[{n,d,photo}]`(지나는 곳+장소 사진 → **1/2 2/2 페이저 재료**) |
+
+- id 예: `seoul-banpo-10k`, `busan-haeundae`. 없는 id → `404 {error:"not_found"}`
+- 정적 번들 데이터라 응답이 빠르고(수십 ms + 콜드스타트) 업스트림 실패(502)가 없다
+- 한글 city 파라미터는 **URL 인코딩** 필수 (iOS URLComponents 사용 시 자동)
+- 사진 표기: `photoLicense`(공공누리) 문구를 상세 화면 하단에 노출할 것
 
 ## (참고) 앱에서 호출하지 않는 엔드포인트
 

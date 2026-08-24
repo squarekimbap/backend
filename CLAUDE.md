@@ -28,6 +28,8 @@
 - `GET /v1/tour/popular?lat&lng[&size]` → 좌표 주변 인기 관광지 **집중률 순위**(30일 평균). **DynamoDB 캐시 적용**(키 `popular#<signguCd>#<KST yyyyMMdd>`, TTL 26h, size 자르기 전 전체 순위 저장): 시군구당 하루 첫 1회만 느림(~10s) → 이후 ~1.5s(워밍 히트, 로그 "집중률 캐시 히트"로 검증, 2026-07-02). 남은 최적화: 히트 시에도 좌표→시군구 역지오코딩(locationBasedList2 ~1s)은 매번 호출 — L1 인메모리로 줄일 수 있음.
 - `POST /v1/running/candidates` (러닝 Phase A) → 설문(lat·lng·distanceKm·shape[loop|oneway]·count) → 주변 관광지(타입 12·14·28) + 집중률 순위 매칭 후보. data.go.kr 4콜(타입3+지역)을 **전용 풀로 병렬화**(순차 6~12s → ~2s; Lambda 저코어라 commonPool 금지). 라이브 검증(2026-07-03): 콜드 6.8s / 워밍 0.4s.
 - `POST /v1/running/routes` (러닝 Phase B) → start+waypoints(1~5)+shape[+targetDistanceKm] → 순서 후보(선택/역순/근접, 중복 제거) → TMAP 보행 경로 + Google 고도(경로 100점 샘플) → 난이도(km당 상승 10↓하/25↓중/초과 상) → 코스 최대 3개(경로 path 최대 200점). 라이브 검증: ~0.8s.
+- `GET /v1/courses[?city=도시명|cityId]` · `GET /v1/courses/{id}` → **편집 코스 카탈로그**(어디 뛰지 수집본 42코스·24도시, 홈 피드/상세 화면용). 데이터는 `src/main/resources/data/courses.json` **번들**(DB 없음) — 원본은 `running-courses/data/*.json`(build.py 산출물 courses.json을 복사). 갱신 = 재복사 후 배포. id는 수집본 그대로(`seoul-banpo-10k` 형식, 42개 유일성 검증됨).
+  ⚠️ 테스트 함정: 테스트용 MockEventServer가 큰(~24KB) 청크 응답을 종료하지 않아 read timeout — **전체 목록은 HTTP 테스트 금지, 서비스 레벨(CourseCatalog 주입)로 검증**(dev·실서버는 정상 확인).
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
 - 키 3개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`. 배포: `sam deploy ... --parameter-overrides TourApiKey=<키> TmapAppKey=<키> GoogleMapsApiKey=<키>`. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
