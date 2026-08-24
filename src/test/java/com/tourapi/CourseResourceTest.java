@@ -55,6 +55,15 @@ public class CourseResourceTest {
     }
 
     @Test
+    public void 상세에_공유url과_poi_보강필드() {
+        RestAssured.when().get("/v1/courses/seoul-banpo-10k")
+                .then().statusCode(200)
+                .body("url", equalTo(
+                        "https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws/v1/courses/seoul-banpo-10k"))
+                .body("poi[0].naver", notNullValue());
+    }
+
+    @Test
     public void 없는_id_404() {
         RestAssured.when().get("/v1/courses/no-such-course")
                 .then().statusCode(404)

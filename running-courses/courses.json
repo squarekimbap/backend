@@ -40,25 +40,44 @@
     "n": "광안리해수욕장",
     "d": "야경 코스로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/45/3311245_image2_1.jpg",
-    "_img": "busan-haeundae-poi1"
+    "_img": "busan-haeundae-poi1",
+    "addr": "부산광역시 수영구 광안해변로 219 (광안동)",
+    "lat": 35.1531932737,
+    "lng": 129.1189760936,
+    "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "이기대",
     "d": "해안 절벽 트레일",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/11/4096311_image2_1.jpg",
-    "_img": "busan-haeundae-poi2"
+    "_img": "busan-haeundae-poi2",
+    "addr": "부산광역시 남구 이기대공원로 68",
+    "lat": 35.115449,
+    "lng": 129.123566,
+    "naver": "https://map.naver.com/p/search/%EC%9D%B4%EA%B8%B0%EB%8C%80",
+    "nextM": null
    },
    {
     "n": "동백섬 해안산책로",
     "d": "코스 중간 구간",
     "photo": null,
-    "_img": "busan-haeundae-poi3"
+    "_img": "busan-haeundae-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%8F%99%EB%B0%B1%EC%84%AC%20%ED%95%B4%EC%95%88%EC%82%B0%EC%B1%85%EB%A1%9C",
+    "nextM": null
    },
    {
     "n": "블루라인파크 그린레일웨이",
     "d": "미포에서 송정까지 연장",
     "photo": null,
-    "_img": "busan-haeundae-poi4"
+    "_img": "busan-haeundae-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EA%B7%B8%EB%A6%B0%EB%A0%88%EC%9D%BC%EC%9B%A8%EC%9D%B4"
    }
   ],
   "city": "부산",
@@ -106,25 +125,44 @@
     "n": "민락수변공원",
     "d": "광안대교 정면 구간",
     "photo": null,
-    "_img": "busan-gwangalli-night-poi1"
+    "_img": "busan-gwangalli-night-poi1",
+    "addr": "부산광역시 수영구 민락동",
+    "lat": 35.1545,
+    "lng": 129.133,
+    "naver": "https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "황령산",
     "d": "업힐 + 야경 전망대",
     "photo": null,
-    "_img": "busan-gwangalli-night-poi2"
+    "_img": "busan-gwangalli-night-poi2",
+    "addr": "부산광역시 남구 황령산로 391-39",
+    "lat": 35.1579341561,
+    "lng": 129.0827285679,
+    "naver": "https://map.naver.com/p/search/%ED%99%A9%EB%A0%B9%EC%82%B0",
+    "nextM": null
    },
    {
     "n": "수영강 데크",
     "d": "5km 이상 연장",
     "photo": null,
-    "_img": "busan-gwangalli-night-poi3"
+    "_img": "busan-gwangalli-night-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B0%95%20%EB%8D%B0%ED%81%AC",
+    "nextM": null
    },
    {
     "n": "해운대해수욕장",
     "d": "해안 연결",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/34/3090534_image2_1.JPG",
-    "_img": "busan-gwangalli-night-poi4"
+    "_img": "busan-gwangalli-night-poi4",
+    "addr": "부산광역시 해운대구 구남로 11-1 (우동)",
+    "lat": 35.1628751551535,
+    "lng": 129.159811309804,
+    "naver": "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
    }
   ],
   "city": "부산",
@@ -172,25 +210,44 @@
     "n": "삼락생태공원",
     "d": "낙동강 둔치 장거리",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/90/3497090_image2_1.jpg",
-    "_img": "busan-oncheoncheon-poi1"
+    "_img": "busan-oncheoncheon-poi1",
+    "addr": "부산 사상구 삼락동 29-46",
+    "lat": 35.1691043434193,
+    "lng": 128.973176285884,
+    "naver": "https://map.naver.com/p/search/%EC%82%BC%EB%9D%BD%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "수영강",
     "d": "거리 확장 연결",
     "photo": null,
-    "_img": "busan-oncheoncheon-poi2"
+    "_img": "busan-oncheoncheon-poi2",
+    "addr": null,
+    "lat": 35.3043172,
+    "lng": 129.1083294,
+    "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B0%95",
+    "nextM": null
    },
    {
     "n": "온천천 카페거리",
     "d": "러닝 후 마무리",
     "photo": null,
-    "_img": "busan-oncheoncheon-poi3"
+    "_img": "busan-oncheoncheon-poi3",
+    "addr": "부산광역시 동래구 온천천로 451",
+    "lat": 35.1916279693,
+    "lng": 129.1024592605,
+    "naver": "https://map.naver.com/p/search/%EC%98%A8%EC%B2%9C%EC%B2%9C%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC",
+    "nextM": 5275
    },
    {
     "n": "광안리해수욕장",
     "d": "야경 코스로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/45/3311245_image2_1.jpg",
-    "_img": "busan-oncheoncheon-poi4"
+    "_img": "busan-oncheoncheon-poi4",
+    "addr": "부산광역시 수영구 광안해변로 219 (광안동)",
+    "lat": 35.1531932737,
+    "lng": 129.1189760936,
+    "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
    }
   ],
   "city": "부산",
@@ -239,25 +296,44 @@
     "n": "온천천",
     "d": "짧은 코스로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/33/2822333_image2_1.png",
-    "_img": "busan-samnak-lsd-poi1"
+    "_img": "busan-samnak-lsd-poi1",
+    "addr": "부산광역시 동래구 온천천로 451",
+    "lat": 35.1916279693,
+    "lng": 129.1024592605,
+    "naver": "https://map.naver.com/p/search/%EC%98%A8%EC%B2%9C%EC%B2%9C",
+    "nextM": null
    },
    {
     "n": "다대포해수욕장",
     "d": "낙동강 하구 해안 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/15/3497115_image2_1.jpg",
-    "_img": "busan-samnak-lsd-poi2"
+    "_img": "busan-samnak-lsd-poi2",
+    "addr": "부산광역시 사하구 몰운대1길 14",
+    "lat": 35.046247,
+    "lng": 128.963151,
+    "naver": "https://map.naver.com/p/search/%EB%8B%A4%EB%8C%80%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "메타세쿼이아길",
     "d": "코스의 대표 구간",
     "photo": null,
-    "_img": "busan-samnak-lsd-poi3"
+    "_img": "busan-samnak-lsd-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%A9%94%ED%83%80%EC%84%B8%EC%BF%BC%EC%9D%B4%EC%95%84%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "낙동강 자전거길",
     "d": "장거리 연장",
     "photo": null,
-    "_img": "busan-samnak-lsd-poi4"
+    "_img": "busan-samnak-lsd-poi4",
+    "addr": null,
+    "lat": 35.0913089,
+    "lng": 128.9543361,
+    "naver": "https://map.naver.com/p/search/%EB%82%99%EB%8F%99%EA%B0%95%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8"
    }
   ],
   "city": "부산",
@@ -305,25 +381,44 @@
     "n": "암남공원",
     "d": "코스 종점",
     "photo": null,
-    "_img": "busan-songdo-cloud-poi1"
+    "_img": "busan-songdo-cloud-poi1",
+    "addr": "부산광역시 서구 암남공원로 185",
+    "lat": 35.0589,
+    "lng": 129.0158,
+    "naver": "https://map.naver.com/p/search/%EC%95%94%EB%82%A8%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "이기대",
     "d": "같은 성격의 해안 절벽 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/11/4096311_image2_1.jpg",
-    "_img": "busan-songdo-cloud-poi2"
+    "_img": "busan-songdo-cloud-poi2",
+    "addr": "부산광역시 남구 이기대공원로 68",
+    "lat": 35.115449,
+    "lng": 129.123566,
+    "naver": "https://map.naver.com/p/search/%EC%9D%B4%EA%B8%B0%EB%8C%80",
+    "nextM": null
    },
    {
     "n": "다대포해수욕장",
     "d": "낙동강 하구 방면",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/15/3497115_image2_1.jpg",
-    "_img": "busan-songdo-cloud-poi3"
+    "_img": "busan-songdo-cloud-poi3",
+    "addr": "부산광역시 사하구 몰운대1길 14",
+    "lat": 35.046247,
+    "lng": 128.963151,
+    "naver": "https://map.naver.com/p/search/%EB%8B%A4%EB%8C%80%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "해운대해수욕장",
     "d": "평지 코스로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/34/3090534_image2_1.JPG",
-    "_img": "busan-songdo-cloud-poi4"
+    "_img": "busan-songdo-cloud-poi4",
+    "addr": "부산광역시 해운대구 구남로 11-1 (우동)",
+    "lat": 35.1628751551535,
+    "lng": 129.159811309804,
+    "naver": "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
    }
   ],
   "city": "부산",
@@ -373,25 +468,44 @@
     "n": "용두암",
     "d": "해안도로 대표 지점",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/68/3011868_image2_1.jpg",
-    "_img": "jeju-yongdam-coast-poi1"
+    "_img": "jeju-yongdam-coast-poi1",
+    "addr": "제주특별자치도 제주시 용두암길 15 (용담이동)",
+    "lat": 33.5147812884,
+    "lng": 126.5125098697,
+    "naver": "https://map.naver.com/p/search/%EC%9A%A9%EB%91%90%EC%95%94",
+    "nextM": null
    },
    {
     "n": "삼양해수욕장",
     "d": "삼양~이호 약 3km 초보 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/20/3039520_image2_1.jpeg",
-    "_img": "jeju-yongdam-coast-poi2"
+    "_img": "jeju-yongdam-coast-poi2",
+    "addr": "제주특별자치도 제주시 삼양이동",
+    "lat": 33.5255284819,
+    "lng": 126.5852560795,
+    "naver": "https://map.naver.com/p/search/%EC%82%BC%EC%96%91%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "사려니숲길",
     "d": "트레일로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/18/4072718_image2_1.jpg",
-    "_img": "jeju-yongdam-coast-poi3"
+    "_img": "jeju-yongdam-coast-poi3",
+    "addr": "제주특별자치도 서귀포시 표선면 가시리",
+    "lat": 33.3989394,
+    "lng": 126.6792747,
+    "naver": "https://map.naver.com/p/search/%EC%82%AC%EB%A0%A4%EB%8B%88%EC%88%B2%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "천지연폭포",
     "d": "서귀포 숲길 회복런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/43/4094043_image2_1.jpg",
-    "_img": "jeju-yongdam-coast-poi4"
+    "_img": "jeju-yongdam-coast-poi4",
+    "addr": "제주특별자치도 서귀포시 서홍동 666-1",
+    "lat": 33.2447166744,
+    "lng": 126.559550845,
+    "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%A7%80%EC%97%B0%ED%8F%AD%ED%8F%AC"
    }
   ],
   "city": "제주",
@@ -440,25 +554,44 @@
     "n": "용담 해안도로",
     "d": "해안 코스로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/68/3011868_image2_1.jpg",
-    "_img": "jeju-saryeoni-poi1"
+    "_img": "jeju-saryeoni-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9A%A9%EB%8B%B4%20%ED%95%B4%EC%95%88%EB%8F%84%EB%A1%9C",
+    "nextM": null
    },
    {
     "n": "천지연폭포",
     "d": "서귀포 숲길 회복런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/43/4094043_image2_1.jpg",
-    "_img": "jeju-saryeoni-poi2"
+    "_img": "jeju-saryeoni-poi2",
+    "addr": "제주특별자치도 서귀포시 서홍동 666-1",
+    "lat": 33.2447166744,
+    "lng": 126.559550845,
+    "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%A7%80%EC%97%B0%ED%8F%AD%ED%8F%AC",
+    "nextM": null
    },
    {
     "n": "오름 트레일",
     "d": "짧고 급한 업힐. 인터벌 대체",
     "photo": null,
-    "_img": "jeju-saryeoni-poi3"
+    "_img": "jeju-saryeoni-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%98%A4%EB%A6%84%20%ED%8A%B8%EB%A0%88%EC%9D%BC",
+    "nextM": null
    },
    {
     "n": "삼양해수욕장",
     "d": "다음날 이지런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/20/3039520_image2_1.jpeg",
-    "_img": "jeju-saryeoni-poi4"
+    "_img": "jeju-saryeoni-poi4",
+    "addr": "제주특별자치도 제주시 삼양이동",
+    "lat": 33.5255284819,
+    "lng": 126.5852560795,
+    "naver": "https://map.naver.com/p/search/%EC%82%BC%EC%96%91%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
    }
   ],
   "city": "제주",
@@ -506,25 +639,44 @@
     "n": "한밭수목원",
     "d": "2~3km 루프. 그늘 많고 평탄",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/22/3514122_image2_1.jpg",
-    "_img": "daejeon-gapcheon-poi1"
+    "_img": "daejeon-gapcheon-poi1",
+    "addr": "대전광역시 서구 둔산대로 169",
+    "lat": 36.3685826107,
+    "lng": 127.3862516305,
+    "naver": "https://map.naver.com/p/search/%ED%95%9C%EB%B0%AD%EC%88%98%EB%AA%A9%EC%9B%90",
+    "nextM": 4962
    },
    {
     "n": "유성온천공원",
     "d": "러닝 후 회복",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/98/3521398_image2_1.jpg",
-    "_img": "daejeon-gapcheon-poi2"
+    "_img": "daejeon-gapcheon-poi2",
+    "addr": "대전광역시 유성구 계룡로123번길 52 (봉명동)",
+    "lat": 36.3553,
+    "lng": 127.3437,
+    "naver": "https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%98%A8%EC%B2%9C%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "대청호",
     "d": "장거리 확장. 호반 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/66/3303866_image2_1.jpg",
-    "_img": "daejeon-gapcheon-poi3"
+    "_img": "daejeon-gapcheon-poi3",
+    "addr": "대전광역시 동구",
+    "lat": 36.4011148323,
+    "lng": 127.5101665667,
+    "naver": "https://map.naver.com/p/search/%EB%8C%80%EC%B2%AD%ED%98%B8",
+    "nextM": null
    },
    {
     "n": "유성천",
     "d": "서구 인접 평탄 강변",
     "photo": null,
-    "_img": "daejeon-gapcheon-poi4"
+    "_img": "daejeon-gapcheon-poi4",
+    "addr": null,
+    "lat": 36.3576036,
+    "lng": 127.331573,
+    "naver": "https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%B2%9C"
    }
   ],
   "city": "대전",
@@ -574,25 +726,44 @@
     "n": "장동산림욕장",
     "d": "출발점. 신발 보관·세족장 있음",
     "photo": null,
-    "_img": "daejeon-gyejoksan-poi1"
+    "_img": "daejeon-gyejoksan-poi1",
+    "addr": "대전광역시 대덕구 산디로 79-70",
+    "lat": 36.4055714493,
+    "lng": 127.442530828,
+    "naver": "https://map.naver.com/p/search/%EC%9E%A5%EB%8F%99%EC%82%B0%EB%A6%BC%EC%9A%95%EC%9E%A5",
+    "nextM": 7591
    },
    {
     "n": "계족산성",
     "d": "황톳길에서 20분 업힐. 해발 420m",
     "photo": null,
-    "_img": "daejeon-gyejoksan-poi2"
+    "_img": "daejeon-gyejoksan-poi2",
+    "addr": null,
+    "lat": 36.3939637,
+    "lng": 127.4541594,
+    "naver": "https://map.naver.com/p/search/%EA%B3%84%EC%A1%B1%EC%82%B0%EC%84%B1",
+    "nextM": null
    },
    {
     "n": "법동 구민휴식공원",
     "d": "짧은 진입로. 4.1km / 2시간",
     "photo": null,
-    "_img": "daejeon-gyejoksan-poi3"
+    "_img": "daejeon-gyejoksan-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%B2%95%EB%8F%99%20%EA%B5%AC%EB%AF%BC%ED%9C%B4%EC%8B%9D%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "대청호",
     "d": "같은 대덕권 호반 장거리",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/66/3303866_image2_1.jpg",
-    "_img": "daejeon-gyejoksan-poi4"
+    "_img": "daejeon-gyejoksan-poi4",
+    "addr": "대전광역시 동구",
+    "lat": 36.4011148323,
+    "lng": 127.5101665667,
+    "naver": "https://map.naver.com/p/search/%EB%8C%80%EC%B2%AD%ED%98%B8"
    }
   ],
   "city": "대전",
@@ -641,25 +812,44 @@
     "n": "세종호수공원",
     "d": "평탄 순환. 첫 5K·회복런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/76/3353976_image2_1.jpg",
-    "_img": "sejong-eung-bridge-poi1"
+    "_img": "sejong-eung-bridge-poi1",
+    "addr": "세종특별자치시 다솜로 216 (세종동)",
+    "lat": 36.4989993515,
+    "lng": 127.2701992755,
+    "naver": "https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "금강 자전거길",
     "d": "장거리 확장",
     "photo": null,
-    "_img": "sejong-eung-bridge-poi2"
+    "_img": "sejong-eung-bridge-poi2",
+    "addr": null,
+    "lat": 36.5098437,
+    "lng": 127.3277758,
+    "naver": "https://map.naver.com/p/search/%EA%B8%88%EA%B0%95%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "청남대",
     "d": "대청호 방면 런트립",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/44/3502344_image2_1.jpg",
-    "_img": "sejong-eung-bridge-poi3"
+    "_img": "sejong-eung-bridge-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%82%A8%EB%8C%80",
+    "nextM": null
    },
    {
     "n": "갑천",
     "d": "대전과 묶어 도는 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/38/3564738_image2_1.jpg",
-    "_img": "sejong-eung-bridge-poi4"
+    "_img": "sejong-eung-bridge-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EA%B0%91%EC%B2%9C"
    }
   ],
   "city": "세종",
@@ -708,25 +898,44 @@
     "n": "우암산 둘레길",
     "d": "도심 근접 업힐",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/57/3491257_image2_1.jpg",
-    "_img": "cheongju-musimcheon-poi1"
+    "_img": "cheongju-musimcheon-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9A%B0%EC%95%94%EC%82%B0%20%EB%91%98%EB%A0%88%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "충북대 트랙",
     "d": "인터벌·스피드 훈련",
     "photo": null,
-    "_img": "cheongju-musimcheon-poi2"
+    "_img": "cheongju-musimcheon-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%B6%A9%EB%B6%81%EB%8C%80%20%ED%8A%B8%EB%9E%99",
+    "nextM": null
    },
    {
     "n": "문암생태공원",
     "d": "왕복 10km 반환점",
     "photo": null,
-    "_img": "cheongju-musimcheon-poi3"
+    "_img": "cheongju-musimcheon-poi3",
+    "addr": "충청북도 청주시 흥덕구 문암동",
+    "lat": 36.6745490433,
+    "lng": 127.4478174154,
+    "naver": "https://map.naver.com/p/search/%EB%AC%B8%EC%95%94%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "청남대",
     "d": "대청호변 런트립 확장",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/44/3502344_image2_1.jpg",
-    "_img": "cheongju-musimcheon-poi4"
+    "_img": "cheongju-musimcheon-poi4",
+    "addr": "충청북도 청주시 상당구 문의면 청남대길 646",
+    "lat": 36.4628,
+    "lng": 127.4918,
+    "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%82%A8%EB%8C%80"
    }
   ],
   "city": "청주",
@@ -775,25 +984,44 @@
     "n": "독립기념관",
     "d": "3~8km. 완만하고 정비 양호",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/21/3450021_image2_1.jpg",
-    "_img": "cheonan-gokgyocheon-poi1"
+    "_img": "cheonan-gokgyocheon-poi1",
+    "addr": "충청남도 천안시 동남구 목천읍 독립기념관로 1",
+    "lat": 36.7818719998,
+    "lng": 127.2303981117,
+    "naver": "https://map.naver.com/p/search/%EB%8F%85%EB%A6%BD%EA%B8%B0%EB%85%90%EA%B4%80",
+    "nextM": null
    },
    {
     "n": "태조산공원 무장애 나눔길",
     "d": "4~6km. 데크와 오르막",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/12/3381212_image2_1.jpg",
-    "_img": "cheonan-gokgyocheon-poi2"
+    "_img": "cheonan-gokgyocheon-poi2",
+    "addr": "충청남도 천안시 동남구 태조산길 261 (유량동)",
+    "lat": 36.8210858969,
+    "lng": 127.1885561346,
+    "naver": "https://map.naver.com/p/search/%ED%83%9C%EC%A1%B0%EC%82%B0%EA%B3%B5%EC%9B%90%20%EB%AC%B4%EC%9E%A5%EC%95%A0%20%EB%82%98%EB%88%94%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "신정호",
     "d": "약 4~5km 순환. 아산",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/71/3359771_image2_1.jpg",
-    "_img": "cheonan-gokgyocheon-poi3"
+    "_img": "cheonan-gokgyocheon-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%8B%A0%EC%A0%95%ED%98%B8",
+    "nextM": null
    },
    {
     "n": "천안천",
     "d": "약 6.7km. 도심 평탄",
     "photo": null,
-    "_img": "cheonan-gokgyocheon-poi4"
+    "_img": "cheonan-gokgyocheon-poi4",
+    "addr": null,
+    "lat": 36.8106632,
+    "lng": 127.1466993,
+    "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%95%88%EC%B2%9C"
    }
   ],
   "city": "천안",
@@ -844,25 +1072,44 @@
     "n": "의암호 스카이워크",
     "d": "호수 위로 나간 데크. 반환점으로 삼기 좋다",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/93/2748593_image2_1.jpg",
-    "_img": "chuncheon-uiamho-poi1"
+    "_img": "chuncheon-uiamho-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9D%98%EC%95%94%ED%98%B8%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
+    "nextM": null
    },
    {
     "n": "공지천유원지",
     "d": "회복런 구간. 숙소 잡기도 여기가 편하다",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/79/4087379_image2_1.jpg",
-    "_img": "chuncheon-uiamho-poi2"
+    "_img": "chuncheon-uiamho-poi2",
+    "addr": "강원특별자치도 춘천시 이디오피아길 25",
+    "lat": 37.8746339345,
+    "lng": 127.7095800316,
+    "naver": "https://map.naver.com/p/search/%EA%B3%B5%EC%A7%80%EC%B2%9C%EC%9C%A0%EC%9B%90%EC%A7%80",
+    "nextM": null
    },
    {
     "n": "소양강 스카이워크",
     "d": "소양강 수변길 약 4km와 연결",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/64/4087664_image2_1.jpg",
-    "_img": "chuncheon-uiamho-poi3"
+    "_img": "chuncheon-uiamho-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%86%8C%EC%96%91%EA%B0%95%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
+    "nextM": null
    },
    {
     "n": "김유정문학촌",
     "d": "뛰고 난 뒤 걸어서 도는 마무리",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/96/4067696_image2_1.jpg",
-    "_img": "chuncheon-uiamho-poi4"
+    "_img": "chuncheon-uiamho-poi4",
+    "addr": "강원특별자치도 춘천시 신동면 김유정로 1430-14",
+    "lat": 37.8183631741,
+    "lng": 127.7176781471,
+    "naver": "https://map.naver.com/p/search/%EA%B9%80%EC%9C%A0%EC%A0%95%EB%AC%B8%ED%95%99%EC%B4%8C"
    }
   ],
   "city": "춘천",
@@ -910,25 +1157,44 @@
     "n": "의암호 호반길",
     "d": "이어 붙이면 장거리로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/31/2748631_image2_1.jpg",
-    "_img": "chuncheon-gongjicheon-poi1"
+    "_img": "chuncheon-gongjicheon-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9D%98%EC%95%94%ED%98%B8%20%ED%98%B8%EB%B0%98%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "소양강 스카이워크",
     "d": "소양강 방면 확장",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/64/4087664_image2_1.jpg",
-    "_img": "chuncheon-gongjicheon-poi2"
+    "_img": "chuncheon-gongjicheon-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%86%8C%EC%96%91%EA%B0%95%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
+    "nextM": null
    },
    {
     "n": "메타세쿼이아길",
     "d": "약 5km 흙길 구간",
     "photo": null,
-    "_img": "chuncheon-gongjicheon-poi3"
+    "_img": "chuncheon-gongjicheon-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%A9%94%ED%83%80%EC%84%B8%EC%BF%BC%EC%9D%B4%EC%95%84%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "남이섬",
     "d": "런트립을 하루 더 늘릴 때",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/45/4067545_image2_1.jpg",
-    "_img": "chuncheon-gongjicheon-poi4"
+    "_img": "chuncheon-gongjicheon-poi4",
+    "addr": "강원특별자치도 춘천시 남이섬길 1 남이섬",
+    "lat": 37.7962650518221,
+    "lng": 127.525489199882,
+    "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%9D%B4%EC%84%AC"
    }
   ],
   "city": "춘천",
@@ -978,25 +1244,44 @@
     "n": "경포해수욕장",
     "d": "호수와 이어 붙이면 8~9km. 일출런 지점",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/25/4075925_image2_1.jpg",
-    "_img": "gangneung-gyeongpo-poi1"
+    "_img": "gangneung-gyeongpo-poi1",
+    "addr": "강원특별자치도 강릉시 창해로 514 (안현동)",
+    "lat": 37.8034055083,
+    "lng": 128.9102102476,
+    "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "안목해변",
     "d": "커피거리. 러닝 후 마무리",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/58/4075958_image2_1.jpg",
-    "_img": "gangneung-gyeongpo-poi2"
+    "_img": "gangneung-gyeongpo-poi2",
+    "addr": "강원특별자치도 강릉시 창해로14번길 20-1",
+    "lat": 37.7722617595,
+    "lng": 128.9482754051,
+    "naver": "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%ED%95%B4%EB%B3%80",
+    "nextM": null
    },
    {
     "n": "경포가시연습지",
     "d": "호수 옆 데크길. 쿨다운 산책",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/19/3492919_image2_1.jpg",
-    "_img": "gangneung-gyeongpo-poi3"
+    "_img": "gangneung-gyeongpo-poi3",
+    "addr": "강원특별자치도 강릉시 운정동",
+    "lat": 37.7894061272742,
+    "lng": 128.898650615633,
+    "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EA%B0%80%EC%8B%9C%EC%97%B0%EC%8A%B5%EC%A7%80",
+    "nextM": 1950
    },
    {
     "n": "초당순두부마을",
     "d": "아침런 뒤 식사",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/43/3378343_image2_1.JPG",
-    "_img": "gangneung-gyeongpo-poi4"
+    "_img": "gangneung-gyeongpo-poi4",
+    "addr": "강원특별자치도 강릉시 강문동",
+    "lat": 37.7945,
+    "lng": 128.9155,
+    "naver": "https://map.naver.com/p/search/%EC%B4%88%EB%8B%B9%EC%88%9C%EB%91%90%EB%B6%80%EB%A7%88%EC%9D%84"
    }
   ],
   "city": "강릉",
@@ -1045,25 +1330,44 @@
     "n": "강문해변",
     "d": "경포 방향 연결 구간",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/85/2921985_image2_1.jpg",
-    "_img": "gangneung-anmok-sunrise-poi1"
+    "_img": "gangneung-anmok-sunrise-poi1",
+    "addr": "강원특별자치도 강릉시 창해로 352",
+    "lat": 37.7947975418039,
+    "lng": 128.91901514704,
+    "naver": "https://map.naver.com/p/search/%EA%B0%95%EB%AC%B8%ED%95%B4%EB%B3%80",
+    "nextM": 2585
    },
    {
     "n": "경포호",
     "d": "4.3km 순환. 이어 붙이면 8~9km",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/06/3024906_image2_1.jpg",
-    "_img": "gangneung-anmok-sunrise-poi2"
+    "_img": "gangneung-anmok-sunrise-poi2",
+    "addr": "강원특별자치도 강릉시 저동",
+    "lat": 37.7967,
+    "lng": 128.9021,
+    "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%98%B8",
+    "nextM": null
    },
    {
     "n": "정동진역",
     "d": "일출 런트립을 늘릴 때",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/12/4093712_image2_1.jpg",
-    "_img": "gangneung-anmok-sunrise-poi3"
+    "_img": "gangneung-anmok-sunrise-poi3",
+    "addr": "강원특별자치도 강릉시 강동면 정동역길 17",
+    "lat": 37.6913603281,
+    "lng": 129.0325745068,
+    "naver": "https://map.naver.com/p/search/%EC%A0%95%EB%8F%99%EC%A7%84%EC%97%AD",
+    "nextM": null
    },
    {
     "n": "오죽헌",
     "d": "러닝 후 도심 관광",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/38/3527138_image2_1.jpg",
-    "_img": "gangneung-anmok-sunrise-poi4"
+    "_img": "gangneung-anmok-sunrise-poi4",
+    "addr": "강원특별자치도 강릉시 율곡로3139번길 24 (죽헌동)",
+    "lat": 37.779138874844655,
+    "lng": 128.87966210169768,
+    "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%A3%BD%ED%97%8C"
    }
   ],
   "city": "강릉",
@@ -1111,25 +1415,44 @@
     "n": "속초해수욕장",
     "d": "해맞이 구간 약 2km. 쿨다운",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/06/4095606_image2_1.jpg",
-    "_img": "sokcho-yeongnangho-poi1"
+    "_img": "sokcho-yeongnangho-poi1",
+    "addr": "강원특별자치도 속초시 해오름로 186",
+    "lat": 38.1905487347,
+    "lng": 128.6019333307,
+    "naver": "https://map.naver.com/p/search/%EC%86%8D%EC%B4%88%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+    "nextM": 1409
    },
    {
     "n": "아바이마을",
     "d": "러닝 후 식사. 갯배로 이동",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/13/4076913_image2_1.jpg",
-    "_img": "sokcho-yeongnangho-poi2"
+    "_img": "sokcho-yeongnangho-poi2",
+    "addr": "강원특별자치도 속초시 청호로 122-1",
+    "lat": 38.2006833956,
+    "lng": 128.594889331,
+    "naver": "https://map.naver.com/p/search/%EC%95%84%EB%B0%94%EC%9D%B4%EB%A7%88%EC%9D%84",
+    "nextM": null
    },
    {
     "n": "정동진역",
     "d": "강릉까지 일출 런트립을 늘릴 때",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/12/4093712_image2_1.jpg",
-    "_img": "sokcho-yeongnangho-poi3"
+    "_img": "sokcho-yeongnangho-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%A0%95%EB%8F%99%EC%A7%84%EC%97%AD",
+    "nextM": null
    },
    {
     "n": "남이섬",
     "d": "춘천과 묶는 강원 런트립",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/45/4067545_image2_1.jpg",
-    "_img": "sokcho-yeongnangho-poi4"
+    "_img": "sokcho-yeongnangho-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%9D%B4%EC%84%AC"
    }
   ],
   "city": "속초",
@@ -1178,25 +1501,44 @@
     "n": "금호강",
     "d": "장거리 확장 구간",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/09/3377509_image2_1.jpg",
-    "_img": "daegu-sincheon-poi1"
+    "_img": "daegu-sincheon-poi1",
+    "addr": "대구광역시 북구 산격동",
+    "lat": 35.9114710201,
+    "lng": 128.6049579024,
+    "naver": "https://map.naver.com/p/search/%EA%B8%88%ED%98%B8%EA%B0%95",
+    "nextM": 9581
    },
    {
     "n": "두류공원",
     "d": "달서권 크루 거점",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/29/3573529_image2_1.jpg",
-    "_img": "daegu-sincheon-poi2"
+    "_img": "daegu-sincheon-poi2",
+    "addr": "대구광역시 달서구 두류공원로 161 (성당동)",
+    "lat": 35.8500466594,
+    "lng": 128.5637271345,
+    "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90",
+    "nextM": 7255
    },
    {
     "n": "월광수변공원",
     "d": "짧은 순환",
     "photo": null,
-    "_img": "daegu-sincheon-poi3"
+    "_img": "daegu-sincheon-poi3",
+    "addr": "대구광역시 달서구 월곡로 5",
+    "lat": 35.7988438375,
+    "lng": 128.5483299101,
+    "naver": "https://map.naver.com/p/search/%EC%9B%94%EA%B4%91%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "진밭골",
     "d": "업힐 훈련으로 전환",
     "photo": null,
-    "_img": "daegu-sincheon-poi4"
+    "_img": "daegu-sincheon-poi4",
+    "addr": "대구광역시 수성구 진밭길 413 (범물동)",
+    "lat": 35.79846259865928,
+    "lng": 128.67266078726922,
+    "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8"
    }
   ],
   "city": "대구",
@@ -1245,25 +1587,44 @@
     "n": "진밭골 공영주차장",
     "d": "출발점",
     "photo": null,
-    "_img": "daegu-jinbatgol-uphill-poi1"
+    "_img": "daegu-jinbatgol-uphill-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8%20%EA%B3%B5%EC%98%81%EC%A3%BC%EC%B0%A8%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "신천",
     "d": "평지 세션으로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/09/3377509_image2_1.jpg",
-    "_img": "daegu-jinbatgol-uphill-poi2"
+    "_img": "daegu-jinbatgol-uphill-poi2",
+    "addr": "대구광역시 남구 신천서쪽자전거길 237 (이천동)",
+    "lat": 35.8542719889,
+    "lng": 128.6075537114,
+    "naver": "https://map.naver.com/p/search/%EC%8B%A0%EC%B2%9C",
+    "nextM": 4731
    },
    {
     "n": "두류공원",
     "d": "회복런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/29/3573529_image2_1.jpg",
-    "_img": "daegu-jinbatgol-uphill-poi3"
+    "_img": "daegu-jinbatgol-uphill-poi3",
+    "addr": "대구광역시 달서구 두류공원로 161 (성당동)",
+    "lat": 35.8500466594,
+    "lng": 128.5637271345,
+    "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "금호강",
     "d": "장거리",
     "photo": null,
-    "_img": "daegu-jinbatgol-uphill-poi4"
+    "_img": "daegu-jinbatgol-uphill-poi4",
+    "addr": "대구광역시 북구 산격동",
+    "lat": 35.9114710201,
+    "lng": 128.6049579024,
+    "naver": "https://map.naver.com/p/search/%EA%B8%88%ED%98%B8%EA%B0%95"
    }
   ],
   "city": "대구",
@@ -1313,25 +1674,44 @@
     "n": "십리대숲",
     "d": "강변 한 바퀴 뒤 추가로 도는 구간",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/01/3565101_image2_1.jpg",
-    "_img": "ulsan-taehwagang-poi1"
+    "_img": "ulsan-taehwagang-poi1",
+    "addr": "울산광역시 중구 태화동 667 태화강 국가정원 안내센터",
+    "lat": 35.5487747405,
+    "lng": 129.2911995498,
+    "naver": "https://map.naver.com/p/search/%EC%8B%AD%EB%A6%AC%EB%8C%80%EC%88%B2",
+    "nextM": null
    },
    {
     "n": "은하수길",
     "d": "일몰부터 23시까지. 야간 러닝",
     "photo": null,
-    "_img": "ulsan-taehwagang-poi2"
+    "_img": "ulsan-taehwagang-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9D%80%ED%95%98%EC%88%98%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "오산못",
     "d": "정원 내 순환 지점",
     "photo": null,
-    "_img": "ulsan-taehwagang-poi3"
+    "_img": "ulsan-taehwagang-poi3",
+    "addr": null,
+    "lat": 35.5866568,
+    "lng": 129.0743607,
+    "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%82%B0%EB%AA%BB",
+    "nextM": null
    },
    {
     "n": "해파랑길 7코스",
     "d": "장거리 연장",
     "photo": null,
-    "_img": "ulsan-taehwagang-poi4"
+    "_img": "ulsan-taehwagang-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%95%B4%ED%8C%8C%EB%9E%91%EA%B8%B8%207%EC%BD%94%EC%8A%A4"
    }
   ],
   "city": "울산",
@@ -1380,25 +1760,44 @@
     "n": "포항운하",
     "d": "동빈내항에서 약 2.5km. 차도 분리",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/55/3493455_image2_1.jpg",
-    "_img": "pohang-yeongildae-poi1"
+    "_img": "pohang-yeongildae-poi1",
+    "addr": "경상북도 포항시 남구 해도동 537",
+    "lat": 36.029094,
+    "lng": 129.373672,
+    "naver": "https://map.naver.com/p/search/%ED%8F%AC%ED%95%AD%EC%9A%B4%ED%95%98",
+    "nextM": null
    },
    {
     "n": "여남 방파제",
     "d": "왕복 10km 코스 반환점",
     "photo": null,
-    "_img": "pohang-yeongildae-poi2"
+    "_img": "pohang-yeongildae-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%97%AC%EB%82%A8%20%EB%B0%A9%ED%8C%8C%EC%A0%9C",
+    "nextM": null
    },
    {
     "n": "형산강변",
     "d": "10km에서 하프 거리",
     "photo": null,
-    "_img": "pohang-yeongildae-poi3"
+    "_img": "pohang-yeongildae-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%98%95%EC%82%B0%EA%B0%95%EB%B3%80",
+    "nextM": null
    },
    {
     "n": "철길숲",
     "d": "초급자용 도심 숲길",
     "photo": null,
-    "_img": "pohang-yeongildae-poi4"
+    "_img": "pohang-yeongildae-poi4",
+    "addr": "경상북도 포항시 남구 대이로1번길 37 (대잠동)",
+    "lat": 36.0133840967,
+    "lng": 129.3418443376,
+    "naver": "https://map.naver.com/p/search/%EC%B2%A0%EA%B8%B8%EC%88%B2"
    }
   ],
   "city": "포항",
@@ -1447,25 +1846,44 @@
     "n": "창원천",
     "d": "사림교~반송교 왕복 8~9km",
     "photo": null,
-    "_img": "changwon-yongji-poi1"
+    "_img": "changwon-yongji-poi1",
+    "addr": null,
+    "lat": 35.2397351,
+    "lng": 128.6499165,
+    "naver": "https://map.naver.com/p/search/%EC%B0%BD%EC%9B%90%EC%B2%9C",
+    "nextM": null
    },
    {
     "n": "진해 드림로드",
     "d": "체력 훈련·트레일",
     "photo": null,
-    "_img": "changwon-yongji-poi2"
+    "_img": "changwon-yongji-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%A7%84%ED%95%B4%20%EB%93%9C%EB%A6%BC%EB%A1%9C%EB%93%9C",
+    "nextM": null
    },
    {
     "n": "창원 스포츠파크",
     "d": "400m 트랙",
     "photo": null,
-    "_img": "changwon-yongji-poi3"
+    "_img": "changwon-yongji-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%B0%BD%EC%9B%90%20%EC%8A%A4%ED%8F%AC%EC%B8%A0%ED%8C%8C%ED%81%AC",
+    "nextM": null
    },
    {
     "n": "사화공원",
     "d": "10km 확장 연결",
     "photo": null,
-    "_img": "changwon-yongji-poi4"
+    "_img": "changwon-yongji-poi4",
+    "addr": "경상남도 창원시 의창구 중동남로 74",
+    "lat": 35.2525520086896,
+    "lng": 128.628547869107,
+    "naver": "https://map.naver.com/p/search/%EC%82%AC%ED%99%94%EA%B3%B5%EC%9B%90"
    }
   ],
   "city": "창원",
@@ -1514,25 +1932,44 @@
     "n": "장복하늘마루길",
     "d": "능선 구간",
     "photo": null,
-    "_img": "changwon-jinhae-dreamroad-poi1"
+    "_img": "changwon-jinhae-dreamroad-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9E%A5%EB%B3%B5%ED%95%98%EB%8A%98%EB%A7%88%EB%A3%A8%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "천자봉 해오름길",
     "d": "종점 급경사 주의",
     "photo": null,
-    "_img": "changwon-jinhae-dreamroad-poi2"
+    "_img": "changwon-jinhae-dreamroad-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%9E%90%EB%B4%89%20%ED%95%B4%EC%98%A4%EB%A6%84%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "풍호공원운동장",
     "d": "순환 코스 기점",
     "photo": null,
-    "_img": "changwon-jinhae-dreamroad-poi3"
+    "_img": "changwon-jinhae-dreamroad-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%92%8D%ED%98%B8%EA%B3%B5%EC%9B%90%EC%9A%B4%EB%8F%99%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "용지호수공원",
     "d": "다음날 회복런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/46/3533646_image2_1.jpg",
-    "_img": "changwon-jinhae-dreamroad-poi4"
+    "_img": "changwon-jinhae-dreamroad-poi4",
+    "addr": "경상남도 창원시 의창구 용지로169번길 26",
+    "lat": 35.2321184685,
+    "lng": 128.6810476727,
+    "naver": "https://map.naver.com/p/search/%EC%9A%A9%EC%A7%80%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90"
    }
   ],
   "city": "창원",
@@ -1582,25 +2019,44 @@
     "n": "대릉원",
     "d": "유적 코스 4.6km 구간. 왕릉 고분",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/71/4056771_image2_1.jpg",
-    "_img": "gyeongju-bomunho-poi1"
+    "_img": "gyeongju-bomunho-poi1",
+    "addr": "경상북도 경주시 황남동",
+    "lat": 35.8382,
+    "lng": 129.2128,
+    "naver": "https://map.naver.com/p/search/%EB%8C%80%EB%A6%89%EC%9B%90",
+    "nextM": 939
    },
    {
     "n": "첨성대",
     "d": "야간 러닝 포인트",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/35/4097535_image2_1.JPG",
-    "_img": "gyeongju-bomunho-poi2"
+    "_img": "gyeongju-bomunho-poi2",
+    "addr": "경상북도 경주시 첨성로 140-25",
+    "lat": 35.8343303427,
+    "lng": 129.2185345378,
+    "naver": "https://map.naver.com/p/search/%EC%B2%A8%EC%84%B1%EB%8C%80",
+    "nextM": 3730
    },
    {
     "n": "북천",
     "d": "마라톤 코스 오르막 구간",
     "photo": null,
-    "_img": "gyeongju-bomunho-poi3"
+    "_img": "gyeongju-bomunho-poi3",
+    "addr": "경상북도 경주시 통일로 366-4 (남산동)",
+    "lat": 35.8119093136,
+    "lng": 129.2421248589,
+    "naver": "https://map.naver.com/p/search/%EB%B6%81%EC%B2%9C",
+    "nextM": null
    },
    {
     "n": "형산강",
     "d": "장거리 확장. 포항과 연결",
     "photo": null,
-    "_img": "gyeongju-bomunho-poi4"
+    "_img": "gyeongju-bomunho-poi4",
+    "addr": null,
+    "lat": 35.9370796,
+    "lng": 129.2404975,
+    "naver": "https://map.naver.com/p/search/%ED%98%95%EC%82%B0%EA%B0%95"
    }
   ],
   "city": "경주",
@@ -1650,25 +2106,44 @@
     "n": "5·18기념공원",
     "d": "상무지구. 워밍업과 역사 산책",
     "photo": null,
-    "_img": "gwangju-gwangjucheon-poi1"
+    "_img": "gwangju-gwangjucheon-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/5%C2%B718%EA%B8%B0%EB%85%90%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "동구 체육공원 트랙",
     "d": "국제 규격. 상시 개방",
     "photo": null,
-    "_img": "gwangju-gwangjucheon-poi2"
+    "_img": "gwangju-gwangjucheon-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%8F%99%EA%B5%AC%20%EC%B2%B4%EC%9C%A1%EA%B3%B5%EC%9B%90%20%ED%8A%B8%EB%9E%99",
+    "nextM": null
    },
    {
     "n": "무등산 증심사",
     "d": "트레일런 진입로",
     "photo": null,
-    "_img": "gwangju-gwangjucheon-poi3"
+    "_img": "gwangju-gwangjucheon-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%AC%B4%EB%93%B1%EC%82%B0%20%EC%A6%9D%EC%8B%AC%EC%82%AC",
+    "nextM": null
    },
    {
     "n": "광주호 호수생태원",
     "d": "도심 밖 수변 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/05/3515105_image2_1.jpg",
-    "_img": "gwangju-gwangjucheon-poi4"
+    "_img": "gwangju-gwangjucheon-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%ED%98%B8%20%ED%98%B8%EC%88%98%EC%83%9D%ED%83%9C%EC%9B%90"
    }
   ],
   "city": "광주",
@@ -1717,25 +2192,44 @@
     "n": "덕진공원",
     "d": "회복런. 24시간 개방",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/40/4095540_image2_1.jpg",
-    "_img": "jeonju-jeonjucheon-dawn-poi1"
+    "_img": "jeonju-jeonjucheon-dawn-poi1",
+    "addr": "전북특별자치도 전주시 덕진구 권삼득로 390",
+    "lat": 35.8474709454,
+    "lng": 127.1218520114,
+    "naver": "https://map.naver.com/p/search/%EB%8D%95%EC%A7%84%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "삼천천 합류부",
     "d": "장거리 반환점",
     "photo": null,
-    "_img": "jeonju-jeonjucheon-dawn-poi2"
+    "_img": "jeonju-jeonjucheon-dawn-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%82%BC%EC%B2%9C%EC%B2%9C%20%ED%95%A9%EB%A5%98%EB%B6%80",
+    "nextM": null
    },
    {
     "n": "전북대 트랙",
     "d": "인터벌·스피드 훈련",
     "photo": null,
-    "_img": "jeonju-jeonjucheon-dawn-poi3"
+    "_img": "jeonju-jeonjucheon-dawn-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%A0%84%EB%B6%81%EB%8C%80%20%ED%8A%B8%EB%9E%99",
+    "nextM": null
    },
    {
     "n": "전주한옥마을",
     "d": "새벽 구간. 낮에는 피할 것",
     "photo": null,
-    "_img": "jeonju-jeonjucheon-dawn-poi4"
+    "_img": "jeonju-jeonjucheon-dawn-poi4",
+    "addr": "전북특별자치도 전주시 완산구 향교길 79-8",
+    "lat": 35.8122840667,
+    "lng": 127.1538779813,
+    "naver": "https://map.naver.com/p/search/%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84"
    }
   ],
   "city": "전주",
@@ -1783,25 +2277,44 @@
     "n": "전주천",
     "d": "거리를 늘릴 때 연결",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/97/3054097_image2_1.jpg",
-    "_img": "jeonju-deokjin-poi1"
+    "_img": "jeonju-deokjin-poi1",
+    "addr": "전북특별자치도 전주시 덕진구 추천로 217-5 (팔복동1가)",
+    "lat": 35.855067803740546,
+    "lng": 127.11449410896162,
+    "naver": "https://map.naver.com/p/search/%EC%A0%84%EC%A3%BC%EC%B2%9C",
+    "nextM": null
    },
    {
     "n": "후문 주차장",
     "d": "정문보다 넓다",
     "photo": null,
-    "_img": "jeonju-deokjin-poi2"
+    "_img": "jeonju-deokjin-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%9B%84%EB%AC%B8%20%EC%A3%BC%EC%B0%A8%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "어린이회관 주차장",
     "d": "무료",
     "photo": null,
-    "_img": "jeonju-deokjin-poi3"
+    "_img": "jeonju-deokjin-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%96%B4%EB%A6%B0%EC%9D%B4%ED%9A%8C%EA%B4%80%20%EC%A3%BC%EC%B0%A8%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "전북대 트랙",
     "d": "스피드 훈련",
     "photo": null,
-    "_img": "jeonju-deokjin-poi4"
+    "_img": "jeonju-deokjin-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%A0%84%EB%B6%81%EB%8C%80%20%ED%8A%B8%EB%9E%99"
    }
   ],
   "city": "전주",
@@ -1850,25 +2363,44 @@
     "n": "유달산 둘레길",
     "d": "약 6.7km. 오르내림 있음",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/11/4067011_image2_1.JPG",
-    "_img": "mokpo-pyeonghwa-20k-poi1"
+    "_img": "mokpo-pyeonghwa-20k-poi1",
+    "addr": "전남광주통합특별시 목포시 죽교동",
+    "lat": 34.7972886835,
+    "lng": 126.3693444322,
+    "naver": "https://map.naver.com/p/search/%EC%9C%A0%EB%8B%AC%EC%82%B0%20%EB%91%98%EB%A0%88%EA%B8%B8",
+    "nextM": 6816
    },
    {
     "n": "목포 갓바위",
     "d": "약 4km 평지 해안",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/24/3521524_image2_1.jpg",
-    "_img": "mokpo-pyeonghwa-20k-poi2"
+    "_img": "mokpo-pyeonghwa-20k-poi2",
+    "addr": "전남광주통합특별시 목포시 용해동",
+    "lat": 34.7922,
+    "lng": 126.4259,
+    "naver": "https://map.naver.com/p/search/%EB%AA%A9%ED%8F%AC%20%EA%B0%93%EB%B0%94%EC%9C%84",
+    "nextM": null
    },
    {
     "n": "옥암동 코스",
     "d": "약 3.9km. 초보 최적",
     "photo": null,
-    "_img": "mokpo-pyeonghwa-20k-poi3"
+    "_img": "mokpo-pyeonghwa-20k-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%98%A5%EC%95%94%EB%8F%99%20%EC%BD%94%EC%8A%A4",
+    "nextM": null
    },
    {
     "n": "북항",
     "d": "낭만항구. 야경 러닝",
     "photo": null,
-    "_img": "mokpo-pyeonghwa-20k-poi4"
+    "_img": "mokpo-pyeonghwa-20k-poi4",
+    "addr": "전남광주통합특별시 목포시 죽교동 620-232",
+    "lat": 34.8045126304,
+    "lng": 126.3651120933,
+    "naver": "https://map.naver.com/p/search/%EB%B6%81%ED%95%AD"
    }
   ],
   "city": "목포",
@@ -1917,25 +2449,44 @@
     "n": "오동도 등대",
     "d": "코스 반환점",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/34/3019934_image2_1.jpg",
-    "_img": "yeosu-expo-9k-poi1"
+    "_img": "yeosu-expo-9k-poi1",
+    "addr": "전남광주통합특별시 여수시 오동도로 238-32",
+    "lat": 34.7444013572,
+    "lng": 127.7678097276,
+    "naver": "https://map.naver.com/p/search/%EC%98%A4%EB%8F%99%EB%8F%84%20%EB%93%B1%EB%8C%80",
+    "nextM": 2710
    },
    {
     "n": "여수세계박람회장",
     "d": "순환 구간",
     "photo": null,
-    "_img": "yeosu-expo-9k-poi2"
+    "_img": "yeosu-expo-9k-poi2",
+    "addr": null,
+    "lat": 34.7486768,
+    "lng": 127.7472043,
+    "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%88%98%EC%84%B8%EA%B3%84%EB%B0%95%EB%9E%8C%ED%9A%8C%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "옛 철길 구간",
     "d": "대안 코스",
     "photo": null,
-    "_img": "yeosu-expo-9k-poi3"
+    "_img": "yeosu-expo-9k-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%98%9B%20%EC%B2%A0%EA%B8%B8%20%EA%B5%AC%EA%B0%84",
+    "nextM": null
    },
    {
     "n": "순천만습지",
     "d": "전남 런트립 확장",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/14/4088614_image2_1.jpg",
-    "_img": "yeosu-expo-9k-poi4"
+    "_img": "yeosu-expo-9k-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EB%A7%8C%EC%8A%B5%EC%A7%80"
    }
   ],
   "city": "여수",
@@ -1984,25 +2535,44 @@
     "n": "국가정원 동문",
     "d": "반환점. 주차 가능",
     "photo": null,
-    "_img": "suncheon-dongcheon-poi1"
+    "_img": "suncheon-dongcheon-poi1",
+    "addr": null,
+    "lat": 34.9320513,
+    "lng": 127.5131992,
+    "naver": "https://map.naver.com/p/search/%EA%B5%AD%EA%B0%80%EC%A0%95%EC%9B%90%20%EB%8F%99%EB%AC%B8",
+    "nextM": 3000
    },
    {
     "n": "오천그린광장",
     "d": "무료 개방 구간",
     "photo": null,
-    "_img": "suncheon-dongcheon-poi2"
+    "_img": "suncheon-dongcheon-poi2",
+    "addr": "전남광주통합특별시 순천시 오천동",
+    "lat": 34.933198,
+    "lng": 127.497971,
+    "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%B2%9C%EA%B7%B8%EB%A6%B0%EA%B4%91%EC%9E%A5",
+    "nextM": 6389
    },
    {
     "n": "순천만습지",
     "d": "러닝 후 산책",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/14/4088614_image2_1.jpg",
-    "_img": "suncheon-dongcheon-poi3"
+    "_img": "suncheon-dongcheon-poi3",
+    "addr": "전남광주통합특별시 순천시 순천만길 513-25",
+    "lat": 34.8858016084,
+    "lng": 127.5092830428,
+    "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EB%A7%8C%EC%8A%B5%EC%A7%80",
+    "nextM": null
    },
    {
     "n": "순천역",
     "d": "코스 출발점",
     "photo": null,
-    "_img": "suncheon-dongcheon-poi4"
+    "_img": "suncheon-dongcheon-poi4",
+    "addr": null,
+    "lat": 34.9454441,
+    "lng": 127.502633,
+    "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%97%AD"
    }
   ],
   "city": "순천",
@@ -2054,25 +2624,44 @@
     "n": "세빛섬",
     "d": "야간 반환점. 조명이 가장 화려한 지점",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/10/3515810_image2_1.jpg",
-    "_img": "seoul-banpo-10k-poi1"
+    "_img": "seoul-banpo-10k-poi1",
+    "addr": "서울특별시 서초구 올림픽대로 2085-14 (반포동)",
+    "lat": 37.5125,
+    "lng": 126.996,
+    "naver": "https://map.naver.com/p/search/%EC%84%B8%EB%B9%9B%EC%84%AC",
+    "nextM": null
    },
    {
     "n": "반포 달빛광장",
     "d": "스트레칭·집합 장소",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/62/3515062_image2_1.jpg",
-    "_img": "seoul-banpo-10k-poi2"
+    "_img": "seoul-banpo-10k-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%B0%98%ED%8F%AC%20%EB%8B%AC%EB%B9%9B%EA%B4%91%EC%9E%A5",
+    "nextM": null
    },
    {
     "n": "노들섬",
     "d": "코인라커 있음. 500원 동전 필요",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/07/4078207_image2_1.jpg",
-    "_img": "seoul-banpo-10k-poi3"
+    "_img": "seoul-banpo-10k-poi3",
+    "addr": "서울특별시 용산구 양녕로 445 (이촌동)",
+    "lat": 37.5176638138,
+    "lng": 126.9580364655,
+    "naver": "https://map.naver.com/p/search/%EB%85%B8%EB%93%A4%EC%84%AC",
+    "nextM": 4719
    },
    {
     "n": "잠수교",
     "d": "편도 1km. 거리 계산의 기준점",
     "photo": null,
-    "_img": "seoul-banpo-10k-poi4"
+    "_img": "seoul-banpo-10k-poi4",
+    "addr": "서울특별시 서초구 반포동",
+    "lat": 37.512861,
+    "lng": 126.997353,
+    "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%88%98%EA%B5%90"
    }
   ],
   "city": "서울",
@@ -2121,25 +2710,44 @@
     "n": "여의도공원",
     "d": "8km 코스 출발점. 워밍업 구간",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/19/3558719_image2_1.jpg",
-    "_img": "seoul-yeouido-5k-poi1"
+    "_img": "seoul-yeouido-5k-poi1",
+    "addr": "서울특별시 영등포구 여의공원로 68 (여의도동)",
+    "lat": 37.5268578503,
+    "lng": 126.922293931,
+    "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%9D%98%EB%8F%84%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "선유도공원",
     "d": "나무 그늘 산책로. 쿨다운",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/83/3512483_image2_1.jpg",
-    "_img": "seoul-yeouido-5k-poi2"
+    "_img": "seoul-yeouido-5k-poi2",
+    "addr": "서울특별시 영등포구 선유로 343 (당산동)",
+    "lat": 37.54223754535507,
+    "lng": 126.90242756770019,
+    "naver": "https://map.naver.com/p/search/%EC%84%A0%EC%9C%A0%EB%8F%84%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "여의나루역 러너스테이션",
     "d": "물품보관·탈의·샤워",
     "photo": null,
-    "_img": "seoul-yeouido-5k-poi3"
+    "_img": "seoul-yeouido-5k-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%9D%98%EB%82%98%EB%A3%A8%EC%97%AD%20%EB%9F%AC%EB%84%88%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98",
+    "nextM": null
    },
    {
     "n": "국회운동장 트랙",
     "d": "인터벌용",
     "photo": null,
-    "_img": "seoul-yeouido-5k-poi4"
+    "_img": "seoul-yeouido-5k-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EA%B5%AD%ED%9A%8C%EC%9A%B4%EB%8F%99%EC%9E%A5%20%ED%8A%B8%EB%9E%99"
    }
   ],
   "city": "서울",
@@ -2188,25 +2796,44 @@
     "n": "경복궁 돌담길",
     "d": "2바퀴 5.2km. 짧은 업힐 반복",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
-    "_img": "seoul-namsan-loop-poi1"
+    "_img": "seoul-namsan-loop-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EA%B2%BD%EB%B3%B5%EA%B6%81%20%EB%8F%8C%EB%8B%B4%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "청계천",
     "d": "도심 진입로. 성북천까지 이어진다",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/34/3538134_image2_1.jpg",
-    "_img": "seoul-namsan-loop-poi2"
+    "_img": "seoul-namsan-loop-poi2",
+    "addr": "서울특별시 중구 태평로1가 1",
+    "lat": 37.5691317067,
+    "lng": 126.9776154729,
+    "naver": "https://map.naver.com/p/search/%EC%B2%AD%EA%B3%84%EC%B2%9C",
+    "nextM": null
    },
    {
     "n": "남산타워 아래",
     "d": "북측순환로 반환점",
     "photo": null,
-    "_img": "seoul-namsan-loop-poi3"
+    "_img": "seoul-namsan-loop-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%82%B0%ED%83%80%EC%9B%8C%20%EC%95%84%EB%9E%98",
+    "nextM": null
    },
    {
     "n": "남산골한옥마을",
     "d": "러닝 후 걸어서 마무리",
     "photo": null,
-    "_img": "seoul-namsan-loop-poi4"
+    "_img": "seoul-namsan-loop-poi4",
+    "addr": "서울특별시 중구 퇴계로34길 28 (필동2가)",
+    "lat": 37.5597775194,
+    "lng": 126.9932865315,
+    "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%82%B0%EA%B3%A8%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84"
    }
   ],
   "city": "서울",
@@ -2254,25 +2881,44 @@
     "n": "석촌호수",
     "d": "1바퀴 2.5km. 거리 계산이 가장 쉽다",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/10/2907610_image2_1.jpg",
-    "_img": "seoul-olympic-loop-poi1"
+    "_img": "seoul-olympic-loop-poi1",
+    "addr": "서울특별시 송파구 잠실동",
+    "lat": 37.507916,
+    "lng": 127.098944,
+    "naver": "https://map.naver.com/p/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98",
+    "nextM": null
    },
    {
     "n": "몽촌토성길",
     "d": "바깥 루트. 10km로 늘릴 때 붙인다",
     "photo": null,
-    "_img": "seoul-olympic-loop-poi2"
+    "_img": "seoul-olympic-loop-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%AA%BD%EC%B4%8C%ED%86%A0%EC%84%B1%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "송파둘레길",
     "d": "탄천 7.5 / 한강 3.2 / 성내천 6 / 장지천 4.4km",
     "photo": null,
-    "_img": "seoul-olympic-loop-poi3"
+    "_img": "seoul-olympic-loop-poi3",
+    "addr": null,
+    "lat": 37.4923197,
+    "lng": 127.1060708,
+    "naver": "https://map.naver.com/p/search/%EC%86%A1%ED%8C%8C%EB%91%98%EB%A0%88%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "잠실 한강공원",
     "d": "샤워장 있음. 장거리 세션",
     "photo": null,
-    "_img": "seoul-olympic-loop-poi4"
+    "_img": "seoul-olympic-loop-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%8B%A4%20%ED%95%9C%EA%B0%95%EA%B3%B5%EC%9B%90"
    }
   ],
   "city": "서울",
@@ -2320,25 +2966,44 @@
     "n": "서울숲",
     "d": "서울숲역 3번 출구 직결. 가을 단풍 터널",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/99/3580599_image2_1.jpg",
-    "_img": "seoul-ttukseom-7k-poi1"
+    "_img": "seoul-ttukseom-7k-poi1",
+    "addr": "서울특별시 성동구 뚝섬로 273",
+    "lat": 37.5430715815,
+    "lng": 127.041798446,
+    "naver": "https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%EC%88%B2",
+    "nextM": null
    },
    {
     "n": "자벌레 전망대",
     "d": "7km 코스의 중간 지점",
     "photo": null,
-    "_img": "seoul-ttukseom-7k-poi2"
+    "_img": "seoul-ttukseom-7k-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9E%90%EB%B2%8C%EB%A0%88%20%EC%A0%84%EB%A7%9D%EB%8C%80",
+    "nextM": null
    },
    {
     "n": "응봉산 팔각정",
     "d": "짧은 업힐. 야경",
     "photo": null,
-    "_img": "seoul-ttukseom-7k-poi3"
+    "_img": "seoul-ttukseom-7k-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9D%91%EB%B4%89%EC%82%B0%20%ED%8C%94%EA%B0%81%EC%A0%95",
+    "nextM": null
    },
    {
     "n": "성수동 카페거리",
     "d": "러닝 후 마무리",
     "photo": null,
-    "_img": "seoul-ttukseom-7k-poi4"
+    "_img": "seoul-ttukseom-7k-poi4",
+    "addr": "서울특별시 성동구 성수동2가",
+    "lat": 37.5431984051,
+    "lng": 127.0565978295,
+    "naver": "https://map.naver.com/p/search/%EC%84%B1%EC%88%98%EB%8F%99%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC"
    }
   ],
   "city": "서울",
@@ -2386,25 +3051,44 @@
     "n": "하늘공원",
     "d": "억새밭. 계단 업힐",
     "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/23/4063023_image2_1.jpg",
-    "_img": "seoul-gyeongui-morning-poi1"
+    "_img": "seoul-gyeongui-morning-poi1",
+    "addr": "서울특별시 마포구 하늘공원로 95",
+    "lat": 37.5690977267,
+    "lng": 126.8863442556,
+    "naver": "https://map.naver.com/p/search/%ED%95%98%EB%8A%98%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "선유도공원",
     "d": "안양천·여의도와 연결",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/83/3512483_image2_1.jpg",
-    "_img": "seoul-gyeongui-morning-poi2"
+    "_img": "seoul-gyeongui-morning-poi2",
+    "addr": "서울특별시 영등포구 선유로 343 (당산동)",
+    "lat": 37.54223754535507,
+    "lng": 126.90242756770019,
+    "naver": "https://map.naver.com/p/search/%EC%84%A0%EC%9C%A0%EB%8F%84%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "노을공원",
     "d": "4.5km 언덕 코스",
     "photo": null,
-    "_img": "seoul-gyeongui-morning-poi3"
+    "_img": "seoul-gyeongui-morning-poi3",
+    "addr": "서울특별시 마포구 상암동",
+    "lat": 37.5740543063,
+    "lng": 126.8755135312,
+    "naver": "https://map.naver.com/p/search/%EB%85%B8%EC%9D%84%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "홍제천",
     "d": "경의선숲길 연계 하천",
     "photo": null,
-    "_img": "seoul-gyeongui-morning-poi4"
+    "_img": "seoul-gyeongui-morning-poi4",
+    "addr": "서울특별시 서대문구 연희로 248 (연희동)",
+    "lat": 37.5792603445,
+    "lng": 126.9362995081,
+    "naver": "https://map.naver.com/p/search/%ED%99%8D%EC%A0%9C%EC%B2%9C"
    }
   ],
   "city": "서울",
@@ -2452,25 +3136,44 @@
     "n": "랜드마크시티 1호 수변공원",
     "d": "코스 후반부. 인천대교가 보인다",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/57/3001757_image2_1.jpg",
-    "_img": "incheon-songdo-loop-poi1"
+    "_img": "incheon-songdo-loop-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%9E%9C%EB%93%9C%EB%A7%88%ED%81%AC%EC%8B%9C%ED%8B%B0%201%ED%98%B8%20%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "청라호수공원",
     "d": "5km 순환. 송도 대신 쓰는 대안",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/25/4056225_image2_1.jpg",
-    "_img": "incheon-songdo-loop-poi2"
+    "_img": "incheon-songdo-loop-poi2",
+    "addr": "인천광역시 서해구 크리스탈로 59",
+    "lat": 37.5305424005,
+    "lng": 126.6362669938,
+    "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%9D%BC%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "인천대공원",
     "d": "숲과 평지. 초보용",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/53/4061653_image2_1.jpg",
-    "_img": "incheon-songdo-loop-poi3"
+    "_img": "incheon-songdo-loop-poi3",
+    "addr": "인천광역시 남동구 무네미로 236",
+    "lat": 37.4576199732,
+    "lng": 126.7492580058,
+    "naver": "https://map.naver.com/p/search/%EC%9D%B8%EC%B2%9C%EB%8C%80%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "월미도",
     "d": "바다뷰 짧은 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/94/3518594_image2_1.jpg",
-    "_img": "incheon-songdo-loop-poi4"
+    "_img": "incheon-songdo-loop-poi4",
+    "addr": "인천광역시 제물포구 월미로 266",
+    "lat": 37.472634884506,
+    "lng": 126.597308531073,
+    "naver": "https://map.naver.com/p/search/%EC%9B%94%EB%AF%B8%EB%8F%84"
    }
   ],
   "city": "인천",
@@ -2517,25 +3220,44 @@
     "n": "아라인천여객터미널",
     "d": "표준 출발점",
     "photo": null,
-    "_img": "incheon-arabaetgil-lsd-poi1"
+    "_img": "incheon-arabaetgil-lsd-poi1",
+    "addr": null,
+    "lat": 37.5580133,
+    "lng": 126.6059881,
+    "naver": "https://map.naver.com/p/search/%EC%95%84%EB%9D%BC%EC%9D%B8%EC%B2%9C%EC%97%AC%EA%B0%9D%ED%84%B0%EB%AF%B8%EB%84%90",
+    "nextM": 16847
    },
    {
     "n": "심곡천",
     "d": "코스 변주용 연계 구간",
     "photo": null,
-    "_img": "incheon-arabaetgil-lsd-poi2"
+    "_img": "incheon-arabaetgil-lsd-poi2",
+    "addr": null,
+    "lat": 37.520458,
+    "lng": 126.7603764,
+    "naver": "https://map.naver.com/p/search/%EC%8B%AC%EA%B3%A1%EC%B2%9C",
+    "nextM": 7850
    },
    {
     "n": "인천대공원",
     "d": "다음날 회복런",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/53/4061653_image2_1.jpg",
-    "_img": "incheon-arabaetgil-lsd-poi3"
+    "_img": "incheon-arabaetgil-lsd-poi3",
+    "addr": "인천광역시 남동구 무네미로 236",
+    "lat": 37.4576199732,
+    "lng": 126.7492580058,
+    "naver": "https://map.naver.com/p/search/%EC%9D%B8%EC%B2%9C%EB%8C%80%EA%B3%B5%EC%9B%90",
+    "nextM": 16025
    },
    {
     "n": "송도 센트럴파크",
     "d": "짧은 이지런으로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/19/3512919_image2_1.jpg",
-    "_img": "incheon-arabaetgil-lsd-poi4"
+    "_img": "incheon-arabaetgil-lsd-poi4",
+    "addr": "인천광역시 연수구 컨벤시아대로 160",
+    "lat": 37.3929,
+    "lng": 126.6383,
+    "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%20%EC%84%BC%ED%8A%B8%EB%9F%B4%ED%8C%8C%ED%81%AC"
    }
   ],
   "city": "인천",
@@ -2583,25 +3305,44 @@
     "n": "정발산역 2번 출구",
     "d": "북쪽 진입. 반 바퀴 2.5km 워밍업",
     "photo": null,
-    "_img": "goyang-ilsan-lake-poi1"
+    "_img": "goyang-ilsan-lake-poi1",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%A0%95%EB%B0%9C%EC%82%B0%EC%97%AD%202%EB%B2%88%20%EC%B6%9C%EA%B5%AC",
+    "nextM": null
    },
    {
     "n": "호수공원 음수대",
     "d": "중간 급수 지점",
     "photo": null,
-    "_img": "goyang-ilsan-lake-poi2"
+    "_img": "goyang-ilsan-lake-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90%20%EC%9D%8C%EC%88%98%EB%8C%80",
+    "nextM": null
    },
    {
     "n": "광교호수공원",
     "d": "경기 남부의 같은 성격 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/60/3588560_image2_1.jpg",
-    "_img": "goyang-ilsan-lake-poi3"
+    "_img": "goyang-ilsan-lake-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EA%B4%91%EA%B5%90%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "청라호수공원",
     "d": "서부권 대안",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/25/4056225_image2_1.jpg",
-    "_img": "goyang-ilsan-lake-poi4"
+    "_img": "goyang-ilsan-lake-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%9D%BC%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90"
    }
   ],
   "city": "고양",
@@ -2650,25 +3391,44 @@
     "n": "수원화성 성곽길",
     "d": "5.7km. 성곽 따라 도는 문화유산 코스",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/36/3500936_image2_1.jpg",
-    "_img": "suwon-gwanggyo-lake-poi1"
+    "_img": "suwon-gwanggyo-lake-poi1",
+    "addr": "경기도 수원시 팔달구 정조로 776-2 (팔달로3가)",
+    "lat": 37.2773511179,
+    "lng": 127.0172606397,
+    "naver": "https://map.naver.com/p/search/%EC%88%98%EC%9B%90%ED%99%94%EC%84%B1%20%EC%84%B1%EA%B3%BD%EA%B8%B8",
+    "nextM": null
    },
    {
     "n": "원천호수",
     "d": "둘레 약 3km",
     "photo": null,
-    "_img": "suwon-gwanggyo-lake-poi2"
+    "_img": "suwon-gwanggyo-lake-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%9B%90%EC%B2%9C%ED%98%B8%EC%88%98",
+    "nextM": null
    },
    {
     "n": "신대호수",
     "d": "둘레 약 3.5km",
     "photo": null,
-    "_img": "suwon-gwanggyo-lake-poi3"
+    "_img": "suwon-gwanggyo-lake-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%8B%A0%EB%8C%80%ED%98%B8%EC%88%98",
+    "nextM": null
    },
    {
     "n": "광교중앙역",
     "d": "11.3km 코스 기점",
     "photo": null,
-    "_img": "suwon-gwanggyo-lake-poi4"
+    "_img": "suwon-gwanggyo-lake-poi4",
+    "addr": "경기도 수원시 영통구 도청로17번길 18 (이의동)",
+    "lat": 37.2858340141964,
+    "lng": 127.053722382712,
+    "naver": "https://map.naver.com/p/search/%EA%B4%91%EA%B5%90%EC%A4%91%EC%95%99%EC%97%AD"
    }
   ],
   "city": "수원",
@@ -2716,25 +3476,44 @@
     "n": "광교호수공원",
     "d": "평지 코스로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/60/3588560_image2_1.jpg",
-    "_img": "suwon-hwaseong-wall-poi1"
+    "_img": "suwon-hwaseong-wall-poi1",
+    "addr": "경기도 수원시 영통구 광교호수로 165 (하동)",
+    "lat": 37.2832676649,
+    "lng": 127.0700567363,
+    "naver": "https://map.naver.com/p/search/%EA%B4%91%EA%B5%90%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "남한산성",
     "d": "한 단계 위의 성곽 트레일",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/69/3524569_image2_1.jpg",
-    "_img": "suwon-hwaseong-wall-poi2"
+    "_img": "suwon-hwaseong-wall-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%82%A8%ED%95%9C%EC%82%B0%EC%84%B1",
+    "nextM": null
    },
    {
     "n": "팔달산 구간",
     "d": "성곽길에서 오르내림이 가장 큰 지점",
     "photo": null,
-    "_img": "suwon-hwaseong-wall-poi3"
+    "_img": "suwon-hwaseong-wall-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%8C%94%EB%8B%AC%EC%82%B0%20%EA%B5%AC%EA%B0%84",
+    "nextM": null
    },
    {
     "n": "행궁동",
     "d": "러닝 후 식사·카페",
     "photo": null,
-    "_img": "suwon-hwaseong-wall-poi4"
+    "_img": "suwon-hwaseong-wall-poi4",
+    "addr": "경기도 수원시 팔달구 화서문로72번길 9-7 (북수동)",
+    "lat": 37.2857125098,
+    "lng": 127.0165476856,
+    "naver": "https://map.naver.com/p/search/%ED%96%89%EA%B6%81%EB%8F%99"
    }
   ],
   "city": "수원",
@@ -2781,25 +3560,44 @@
     "n": "율동공원",
     "d": "짧은 순환으로 전환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/47/4072047_image2_1.JPG",
-    "_img": "seongnam-tancheon-poi1"
+    "_img": "seongnam-tancheon-poi1",
+    "addr": "경기도 성남시 분당구 문정로 72 (율동)",
+    "lat": 37.3765557063,
+    "lng": 127.152412248,
+    "naver": "https://map.naver.com/p/search/%EC%9C%A8%EB%8F%99%EA%B3%B5%EC%9B%90",
+    "nextM": null
    },
    {
     "n": "한강 합류점",
     "d": "서울 코스로 이어지는 지점",
     "photo": null,
-    "_img": "seongnam-tancheon-poi2"
+    "_img": "seongnam-tancheon-poi2",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%ED%95%9C%EA%B0%95%20%ED%95%A9%EB%A5%98%EC%A0%90",
+    "nextM": null
    },
    {
     "n": "분당 구간",
     "d": "자전거도로 분리 구간",
     "photo": null,
-    "_img": "seongnam-tancheon-poi3"
+    "_img": "seongnam-tancheon-poi3",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EB%B6%84%EB%8B%B9%20%EA%B5%AC%EA%B0%84",
+    "nextM": null
    },
    {
     "n": "올림픽공원",
     "d": "한강 방향 연결 후 순환",
     "photo": "https://tong.visitkorea.or.kr/cms/resource/59/3527359_image2_1.jpg",
-    "_img": "seongnam-tancheon-poi4"
+    "_img": "seongnam-tancheon-poi4",
+    "addr": null,
+    "lat": null,
+    "lng": null,
+    "naver": "https://map.naver.com/p/search/%EC%98%AC%EB%A6%BC%ED%94%BD%EA%B3%B5%EC%9B%90"
    }
   ],
   "city": "성남",

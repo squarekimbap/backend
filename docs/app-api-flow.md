@@ -201,8 +201,21 @@ sequenceDiagram
 | --- | --- | --- |
 | `GET /v1/courses` | 홈 피드 전체 | `{count, items:[요약]}` — 요약 = id·n·city·cityId·region·km·min·lv·mood·tags·headline·subhead·photo·photoTitle·photoLicense |
 | `GET /v1/courses?city=서울` (또는 `city=seoul`) | 도시 탭 | 위와 동일(필터됨) |
-| `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + `body[]`(어떤 길인지) · `deep[]`(더 알아두면) · `ops[]`(가기 전에) · `unsure[]`(확인 중) · `poi[{n,d,photo}]`(지나는 곳+장소 사진 → **1/2 2/2 페이저 재료**) |
+| `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + `url`(공유용) + `body[]`(어떤 길인지) · `deep[]`(더 알아두면) · `ops[]`(가기 전에) · `unsure[]`(확인 중) · `poi[]`(아래) |
 
+**poi 항목 구조** (지나는 곳 1곳):
+
+```json
+{ "n": "노들섬", "d": "코인라커 있음. 500원 동전 필요",
+  "photo": "https://tong.visitkorea.or.kr/...",   // null 가능 → 1/2 2/2 페이저 재료
+  "addr": "서울특별시 용산구 양녕로 445",           // null 가능
+  "lat": 37.5177, "lng": 126.9595,                 // null 가능 (지도 마커)
+  "naver": "https://map.naver.com/p/search/노들섬", // 항상 있음 — 이름 아래 네이버지도 연결
+  "nextM": 4719 }                                   // 다음 경유지까지 도보 m. null 가능(마지막/미확보)
+```
+
+- `url`: 코스 공유 기능에 그대로 사용(목록 요약에도 포함). 웹 상세 페이지가 생기면 서버 설정만 바꿔 교체
+- `nextM`·`addr`·`lat/lng`는 **null 가능** — null이면 해당 UI(거리 뱃지·주소 줄)를 숨길 것
 - id 예: `seoul-banpo-10k`, `busan-haeundae`. 없는 id → `404 {error:"not_found"}`
 - 정적 번들 데이터라 응답이 빠르고(수십 ms + 콜드스타트) 업스트림 실패(502)가 없다
 - 한글 city 파라미터는 **URL 인코딩** 필수 (iOS URLComponents 사용 시 자동)

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.io.InputStream;
 import java.util.LinkedHashMap;
@@ -23,11 +24,15 @@ public class CourseCatalog {
     /** 목록(카드) 응답에 내려줄 필드 — 본문(body 등)은 상세에서만. */
     private static final String[] SUMMARY_FIELDS = {
             "id", "n", "city", "cityId", "region", "km", "min", "lv", "mood",
-            "tags", "headline", "subhead", "photo", "photoTitle", "photoLicense"
+            "tags", "headline", "subhead", "photo", "photoTitle", "photoLicense", "url"
     };
 
     @Inject
     ObjectMapper mapper;
+
+    /** 공유 기능용 코스 url 베이스(응답의 url = base + /v1/courses/{id}). */
+    @ConfigProperty(name = "course.share-base-url", defaultValue = "")
+    String shareBaseUrl;
 
     private Map<String, JsonNode> byId;
     private ArrayNode summaries;
@@ -45,6 +50,9 @@ public class CourseCatalog {
                 String id = c.path("id").asText("");
                 if (id.isEmpty() || map.containsKey(id)) {
                     throw new IllegalStateException("코스 id 누락/중복: " + id);
+                }
+                if (!shareBaseUrl.isBlank()) { // 공유용 url — 데이터가 아니라 서버가 부여
+                    ((ObjectNode) c).put("url", shareBaseUrl + "/v1/courses/" + id);
                 }
                 map.put(id, c);
                 ObjectNode s = mapper.createObjectNode();
