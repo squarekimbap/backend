@@ -1,8 +1,11 @@
 package com.tourapi;
 
+import com.tourapi.lib.AppleVerifier;
 import com.tourapi.lib.CognitoAuth;
+import com.tourapi.lib.InvalidAppleTokenException;
 import com.tourapi.lib.InvalidKakaoTokenException;
 import com.tourapi.lib.KakaoVerifier;
+import com.tourapi.lib.UpstreamException;
 import com.tourapi.lib.UserStore;
 import com.tourapi.model.UserProfile;
 import io.quarkus.test.InjectMock;
@@ -47,6 +50,9 @@ public class AuthResourceTest {
 
     @InjectMock
     KakaoVerifier kakao;
+
+    @InjectMock
+    AppleVerifier apple;
 
     @InjectMock
     UserStore userStore;
@@ -311,6 +317,54 @@ public class AuthResourceTest {
         given().contentType(ContentType.JSON).body("{}")
                 .post("/v1/auth/logout").then().statusCode(400)
                 .body("error", equalTo("bad_request"));
+    }
+
+    @Test
+    public void apple_성공시_토큰3종_경합시_1회재시도() {
+        when(apple.verify("it")).thenReturn(new AppleVerifier.AppleUser("s1", "r@x.com"));
+        when(cognito.ensureAppleUser("s1", "김승찬", "r@x.com")).thenReturn("apple_s1");
+        when(cognito.rotatePasswordAndLogin("apple_s1"))
+                .thenThrow(NotAuthorizedException.builder().build()) // 동시 로그인 경합 1회
+                .thenReturn(tokens("u-9", "apple_s1"));              // 재시도 성공
+        given().contentType(ContentType.JSON)
+                .body("{\"identityToken\":\"it\",\"fullName\":\"김승찬\"}")
+                .post("/v1/auth/apple").then().statusCode(200)
+                .body("accessToken", notNullValue())
+                .body("refreshToken", equalTo("rt"));
+        verify(cognito, times(2)).rotatePasswordAndLogin("apple_s1");
+    }
+
+    @Test
+    public void apple_이름없으면_기본닉네임으로_생성() {
+        when(apple.verify("it")).thenReturn(new AppleVerifier.AppleUser("s2", null));
+        when(cognito.ensureAppleUser("s2", "러너", null)).thenReturn("apple_s2");
+        when(cognito.rotatePasswordAndLogin("apple_s2")).thenReturn(tokens("u-10", "apple_s2"));
+        given().contentType(ContentType.JSON).body("{\"identityToken\":\"it\"}")
+                .post("/v1/auth/apple").then().statusCode(200);
+        verify(cognito).ensureAppleUser("s2", "러너", null);
+    }
+
+    @Test
+    public void apple_무효토큰_401() {
+        when(apple.verify(any())).thenThrow(new InvalidAppleTokenException());
+        given().contentType(ContentType.JSON).body("{\"identityToken\":\"bad\"}")
+                .post("/v1/auth/apple").then().statusCode(401)
+                .body("error", equalTo("invalid_apple_token"));
+    }
+
+    @Test
+    public void apple_토큰누락_400() {
+        given().contentType(ContentType.JSON).body("{}")
+                .post("/v1/auth/apple").then().statusCode(400)
+                .body("error", equalTo("bad_request"));
+    }
+
+    @Test
+    public void apple_키조회실패_502() {
+        when(apple.verify(any())).thenThrow(new UpstreamException("JWKS 실패"));
+        given().contentType(ContentType.JSON).body("{\"identityToken\":\"it\"}")
+                .post("/v1/auth/apple").then().statusCode(502)
+                .body("error", equalTo("upstream_error"));
     }
 
     @Test

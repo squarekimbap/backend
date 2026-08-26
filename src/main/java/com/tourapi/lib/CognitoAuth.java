@@ -36,6 +36,7 @@ public class CognitoAuth {
     private static final int ROTATION_PASSWORD_LENGTH = 64;
     private static final String EMAIL_PREFIX = "email_";
     private static final String KAKAO_PREFIX = "kakao_";
+    private static final String APPLE_PREFIX = "apple_";
     private static final int EMAIL_HASH_LENGTH = 32;
 
     @ConfigProperty(name = "user.pool.id")
@@ -67,7 +68,13 @@ public class CognitoAuth {
      * 로그인했는지 요청만 봐서는 알 수 없어서, 이미 정해둔 접두사로 되짚는다.
      */
     public static String providerOfUsername(String username) {
-        return username != null && username.startsWith(KAKAO_PREFIX) ? "kakao" : "email";
+        if (username != null && username.startsWith(KAKAO_PREFIX)) {
+            return "kakao";
+        }
+        if (username != null && username.startsWith(APPLE_PREFIX)) {
+            return "apple";
+        }
+        return "email";
     }
 
     public void signUp(String email, String password, String nickname) {
@@ -157,7 +164,30 @@ public class CognitoAuth {
         return username;
     }
 
-    /** 카카오 브릿지: 랜덤 비밀번호 설정 직후 로그인. 비밀번호는 저장하지 않고 매 로그인마다 교체. */
+    /**
+     * apple_<sub> 사용자 조회, 없으면 생성(이메일 발송 억제). username 반환.
+     * 닉네임·이메일은 Apple이 첫 로그인에만 주므로 생성 때만 심는다 — 재로그인은 덮지 않는다.
+     */
+    public String ensureAppleUser(String appleSub, String nickname, String email) {
+        String username = APPLE_PREFIX + appleSub;
+        try {
+            client().adminGetUser(b -> b.userPoolId(poolId()).username(username));
+        } catch (UserNotFoundException e) {
+            var attributes = new java.util.ArrayList<AttributeType>();
+            attributes.add(AttributeType.builder().name("nickname").value(nickname).build());
+            if (email != null && !email.isBlank()) {
+                // Apple이 이미 검증한 주소(릴레이 포함)라 verified로 둔다.
+                attributes.add(AttributeType.builder().name("email").value(email).build());
+                attributes.add(AttributeType.builder().name("email_verified").value("true").build());
+            }
+            client().adminCreateUser(b -> b.userPoolId(poolId()).username(username)
+                    .messageAction(MessageActionType.SUPPRESS)
+                    .userAttributes(attributes));
+        }
+        return username;
+    }
+
+    /** 소셜 브릿지: 랜덤 비밀번호 설정 직후 로그인. 비밀번호는 저장하지 않고 매 로그인마다 교체. */
     public AuthenticationResultType rotatePasswordAndLogin(String username) {
         String password = randomPassword();
         client().adminSetUserPassword(b -> b.userPoolId(poolId()).username(username)

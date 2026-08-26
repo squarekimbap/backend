@@ -1,6 +1,7 @@
 package com.tourapi.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.tourapi.lib.AppleVerifier;
 import com.tourapi.lib.CognitoAuth;
 import com.tourapi.lib.KakaoVerifier;
 import com.tourapi.lib.TokenPayload;
@@ -26,6 +27,9 @@ public class AuthService {
 
     @Inject
     KakaoVerifier kakaoVerifier;
+
+    @Inject
+    AppleVerifier appleVerifier;
 
     public void signup(String email, String password, String nickname) {
         cognito.signUp(email, password, nickname);
@@ -84,6 +88,24 @@ public class AuthService {
             r = cognito.rotatePasswordAndLogin(username);
         }
         upsertFromIdToken(r, "kakao");
+        return toResponse(r);
+    }
+
+    /**
+     * Apple 브릿지: identityToken 검증 → apple_<sub> 사용자 확보 → 비밀번호 회전 로그인.
+     * 이름은 첫 로그인에만 오므로 없으면 기본 닉네임으로 만든다. 카카오와 같은 경합 재시도 1회.
+     */
+    public TokenResponse appleLogin(String identityToken, String fullName) {
+        AppleVerifier.AppleUser au = appleVerifier.verify(identityToken);
+        String nickname = fullName == null || fullName.isBlank() ? "러너" : fullName.trim();
+        String username = cognito.ensureAppleUser(au.sub(), nickname, au.email());
+        AuthenticationResultType r;
+        try {
+            r = cognito.rotatePasswordAndLogin(username);
+        } catch (NotAuthorizedException e) {
+            r = cognito.rotatePasswordAndLogin(username);
+        }
+        upsertFromIdToken(r, "apple");
         return toResponse(r);
     }
 

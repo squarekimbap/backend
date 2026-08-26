@@ -1,8 +1,10 @@
 package com.tourapi.routes;
 
+import com.tourapi.lib.InvalidAppleTokenException;
 import com.tourapi.lib.InvalidKakaoTokenException;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
+import com.tourapi.model.AppleLoginRequest;
 import com.tourapi.model.ConfirmRequest;
 import com.tourapi.model.ForgotPasswordRequest;
 import com.tourapi.model.KakaoLoginRequest;
@@ -191,6 +193,25 @@ public class AuthResource {
             return error(502, "upstream_error", "카카오 연동 일시 오류");
         } catch (CognitoIdentityProviderException e) {
             return upstream("kakao", e);
+        }
+    }
+
+    @POST
+    @Path("/apple")
+    @Operation(summary = "Apple 로그인(첫 로그인 = 자동 가입) → 토큰 3종")
+    public Response apple(AppleLoginRequest req) {
+        if (req == null || blank(req.identityToken())) {
+            return bad("identityToken 필수");
+        }
+        try {
+            return Response.ok(authService.appleLogin(req.identityToken(), req.fullName())).build();
+        } catch (InvalidAppleTokenException e) {
+            return error(401, "invalid_apple_token", "Apple 토큰이 유효하지 않음");
+        } catch (UpstreamException e) {
+            LOG.warnf("apple upstream 실패: %s", e.getMessage());
+            return error(502, "upstream_error", "Apple 연동 일시 오류");
+        } catch (CognitoIdentityProviderException e) {
+            return upstream("apple", e);
         }
     }
 
