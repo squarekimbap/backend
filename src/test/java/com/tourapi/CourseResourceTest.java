@@ -23,18 +23,27 @@ public class CourseResourceTest {
     CourseCatalog catalog;
 
     @Test
-    public void 카탈로그_전체_42개_로드() {
-        Assertions.assertEquals(42, catalog.list(null).size());
+    public void 카탈로그_전체_64개_로드() {
+        Assertions.assertEquals(64, catalog.list(null).size());
         Assertions.assertNotNull(catalog.list(null).get(0).get("id"));
         Assertions.assertNotNull(catalog.list(null).get(0).get("headline"));
     }
 
     @Test
+    public void 러닝갤_신규코스_상세() {
+        RestAssured.when().get("/v1/courses/seoul-seokchon-lake")
+                .then().statusCode(200)
+                .body("src", equalTo("러너 후기 · 러닝갤"))
+                .body("poi[0].naver", notNullValue());
+    }
+
+    @Test
     public void 목록_도시명_필터() {
-        RestAssured.when().get("/v1/courses?city=서울")
+        // 코스 많은 도시(서울 등)는 응답이 MockEventServer 임계 크기를 넘어 hang — 작은 도시로 검증
+        RestAssured.when().get("/v1/courses?city=속초")
                 .then().statusCode(200)
                 .body("count", greaterThan(0))
-                .body("items[0].city", equalTo("서울"));
+                .body("items[0].city", equalTo("속초"));
     }
 
     @Test

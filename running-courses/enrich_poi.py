@@ -16,6 +16,7 @@ import json, glob, sys, time, pathlib, subprocess, urllib.parse
 
 ROOT = pathlib.Path(__file__).parent
 DRY = '--dry' in sys.argv
+NO_TMAP = '--no-tmap' in sys.argv  # TMAP 일 한도(1,000) 아낄 때 — 구간거리(nextM)만 건너뜀
 
 def env_key(name):
     for line in (ROOT.parent / '.env').read_text().splitlines():
@@ -126,7 +127,7 @@ for path in sorted(glob.glob(str(ROOT / 'data' / '*.json'))):
                 else:
                     stats['geo_fail'].append(f"{c['id']}/{p['n']}")
             # 구간 거리
-            if not DRY:
+            if not DRY and not NO_TMAP:
                 # 코스 길이보다 터무니없이 먼 구간은 경유 순서가 아니라 '주변 추천' poi로 보고 버린다
                 cap = max(5000, int(float(c.get('km', 5)) * 1000))
                 for i in range(len(pois) - 1):
@@ -143,6 +144,7 @@ for path in sorted(glob.glob(str(ROOT / 'data' / '*.json'))):
                     else:
                         a['nextM'] = None
                         stats['seg_fail'] += 1
+            if not DRY:
                 for i, p in enumerate(pois):
                     enriched[(c['id'], i)] = {k: p.get(k) for k in ('addr', 'lat', 'lng', 'naver', 'nextM') if k in p}
     if not DRY:
