@@ -48,8 +48,7 @@
       "addr": "대전광역시 서구 둔산대로 169",
       "lat": 36.3685826107,
       "lng": 127.3862516305,
-      "naver": "https://map.naver.com/p/search/%ED%95%9C%EB%B0%AD%EC%88%98%EB%AA%A9%EC%9B%90",
-      "nextM": 4962
+      "naver": "https://map.naver.com/p/search/%ED%95%9C%EB%B0%AD%EC%88%98%EB%AA%A9%EC%9B%90"
      },
      {
       "n": "유성온천공원",
@@ -58,8 +57,7 @@
       "addr": "대전광역시 유성구 계룡로123번길 52 (봉명동)",
       "lat": 36.3553,
       "lng": 127.3437,
-      "naver": "https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%98%A8%EC%B2%9C%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%98%A8%EC%B2%9C%EA%B3%B5%EC%9B%90"
      },
      {
       "n": "대청호",
@@ -68,8 +66,7 @@
       "addr": "대전광역시 동구",
       "lat": 36.4011148323,
       "lng": 127.5101665667,
-      "naver": "https://map.naver.com/p/search/%EB%8C%80%EC%B2%AD%ED%98%B8",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EB%8C%80%EC%B2%AD%ED%98%B8"
      },
      {
       "n": "유성천",
@@ -145,9 +142,9 @@
       "n": "법동 구민휴식공원",
       "d": "짧은 진입로. 4.1km / 2시간",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "대전광역시 대덕구 선비마을로 174-1",
+      "lat": 36.3718619,
+      "lng": 127.4376738,
       "naver": "https://map.naver.com/p/search/%EB%B2%95%EB%8F%99%20%EA%B5%AC%EB%AF%BC%ED%9C%B4%EC%8B%9D%EA%B3%B5%EC%9B%90",
       "nextM": null
      },
@@ -246,7 +243,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EA%B0%91%EC%B2%9C"
      }
-    ]
+    ],
+    "lat": 36.5098437,
+    "lng": 127.3277758
    }
   ]
  },

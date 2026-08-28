@@ -48,9 +48,9 @@
       "n": "의암호 스카이워크",
       "d": "호수 위로 나간 데크. 반환점으로 삼기 좋다",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/93/2748593_image2_1.jpg",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "강원특별자치도 춘천시 칠전동 486",
+      "lat": 37.8467906,
+      "lng": 127.680221,
       "naver": "https://map.naver.com/p/search/%EC%9D%98%EC%95%94%ED%98%B8%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
       "nextM": null
      },
@@ -68,9 +68,9 @@
       "n": "소양강 스카이워크",
       "d": "소양강 수변길 약 4km와 연결",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/64/4087664_image2_1.jpg",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "강원특별자치도 춘천시 영서로 2663 소양강스카이워크",
+      "lat": 37.8946286,
+      "lng": 127.7235599,
       "naver": "https://map.naver.com/p/search/%EC%86%8C%EC%96%91%EA%B0%95%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
       "nextM": null
      },
@@ -83,7 +83,9 @@
       "lng": 127.7176781471,
       "naver": "https://map.naver.com/p/search/%EA%B9%80%EC%9C%A0%EC%A0%95%EB%AC%B8%ED%95%99%EC%B4%8C"
      }
-    ]
+    ],
+    "lat": 37.8467906,
+    "lng": 127.680221
    },
    {
     "id": "chuncheon-gongjicheon",
@@ -136,9 +138,9 @@
       "n": "소양강 스카이워크",
       "d": "소양강 방면 확장",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/64/4087664_image2_1.jpg",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "강원특별자치도 춘천시 영서로 2663 소양강스카이워크",
+      "lat": 37.8946286,
+      "lng": 127.7235599,
       "naver": "https://map.naver.com/p/search/%EC%86%8C%EC%96%91%EA%B0%95%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
       "nextM": null
      },
@@ -146,9 +148,9 @@
       "n": "메타세쿼이아길",
       "d": "약 5km 흙길 구간",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "강원특별자치도 춘천시 남산면 남이섬길 1",
+      "lat": 37.7894931,
+      "lng": 127.5243645,
       "naver": "https://map.naver.com/p/search/%EB%A9%94%ED%83%80%EC%84%B8%EC%BF%BC%EC%9D%B4%EC%95%84%EA%B8%B8",
       "nextM": null
      },
@@ -216,8 +218,7 @@
       "addr": "강원특별자치도 강릉시 창해로 514 (안현동)",
       "lat": 37.8034055083,
       "lng": 128.9102102476,
-      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
      },
      {
       "n": "안목해변",
@@ -226,8 +227,7 @@
       "addr": "강원특별자치도 강릉시 창해로14번길 20-1",
       "lat": 37.7722617595,
       "lng": 128.9482754051,
-      "naver": "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%ED%95%B4%EB%B3%80",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%ED%95%B4%EB%B3%80"
      },
      {
       "n": "경포가시연습지",
@@ -236,8 +236,7 @@
       "addr": "강원특별자치도 강릉시 운정동",
       "lat": 37.7894061272742,
       "lng": 128.898650615633,
-      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EA%B0%80%EC%8B%9C%EC%97%B0%EC%8A%B5%EC%A7%80",
-      "nextM": 1950
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EA%B0%80%EC%8B%9C%EC%97%B0%EC%8A%B5%EC%A7%80"
      },
      {
       "n": "초당순두부마을",
@@ -295,8 +294,7 @@
       "addr": "강원특별자치도 강릉시 창해로 352",
       "lat": 37.7947975418039,
       "lng": 128.91901514704,
-      "naver": "https://map.naver.com/p/search/%EA%B0%95%EB%AC%B8%ED%95%B4%EB%B3%80",
-      "nextM": 2585
+      "naver": "https://map.naver.com/p/search/%EA%B0%95%EB%AC%B8%ED%95%B4%EB%B3%80"
      },
      {
       "n": "경포호",
@@ -305,8 +303,7 @@
       "addr": "강원특별자치도 강릉시 저동",
       "lat": 37.7967,
       "lng": 128.9021,
-      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%98%B8",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%98%B8"
      },
      {
       "n": "정동진역",
@@ -315,8 +312,7 @@
       "addr": "강원특별자치도 강릉시 강동면 정동역길 17",
       "lat": 37.6913603281,
       "lng": 129.0325745068,
-      "naver": "https://map.naver.com/p/search/%EC%A0%95%EB%8F%99%EC%A7%84%EC%97%AD",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EC%A0%95%EB%8F%99%EC%A7%84%EC%97%AD"
      },
      {
       "n": "오죽헌",

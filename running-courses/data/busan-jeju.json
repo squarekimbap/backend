@@ -65,9 +65,9 @@
       "n": "동백섬 해안산책로",
       "d": "코스 중간 구간",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "부산광역시 남구 용호동 산25",
+      "lat": 35.1322926,
+      "lng": 129.1213005,
       "naver": "https://map.naver.com/p/search/%EB%8F%99%EB%B0%B1%EC%84%AC%20%ED%95%B4%EC%95%88%EC%82%B0%EC%B1%85%EB%A1%9C",
       "nextM": null
      },
@@ -80,7 +80,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EA%B7%B8%EB%A6%B0%EB%A0%88%EC%9D%BC%EC%9B%A8%EC%9D%B4"
      }
-    ]
+    ],
+    "lat": 35.1322926,
+    "lng": 129.1213005
    },
    {
     "id": "busan-gwangalli-night",
@@ -204,8 +206,7 @@
       "addr": "부산 사상구 삼락동 29-46",
       "lat": 35.1691043434193,
       "lng": 128.973176285884,
-      "naver": "https://map.naver.com/p/search/%EC%82%BC%EB%9D%BD%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EC%82%BC%EB%9D%BD%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90"
      },
      {
       "n": "수영강",
@@ -214,8 +215,7 @@
       "addr": null,
       "lat": 35.3043172,
       "lng": 129.1083294,
-      "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B0%95",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B0%95"
      },
      {
       "n": "온천천 카페거리",
@@ -224,8 +224,7 @@
       "addr": "부산광역시 동래구 온천천로 451",
       "lat": 35.1916279693,
       "lng": 129.1024592605,
-      "naver": "https://map.naver.com/p/search/%EC%98%A8%EC%B2%9C%EC%B2%9C%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC",
-      "nextM": 5275
+      "naver": "https://map.naver.com/p/search/%EC%98%A8%EC%B2%9C%EC%B2%9C%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC"
      },
      {
       "n": "광안리해수욕장",
@@ -236,7 +235,9 @@
       "lng": 129.1189760936,
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
      }
-    ]
+    ],
+    "lat": 35.1916279693,
+    "lng": 129.1024592605
    },
    {
     "id": "busan-samnak-lsd",
@@ -315,7 +316,9 @@
       "lng": 128.9543361,
       "naver": "https://map.naver.com/p/search/%EB%82%99%EB%8F%99%EA%B0%95%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8"
      }
-    ]
+    ],
+    "lat": 35.0913089,
+    "lng": 128.9543361
    },
    {
     "id": "busan-songdo-cloud",
@@ -524,9 +527,9 @@
       "n": "용담 해안도로",
       "d": "해안 코스로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/68/3011868_image2_1.jpg",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "제주특별자치도 제주시 용마로 24 2층",
+      "lat": 33.5151692,
+      "lng": 126.5062741,
       "naver": "https://map.naver.com/p/search/%EC%9A%A9%EB%8B%B4%20%ED%95%B4%EC%95%88%EB%8F%84%EB%A1%9C",
       "nextM": null
      },

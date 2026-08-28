@@ -271,9 +271,9 @@
       "n": "후문 주차장",
       "d": "정문보다 넓다",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "전북특별자치도 전주시 덕진구 송천동2가",
+      "lat": 35.8738772,
+      "lng": 127.1357333,
       "naver": "https://map.naver.com/p/search/%ED%9B%84%EB%AC%B8%20%EC%A3%BC%EC%B0%A8%EC%9E%A5",
       "nextM": null
      },
@@ -281,9 +281,9 @@
       "n": "어린이회관 주차장",
       "d": "무료",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "전북특별자치도 전주시 덕진구 보훈누리로 63 창의체험관",
+      "lat": 35.8553137,
+      "lng": 127.1288018,
       "naver": "https://map.naver.com/p/search/%EC%96%B4%EB%A6%B0%EC%9D%B4%ED%9A%8C%EA%B4%80%20%EC%A3%BC%EC%B0%A8%EC%9E%A5",
       "nextM": null
      },
@@ -367,9 +367,9 @@
       "n": "옥암동 코스",
       "d": "약 3.9km. 초보 최적",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "전남광주통합특별시 목포시 남악1로52번가길 10-1",
+      "lat": 34.8103046,
+      "lng": 126.4485029,
       "naver": "https://map.naver.com/p/search/%EC%98%A5%EC%95%94%EB%8F%99%20%EC%BD%94%EC%8A%A4",
       "nextM": null
      },
@@ -382,7 +382,9 @@
       "lng": 126.3651120933,
       "naver": "https://map.naver.com/p/search/%EB%B6%81%ED%95%AD"
      }
-    ]
+    ],
+    "lat": 34.7922,
+    "lng": 126.4259
    }
   ]
  },
@@ -468,7 +470,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EB%A7%8C%EC%8A%B5%EC%A7%80"
      }
-    ]
+    ],
+    "lat": 34.7444013572,
+    "lng": 127.7678097276
    },
    {
     "id": "yeosu-old-railroad",
@@ -613,7 +617,9 @@
       "lng": 127.502633,
       "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%97%AD"
      }
-    ]
+    ],
+    "lat": 34.9320513,
+    "lng": 127.5131992
    }
   ]
  },

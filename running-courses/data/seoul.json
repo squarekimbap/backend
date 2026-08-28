@@ -58,9 +58,9 @@
      "n": "반포 달빛광장",
      "d": "스트레칭·집합 장소",
      "photo": "https://tong.visitkorea.or.kr/cms/resource/62/3515062_image2_1.jpg",
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 서초구",
+     "lat": 37.5114399,
+     "lng": 126.9975119,
      "naver": "https://map.naver.com/p/search/%EB%B0%98%ED%8F%AC%20%EB%8B%AC%EB%B9%9B%EA%B4%91%EC%9E%A5",
      "nextM": null
     },
@@ -83,7 +83,9 @@
      "lng": 126.997353,
      "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%88%98%EA%B5%90"
     }
-   ]
+   ],
+   "lat": 37.5114399,
+   "lng": 126.9975119
   },
   {
    "id": "seoul-yeouido-5k",
@@ -147,9 +149,9 @@
      "n": "여의나루역 러너스테이션",
      "d": "물품보관·탈의·샤워",
      "photo": null,
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 영등포구 여의동로 350 지하 2층",
+     "lat": 37.5272137,
+     "lng": 126.933137,
      "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%9D%98%EB%82%98%EB%A3%A8%EC%97%AD%20%EB%9F%AC%EB%84%88%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98",
      "nextM": null
     },
@@ -162,7 +164,9 @@
      "lng": null,
      "naver": "https://map.naver.com/p/search/%EA%B5%AD%ED%9A%8C%EC%9A%B4%EB%8F%99%EC%9E%A5%20%ED%8A%B8%EB%9E%99"
     }
-   ]
+   ],
+   "lat": 37.5268578503,
+   "lng": 126.922293931
   },
   {
    "id": "seoul-namsan-loop",
@@ -206,9 +210,9 @@
      "n": "경복궁 돌담길",
      "d": "2바퀴 5.2km. 짧은 업힐 반복",
      "photo": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 중구 덕수궁길 7 오천회관빌딩 5층",
+     "lat": 37.5646796,
+     "lng": 126.9764318,
      "naver": "https://map.naver.com/p/search/%EA%B2%BD%EB%B3%B5%EA%B6%81%20%EB%8F%8C%EB%8B%B4%EA%B8%B8",
      "nextM": null
     },
@@ -314,9 +318,9 @@
      "n": "잠실 한강공원",
      "d": "샤워장 있음. 장거리 세션",
      "photo": null,
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 송파구 백제고분로 2",
+     "lat": 37.5187497,
+     "lng": 127.0846662,
      "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%8B%A4%20%ED%95%9C%EA%B0%95%EA%B3%B5%EC%9B%90"
     }
    ]
@@ -382,9 +386,9 @@
      "n": "응봉산 팔각정",
      "d": "짧은 업힐. 야경",
      "photo": null,
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 성동구 응봉동",
+     "lat": 37.5478769,
+     "lng": 127.0298879,
      "naver": "https://map.naver.com/p/search/%EC%9D%91%EB%B4%89%EC%82%B0%20%ED%8C%94%EA%B0%81%EC%A0%95",
      "nextM": null
     },
@@ -510,9 +514,9 @@
     {
      "n": "석촌호수 동호",
      "d": "순환 출발점으로 무난",
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 송파구 석촌호수로 278 여흥레이크빌 1층",
+     "lat": 37.5104023,
+     "lng": 127.1064639,
      "naver": "https://map.naver.com/p/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98%20%EB%8F%99%ED%98%B8"
     },
     {
@@ -534,7 +538,9 @@
    ],
    "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/10/2907610_image2_1.jpg",
    "photoTitle": "석촌호수",
-   "photoLicense": "한국관광공사 · 공공누리 제1유형"
+   "photoLicense": "한국관광공사 · 공공누리 제1유형",
+   "lat": 37.5104023,
+   "lng": 127.1064639
   },
   {
    "id": "seoul-gyeongbokgung-wall",
@@ -626,9 +632,9 @@
     {
      "n": "위례중앙광장",
      "d": "진입로가 가깝고 집결하기 좋다",
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 송파구 위례광장로 290 상가동 1층 145호~147호",
+     "lat": 37.4747277,
+     "lng": 127.1428383,
      "naver": "https://map.naver.com/p/search/%EC%9C%84%EB%A1%80%EC%A4%91%EC%95%99%EA%B4%91%EC%9E%A5"
     },
     {
@@ -701,7 +707,9 @@
    ],
    "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/23/4063023_image2_1.jpg",
    "photoTitle": "하늘공원",
-   "photoLicense": "한국관광공사 · 공공누리 제1유형"
+   "photoLicense": "한국관광공사 · 공공누리 제1유형",
+   "lat": 37.5690977267,
+   "lng": 126.8863442556
   },
   {
    "id": "seoul-childrens-park",
@@ -734,9 +742,9 @@
     {
      "n": "어린이대공원 정문",
      "d": "출발점",
-     "addr": null,
-     "lat": null,
-     "lng": null,
+     "addr": "서울특별시 광진구 능동",
+     "lat": 37.5493903,
+     "lng": 127.0762861,
      "naver": "https://map.naver.com/p/search/%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8C%80%EA%B3%B5%EC%9B%90%20%EC%A0%95%EB%AC%B8"
     },
     {
@@ -750,7 +758,9 @@
    ],
    "photo": "http://tong.visitkorea.or.kr/cms/resource/61/3355161_image2_1.JPG",
    "photoTitle": "서울어린이대공원",
-   "photoLicense": "한국관광공사 · 공공누리 제1유형"
+   "photoLicense": "한국관광공사 · 공공누리 제1유형",
+   "lat": 37.5493903,
+   "lng": 127.0762861
   },
   {
    "id": "seoul-bugak-skyway",
@@ -803,7 +813,9 @@
    ],
    "photo": "http://tong.visitkorea.or.kr/cms/resource/31/3590031_image2_1.jpg",
    "photoTitle": "북악산",
-   "photoLicense": "한국관광공사 · 공공누리 제1유형"
+   "photoLicense": "한국관광공사 · 공공누리 제1유형",
+   "lat": 37.6017059,
+   "lng": 126.9806936
   }
  ]
 }

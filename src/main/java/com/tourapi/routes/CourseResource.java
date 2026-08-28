@@ -100,22 +100,33 @@ public class CourseResource {
         }
         int radiusM = radius == null ? 1500 : Math.max(300, Math.min(5000, radius));
 
-        // 기준점 = 좌표가 확인된 마지막 경유지(도착지에 가장 가깝다)
+        // 기준점: 코스 대표 좌표가 있으면 그것부터.
+        // poi 목록은 수집본에서 '경로상 경유지'가 아니라 그 도시의 관련 스팟 추천이 섞여 있어서
+        // 마지막 poi를 그대로 쓰면 온천천 코스가 광안리 기준으로 잡히는 식의 사고가 난다.
+        double lat;
+        double lng;
+        String basedOn;
         JsonNode base = null;
-        for (JsonNode poi : c.path("poi")) {
-            if (poi.hasNonNull("lat") && poi.hasNonNull("lng")) {
-                base = poi;
+        if (c.hasNonNull("lat") && c.hasNonNull("lng")) {
+            lat = c.path("lat").asDouble();
+            lng = c.path("lng").asDouble();
+            basedOn = c.path("n").asText(null);
+        } else {
+            for (JsonNode poi : c.path("poi")) {
+                if (poi.hasNonNull("lat") && poi.hasNonNull("lng")) {
+                    base = poi;
+                }
             }
+            lat = base == null ? 0 : base.path("lat").asDouble();
+            lng = base == null ? 0 : base.path("lng").asDouble();
+            basedOn = base == null ? null : base.path("n").asText(null);
         }
-        if (base == null) {
+        if (base == null && !(c.hasNonNull("lat") && c.hasNonNull("lng"))) {
             // 좌표를 못 찾은 코스(수집 원본에 좌표 미확보) — 빈 목록으로 조용히 내려간다
             return Response.ok(new CourseNearbyResponse(id, null, null, null, radiusM, 0, List.of()))
                     .build();
         }
 
-        double lat = base.path("lat").asDouble();
-        double lng = base.path("lng").asDouble();
-        String basedOn = base.path("n").asText(null);
         String cacheKey = "nearby#" + id + "#" + radiusM + "#"
                 + LocalDate.now(KST).format(DateTimeFormatter.BASIC_ISO_DATE);
 

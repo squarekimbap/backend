@@ -62,6 +62,31 @@ def geocode(name, city):
     except Exception:
         return best.get('addr1') or None, None, None
 
+def naver_geocode(name, city):
+    """네이버 지역검색으로 좌표를 찾는다(NAVER API HUB). 관광지 DB에 없는
+    '자유공원 약수터'·'온천천 카페거리' 같은 생활 지명에 특히 강하다."""
+    nid = env_key('NAVER_CLIENT_ID')
+    nsec = env_key('NAVER_CLIENT_SECRET')
+    q = urllib.parse.quote(f'{city} {name}')
+    try:
+        d = get_json(f'https://naverapihub.apigw.ntruss.com/search/v1/local?query={q}&display=5',
+                     headers={'X-NCP-APIGW-API-KEY-ID': nid, 'X-NCP-APIGW-API-KEY': nsec})
+    except Exception:
+        return None, None, None
+    token = CITY_TOKEN.get(city, city)
+    for it in d.get('items', []):
+        addr = it.get('roadAddress') or it.get('address') or ''
+        if token not in addr:
+            continue
+        try:
+            lng, lat = int(it['mapx']) / 1e7, int(it['mapy']) / 1e7
+        except Exception:
+            continue
+        if 124 <= lng <= 132 and 33 <= lat <= 39:
+            return (addr or None), lat, lng
+    return None, None, None
+
+
 def nominatim(name, city):
     """OSM Nominatim 폴백(하천·역·공원 등 관광지 DB에 없는 이름). 1req/s 준수."""
     q = urllib.parse.urlencode({'q': f'{name}, {city}', 'format': 'json', 'limit': 3, 'countrycodes': 'kr'})
@@ -117,7 +142,10 @@ for path in sorted(glob.glob(str(ROOT / 'data' / '*.json'))):
                     continue
                 if not p.get('lat'):  # 좌표 없으면(첫 실행·이전 실패 모두) 시도
                     addr, lat, lng = geocode(p['n'], city)
-                    if not lat:  # 관광지 DB에 없는 이름(하천·역·공원 구간)은 OSM 폴백
+                    if not lat:  # 관광지 DB에 없는 생활 지명은 네이버 지역검색이 훨씬 잘 잡는다
+                        naddr, lat, lng = naver_geocode(p['n'], city)
+                        addr = addr or naddr
+                    if not lat:  # 그래도 없으면 OSM
                         _, lat, lng = nominatim(p['n'], city)
                     p['addr'], p['lat'], p['lng'] = addr, lat, lng
                     time.sleep(0.1)

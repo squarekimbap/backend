@@ -49,8 +49,7 @@
       "addr": "대구광역시 북구 산격동",
       "lat": 35.9114710201,
       "lng": 128.6049579024,
-      "naver": "https://map.naver.com/p/search/%EA%B8%88%ED%98%B8%EA%B0%95",
-      "nextM": 9581
+      "naver": "https://map.naver.com/p/search/%EA%B8%88%ED%98%B8%EA%B0%95"
      },
      {
       "n": "두류공원",
@@ -59,8 +58,7 @@
       "addr": "대구광역시 달서구 두류공원로 161 (성당동)",
       "lat": 35.8500466594,
       "lng": 128.5637271345,
-      "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90",
-      "nextM": 7255
+      "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90"
      },
      {
       "n": "월광수변공원",
@@ -69,8 +67,7 @@
       "addr": "대구광역시 달서구 월곡로 5",
       "lat": 35.7988438375,
       "lng": 128.5483299101,
-      "naver": "https://map.naver.com/p/search/%EC%9B%94%EA%B4%91%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EC%9B%94%EA%B4%91%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90"
      },
      {
       "n": "진밭골",
@@ -125,11 +122,10 @@
       "n": "진밭골 공영주차장",
       "d": "출발점",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
-      "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8%20%EA%B3%B5%EC%98%81%EC%A3%BC%EC%B0%A8%EC%9E%A5",
-      "nextM": null
+      "addr": "대구광역시 수성구 범물동 1221-26",
+      "lat": 35.8149681,
+      "lng": 128.6517791,
+      "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8%20%EA%B3%B5%EC%98%81%EC%A3%BC%EC%B0%A8%EC%9E%A5"
      },
      {
       "n": "신천",
@@ -138,8 +134,7 @@
       "addr": "대구광역시 남구 신천서쪽자전거길 237 (이천동)",
       "lat": 35.8542719889,
       "lng": 128.6075537114,
-      "naver": "https://map.naver.com/p/search/%EC%8B%A0%EC%B2%9C",
-      "nextM": 4731
+      "naver": "https://map.naver.com/p/search/%EC%8B%A0%EC%B2%9C"
      },
      {
       "n": "두류공원",
@@ -148,8 +143,7 @@
       "addr": "대구광역시 달서구 두류공원로 161 (성당동)",
       "lat": 35.8500466594,
       "lng": 128.5637271345,
-      "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90"
      },
      {
       "n": "금호강",
@@ -160,7 +154,9 @@
       "lng": 128.6049579024,
       "naver": "https://map.naver.com/p/search/%EA%B8%88%ED%98%B8%EA%B0%95"
      }
-    ]
+    ],
+    "lat": 35.8149681,
+    "lng": 128.6517791
    },
    {
     "id": "daegu-duryu-park",
@@ -203,15 +199,17 @@
      {
       "n": "두류공원 야외음악당",
       "d": "스트레칭·집결 장소",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "대구광역시 중구 명덕로 91-1",
+      "lat": 35.8577387,
+      "lng": 128.5807174,
       "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90%20%EC%95%BC%EC%99%B8%EC%9D%8C%EC%95%85%EB%8B%B9"
      }
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/29/3573529_image2_1.jpg",
     "photoTitle": "대구두류공원",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 35.8577387,
+    "lng": 128.5807174
    },
    {
     "id": "daegu-suseongmot",
@@ -245,9 +243,9 @@
      {
       "n": "수성못 수변데크",
       "d": "호수 순환로",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "대구광역시 수성구 두산동",
+      "lat": 35.8258649,
+      "lng": 128.6211171,
       "naver": "https://map.naver.com/p/search/%EC%88%98%EC%84%B1%EB%AA%BB%20%EC%88%98%EB%B3%80%EB%8D%B0%ED%81%AC"
      },
      {
@@ -261,7 +259,9 @@
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/51/2653751_image2_1.jpg",
     "photoTitle": "수성못 유원지",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 35.8258649,
+    "lng": 128.6211171
    },
    {
     "id": "daegu-geumhogang",
@@ -375,9 +375,9 @@
       "n": "은하수길",
       "d": "일몰부터 23시까지. 야간 러닝",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "울산광역시 중구 태화강국가정원길 154",
+      "lat": 35.5488302,
+      "lng": 129.2912809,
       "naver": "https://map.naver.com/p/search/%EC%9D%80%ED%95%98%EC%88%98%EA%B8%B8",
       "nextM": null
      },
@@ -395,12 +395,14 @@
       "n": "해파랑길 7코스",
       "d": "장거리 연장",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "울산광역시 중구 반구동 848",
+      "lat": 35.550122,
+      "lng": 129.3447031,
       "naver": "https://map.naver.com/p/search/%ED%95%B4%ED%8C%8C%EB%9E%91%EA%B8%B8%207%EC%BD%94%EC%8A%A4"
      }
-    ]
+    ],
+    "lat": 35.5487747405,
+    "lng": 129.2911995498
    }
   ]
  },
@@ -461,9 +463,9 @@
       "n": "여남 방파제",
       "d": "왕복 10km 코스 반환점",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상북도 포항시 북구 여남동",
+      "lat": 36.0716032,
+      "lng": 129.4125855,
       "naver": "https://map.naver.com/p/search/%EC%97%AC%EB%82%A8%20%EB%B0%A9%ED%8C%8C%EC%A0%9C",
       "nextM": null
      },
@@ -471,9 +473,9 @@
       "n": "형산강변",
       "d": "10km에서 하프 거리",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상북도 포항시 남구 형산강북로 107 코페아커피",
+      "lat": 36.0048035,
+      "lng": 129.3386149,
       "naver": "https://map.naver.com/p/search/%ED%98%95%EC%82%B0%EA%B0%95%EB%B3%80",
       "nextM": null
      },
@@ -547,9 +549,9 @@
       "n": "진해 드림로드",
       "d": "체력 훈련·트레일",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상남도 창원시 진해구 경화동 산5",
+      "lat": 35.1668596,
+      "lng": 128.691525,
       "naver": "https://map.naver.com/p/search/%EC%A7%84%ED%95%B4%20%EB%93%9C%EB%A6%BC%EB%A1%9C%EB%93%9C",
       "nextM": null
      },
@@ -557,9 +559,9 @@
       "n": "창원 스포츠파크",
       "d": "400m 트랙",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상남도 창원시 성산구 중앙대로 95",
+      "lat": 35.2335397,
+      "lng": 128.6672157,
       "naver": "https://map.naver.com/p/search/%EC%B0%BD%EC%9B%90%20%EC%8A%A4%ED%8F%AC%EC%B8%A0%ED%8C%8C%ED%81%AC",
       "nextM": null
      },
@@ -626,9 +628,9 @@
       "n": "천자봉 해오름길",
       "d": "종점 급경사 주의",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상남도 창원시 진해구 자은동",
+      "lat": 35.155208,
+      "lng": 128.7266801,
       "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%9E%90%EB%B4%89%20%ED%95%B4%EC%98%A4%EB%A6%84%EA%B8%B8",
       "nextM": null
      },
@@ -636,9 +638,9 @@
       "n": "풍호공원운동장",
       "d": "순환 코스 기점",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상남도 창원시 진해구 풍호동",
+      "lat": 35.1359987,
+      "lng": 128.713475,
       "naver": "https://map.naver.com/p/search/%ED%92%8D%ED%98%B8%EA%B3%B5%EC%9B%90%EC%9A%B4%EB%8F%99%EC%9E%A5",
       "nextM": null
      },
@@ -706,8 +708,7 @@
       "addr": "경상북도 경주시 황남동",
       "lat": 35.8382,
       "lng": 129.2128,
-      "naver": "https://map.naver.com/p/search/%EB%8C%80%EB%A6%89%EC%9B%90",
-      "nextM": 939
+      "naver": "https://map.naver.com/p/search/%EB%8C%80%EB%A6%89%EC%9B%90"
      },
      {
       "n": "첨성대",
@@ -716,8 +717,7 @@
       "addr": "경상북도 경주시 첨성로 140-25",
       "lat": 35.8343303427,
       "lng": 129.2185345378,
-      "naver": "https://map.naver.com/p/search/%EC%B2%A8%EC%84%B1%EB%8C%80",
-      "nextM": 3730
+      "naver": "https://map.naver.com/p/search/%EC%B2%A8%EC%84%B1%EB%8C%80"
      },
      {
       "n": "북천",
@@ -726,8 +726,7 @@
       "addr": "경상북도 경주시 통일로 366-4 (남산동)",
       "lat": 35.8119093136,
       "lng": 129.2421248589,
-      "naver": "https://map.naver.com/p/search/%EB%B6%81%EC%B2%9C",
-      "nextM": null
+      "naver": "https://map.naver.com/p/search/%EB%B6%81%EC%B2%9C"
      },
      {
       "n": "형산강",

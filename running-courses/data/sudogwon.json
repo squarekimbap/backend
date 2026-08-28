@@ -45,9 +45,9 @@
       "n": "랜드마크시티 1호 수변공원",
       "d": "코스 후반부. 인천대교가 보인다",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/57/3001757_image2_1.jpg",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "인천광역시 연수구",
+      "lat": 37.4013954,
+      "lng": 126.6102803,
       "naver": "https://map.naver.com/p/search/%EB%9E%9C%EB%93%9C%EB%A7%88%ED%81%AC%EC%8B%9C%ED%8B%B0%201%ED%98%B8%20%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90",
       "nextM": null
      },
@@ -207,9 +207,9 @@
       "n": "정발산역 2번 출구",
       "d": "북쪽 진입. 반 바퀴 2.5km 워밍업",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 고양시 일산동구 장항동",
+      "lat": 37.6598021,
+      "lng": 126.7729335,
       "naver": "https://map.naver.com/p/search/%EC%A0%95%EB%B0%9C%EC%82%B0%EC%97%AD%202%EB%B2%88%20%EC%B6%9C%EA%B5%AC",
       "nextM": null
      },
@@ -303,9 +303,9 @@
       "n": "원천호수",
       "d": "둘레 약 3km",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 수원시 영통구 광교호수로 127",
+      "lat": 37.2805919,
+      "lng": 127.0618879,
       "naver": "https://map.naver.com/p/search/%EC%9B%90%EC%B2%9C%ED%98%B8%EC%88%98",
       "nextM": null
      },
@@ -313,9 +313,9 @@
       "n": "신대호수",
       "d": "둘레 약 3.5km",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 수원시 영통구 광교호수로 127",
+      "lat": 37.2872579,
+      "lng": 127.074338,
       "naver": "https://map.naver.com/p/search/%EC%8B%A0%EB%8C%80%ED%98%B8%EC%88%98",
       "nextM": null
      },
@@ -381,9 +381,9 @@
       "n": "남한산성",
       "d": "한 단계 위의 성곽 트레일",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/69/3524569_image2_1.jpg",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 수원시 장안구 장안로29번길 17",
+      "lat": 37.2870704,
+      "lng": 127.0048598,
       "naver": "https://map.naver.com/p/search/%EB%82%A8%ED%95%9C%EC%82%B0%EC%84%B1",
       "nextM": null
      },
@@ -475,9 +475,9 @@
       "n": "분당 구간",
       "d": "자전거도로 분리 구간",
       "photo": null,
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 성남시 분당구 궁내동",
+      "lat": 37.3711059,
+      "lng": 127.0797961,
       "naver": "https://map.naver.com/p/search/%EB%B6%84%EB%8B%B9%20%EA%B5%AC%EA%B0%84",
       "nextM": null
      },
@@ -580,9 +580,9 @@
      {
       "n": "쌍개울",
       "d": "안양천 합류 광장 — 크루 집결지",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 안양시 동안구 경수대로883번길 11",
+      "lat": 37.3948899,
+      "lng": 126.9381599,
       "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8"
      },
      {
@@ -631,9 +631,9 @@
      {
       "n": "쌍개울",
       "d": "출발점 — 학의천 합류 광장",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 안양시 동안구 경수대로883번길 11",
+      "lat": 37.3948899,
+      "lng": 126.9381599,
       "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8"
      },
      {
@@ -655,7 +655,9 @@
     ],
     "photo": "https://tong.visitkorea.or.kr/cms/resource/84/3056684_image2_1.jpg",
     "photoTitle": "안양천가족정원",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 37.3948899,
+    "lng": 126.9381599
    }
   ]
  },
@@ -769,7 +771,9 @@
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/23/2739023_image2_1.jpg",
     "photoTitle": "기흥호수공원",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 37.2406720138,
+    "lng": 127.1010829441
    }
   ]
  },
@@ -885,7 +889,9 @@
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/18/3058418_image2_1.jpg",
     "photoTitle": "동탄호수공원",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 37.1669527885,
+    "lng": 127.1024487705
    },
    {
     "id": "hwaseong-jebudo",
@@ -928,23 +934,25 @@
      {
       "n": "제부도 등대",
       "d": "해안 산책로 반환점",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 화성시 서신면 제부리 289-20",
+      "lat": 37.1791911,
+      "lng": 126.6219931,
       "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%93%B1%EB%8C%80"
      },
      {
       "n": "제부도 아트파크",
       "d": "중간 볼거리",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 화성시 만세구 서신면 해안길 322",
+      "lat": 37.170056,
+      "lng": 126.6173478,
       "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EC%95%84%ED%8A%B8%ED%8C%8C%ED%81%AC"
      }
     ],
     "photo": "https://tong.visitkorea.or.kr/cms/resource/36/4059436_image2_1.jpg",
     "photoTitle": "서해랑 제부도 해상케이블카",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 37.1791911,
+    "lng": 126.6219931
    }
   ]
  },
