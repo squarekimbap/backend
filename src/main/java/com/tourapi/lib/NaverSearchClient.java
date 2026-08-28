@@ -19,8 +19,15 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 네이버 지역검색 (⚠️ 내부 전용 — client id/secret은 헤더로만, 로그/응답에 절대 노출 금지).
- * 키는 env NAVER_CLIENT_ID / NAVER_CLIENT_SECRET로만 주입(MP-Config 자동 매핑).
+ * 네이버 지역검색 (⚠️ 내부 전용 — 키는 헤더로만, 로그/응답에 절대 노출 금지).
+ *
+ * <p><b>NAVER API HUB 기준이다.</b> 검색 API는 개발자센터(openapi.naver.com)에서
+ * 네이버클라우드 API HUB로 이관됐다. 옛 방식으로 부르면 키가 맞아도 401이 난다:
+ * <pre>
+ *   (옛) openapi.naver.com/v1/search/local.json  + X-Naver-Client-Id/Secret
+ *   (현) naverapihub.apigw.ntruss.com/search/v1/local + X-NCP-APIGW-API-KEY-ID/KEY
+ * </pre>
+ * 키는 NCP 콘솔에서 발급하며 env NAVER_CLIENT_ID / NAVER_CLIENT_SECRET로 주입한다.
  *
  * <p>보강 용도라 실패해도 요청을 죽이지 않는다 — 미설정·오류 모두 빈 리스트(RankingCache 폴백 철학).
  */
@@ -36,7 +43,7 @@ public class NaverSearchClient {
     Optional<String> clientSecret;
 
     @ConfigProperty(name = "naver.local-url",
-            defaultValue = "https://openapi.naver.com/v1/search/local.json")
+            defaultValue = "https://naverapihub.apigw.ntruss.com/search/v1/local")
     String localUrl;
 
     @ConfigProperty(name = "naver.request-timeout-seconds", defaultValue = "4")
@@ -74,8 +81,8 @@ public class NaverSearchClient {
 
         HttpRequest req = HttpRequest.newBuilder(URI.create(url))
                 .timeout(Duration.ofSeconds(requestTimeoutSeconds))
-                .header("X-Naver-Client-Id", clientId.orElseThrow())
-                .header("X-Naver-Client-Secret", clientSecret.orElseThrow())
+                .header("X-NCP-APIGW-API-KEY-ID", clientId.orElseThrow())
+                .header("X-NCP-APIGW-API-KEY", clientSecret.orElseThrow())
                 .header("Accept", "application/json")
                 .GET()
                 .build();

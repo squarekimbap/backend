@@ -22,13 +22,14 @@ class NearbyPlaceServiceTest {
     }
 
     @Test
-    void 교차검증된_곳이_먼저_나온다() {
+    void 교차검증된_곳만_앞에_서고_나머지는_거리순() {
         List<NearbyPlace> out = NearbyPlaceService.topBalanced(List.of(
                 place("가까운 관광공사만", "restaurant", "tour", 100),
                 place("네이버 인기", "restaurant", "trending", 400),
                 place("양쪽 모두", "restaurant", "verified", 900)), 8);
 
-        assertEquals(List.of("양쪽 모두", "네이버 인기", "가까운 관광공사만"),
+        // trending이 tour를 무조건 앞서면 더 가까운 가게가 밀려난다 — 거리로 섞는다
+        assertEquals(List.of("양쪽 모두", "가까운 관광공사만", "네이버 인기"),
                 out.stream().map(NearbyPlace::name).toList());
     }
 
@@ -67,8 +68,20 @@ class NearbyPlaceServiceTest {
                 new Place("2", 39, "나", "서울특별시 중구 을지로 12", 0, 0, null, null, null, null),
                 new Place("3", 39, "다", "서울특별시 종로구 사직로 1", 0, 0, null, null, null, null));
 
-        // 시도 단위(서울특별시)가 아니라 구 단위를 골라야 검색이 엉뚱해지지 않는다
-        assertEquals("중구", NearbyPlaceService.regionOf(places));
+        // 동이 없으면 시군구 폴백. 시도(서울특별시)가 아니라 구 단위를 골라야 한다
+        assertEquals("중구", NearbyPlaceService.sigunguOf(places));
+        assertNull(NearbyPlaceService.regionOf(places), "괄호 동이 없으면 동은 못 찾는다");
+    }
+
+    @Test
+    void 괄호_동이_있으면_시군구보다_우선() {
+        // 실측: "반포동 맛집"은 5/5가 반경 안, "용산구 맛집"은 0/5 — 동이 훨씬 정확하다
+        List<Place> places = List.of(
+                new Place("1", 39, "가", "서울특별시 서초구 사평대로 126 (반포동)", 0, 0, null, null, null, null),
+                new Place("2", 39, "나", "서울특별시 용산구 서빙고로 297", 0, 0, null, null, null, null),
+                new Place("3", 39, "다", "서울특별시 서초구 사평대로22길 5 (반포동)", 0, 0, null, null, null, null));
+
+        assertEquals("반포동", NearbyPlaceService.regionOf(places));
     }
 
     @Test
@@ -76,6 +89,6 @@ class NearbyPlaceServiceTest {
         List<Place> places = List.of(
                 new Place("1", 39, "가", "경기도 성남시 분당구 정자일로 1", 0, 0, null, null, null, null));
 
-        assertEquals("분당구", NearbyPlaceService.regionOf(places));
+        assertEquals("분당구", NearbyPlaceService.sigunguOf(places));
     }
 }

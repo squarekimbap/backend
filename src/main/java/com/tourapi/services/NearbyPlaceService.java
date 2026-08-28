@@ -37,6 +37,8 @@ public class NearbyPlaceService {
     private static final int FOOD_CONTENT_TYPE = 39;
     /** "서울특별시 서초구 …"에서 시군구를 뽑아 검색어로 쓴다. */
     private static final Pattern SIGUNGU = Pattern.compile("([가-힣]+(?:시|군|구))");
+    /** 도로명주소 끝의 법정동 "(반포동)" · "(명동2가)". 시군구보다 훨씬 좁아 검색 정확도가 높다. */
+    private static final Pattern DONG = Pattern.compile("\\(([가-힣0-9]{2,10}(?:동|가))\\)");
     private static final Pattern CAFE_NAME =
             Pattern.compile(".*(카페|커피|coffee|cafe|베이커리|디저트|다방|찻집|티룸|로스터).*");
 
@@ -56,7 +58,14 @@ public class NearbyPlaceService {
      */
     public List<NearbyPlace> around(double lat, double lng, int radiusM, String hint, int max) {
         List<Place> tourPlaces = tourPlaces(lat, lng, radiusM);
-        String query = hint != null && !hint.isBlank() ? hint.strip() : regionOf(tourPlaces);
+        // 동 > 장소 이름 > 시군구 순. 동이 가장 정확하고(실측 5/5), 시군구는 너무 넓어 마지막 수단이다.
+        String query = regionOf(tourPlaces);
+        if (query == null && hint != null && !hint.isBlank()) {
+            query = hint.strip();
+        }
+        if (query == null) {
+            query = sigunguOf(tourPlaces);
+        }
 
         Map<String, NaverSearchClient.LocalPlace> naverByName = new LinkedHashMap<>();
         if (query != null && naver.enabled()) {
@@ -116,12 +125,29 @@ public class NearbyPlaceService {
     }
 
     /**
-     * 주소 다수결로 시군구 하나를 고른다. 검색어 힌트가 없을 때만 쓴다.
-     * 주소 한 건에서는 가장 구체적인 단위를 취한다 — "서울특별시 중구"는 중구,
-     * "경기도 성남시 분당구"는 분당구. 시도 단위("서울특별시")로 검색하면 엉뚱한 결과가 나온다.
+     * 주변 주소 다수결로 검색어에 쓸 지역명을 고른다.
+     *
+     * <p><b>동 단위를 우선한다.</b> 실측(잠수교 기준)에서 "반포동 맛집"은 상위 5곳이 모두
+     * 1.3km 안이었지만 "용산구 맛집"은 0곳이었다 — 시군구는 너무 넓어 반경 밖 결과만 돌아온다.
+     * 동을 못 찾으면 시군구로 폴백하되, 시도("서울특별시")는 제외한다.
      */
     static String regionOf(List<Place> places) {
-        Map<String, Integer> counts = new LinkedHashMap<>();
+        Map<String, Integer> dongs = new LinkedHashMap<>();
+        for (Place p : places) {
+            if (p.addr() == null) {
+                continue;
+            }
+            Matcher dong = DONG.matcher(p.addr());
+            if (dong.find()) {
+                dongs.merge(dong.group(1), 1, Integer::sum);
+            }
+        }
+        return top(dongs);
+    }
+
+    /** 동을 못 찾았을 때의 마지막 수단. 시도("서울특별시")는 넓기만 해서 제외한다. */
+    static String sigunguOf(List<Place> places) {
+        Map<String, Integer> sigungus = new LinkedHashMap<>();
         for (Place p : places) {
             if (p.addr() == null) {
                 continue;
@@ -133,12 +159,16 @@ public class NearbyPlaceService {
                 if (token.endsWith("특별시") || token.endsWith("광역시") || token.endsWith("특별자치시")) {
                     continue;
                 }
-                specific = token;
+                specific = token; // 뒤로 갈수록 구체적: "성남시 분당구" → 분당구
             }
             if (specific != null) {
-                counts.merge(specific, 1, Integer::sum);
+                sigungus.merge(specific, 1, Integer::sum);
             }
         }
+        return top(sigungus);
+    }
+
+    private static String top(Map<String, Integer> counts) {
         return counts.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
@@ -211,12 +241,13 @@ public class NearbyPlaceService {
         return List.copyOf(out.size() > max ? out.subList(0, max) : out);
     }
 
+    /**
+     * 교차검증된 곳만 앞에 세우고, 나머지는 트렌드·관광공사 구분 없이 거리순으로 섞는다.
+     * trending을 tour보다 무조건 위에 두면 더 가까운 가게가 목록에서 밀려난다 —
+     * 뛰고 나서 들르는 곳이라 거리가 먼저다. 트렌드 여부는 뱃지로 보여주면 된다.
+     */
     private static int trustRank(String trust) {
-        return switch (trust == null ? "" : trust) {
-            case "verified" -> 0;
-            case "trending" -> 1;
-            default -> 2;
-        };
+        return "verified".equals(trust) ? 0 : 1;
     }
 
     private static int distanceOf(NearbyPlace p) {

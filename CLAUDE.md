@@ -33,7 +33,11 @@
   ⚠️ 테스트 함정: 테스트용 MockEventServer가 큰(~24KB) 청크 응답을 종료하지 않아 read timeout — **전체 목록은 HTTP 테스트 금지, 서비스 레벨(CourseCatalog 주입)로 검증**(dev·실서버는 정상 확인).
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
 - `GET /v1/courses/{id}/nearby[?radius]` → 코스 상세의 **주변 맛집/카페**. 기준점은 좌표가 있는 마지막 poi. **1차 TourAPI(타입39) + 2차 네이버 지역검색(sort=comment=리뷰순) 교차검증** → `trust`: verified(양쪽) · trending(네이버만=최근 뜬 곳) · tour(관광공사만). 하루 캐시(`nearby#<id>#<반경>#<KST날짜>`, TTL 26h, **빈 결과는 캐시 안 함**). 좌표 미확보 코스(64개 중 9개)는 `count:0`으로 조용히 내려감.
-  ⚠️ **네이버 키 미검증**: 받은 자격증명(`NAVER_CLIENT_ID/SECRET`)이 검색·블로그 API 모두 **401 errorCode 024(인증 실패)**. 개발자센터에서 앱의 "사용 API"에 **검색**이 추가됐는지 + 키 오타를 확인할 것. 키가 없거나 틀려도 기능은 TourAPI 결과로 계속 동작(로그만 WARN).
+  ⚠️ **네이버 검색 API는 NAVER API HUB로 이관됨**(개발자센터 아님). 옛 방식으로 부르면 키가 맞아도 401 errorCode 024가 난다 — 실제로 이 함정에 한 번 빠졌다.
+  - (옛) `openapi.naver.com/v1/search/local.json` + `X-Naver-Client-Id/Secret`
+  - (현) `naverapihub.apigw.ntruss.com/search/v1/local` + `X-NCP-APIGW-API-KEY-ID/KEY` ← 키는 **NCP 콘솔**에서 발급. 개발자센터 등록 폼의 "사용 API" 목록엔 검색이 아예 없다.
+  - 검색어 전략(실측): **동 > 장소명 > 시군구** 순. 잠수교 기준 "반포동 맛집"은 상위 5곳이 모두 1.3km 내였지만 "용산구 맛집"은 0곳, "잠수교 맛집"은 5km 밖 성수동이 나왔다. TourAPI 주소 괄호(`(반포동)`)에서 동을 뽑고, 없으면 경유지 이름, 그것도 없으면 시군구.
+  - 정렬은 verified만 앞에 세우고 나머지는 거리순(트렌드를 무조건 위에 두면 더 가까운 가게가 밀려남).
 - 키 5개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`, `NaverClientId→NAVER_CLIENT_ID`, `NaverClientSecret→NAVER_CLIENT_SECRET`(네이버는 선택 — 비어도 배포는 진행, CI가 warning만). Odii 활용신청 후 `TourAudioEnabled=true`도 배포 파라미터에 넣는다. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
 ## 배포됨 — 인증/로그인 (2026-07-07 배포, 2026-08-19 라이브 재확인)

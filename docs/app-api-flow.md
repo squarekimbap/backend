@@ -320,7 +320,7 @@ Content-Type: application/json
 | `trending` | 네이버 리뷰 상위인데 관광공사엔 없음 (**최근 뜬 곳**) | "요즘 인기" 뱃지 |
 | `tour` | 관광공사에만 있음 | 뱃지 없음 |
 
-- 정렬은 서버가 이미 함: verified → trending → tour, 각 그룹 안에서 가까운 순. 식당·카페가 한쪽으로 쏠리지 않게 균형을 맞춘다
+- 정렬은 서버가 이미 함: **교차검증된 곳(verified)만 맨 앞**, 나머지는 거리순. 식당·카페가 한쪽으로 쏠리지 않게 균형을 맞춘다
 - `category`·`link`·`image`·`tel`·`distanceM`은 **null 가능**
 - 하루 단위 캐시라 두 번째 호출부터는 즉시 응답
 - 좌표를 확보하지 못한 코스는 `count: 0`, `basedOn: null`로 내려간다(에러 아님) — 이 영역을 숨기면 된다

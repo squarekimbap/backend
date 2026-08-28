@@ -124,6 +124,8 @@ public class CourseResource {
             return Response.ok(cached).build();
         }
 
+        // 경유지 이름은 '동을 못 찾았을 때'의 폴백으로만 쓰인다 — 랜드마크명은
+        // "잠수교 맛집"이 성수동 결과를 주는 식으로 네이버가 엉뚱하게 해석할 때가 있다.
         List<NearbyPlace> items = nearbyPlaceService.around(lat, lng, radiusM, basedOn, 8);
         CourseNearbyResponse body =
                 new CourseNearbyResponse(id, basedOn, lat, lng, radiusM, items.size(), items);
