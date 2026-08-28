@@ -42,6 +42,43 @@
     ],
     "poi": [
      {
+      "n": "갑천",
+      "d": "출발점. 둔치 러닝로",
+      "naver": "https://map.naver.com/p/search/%EA%B0%91%EC%B2%9C",
+      "addr": "대전광역시 서구 도안동 2383",
+      "lat": 36.3275625,
+      "lng": 127.3508898,
+      "nextM": 7722
+     },
+     {
+      "n": "엑스포다리",
+      "d": "야간 조명 구간",
+      "addr": "대전광역시 유성구 도룡동",
+      "lat": 36.3727586,
+      "lng": 127.3880279,
+      "naver": "https://map.naver.com/p/search/%EC%97%91%EC%8A%A4%ED%8F%AC%EB%8B%A4%EB%A6%AC",
+      "nextM": 502
+     },
+     {
+      "n": "한빛탑",
+      "d": "코스의 랜드마크",
+      "addr": "대전광역시 유성구 대덕대로 480",
+      "lat": 36.3766279,
+      "lng": 127.3880342,
+      "naver": "https://map.naver.com/p/search/%ED%95%9C%EB%B9%9B%ED%83%91",
+      "nextM": 45
+     },
+     {
+      "n": "엑스포과학공원",
+      "d": "북쪽 반환점",
+      "addr": "대전광역시 유성구 대덕대로 480",
+      "lat": 36.3771762,
+      "lng": 127.3880381,
+      "naver": "https://map.naver.com/p/search/%EC%97%91%EC%8A%A4%ED%8F%AC%EA%B3%BC%ED%95%99%EA%B3%B5%EC%9B%90"
+     }
+    ],
+    "related": [
+     {
       "n": "한밭수목원",
       "d": "2~3km 루프. 그늘 많고 평탄",
       "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/22/3514122_image2_1.jpg",
@@ -77,7 +114,9 @@
       "lng": 127.331573,
       "naver": "https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%B2%9C"
      }
-    ]
+    ],
+    "lat": 36.3727586,
+    "lng": 127.3880279
    },
    {
     "id": "daejeon-gyejoksan",
@@ -120,6 +159,43 @@
     "poi": [
      {
       "n": "장동산림욕장",
+      "d": "출발점. 황톳길 입구",
+      "addr": "대전광역시 대덕구 장동 산62",
+      "lat": 36.4050302,
+      "lng": 127.4428168,
+      "naver": "https://map.naver.com/p/search/%EC%9E%A5%EB%8F%99%EC%82%B0%EB%A6%BC%EC%9A%95%EC%9E%A5",
+      "nextM": null
+     },
+     {
+      "n": "임도삼거리",
+      "d": "황톳길 갈림 구간",
+      "naver": "https://map.naver.com/p/search/%EC%9E%84%EB%8F%84%EC%82%BC%EA%B1%B0%EB%A6%AC",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "계족산성",
+      "d": "능선 조망 지점",
+      "addr": "대전광역시 동구 효평동",
+      "lat": 36.3947339,
+      "lng": 127.4548798,
+      "naver": "https://map.naver.com/p/search/%EA%B3%84%EC%A1%B1%EC%82%B0%EC%84%B1",
+      "nextM": 3037
+     },
+     {
+      "n": "절고개",
+      "d": "임도 반환점",
+      "addr": "대전광역시 동구 효평동",
+      "lat": 36.3781732,
+      "lng": 127.4528136,
+      "naver": "https://map.naver.com/p/search/%EC%A0%88%EA%B3%A0%EA%B0%9C"
+     }
+    ],
+    "related": [
+     {
+      "n": "장동산림욕장",
       "d": "출발점. 신발 보관·세족장 있음",
       "photo": null,
       "addr": "대전광역시 대덕구 산디로 79-70",
@@ -157,7 +233,9 @@
       "lng": 127.5101665667,
       "naver": "https://map.naver.com/p/search/%EB%8C%80%EC%B2%AD%ED%98%B8"
      }
-    ]
+    ],
+    "lat": 36.4050302,
+    "lng": 127.4428168
    }
   ]
  },
@@ -206,6 +284,45 @@
     "poi": [
      {
       "n": "세종호수공원",
+      "d": "출발점. 호수 둘레",
+      "addr": "세종특별자치시 다솜로 216",
+      "lat": 36.4991657,
+      "lng": 127.270145,
+      "naver": "https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+      "nextM": 3757
+     },
+     {
+      "n": "금강보행교",
+      "d": "이응다리 — 원형 보행 전용교",
+      "addr": "세종특별자치시 세종동 29-111",
+      "lat": 36.4835615,
+      "lng": 127.2887819,
+      "naver": "https://map.naver.com/p/search/%EA%B8%88%EA%B0%95%EB%B3%B4%ED%96%89%EA%B5%90",
+      "nextM": 2977
+     },
+     {
+      "n": "세종중앙공원",
+      "d": "호수와 이어지는 구간",
+      "addr": "세종특별자치시 중앙공원로 60",
+      "lat": 36.4917742,
+      "lng": 127.2717369,
+      "naver": "https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%EC%A4%91%EC%95%99%EA%B3%B5%EC%9B%90",
+      "nextM": 1499
+     },
+     {
+      "n": "국립세종수목원",
+      "d": "거리 확장 지점",
+      "addr": "세종특별자치시 수목원로 136",
+      "lat": 36.4980635,
+      "lng": 127.2857893,
+      "naver": "https://map.naver.com/p/search/%EA%B5%AD%EB%A6%BD%EC%84%B8%EC%A2%85%EC%88%98%EB%AA%A9%EC%9B%90"
+     }
+    ],
+    "lat": 36.4991657,
+    "lng": 127.270145,
+    "related": [
+     {
+      "n": "세종호수공원",
       "d": "평탄 순환. 첫 5K·회복런",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/76/3353976_image2_1.jpg",
       "addr": "세종특별자치시 다솜로 216 (세종동)",
@@ -243,9 +360,7 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EA%B0%91%EC%B2%9C"
      }
-    ],
-    "lat": 36.5098437,
-    "lng": 127.3277758
+    ]
    }
   ]
  },
@@ -293,6 +408,43 @@
     ],
     "poi": [
      {
+      "n": "무심천",
+      "d": "출발점. 좌안이 러닝 겸용로",
+      "addr": "충청북도 청주시 상당구 상당로121번길 34 1층",
+      "lat": 36.6391511,
+      "lng": 127.4879655,
+      "naver": "https://map.naver.com/p/search/%EB%AC%B4%EC%8B%AC%EC%B2%9C",
+      "nextM": 1822
+     },
+     {
+      "n": "청주체육관",
+      "d": "도심 구간 표지",
+      "addr": "충청북도 청주시 서원구 사직대로 229",
+      "lat": 36.6365136,
+      "lng": 127.4734123,
+      "naver": "https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EC%B2%B4%EC%9C%A1%EA%B4%80",
+      "nextM": 3636
+     },
+     {
+      "n": "수영교",
+      "d": "중간 반환 후보",
+      "addr": "충청북도 청주시 서원구 분평동",
+      "lat": 36.6158637,
+      "lng": 127.494518,
+      "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B5%90",
+      "nextM": 9088
+     },
+     {
+      "n": "문암생태공원",
+      "d": "북쪽 반환점",
+      "addr": "충청북도 청주시 흥덕구",
+      "lat": 36.6743949,
+      "lng": 127.447778,
+      "naver": "https://map.naver.com/p/search/%EB%AC%B8%EC%95%94%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90"
+     }
+    ],
+    "related": [
+     {
       "n": "우암산 둘레길",
       "d": "도심 근접 업힐",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/57/3491257_image2_1.jpg",
@@ -331,7 +483,9 @@
       "lng": 127.4918,
       "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%82%A8%EB%8C%80"
      }
-    ]
+    ],
+    "lat": 36.6391511,
+    "lng": 127.4879655
    }
   ]
  },
@@ -379,6 +533,43 @@
     ],
     "poi": [
      {
+      "n": "곡교천",
+      "d": "출발점. 하천 둔치",
+      "addr": "충청남도 천안시 동남구 풍세면 남관리",
+      "lat": 36.7535209,
+      "lng": 127.1216177,
+      "naver": "https://map.naver.com/p/search/%EA%B3%A1%EA%B5%90%EC%B2%9C",
+      "nextM": null
+     },
+     {
+      "n": "곡교천 은행나무길",
+      "d": "가을 절정 구간",
+      "naver": "https://map.naver.com/p/search/%EA%B3%A1%EA%B5%90%EC%B2%9C%20%EC%9D%80%ED%96%89%EB%82%98%EB%AC%B4%EA%B8%B8",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "현충사",
+      "d": "반환점 인근",
+      "naver": "https://map.naver.com/p/search/%ED%98%84%EC%B6%A9%EC%82%AC",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "천안삼거리공원",
+      "d": "도심 방면 확장",
+      "addr": "충청남도 천안시 동남구",
+      "lat": 36.7833059,
+      "lng": 127.1683151,
+      "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%95%88%EC%82%BC%EA%B1%B0%EB%A6%AC%EA%B3%B5%EC%9B%90"
+     }
+    ],
+    "related": [
+     {
       "n": "독립기념관",
       "d": "3~8km. 완만하고 정비 양호",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/21/3450021_image2_1.jpg",
@@ -417,7 +608,9 @@
       "lng": 127.1466993,
       "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%95%88%EC%B2%9C"
      }
-    ]
+    ],
+    "lat": 36.7535209,
+    "lng": 127.1216177
    }
   ]
  }

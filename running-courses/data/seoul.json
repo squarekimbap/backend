@@ -45,6 +45,54 @@
    ],
    "poi": [
     {
+     "n": "반포한강공원",
+     "d": "출발·반환 기준점. 편의점과 화장실",
+     "addr": "서울특별시 서초구 신반포로11길 40 한강공원 반포 안내센터",
+     "lat": 37.5100172,
+     "lng": 126.995032,
+     "naver": "https://map.naver.com/p/search/%EB%B0%98%ED%8F%AC%ED%95%9C%EA%B0%95%EA%B3%B5%EC%9B%90",
+     "nextM": 377
+    },
+    {
+     "n": "세빛섬",
+     "d": "반포대교 남단. 야간 조명 구간",
+     "addr": "서울특별시 서초구 올림픽대로 2085-14 세빛섬",
+     "lat": 37.5124345,
+     "lng": 126.9959703,
+     "naver": "https://map.naver.com/p/search/%EC%84%B8%EB%B9%9B%EC%84%AC",
+     "nextM": 255
+    },
+    {
+     "n": "반포대교",
+     "d": "달빛무지개분수 구간",
+     "addr": "서울특별시 서초구",
+     "lat": 37.5126585,
+     "lng": 126.9984326,
+     "naver": "https://map.naver.com/p/search/%EB%B0%98%ED%8F%AC%EB%8C%80%EA%B5%90",
+     "nextM": 403
+    },
+    {
+     "n": "잠수교",
+     "d": "편도 약 1km. 거리 계산의 기준",
+     "addr": "서울특별시 서초구 반포동",
+     "lat": 37.5145083,
+     "lng": 126.9965328,
+     "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%88%98%EA%B5%90",
+     "nextM": null
+    },
+    {
+     "n": "한남대교",
+     "d": "10km를 채우는 반환점",
+     "naver": "https://map.naver.com/p/search/%ED%95%9C%EB%82%A8%EB%8C%80%EA%B5%90",
+     "addr": "서울특별시 송파구 올림픽로32길 18-11",
+     "lat": 37.5141184,
+     "lng": 127.1088349
+    }
+   ],
+   "lat": 37.5100172,
+   "lng": 126.995032,
+   "related": [
+    {
      "n": "세빛섬",
      "d": "야간 반환점. 조명이 가장 화려한 지점",
      "photo": "https://tong.visitkorea.or.kr/cms/resource/10/3515810_image2_1.jpg",
@@ -83,9 +131,7 @@
      "lng": 126.997353,
      "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%88%98%EA%B5%90"
     }
-   ],
-   "lat": 37.5114399,
-   "lng": 126.9975119
+   ]
   },
   {
    "id": "seoul-yeouido-5k",
@@ -126,6 +172,45 @@
    ],
    "poi": [
     {
+     "n": "여의도한강공원",
+     "d": "출발점. 마라톤 출발선이기도 하다",
+     "addr": "서울특별시 영등포구 여의동로 330 한강사업본부 여의도안내센터",
+     "lat": 37.5263232,
+     "lng": 126.9348268,
+     "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%9D%98%EB%8F%84%ED%95%9C%EA%B0%95%EA%B3%B5%EC%9B%90",
+     "nextM": null
+    },
+    {
+     "n": "원효대교",
+     "d": "서쪽 구간 표지",
+     "addr": "서울특별시 영등포구 여의도동",
+     "lat": 37.5271,
+     "lng": 126.9457887,
+     "naver": "https://map.naver.com/p/search/%EC%9B%90%ED%9A%A8%EB%8C%80%EA%B5%90",
+     "nextM": 1842
+    },
+    {
+     "n": "마포대교",
+     "d": "반환점",
+     "addr": "서울특별시 영등포구 여의도동",
+     "lat": 37.5340684,
+     "lng": 126.9375033,
+     "naver": "https://map.naver.com/p/search/%EB%A7%88%ED%8F%AC%EB%8C%80%EA%B5%90",
+     "nextM": 1243
+    },
+    {
+     "n": "여의나루역",
+     "d": "지하철 접근·귀가 동선",
+     "addr": "서울특별시 영등포구 여의동로 343",
+     "lat": 37.527131,
+     "lng": 126.93301,
+     "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%9D%98%EB%82%98%EB%A3%A8%EC%97%AD"
+    }
+   ],
+   "lat": 37.5263232,
+   "lng": 126.9348268,
+   "related": [
+    {
      "n": "여의도공원",
      "d": "8km 코스 출발점. 워밍업 구간",
      "photo": "https://tong.visitkorea.or.kr/cms/resource/19/3558719_image2_1.jpg",
@@ -164,9 +249,7 @@
      "lng": null,
      "naver": "https://map.naver.com/p/search/%EA%B5%AD%ED%9A%8C%EC%9A%B4%EB%8F%99%EC%9E%A5%20%ED%8A%B8%EB%9E%99"
     }
-   ],
-   "lat": 37.5268578503,
-   "lng": 126.922293931
+   ]
   },
   {
    "id": "seoul-namsan-loop",
@@ -207,6 +290,43 @@
    ],
    "poi": [
     {
+     "n": "국립극장",
+     "d": "북측순환로 진입 지점",
+     "addr": "서울특별시 중구 장충단로 59",
+     "lat": 37.5526708,
+     "lng": 126.9996175,
+     "naver": "https://map.naver.com/p/search/%EA%B5%AD%EB%A6%BD%EA%B7%B9%EC%9E%A5",
+     "nextM": 1238
+    },
+    {
+     "n": "남산공원",
+     "d": "차 없는 순환로 구간",
+     "addr": "서울특별시 중구 삼일대로 231 남산제1별관",
+     "lat": 37.5510509,
+     "lng": 126.9925089,
+     "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%82%B0%EA%B3%B5%EC%9B%90",
+     "nextM": 392
+    },
+    {
+     "n": "N서울타워",
+     "d": "정상부 조망",
+     "addr": "서울특별시 용산구 남산공원길 105",
+     "lat": 37.5512168,
+     "lng": 126.9882475,
+     "naver": "https://map.naver.com/p/search/N%EC%84%9C%EC%9A%B8%ED%83%80%EC%9B%8C",
+     "nextM": 1728
+    },
+    {
+     "n": "남산도서관",
+     "d": "서쪽 하산 방면",
+     "addr": "서울특별시 용산구 소월로 109 남산도서관",
+     "lat": 37.5530598,
+     "lng": 126.9813371,
+     "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%82%B0%EB%8F%84%EC%84%9C%EA%B4%80"
+    }
+   ],
+   "related": [
+    {
      "n": "경복궁 돌담길",
      "d": "2바퀴 5.2km. 짧은 업힐 반복",
      "photo": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
@@ -245,7 +365,9 @@
      "lng": 126.9932865315,
      "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%82%B0%EA%B3%A8%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84"
     }
-   ]
+   ],
+   "lat": 37.5526708,
+   "lng": 126.9996175
   },
   {
    "id": "seoul-olympic-loop",
@@ -285,6 +407,43 @@
    ],
    "poi": [
     {
+     "n": "올림픽공원",
+     "d": "평화의문 앞 출발",
+     "addr": "서울특별시 송파구 올림픽로 424",
+     "lat": 37.5209339,
+     "lng": 127.122959,
+     "naver": "https://map.naver.com/p/search/%EC%98%AC%EB%A6%BC%ED%94%BD%EA%B3%B5%EC%9B%90",
+     "nextM": 659
+    },
+    {
+     "n": "몽촌토성",
+     "d": "완만한 오르내림 구간",
+     "addr": "서울특별시 송파구 올림픽로 424",
+     "lat": 37.5227975,
+     "lng": 127.1188664,
+     "naver": "https://map.naver.com/p/search/%EB%AA%BD%EC%B4%8C%ED%86%A0%EC%84%B1",
+     "nextM": 576
+    },
+    {
+     "n": "몽촌호",
+     "d": "공원 중앙 수변",
+     "addr": "서울특별시 송파구 방이동",
+     "lat": 37.5196939,
+     "lng": 127.1176967,
+     "naver": "https://map.naver.com/p/search/%EB%AA%BD%EC%B4%8C%ED%98%B8",
+     "nextM": 869
+    },
+    {
+     "n": "한성백제박물관",
+     "d": "바깥 둘레로 이어지는 지점",
+     "addr": "서울특별시 송파구 위례성대로 71",
+     "lat": 37.5155717,
+     "lng": 127.1206146,
+     "naver": "https://map.naver.com/p/search/%ED%95%9C%EC%84%B1%EB%B0%B1%EC%A0%9C%EB%B0%95%EB%AC%BC%EA%B4%80"
+    }
+   ],
+   "related": [
+    {
      "n": "석촌호수",
      "d": "1바퀴 2.5km. 거리 계산이 가장 쉽다",
      "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/10/2907610_image2_1.jpg",
@@ -323,7 +482,9 @@
      "lng": 127.0846662,
      "naver": "https://map.naver.com/p/search/%EC%9E%A0%EC%8B%A4%20%ED%95%9C%EA%B0%95%EA%B3%B5%EC%9B%90"
     }
-   ]
+   ],
+   "lat": 37.5209339,
+   "lng": 127.122959
   },
   {
    "id": "seoul-ttukseom-7k",
@@ -363,6 +524,43 @@
    ],
    "poi": [
     {
+     "n": "뚝섬한강공원",
+     "d": "출발점. 물품보관함",
+     "addr": "서울특별시 광진구 자양동 704-1",
+     "lat": 37.5294517,
+     "lng": 127.0706769,
+     "naver": "https://map.naver.com/p/search/%EB%9A%9D%EC%84%AC%ED%95%9C%EA%B0%95%EA%B3%B5%EC%9B%90",
+     "nextM": null
+    },
+    {
+     "n": "청담대교",
+     "d": "동쪽 구간 표지",
+     "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%8B%B4%EB%8C%80%EA%B5%90",
+     "addr": "서울특별시 강동구 강동대로53길 87 1층",
+     "lat": 37.5266297,
+     "lng": 127.1327539,
+     "nextM": null
+    },
+    {
+     "n": "영동대교",
+     "d": "중간 반환 후보",
+     "addr": "서울특별시 광진구 동일로 56 7동 상가 1층 705호",
+     "lat": 37.5377741,
+     "lng": 127.0618932,
+     "naver": "https://map.naver.com/p/search/%EC%98%81%EB%8F%99%EB%8C%80%EA%B5%90",
+     "nextM": null
+    },
+    {
+     "n": "성수대교",
+     "d": "서쪽 반환점. 남산 실루엣",
+     "addr": "서울특별시 성동구 옥수동",
+     "lat": 37.5366124,
+     "lng": 127.0349431,
+     "naver": "https://map.naver.com/p/search/%EC%84%B1%EC%88%98%EB%8C%80%EA%B5%90"
+    }
+   ],
+   "related": [
+    {
      "n": "서울숲",
      "d": "서울숲역 3번 출구 직결. 가을 단풍 터널",
      "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/99/3580599_image2_1.jpg",
@@ -401,7 +599,9 @@
      "lng": 127.0565978295,
      "naver": "https://map.naver.com/p/search/%EC%84%B1%EC%88%98%EB%8F%99%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC"
     }
-   ]
+   ],
+   "lat": 37.5294517,
+   "lng": 127.0706769
   },
   {
    "id": "seoul-gyeongui-morning",
@@ -441,6 +641,43 @@
    ],
    "poi": [
     {
+     "n": "경의선숲길",
+     "d": "연남동 나무 터널 구간",
+     "addr": "서울특별시 마포구 연남동",
+     "lat": 37.5619568,
+     "lng": 126.9229824,
+     "naver": "https://map.naver.com/p/search/%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8",
+     "nextM": 655
+    },
+    {
+     "n": "홍대입구역",
+     "d": "숲길 중심. 접근성 좋음",
+     "addr": "서울특별시 마포구 양화로 160 홍대입구역",
+     "lat": 37.5570155,
+     "lng": 126.9240192,
+     "naver": "https://map.naver.com/p/search/%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC%EC%97%AD",
+     "nextM": 781
+    },
+    {
+     "n": "와우교",
+     "d": "홍대~서강 구간 표지",
+     "addr": "서울특별시 마포구 동교동",
+     "lat": 37.5555544,
+     "lng": 126.9306754,
+     "naver": "https://map.naver.com/p/search/%EC%99%80%EC%9A%B0%EA%B5%90",
+     "nextM": 707
+    },
+    {
+     "n": "서강대역",
+     "d": "남쪽 반환점",
+     "addr": "서울특별시 마포구 서강로 118",
+     "lat": 37.5521672,
+     "lng": 126.935445,
+     "naver": "https://map.naver.com/p/search/%EC%84%9C%EA%B0%95%EB%8C%80%EC%97%AD"
+    }
+   ],
+   "related": [
+    {
      "n": "하늘공원",
      "d": "억새밭. 계단 업힐",
      "photo": "https://tong.visitkorea.or.kr/cms/resource_photo/23/4063023_image2_1.jpg",
@@ -479,7 +716,9 @@
      "lng": 126.9362995081,
      "naver": "https://map.naver.com/p/search/%ED%99%8D%EC%A0%9C%EC%B2%9C"
     }
-   ]
+   ],
+   "lat": 37.5619568,
+   "lng": 126.9229824
   },
   {
    "id": "seoul-seokchon-lake",
@@ -517,7 +756,8 @@
      "addr": "서울특별시 송파구 석촌호수로 278 여흥레이크빌 1층",
      "lat": 37.5104023,
      "lng": 127.1064639,
-     "naver": "https://map.naver.com/p/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98%20%EB%8F%99%ED%98%B8"
+     "naver": "https://map.naver.com/p/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98%20%EB%8F%99%ED%98%B8",
+     "nextM": 809
     },
     {
      "n": "롯데월드타워",
@@ -525,7 +765,8 @@
      "addr": "서울특별시 송파구 올림픽로 300 (신천동)",
      "lat": 37.5137129859207,
      "lng": 127.104301829165,
-     "naver": "https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C"
+     "naver": "https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C",
+     "nextM": 1048
     },
     {
      "n": "송리단길",
@@ -578,7 +819,8 @@
      "addr": "서울특별시 종로구 세종대로 159 (세종로)",
      "lat": 37.5706048802754,
      "lng": 126.976341183145,
-     "naver": "https://map.naver.com/p/search/%EA%B4%91%ED%99%94%EB%AC%B8"
+     "naver": "https://map.naver.com/p/search/%EA%B4%91%ED%99%94%EB%AC%B8",
+     "nextM": 1122
     },
     {
      "n": "영추문",
@@ -586,7 +828,8 @@
      "addr": null,
      "lat": 37.5787617,
      "lng": 126.974068,
-     "naver": "https://map.naver.com/p/search/%EC%98%81%EC%B6%94%EB%AC%B8"
+     "naver": "https://map.naver.com/p/search/%EC%98%81%EC%B6%94%EB%AC%B8",
+     "nextM": 660
     },
     {
      "n": "신무문",
@@ -635,7 +878,8 @@
      "addr": "서울특별시 송파구 위례광장로 290 상가동 1층 145호~147호",
      "lat": 37.4747277,
      "lng": 127.1428383,
-     "naver": "https://map.naver.com/p/search/%EC%9C%84%EB%A1%80%EC%A4%91%EC%95%99%EA%B4%91%EC%9E%A5"
+     "naver": "https://map.naver.com/p/search/%EC%9C%84%EB%A1%80%EC%A4%91%EC%95%99%EA%B4%91%EC%9E%A5",
+     "nextM": 2870
     },
     {
      "n": "창곡천",
@@ -686,7 +930,8 @@
      "addr": "서울특별시 마포구 하늘공원로 95",
      "lat": 37.5690977267,
      "lng": 126.8863442556,
-     "naver": "https://map.naver.com/p/search/%ED%95%98%EB%8A%98%EA%B3%B5%EC%9B%90"
+     "naver": "https://map.naver.com/p/search/%ED%95%98%EB%8A%98%EA%B3%B5%EC%9B%90",
+     "nextM": 1777
     },
     {
      "n": "노을공원",
@@ -694,7 +939,8 @@
      "addr": "서울특별시 마포구 상암동",
      "lat": 37.5740543063,
      "lng": 126.8755135312,
-     "naver": "https://map.naver.com/p/search/%EB%85%B8%EC%9D%84%EA%B3%B5%EC%9B%90"
+     "naver": "https://map.naver.com/p/search/%EB%85%B8%EC%9D%84%EA%B3%B5%EC%9B%90",
+     "nextM": 2264
     },
     {
      "n": "난지한강공원",
@@ -745,7 +991,8 @@
      "addr": "서울특별시 광진구 능동",
      "lat": 37.5493903,
      "lng": 127.0762861,
-     "naver": "https://map.naver.com/p/search/%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8C%80%EA%B3%B5%EC%9B%90%20%EC%A0%95%EB%AC%B8"
+     "naver": "https://map.naver.com/p/search/%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8C%80%EA%B3%B5%EC%9B%90%20%EC%A0%95%EB%AC%B8",
+     "nextM": 571
     },
     {
      "n": "팔각당",
@@ -800,7 +1047,8 @@
      "addr": "서울특별시 종로구 창의문로 118 (부암동)",
      "lat": 37.5926565508,
      "lng": 126.966510263,
-     "naver": "https://map.naver.com/p/search/%EC%B0%BD%EC%9D%98%EB%AC%B8"
+     "naver": "https://map.naver.com/p/search/%EC%B0%BD%EC%9D%98%EB%AC%B8",
+     "nextM": 3045
     },
     {
      "n": "북악 팔각정",

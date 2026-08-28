@@ -42,6 +42,45 @@
     ],
     "poi": [
      {
+      "n": "해운대해수욕장",
+      "d": "출발점. 백사장 옆 산책로",
+      "addr": "부산광역시 해운대구 우동",
+      "lat": 35.1581445,
+      "lng": 129.1583542,
+      "naver": "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+      "nextM": 869
+     },
+     {
+      "n": "동백섬",
+      "d": "숲 그늘 순환 구간",
+      "addr": "부산광역시 해운대구 우동 710-1",
+      "lat": 35.1539199,
+      "lng": 129.152185,
+      "naver": "https://map.naver.com/p/search/%EB%8F%99%EB%B0%B1%EC%84%AC",
+      "nextM": 360
+     },
+     {
+      "n": "누리마루APEC하우스",
+      "d": "동백섬 끝 조망 지점",
+      "addr": "부산광역시 해운대구 동백로 116 누리마루APEC하우스",
+      "lat": 35.1523659,
+      "lng": 129.1513416,
+      "naver": "https://map.naver.com/p/search/%EB%88%84%EB%A6%AC%EB%A7%88%EB%A3%A8APEC%ED%95%98%EC%9A%B0%EC%8A%A4",
+      "nextM": 2890
+     },
+     {
+      "n": "미포",
+      "d": "동쪽 반환점. 포구 정취",
+      "addr": "부산광역시 해운대구 달맞이길62번길 13",
+      "lat": 35.158138,
+      "lng": 129.1728559,
+      "naver": "https://map.naver.com/p/search/%EB%AF%B8%ED%8F%AC"
+     }
+    ],
+    "lat": 35.1581445,
+    "lng": 129.1583542,
+    "related": [
+     {
       "n": "광안리해수욕장",
       "d": "야경 코스로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/45/3311245_image2_1.jpg",
@@ -80,9 +119,7 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EA%B7%B8%EB%A6%B0%EB%A0%88%EC%9D%BC%EC%9B%A8%EC%9D%B4"
      }
-    ],
-    "lat": 35.1322926,
-    "lng": 129.1213005
+    ]
    },
    {
     "id": "busan-gwangalli-night",
@@ -122,6 +159,42 @@
     ],
     "poi": [
      {
+      "n": "광안리해수욕장",
+      "d": "출발점. 광안대교 정면",
+      "lat": 35.1508879,
+      "lng": 129.1167806,
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+      "nextM": 1993
+     },
+     {
+      "n": "민락수변공원",
+      "d": "야경 구간. 회복 산책",
+      "addr": "부산광역시 수영구 민락동 110-19",
+      "lat": 35.1549132,
+      "lng": 129.1343514,
+      "naver": "https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EC%88%98%EB%B3%80%EA%B3%B5%EC%9B%90",
+      "nextM": 840
+     },
+     {
+      "n": "민락교",
+      "d": "수영강 방면 반환점",
+      "addr": "부산광역시 수영구 민락동",
+      "lat": 35.1604071,
+      "lng": 129.129,
+      "naver": "https://map.naver.com/p/search/%EB%AF%BC%EB%9D%BD%EA%B5%90",
+      "nextM": 1140
+     },
+     {
+      "n": "광안대교",
+      "d": "코스 내내 보이는 기준점",
+      "addr": "부산광역시 수영구 광안해변로284번길 38 3층 313호, 314호",
+      "lat": 35.1533775,
+      "lng": 129.1254448,
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%8C%80%EA%B5%90"
+     }
+    ],
+    "related": [
+     {
       "n": "민락수변공원",
       "d": "광안대교 정면 구간",
       "photo": null,
@@ -160,7 +233,9 @@
       "lng": 129.159811309804,
       "naver": "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
      }
-    ]
+    ],
+    "lat": 35.1508879,
+    "lng": 129.1167806
    },
    {
     "id": "busan-oncheoncheon",
@@ -200,6 +275,45 @@
     ],
     "poi": [
      {
+      "n": "온천천시민공원",
+      "d": "출발점. 지하철에서 바로 진입",
+      "addr": "부산광역시 연제구 온천천남로 39 온천천시민공원관리사무소",
+      "lat": 35.1925763,
+      "lng": 129.0951125,
+      "naver": "https://map.naver.com/p/search/%EC%98%A8%EC%B2%9C%EC%B2%9C%EC%8B%9C%EB%AF%BC%EA%B3%B5%EC%9B%90",
+      "nextM": 1314
+     },
+     {
+      "n": "세병교",
+      "d": "동래 구간 표지",
+      "addr": "부산광역시 연제구 거제동",
+      "lat": 35.1968626,
+      "lng": 129.0825827,
+      "naver": "https://map.naver.com/p/search/%EC%84%B8%EB%B3%91%EA%B5%90",
+      "nextM": 1024
+     },
+     {
+      "n": "연안교",
+      "d": "연제 방면 반환점",
+      "addr": "부산광역시 동래구 수안동",
+      "lat": 35.1934157,
+      "lng": 129.09099,
+      "naver": "https://map.naver.com/p/search/%EC%97%B0%EC%95%88%EA%B5%90",
+      "nextM": 1046
+     },
+     {
+      "n": "온천천 카페거리",
+      "d": "러닝 후 마무리",
+      "addr": "부산광역시 동래구 온천천로 435-1 1",
+      "lat": 35.1919874,
+      "lng": 129.1006607,
+      "naver": "https://map.naver.com/p/search/%EC%98%A8%EC%B2%9C%EC%B2%9C%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC"
+     }
+    ],
+    "lat": 35.1925763,
+    "lng": 129.0951125,
+    "related": [
+     {
       "n": "삼락생태공원",
       "d": "낙동강 둔치 장거리",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/90/3497090_image2_1.jpg",
@@ -235,9 +349,7 @@
       "lng": 129.1189760936,
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
      }
-    ],
-    "lat": 35.1916279693,
-    "lng": 129.1024592605
+    ]
    },
    {
     "id": "busan-samnak-lsd",
@@ -278,6 +390,45 @@
     ],
     "poi": [
      {
+      "n": "삼락생태공원",
+      "d": "출발점. 낙동강 둔치",
+      "addr": "부산광역시 사상구",
+      "lat": 35.1690453,
+      "lng": 128.9736606,
+      "naver": "https://map.naver.com/p/search/%EC%82%BC%EB%9D%BD%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90",
+      "nextM": 2129
+     },
+     {
+      "n": "삼락생태공원 연꽃단지",
+      "d": "여름 볼거리 구간",
+      "addr": "부산광역시 사상구 삼락동 29-72",
+      "lat": 35.1553669,
+      "lng": 128.9689124,
+      "naver": "https://map.naver.com/p/search/%EC%82%BC%EB%9D%BD%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90%20%EC%97%B0%EA%BD%83%EB%8B%A8%EC%A7%80",
+      "nextM": null
+     },
+     {
+      "n": "삼락강변축구장",
+      "d": "중간 구간 표지",
+      "naver": "https://map.naver.com/p/search/%EC%82%BC%EB%9D%BD%EA%B0%95%EB%B3%80%EC%B6%95%EA%B5%AC%EC%9E%A5",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "낙동강하구둑",
+      "d": "남쪽 반환점",
+      "addr": "부산광역시 사하구 하단동",
+      "lat": 35.1071422,
+      "lng": 128.9525944,
+      "naver": "https://map.naver.com/p/search/%EB%82%99%EB%8F%99%EA%B0%95%ED%95%98%EA%B5%AC%EB%91%91"
+     }
+    ],
+    "lat": 35.1690453,
+    "lng": 128.9736606,
+    "related": [
+     {
       "n": "온천천",
       "d": "짧은 코스로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/33/2822333_image2_1.png",
@@ -316,9 +467,7 @@
       "lng": 128.9543361,
       "naver": "https://map.naver.com/p/search/%EB%82%99%EB%8F%99%EA%B0%95%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8"
      }
-    ],
-    "lat": 35.0913089,
-    "lng": 128.9543361
+    ]
    },
    {
     "id": "busan-songdo-cloud",
@@ -358,6 +507,43 @@
     ],
     "poi": [
      {
+      "n": "송도해수욕장",
+      "d": "출발점",
+      "addr": "부산광역시 서구 암남동",
+      "lat": 35.0759052,
+      "lng": 129.0175547,
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+      "nextM": 760
+     },
+     {
+      "n": "송도구름산책로",
+      "d": "바다 위 보행교 구간",
+      "addr": "부산광역시 서구 암남동 129-4",
+      "lat": 35.0753876,
+      "lng": 129.0226137,
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%EA%B5%AC%EB%A6%84%EC%82%B0%EC%B1%85%EB%A1%9C",
+      "nextM": 302
+     },
+     {
+      "n": "송도해상케이블카",
+      "d": "중간 조망 지점",
+      "addr": "부산광역시 서구 송도해변로 171",
+      "lat": 35.0766432,
+      "lng": 129.0233986,
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4",
+      "nextM": 3574
+     },
+     {
+      "n": "암남공원",
+      "d": "코스 종점",
+      "addr": "부산광역시 서구 암남공원로 179-20",
+      "lat": 35.0599107,
+      "lng": 129.0162416,
+      "naver": "https://map.naver.com/p/search/%EC%95%94%EB%82%A8%EA%B3%B5%EC%9B%90"
+     }
+    ],
+    "related": [
+     {
       "n": "암남공원",
       "d": "코스 종점",
       "photo": null,
@@ -396,7 +582,9 @@
       "lng": 129.159811309804,
       "naver": "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
      }
-    ]
+    ],
+    "lat": 35.0759052,
+    "lng": 129.0175547
    }
   ]
  },
@@ -446,6 +634,43 @@
     "poi": [
      {
       "n": "용두암",
+      "d": "출발점. 해안도로 대표 지점",
+      "addr": "제주특별자치도 제주시 서해안로 614",
+      "lat": 33.5169877,
+      "lng": 126.5026023,
+      "naver": "https://map.naver.com/p/search/%EC%9A%A9%EB%91%90%EC%95%94",
+      "nextM": 950
+     },
+     {
+      "n": "용담해안도로",
+      "d": "평탄한 해안 직선 구간",
+      "addr": "제주특별자치도 제주시 서해안로 510",
+      "lat": 33.519471,
+      "lng": 126.4933802,
+      "naver": "https://map.naver.com/p/search/%EC%9A%A9%EB%8B%B4%ED%95%B4%EC%95%88%EB%8F%84%EB%A1%9C",
+      "nextM": 641
+     },
+     {
+      "n": "어영공원",
+      "d": "중간 휴식·조망",
+      "addr": "제주특별자치도 제주시 용담삼동 2396-16",
+      "lat": 33.5175582,
+      "lng": 126.4866639,
+      "naver": "https://map.naver.com/p/search/%EC%96%B4%EC%98%81%EA%B3%B5%EC%9B%90",
+      "nextM": 2651
+     },
+     {
+      "n": "도두봉",
+      "d": "서쪽 반환점",
+      "addr": "제주특별자치도 제주시 도두항길 4-17",
+      "lat": 33.507985,
+      "lng": 126.4683496,
+      "naver": "https://map.naver.com/p/search/%EB%8F%84%EB%91%90%EB%B4%89"
+     }
+    ],
+    "related": [
+     {
+      "n": "용두암",
       "d": "해안도로 대표 지점",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/68/3011868_image2_1.jpg",
       "addr": "제주특별자치도 제주시 용두암길 15 (용담이동)",
@@ -483,7 +708,9 @@
       "lng": 126.559550845,
       "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%A7%80%EC%97%B0%ED%8F%AD%ED%8F%AC"
      }
-    ]
+    ],
+    "lat": 33.5169877,
+    "lng": 126.5026023
    },
    {
     "id": "jeju-saryeoni",
@@ -524,6 +751,43 @@
     ],
     "poi": [
      {
+      "n": "사려니숲길",
+      "d": "출발점. 삼나무 숲 입구",
+      "addr": "제주특별자치도 제주시 봉개동 산64-5",
+      "lat": 33.4226957,
+      "lng": 126.626798,
+      "naver": "https://map.naver.com/p/search/%EC%82%AC%EB%A0%A4%EB%8B%88%EC%88%B2%EA%B8%B8",
+      "nextM": 9172
+     },
+     {
+      "n": "붉은오름자연휴양림",
+      "d": "숲길 진입 구간",
+      "addr": "제주특별자치도 서귀포시 표선면 남조로 1487-73",
+      "lat": 33.4017938,
+      "lng": 126.6753474,
+      "naver": "https://map.naver.com/p/search/%EB%B6%89%EC%9D%80%EC%98%A4%EB%A6%84%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC",
+      "nextM": null
+     },
+     {
+      "n": "사려니오름",
+      "d": "중간 반환 후보",
+      "naver": "https://map.naver.com/p/search/%EC%82%AC%EB%A0%A4%EB%8B%88%EC%98%A4%EB%A6%84",
+      "addr": "제주특별자치도 서귀포시 남원읍 서성로651번길 235",
+      "lat": 33.3361933,
+      "lng": 126.6470353,
+      "nextM": 8373
+     },
+     {
+      "n": "물찻오름",
+      "d": "안쪽 구간 표지",
+      "addr": "제주특별자치도 제주시 조천읍 교래리",
+      "lat": 33.3948479,
+      "lng": 126.6528742,
+      "naver": "https://map.naver.com/p/search/%EB%AC%BC%EC%B0%BB%EC%98%A4%EB%A6%84"
+     }
+    ],
+    "related": [
+     {
       "n": "용담 해안도로",
       "d": "해안 코스로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/68/3011868_image2_1.jpg",
@@ -562,7 +826,9 @@
       "lng": 126.5852560795,
       "naver": "https://map.naver.com/p/search/%EC%82%BC%EC%96%91%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
      }
-    ]
+    ],
+    "lat": 33.4226957,
+    "lng": 126.626798
    }
   ]
  }

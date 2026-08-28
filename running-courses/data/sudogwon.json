@@ -42,6 +42,43 @@
     ],
     "poi": [
      {
+      "n": "송도센트럴파크",
+      "d": "출발점. 해수 수로 둘레",
+      "addr": "인천광역시 연수구 컨벤시아대로 160",
+      "lat": 37.3913127,
+      "lng": 126.6406007,
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%EC%84%BC%ED%8A%B8%EB%9F%B4%ED%8C%8C%ED%81%AC",
+      "nextM": 332
+     },
+     {
+      "n": "송도 보트하우스",
+      "d": "수로 중간 지점",
+      "addr": "인천광역시 연수구 컨벤시아대로 160",
+      "lat": 37.3904651,
+      "lng": 126.6436044,
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%20%EB%B3%B4%ED%8A%B8%ED%95%98%EC%9A%B0%EC%8A%A4",
+      "nextM": 1142
+     },
+     {
+      "n": "트라이볼",
+      "d": "북쪽 구간 표지",
+      "addr": "인천광역시 연수구 인천타워대로 250",
+      "lat": 37.3933577,
+      "lng": 126.6355816,
+      "naver": "https://map.naver.com/p/search/%ED%8A%B8%EB%9D%BC%EC%9D%B4%EB%B3%BC",
+      "nextM": 1586
+     },
+     {
+      "n": "송도컨벤시아",
+      "d": "서쪽 반환점",
+      "addr": "인천광역시 연수구 센트럴로 123 송도컨벤시아",
+      "lat": 37.3889608,
+      "lng": 126.6463237,
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%EC%BB%A8%EB%B2%A4%EC%8B%9C%EC%95%84"
+     }
+    ],
+    "related": [
+     {
       "n": "랜드마크시티 1호 수변공원",
       "d": "코스 후반부. 인천대교가 보인다",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/57/3001757_image2_1.jpg",
@@ -80,7 +117,9 @@
       "lng": 126.597308531073,
       "naver": "https://map.naver.com/p/search/%EC%9B%94%EB%AF%B8%EB%8F%84"
      }
-    ]
+    ],
+    "lat": 37.3913127,
+    "lng": 126.6406007
    },
    {
     "id": "incheon-arabaetgil-lsd",
@@ -118,6 +157,43 @@
      "야간 조명 범위"
     ],
     "poi": [
+     {
+      "n": "아라뱃길",
+      "d": "출발점. 수로 직선 구간",
+      "addr": "인천광역시 계양구 둑실동 79-4",
+      "lat": 37.5727833,
+      "lng": 126.7013462,
+      "naver": "https://map.naver.com/p/search/%EC%95%84%EB%9D%BC%EB%B1%83%EA%B8%B8",
+      "nextM": null
+     },
+     {
+      "n": "아라마루전망대",
+      "d": "중간 조망·보급",
+      "addr": "인천광역시 계양구 둑실동 79-4",
+      "lat": 37.5727833,
+      "lng": 126.7013462,
+      "naver": "https://map.naver.com/p/search/%EC%95%84%EB%9D%BC%EB%A7%88%EB%A3%A8%EC%A0%84%EB%A7%9D%EB%8C%80",
+      "nextM": 2221
+     },
+     {
+      "n": "시천교",
+      "d": "구간 표지",
+      "addr": "인천광역시 검단구 시천동",
+      "lat": 37.5715259,
+      "lng": 126.6766468,
+      "naver": "https://map.naver.com/p/search/%EC%8B%9C%EC%B2%9C%EA%B5%90",
+      "nextM": 8306
+     },
+     {
+      "n": "정서진",
+      "d": "서쪽 종점",
+      "addr": "인천광역시 서해구 정서진남로 95",
+      "lat": 37.5568286,
+      "lng": 126.6049811,
+      "naver": "https://map.naver.com/p/search/%EC%A0%95%EC%84%9C%EC%A7%84"
+     }
+    ],
+    "related": [
      {
       "n": "아라인천여객터미널",
       "d": "표준 출발점",
@@ -157,7 +233,9 @@
       "lng": 126.6383,
       "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%20%EC%84%BC%ED%8A%B8%EB%9F%B4%ED%8C%8C%ED%81%AC"
      }
-    ]
+    ],
+    "lat": 37.5727833,
+    "lng": 126.7013462
    }
   ]
  },
@@ -204,6 +282,43 @@
     ],
     "poi": [
      {
+      "n": "일산호수공원",
+      "d": "출발점. 한 바퀴 4.7km",
+      "addr": "경기도 고양시 일산동구 호수로 731",
+      "lat": 37.6615757,
+      "lng": 126.7606554,
+      "naver": "https://map.naver.com/p/search/%EC%9D%BC%EC%82%B0%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+      "nextM": 1011
+     },
+     {
+      "n": "한울광장",
+      "d": "집결·스트레칭 장소",
+      "addr": "경기도 고양시 일산동구 호수로 595 고양꽃전시관",
+      "lat": 37.6565681,
+      "lng": 126.7652629,
+      "naver": "https://map.naver.com/p/search/%ED%95%9C%EC%9A%B8%EA%B4%91%EC%9E%A5",
+      "nextM": 1610
+     },
+     {
+      "n": "노래하는분수대",
+      "d": "호수 중앙 볼거리",
+      "addr": "경기도 고양시 일산동구 호수로 731 일산노인종합복지관",
+      "lat": 37.663951,
+      "lng": 126.7576907,
+      "naver": "https://map.naver.com/p/search/%EB%85%B8%EB%9E%98%ED%95%98%EB%8A%94%EB%B6%84%EC%88%98%EB%8C%80",
+      "nextM": 1881
+     },
+     {
+      "n": "고양꽃전시관",
+      "d": "북쪽 구간 표지",
+      "addr": "경기도 고양시 일산동구 호수로 595 고양꽃전시관(일산호수공원 3주차장)",
+      "lat": 37.6537748,
+      "lng": 126.7688873,
+      "naver": "https://map.naver.com/p/search/%EA%B3%A0%EC%96%91%EA%BD%83%EC%A0%84%EC%8B%9C%EA%B4%80"
+     }
+    ],
+    "related": [
+     {
       "n": "정발산역 2번 출구",
       "d": "북쪽 진입. 반 바퀴 2.5km 워밍업",
       "photo": null,
@@ -242,7 +357,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%B2%AD%EB%9D%BC%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90"
      }
-    ]
+    ],
+    "lat": 37.6615757,
+    "lng": 126.7606554
    }
   ]
  },
@@ -290,6 +407,43 @@
     ],
     "poi": [
      {
+      "n": "광교호수공원",
+      "d": "출발점",
+      "addr": "경기도 수원시 영통구 광교호수로 165",
+      "lat": 37.2826146,
+      "lng": 127.0696711,
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EA%B5%90%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+      "nextM": 2034
+     },
+     {
+      "n": "원천호수",
+      "d": "첫 번째 호수 순환",
+      "addr": "경기도 수원시 영통구 광교호수로 127",
+      "lat": 37.2805919,
+      "lng": 127.0618879,
+      "naver": "https://map.naver.com/p/search/%EC%9B%90%EC%B2%9C%ED%98%B8%EC%88%98",
+      "nextM": 1922
+     },
+     {
+      "n": "신대호수",
+      "d": "두 번째 호수 — 8자 구성",
+      "addr": "경기도 수원시 영통구 광교호수로 127",
+      "lat": 37.2872579,
+      "lng": 127.074338,
+      "naver": "https://map.naver.com/p/search/%EC%8B%A0%EB%8C%80%ED%98%B8%EC%88%98",
+      "nextM": 1990
+     },
+     {
+      "n": "프라이부르크전망대",
+      "d": "수변 데크 조망",
+      "addr": "경기도 수원시 영통구 광교호수로 75 광교호수공원시설",
+      "lat": 37.2806317,
+      "lng": 127.06621,
+      "naver": "https://map.naver.com/p/search/%ED%94%84%EB%9D%BC%EC%9D%B4%EB%B6%80%EB%A5%B4%ED%81%AC%EC%A0%84%EB%A7%9D%EB%8C%80"
+     }
+    ],
+    "related": [
+     {
       "n": "수원화성 성곽길",
       "d": "5.7km. 성곽 따라 도는 문화유산 코스",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/36/3500936_image2_1.jpg",
@@ -328,7 +482,9 @@
       "lng": 127.053722382712,
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EA%B5%90%EC%A4%91%EC%95%99%EC%97%AD"
      }
-    ]
+    ],
+    "lat": 37.2826146,
+    "lng": 127.0696711
    },
    {
     "id": "suwon-hwaseong-wall",
@@ -368,6 +524,52 @@
     ],
     "poi": [
      {
+      "n": "팔달문",
+      "d": "출발점. 남쪽 성문",
+      "addr": "경기도 수원시 팔달구 정조로 780 팔달문",
+      "lat": 37.2775465,
+      "lng": 127.0167507,
+      "naver": "https://map.naver.com/p/search/%ED%8C%94%EB%8B%AC%EB%AC%B8",
+      "nextM": 1327
+     },
+     {
+      "n": "화서문",
+      "d": "서쪽 성문",
+      "addr": "경기도 수원시 팔달구 장안동 334",
+      "lat": 37.2855288,
+      "lng": 127.0096638,
+      "naver": "https://map.naver.com/p/search/%ED%99%94%EC%84%9C%EB%AC%B8",
+      "nextM": 822
+     },
+     {
+      "n": "장안문",
+      "d": "북쪽 성문",
+      "addr": "경기도 수원시 팔달구 장안동",
+      "lat": 37.2888493,
+      "lng": 127.0142198,
+      "naver": "https://map.naver.com/p/search/%EC%9E%A5%EC%95%88%EB%AC%B8",
+      "nextM": 1134
+     },
+     {
+      "n": "창룡문",
+      "d": "동쪽 성문",
+      "addr": "경기도 수원시 팔달구",
+      "lat": 37.2878066,
+      "lng": 127.0251382,
+      "naver": "https://map.naver.com/p/search/%EC%B0%BD%EB%A3%A1%EB%AC%B8",
+      "nextM": 692
+     },
+     {
+      "n": "방화수류정",
+      "d": "성곽 최고 조망",
+      "addr": "경기도 수원시 팔달구 수원천로392번길 44-6 방화수류정",
+      "lat": 37.2875749,
+      "lng": 127.0181472,
+      "naver": "https://map.naver.com/p/search/%EB%B0%A9%ED%99%94%EC%88%98%EB%A5%98%EC%A0%95"
+     }
+    ],
+    "related": [
+     {
       "n": "광교호수공원",
       "d": "평지 코스로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/60/3588560_image2_1.jpg",
@@ -406,7 +608,9 @@
       "lng": 127.0165476856,
       "naver": "https://map.naver.com/p/search/%ED%96%89%EA%B6%81%EB%8F%99"
      }
-    ]
+    ],
+    "lat": 37.2775465,
+    "lng": 127.0167507
    }
   ]
  },
@@ -452,6 +656,43 @@
     ],
     "poi": [
      {
+      "n": "탄천",
+      "d": "출발점. 무신호 둔치길",
+      "addr": "경기도 성남시 분당구 탄천로 215",
+      "lat": 37.4102033,
+      "lng": 127.1212797,
+      "naver": "https://map.naver.com/p/search/%ED%83%84%EC%B2%9C",
+      "nextM": 5624
+     },
+     {
+      "n": "정자교",
+      "d": "중간 구간 표지·이탈 지점",
+      "addr": "경기도 성남시 분당구 정자동",
+      "lat": 37.3685368,
+      "lng": 127.1089926,
+      "naver": "https://map.naver.com/p/search/%EC%A0%95%EC%9E%90%EA%B5%90",
+      "nextM": 2743
+     },
+     {
+      "n": "미금교",
+      "d": "남쪽 구간 표지",
+      "addr": "경기도 성남시 분당구 구미동",
+      "lat": 37.3505993,
+      "lng": 127.1210745,
+      "naver": "https://map.naver.com/p/search/%EB%AF%B8%EA%B8%88%EA%B5%90",
+      "nextM": 5750
+     },
+     {
+      "n": "판교",
+      "d": "북쪽 반환 방면",
+      "addr": "경기도 성남시 분당구 서판교로32번길 9 판교동주민센터",
+      "lat": 37.3898439,
+      "lng": 127.0986189,
+      "naver": "https://map.naver.com/p/search/%ED%8C%90%EA%B5%90"
+     }
+    ],
+    "related": [
+     {
       "n": "율동공원",
       "d": "짧은 순환으로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/47/4072047_image2_1.JPG",
@@ -490,7 +731,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%98%AC%EB%A6%BC%ED%94%BD%EA%B3%B5%EC%9B%90"
      }
-    ]
+    ],
+    "lat": 37.4102033,
+    "lng": 127.1212797
    }
   ]
  },
@@ -533,7 +776,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EC%9E%90%EC%9C%A0%EA%B3%B5%EC%9B%90%20%EC%95%BD%EC%88%98%ED%84%B0"
+      "naver": "https://map.naver.com/p/search/%EC%9E%90%EC%9C%A0%EA%B3%B5%EC%9B%90%20%EC%95%BD%EC%88%98%ED%84%B0",
+      "nextM": null
      },
      {
       "n": "궁도장 오르막",
@@ -583,7 +827,8 @@
       "addr": "경기도 안양시 동안구 경수대로883번길 11",
       "lat": 37.3948899,
       "lng": 126.9381599,
-      "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8"
+      "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8",
+      "nextM": null
      },
      {
       "n": "백운호수 방면",
@@ -634,7 +879,8 @@
       "addr": "경기도 안양시 동안구 경수대로883번길 11",
       "lat": 37.3948899,
       "lng": 126.9381599,
-      "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8"
+      "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8",
+      "nextM": 6778
      },
      {
       "n": "기아대교",
@@ -642,7 +888,8 @@
       "addr": null,
       "lat": 37.4386467,
       "lng": 126.8991427,
-      "naver": "https://map.naver.com/p/search/%EA%B8%B0%EC%95%84%EB%8C%80%EA%B5%90"
+      "naver": "https://map.naver.com/p/search/%EA%B8%B0%EC%95%84%EB%8C%80%EA%B5%90",
+      "nextM": null
      },
      {
       "n": "안양천 합수부",
@@ -701,7 +948,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EB%B0%B1%EC%9A%B4%ED%98%B8%EC%88%98%20%EB%8D%B0%ED%81%AC%EA%B8%B8"
+      "naver": "https://map.naver.com/p/search/%EB%B0%B1%EC%9A%B4%ED%98%B8%EC%88%98%20%EB%8D%B0%ED%81%AC%EA%B8%B8",
+      "nextM": null
      },
      {
       "n": "학의천 진입로",
@@ -758,7 +1006,8 @@
       "addr": "경기도 용인시 기흥구 동탄기흥로 923 (공세동)",
       "lat": 37.2406720138,
       "lng": 127.1010829441,
-      "naver": "https://map.naver.com/p/search/%EA%B8%B0%ED%9D%A5%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90"
+      "naver": "https://map.naver.com/p/search/%EA%B8%B0%ED%9D%A5%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+      "nextM": null
      },
      {
       "n": "신갈천 합류부",
@@ -819,7 +1068,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%82%B0%EC%B2%9C%20%EB%91%94%EC%B9%98"
+      "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%82%B0%EC%B2%9C%20%EB%91%94%EC%B9%98",
+      "nextM": null
      },
      {
       "n": "치동천 합류부",
@@ -876,7 +1126,8 @@
       "addr": "경기도 화성시 동탄순환대로 69 (송동)",
       "lat": 37.1669527885,
       "lng": 127.1024487705,
-      "naver": "https://map.naver.com/p/search/%EB%8F%99%ED%83%84%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90"
+      "naver": "https://map.naver.com/p/search/%EB%8F%99%ED%83%84%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
+      "nextM": null
      },
      {
       "n": "루나쇼 분수",
@@ -929,7 +1180,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%B0%94%EB%8B%B7%EA%B8%B8%20%EC%9E%85%EA%B5%AC"
+      "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%B0%94%EB%8B%B7%EA%B8%B8%20%EC%9E%85%EA%B5%AC",
+      "nextM": null
      },
      {
       "n": "제부도 등대",
@@ -937,7 +1189,8 @@
       "addr": "경기도 화성시 서신면 제부리 289-20",
       "lat": 37.1791911,
       "lng": 126.6219931,
-      "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%93%B1%EB%8C%80"
+      "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%93%B1%EB%8C%80",
+      "nextM": 1243
      },
      {
       "n": "제부도 아트파크",
@@ -997,7 +1250,8 @@
       "addr": "경기도 시흥시 오이도로 149-1 (정왕동)",
       "lat": 37.3475078614,
       "lng": 126.6887174374,
-      "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%9D%B4%EB%8F%84"
+      "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%9D%B4%EB%8F%84",
+      "nextM": null
      },
      {
       "n": "시화나래휴게소",
@@ -1005,7 +1259,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EC%8B%9C%ED%99%94%EB%82%98%EB%9E%98%ED%9C%B4%EA%B2%8C%EC%86%8C"
+      "naver": "https://map.naver.com/p/search/%EC%8B%9C%ED%99%94%EB%82%98%EB%9E%98%ED%9C%B4%EA%B2%8C%EC%86%8C",
+      "nextM": null
      },
      {
       "n": "방아머리해변",

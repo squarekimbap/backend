@@ -45,6 +45,45 @@
     ],
     "poi": [
      {
+      "n": "공지천유원지",
+      "d": "출발점. 주차·화장실",
+      "addr": "강원특별자치도 춘천시 근화동 690-1",
+      "lat": 37.8751231,
+      "lng": 127.7097441,
+      "naver": "https://map.naver.com/p/search/%EA%B3%B5%EC%A7%80%EC%B2%9C%EC%9C%A0%EC%9B%90%EC%A7%80",
+      "nextM": 3243
+     },
+     {
+      "n": "의암호",
+      "d": "수변 데크 구간",
+      "addr": "강원특별자치도 춘천시 스포츠타운길 245",
+      "lat": 37.8645693,
+      "lng": 127.6913594,
+      "naver": "https://map.naver.com/p/search/%EC%9D%98%EC%95%94%ED%98%B8",
+      "nextM": 2650
+     },
+     {
+      "n": "의암호스카이워크",
+      "d": "물 위를 걷는 조망 지점",
+      "addr": "강원특별자치도 춘천시 칠전동 486",
+      "lat": 37.8467906,
+      "lng": 127.680221,
+      "naver": "https://map.naver.com/p/search/%EC%9D%98%EC%95%94%ED%98%B8%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%9B%8C%ED%81%AC",
+      "nextM": null
+     },
+     {
+      "n": "붕어섬",
+      "d": "호수 중간 표지",
+      "addr": "강원특별자치도 춘천시 스포츠타운길 123",
+      "lat": 37.8585237,
+      "lng": 127.6795195,
+      "naver": "https://map.naver.com/p/search/%EB%B6%95%EC%96%B4%EC%84%AC"
+     }
+    ],
+    "lat": 37.8751231,
+    "lng": 127.7097441,
+    "related": [
+     {
       "n": "의암호 스카이워크",
       "d": "호수 위로 나간 데크. 반환점으로 삼기 좋다",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/93/2748593_image2_1.jpg",
@@ -83,9 +122,7 @@
       "lng": 127.7176781471,
       "naver": "https://map.naver.com/p/search/%EA%B9%80%EC%9C%A0%EC%A0%95%EB%AC%B8%ED%95%99%EC%B4%8C"
      }
-    ],
-    "lat": 37.8467906,
-    "lng": 127.680221
+    ]
    },
    {
     "id": "chuncheon-gongjicheon",
@@ -125,6 +162,43 @@
     ],
     "poi": [
      {
+      "n": "공지천유원지",
+      "d": "출발점",
+      "addr": "강원특별자치도 춘천시 근화동 690-1",
+      "lat": 37.8751231,
+      "lng": 127.7097441,
+      "naver": "https://map.naver.com/p/search/%EA%B3%B5%EC%A7%80%EC%B2%9C%EC%9C%A0%EC%9B%90%EC%A7%80",
+      "nextM": 470
+     },
+     {
+      "n": "공지천 조각공원",
+      "d": "수변 산책 구간",
+      "addr": "강원특별자치도 춘천시 옛경춘로 880",
+      "lat": 37.8728419,
+      "lng": 127.7132363,
+      "naver": "https://map.naver.com/p/search/%EA%B3%B5%EC%A7%80%EC%B2%9C%20%EC%A1%B0%EA%B0%81%EA%B3%B5%EC%9B%90",
+      "nextM": 225
+     },
+     {
+      "n": "에티오피아한국전참전기념관",
+      "d": "중간 표지",
+      "addr": "강원특별자치도 춘천시 이디오피아길 1",
+      "lat": 37.8738195,
+      "lng": 127.7117809,
+      "naver": "https://map.naver.com/p/search/%EC%97%90%ED%8B%B0%EC%98%A4%ED%94%BC%EC%95%84%ED%95%9C%EA%B5%AD%EC%A0%84%EC%B0%B8%EC%A0%84%EA%B8%B0%EB%85%90%EA%B4%80",
+      "nextM": 262
+     },
+     {
+      "n": "공지천교",
+      "d": "반환점",
+      "addr": "강원특별자치도 춘천시 근화동",
+      "lat": 37.8731087,
+      "lng": 127.710979,
+      "naver": "https://map.naver.com/p/search/%EA%B3%B5%EC%A7%80%EC%B2%9C%EA%B5%90"
+     }
+    ],
+    "related": [
+     {
       "n": "의암호 호반길",
       "d": "이어 붙이면 장거리로 전환",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/31/2748631_image2_1.jpg",
@@ -163,7 +237,9 @@
       "lng": 127.525489199882,
       "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%9D%B4%EC%84%AC"
      }
-    ]
+    ],
+    "lat": 37.8751231,
+    "lng": 127.7097441
    }
   ]
  },
@@ -212,6 +288,43 @@
     ],
     "poi": [
      {
+      "n": "경포호",
+      "d": "출발점. 호수 순환로",
+      "addr": "강원특별자치도 강릉시 저동",
+      "lat": 37.797933,
+      "lng": 128.9048623,
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%ED%98%B8",
+      "nextM": 762
+     },
+     {
+      "n": "경포대",
+      "d": "호수 북쪽 정자",
+      "addr": "강원특별자치도 강릉시 창해로 451 1~2층 경포어시장 강릉본점",
+      "lat": 37.8012144,
+      "lng": 128.9116613,
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EB%8C%80",
+      "nextM": 2735
+     },
+     {
+      "n": "경포가시연습지",
+      "d": "남쪽 습지 구간",
+      "addr": "강원특별자치도 강릉시 운정동 643",
+      "lat": 37.7889554,
+      "lng": 128.8969292,
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EA%B0%80%EC%8B%9C%EC%97%B0%EC%8A%B5%EC%A7%80",
+      "nextM": 2592
+     },
+     {
+      "n": "허난설헌생가터",
+      "d": "솔숲 구간",
+      "addr": "강원특별자치도 강릉시 초당동",
+      "lat": 37.7918973,
+      "lng": 128.9096442,
+      "naver": "https://map.naver.com/p/search/%ED%97%88%EB%82%9C%EC%84%A4%ED%97%8C%EC%83%9D%EA%B0%80%ED%84%B0"
+     }
+    ],
+    "related": [
+     {
       "n": "경포해수욕장",
       "d": "호수와 이어 붙이면 8~9km. 일출런 지점",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/25/4075925_image2_1.jpg",
@@ -247,7 +360,9 @@
       "lng": 128.9155,
       "naver": "https://map.naver.com/p/search/%EC%B4%88%EB%8B%B9%EC%88%9C%EB%91%90%EB%B6%80%EB%A7%88%EC%9D%84"
      }
-    ]
+    ],
+    "lat": 37.797933,
+    "lng": 128.9048623
    },
    {
     "id": "gangneung-anmok-sunrise",
@@ -288,6 +403,43 @@
     ],
     "poi": [
      {
+      "n": "안목해변",
+      "d": "출발점. 일출 정면",
+      "naver": "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%ED%95%B4%EB%B3%80",
+      "addr": "강원특별자치도 강릉시 창해로14번길 28",
+      "lat": 37.7720879,
+      "lng": 128.9478338,
+      "nextM": 463
+     },
+     {
+      "n": "강릉항",
+      "d": "방파제 구간",
+      "addr": "강원특별자치도 강릉시 창해로14번길 55-11",
+      "lat": 37.7707185,
+      "lng": 128.9520896,
+      "naver": "https://map.naver.com/p/search/%EA%B0%95%EB%A6%89%ED%95%AD",
+      "nextM": 433
+     },
+     {
+      "n": "안목 커피거리",
+      "d": "러닝 후 마무리",
+      "addr": "강원특별자치도 강릉시 경강로 2643 안목커피거리카라반",
+      "lat": 37.7714193,
+      "lng": 128.9478744,
+      "naver": "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%20%EC%BB%A4%ED%94%BC%EA%B1%B0%EB%A6%AC",
+      "nextM": 1134
+     },
+     {
+      "n": "남항진해변",
+      "d": "남쪽 반환점",
+      "addr": "강원특별자치도 강릉시 남항진동",
+      "lat": 37.7644426,
+      "lng": 128.9547743,
+      "naver": "https://map.naver.com/p/search/%EB%82%A8%ED%95%AD%EC%A7%84%ED%95%B4%EB%B3%80"
+     }
+    ],
+    "related": [
+     {
       "n": "강문해변",
       "d": "경포 방향 연결 구간",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/85/2921985_image2_1.jpg",
@@ -323,7 +475,9 @@
       "lng": 128.87966210169768,
       "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%A3%BD%ED%97%8C"
      }
-    ]
+    ],
+    "lat": 37.7707185,
+    "lng": 128.9520896
    }
   ]
  },
@@ -370,6 +524,43 @@
     ],
     "poi": [
      {
+      "n": "영랑호",
+      "d": "출발점. 호수 순환",
+      "addr": "강원특별자치도 속초시 장사동",
+      "lat": 38.2182759,
+      "lng": 128.581925,
+      "naver": "https://map.naver.com/p/search/%EC%98%81%EB%9E%91%ED%98%B8",
+      "nextM": 3588
+     },
+     {
+      "n": "영랑호수윗길",
+      "d": "호수를 가로지르는 부교",
+      "addr": "강원특별자치도 속초시 금호동 600-12",
+      "lat": 38.2158084,
+      "lng": 128.5782105,
+      "naver": "https://map.naver.com/p/search/%EC%98%81%EB%9E%91%ED%98%B8%EC%88%98%EC%9C%97%EA%B8%B8",
+      "nextM": 7365
+     },
+     {
+      "n": "범바위",
+      "d": "북쪽 조망 지점",
+      "addr": "강원특별자치도 속초시 척산양지말길 47-14",
+      "lat": 38.1868927,
+      "lng": 128.5417512,
+      "naver": "https://map.naver.com/p/search/%EB%B2%94%EB%B0%94%EC%9C%84",
+      "nextM": 7497
+     },
+     {
+      "n": "영랑정",
+      "d": "호반 정자 구간",
+      "addr": "강원특별자치도 속초시",
+      "lat": 38.2141929,
+      "lng": 128.5761623,
+      "naver": "https://map.naver.com/p/search/%EC%98%81%EB%9E%91%EC%A0%95"
+     }
+    ],
+    "related": [
+     {
       "n": "속초해수욕장",
       "d": "해맞이 구간 약 2km. 쿨다운",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/06/4095606_image2_1.jpg",
@@ -408,7 +599,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%9D%B4%EC%84%AC"
      }
-    ]
+    ],
+    "lat": 38.2182759,
+    "lng": 128.581925
    }
   ]
  }

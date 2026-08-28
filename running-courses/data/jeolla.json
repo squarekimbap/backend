@@ -44,6 +44,43 @@
     ],
     "poi": [
      {
+      "n": "광주천",
+      "d": "출발점. 우측 둔치가 러닝로",
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "양동시장",
+      "d": "도심 구간 표지",
+      "naver": "https://map.naver.com/p/search/%EC%96%91%EB%8F%99%EC%8B%9C%EC%9E%A5",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "무등경기장",
+      "d": "북쪽 반환 후보",
+      "naver": "https://map.naver.com/p/search/%EB%AC%B4%EB%93%B1%EA%B2%BD%EA%B8%B0%EC%9E%A5",
+      "addr": null,
+      "lat": null,
+      "lng": null,
+      "nextM": null
+     },
+     {
+      "n": "광주천 자전거길",
+      "d": "합류부 방면 구간",
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8",
+      "addr": null,
+      "lat": null,
+      "lng": null
+     }
+    ],
+    "related": [
+     {
       "n": "5·18기념공원",
       "d": "상무지구. 워밍업과 역사 산책",
       "photo": null,
@@ -119,7 +156,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%ED%95%A9%EB%A5%98%EB%B6%80"
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%ED%95%A9%EB%A5%98%EB%B6%80",
+      "nextM": null
      },
      {
       "n": "승촌보",
@@ -180,6 +218,43 @@
     ],
     "poi": [
      {
+      "n": "전주천",
+      "d": "출발점. 둔치 러닝로",
+      "naver": "https://map.naver.com/p/search/%EC%A0%84%EC%A3%BC%EC%B2%9C",
+      "addr": "전북특별자치도 전주시 덕진구",
+      "lat": 35.8522193,
+      "lng": 127.113683,
+      "nextM": 6889
+     },
+     {
+      "n": "한벽당",
+      "d": "상류 구간 표지",
+      "addr": "전북특별자치도 전주시 완산구 기린대로 2",
+      "lat": 35.8118758,
+      "lng": 127.1608016,
+      "naver": "https://map.naver.com/p/search/%ED%95%9C%EB%B2%BD%EB%8B%B9",
+      "nextM": 975
+     },
+     {
+      "n": "남천교",
+      "d": "한옥마을 진입 지점",
+      "addr": "전북특별자치도 전주시 완산구 동서학동",
+      "lat": 35.8106935,
+      "lng": 127.1531868,
+      "naver": "https://map.naver.com/p/search/%EB%82%A8%EC%B2%9C%EA%B5%90",
+      "nextM": 946
+     },
+     {
+      "n": "전주한옥마을",
+      "d": "새벽에 조용한 골목 구간",
+      "addr": "전북특별자치도 전주시 완산구 기린대로 99",
+      "lat": 35.8183156,
+      "lng": 127.1536061,
+      "naver": "https://map.naver.com/p/search/%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84"
+     }
+    ],
+    "related": [
+     {
       "n": "덕진공원",
       "d": "회복런. 24시간 개방",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/40/4095540_image2_1.jpg",
@@ -218,7 +293,9 @@
       "lng": 127.1538779813,
       "naver": "https://map.naver.com/p/search/%EC%A0%84%EC%A3%BC%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84"
      }
-    ]
+    ],
+    "lat": 35.8118758,
+    "lng": 127.1608016
    },
    {
     "id": "jeonju-deokjin",
@@ -258,6 +335,34 @@
     ],
     "poi": [
      {
+      "n": "덕진공원",
+      "d": "출발점. 연화지 둘레",
+      "addr": "전북특별자치도 전주시 덕진구 덕진동1가 640-10",
+      "lat": 35.8531633,
+      "lng": 127.1408493,
+      "naver": "https://map.naver.com/p/search/%EB%8D%95%EC%A7%84%EA%B3%B5%EC%9B%90",
+      "nextM": 1625
+     },
+     {
+      "n": "연화교",
+      "d": "호수를 가로지르는 다리",
+      "addr": "전북특별자치도 전주시 덕진구 덕진동1가",
+      "lat": 35.8499916,
+      "lng": 127.1253467,
+      "naver": "https://map.naver.com/p/search/%EC%97%B0%ED%99%94%EA%B5%90",
+      "nextM": 914
+     },
+     {
+      "n": "전북대학교",
+      "d": "확장 동선",
+      "addr": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "lat": 35.8455464,
+      "lng": 127.1263003,
+      "naver": "https://map.naver.com/p/search/%EC%A0%84%EB%B6%81%EB%8C%80%ED%95%99%EA%B5%90"
+     }
+    ],
+    "related": [
+     {
       "n": "전주천",
       "d": "거리를 늘릴 때 연결",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/97/3054097_image2_1.jpg",
@@ -296,7 +401,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%A0%84%EB%B6%81%EB%8C%80%20%ED%8A%B8%EB%9E%99"
      }
-    ]
+    ],
+    "lat": 35.8531633,
+    "lng": 127.1408493
    }
   ]
  },
@@ -344,6 +451,45 @@
     ],
     "poi": [
      {
+      "n": "평화광장",
+      "d": "출발점. 춤추는 바다분수",
+      "addr": "전남광주통합특별시 목포시 평화로 82",
+      "lat": 34.796225,
+      "lng": 126.433325,
+      "naver": "https://map.naver.com/p/search/%ED%8F%89%ED%99%94%EA%B4%91%EC%9E%A5",
+      "nextM": 6796
+     },
+     {
+      "n": "목포해상케이블카",
+      "d": "해안 구간 표지",
+      "addr": "전남광주통합특별시 목포시 해양대학로 240",
+      "lat": 34.7993796,
+      "lng": 126.3700419,
+      "naver": "https://map.naver.com/p/search/%EB%AA%A9%ED%8F%AC%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4",
+      "nextM": 6301
+     },
+     {
+      "n": "갓바위",
+      "d": "중간 반환 후보",
+      "addr": "전남광주통합특별시 목포시",
+      "lat": 34.7921451,
+      "lng": 126.4256376,
+      "naver": "https://map.naver.com/p/search/%EA%B0%93%EB%B0%94%EC%9C%84",
+      "nextM": 2933
+     },
+     {
+      "n": "영산강하굿둑",
+      "d": "북쪽 반환점",
+      "addr": "전남광주통합특별시 목포시 남악로58번길 20",
+      "lat": 34.8020774,
+      "lng": 126.4458408,
+      "naver": "https://map.naver.com/p/search/%EC%98%81%EC%82%B0%EA%B0%95%ED%95%98%EA%B5%BF%EB%91%91"
+     }
+    ],
+    "lat": 34.796225,
+    "lng": 126.433325,
+    "related": [
+     {
       "n": "유달산 둘레길",
       "d": "약 6.7km. 오르내림 있음",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/11/4067011_image2_1.JPG",
@@ -382,9 +528,7 @@
       "lng": 126.3651120933,
       "naver": "https://map.naver.com/p/search/%EB%B6%81%ED%95%AD"
      }
-    ],
-    "lat": 34.7922,
-    "lng": 126.4259
+    ]
    }
   ]
  },
@@ -432,6 +576,45 @@
     ],
     "poi": [
      {
+      "n": "여수엑스포해양공원",
+      "d": "출발점",
+      "addr": "전남광주통합특별시 여수시 박람회길 1",
+      "lat": 34.7521952,
+      "lng": 127.7464994,
+      "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%88%98%EC%97%91%EC%8A%A4%ED%8F%AC%ED%95%B4%EC%96%91%EA%B3%B5%EC%9B%90",
+      "nextM": 2947
+     },
+     {
+      "n": "오동도",
+      "d": "동백 숲 순환 구간",
+      "addr": "전남광주통합특별시 여수시 수정동 산1-11",
+      "lat": 34.7446161,
+      "lng": 127.7665325,
+      "naver": "https://map.naver.com/p/search/%EC%98%A4%EB%8F%99%EB%8F%84",
+      "nextM": 3390
+     },
+     {
+      "n": "이순신광장",
+      "d": "도심 구간 표지",
+      "addr": "전남광주통합특별시 여수시 통제영3길 12-11 1층",
+      "lat": 34.7410591,
+      "lng": 127.7346792,
+      "naver": "https://map.naver.com/p/search/%EC%9D%B4%EC%88%9C%EC%8B%A0%EA%B4%91%EC%9E%A5",
+      "nextM": 2622
+     },
+     {
+      "n": "여수해상케이블카",
+      "d": "돌산 방면 반환점",
+      "addr": "전남광주통합특별시 여수시 돌산읍 돌산로 3600-1",
+      "lat": 34.7307476,
+      "lng": 127.7415551,
+      "naver": "https://map.naver.com/p/search/%EC%97%AC%EC%88%98%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4"
+     }
+    ],
+    "lat": 34.7521952,
+    "lng": 127.7464994,
+    "related": [
+     {
       "n": "오동도 등대",
       "d": "코스 반환점",
       "photo": "https://tong.visitkorea.or.kr/cms/resource/34/3019934_image2_1.jpg",
@@ -470,9 +653,7 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EB%A7%8C%EC%8A%B5%EC%A7%80"
      }
-    ],
-    "lat": 34.7444013572,
-    "lng": 127.7678097276
+    ]
    },
    {
     "id": "yeosu-old-railroad",
@@ -510,7 +691,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EA%B5%AC%20%EB%8D%95%EC%96%91%EC%97%AD"
+      "naver": "https://map.naver.com/p/search/%EA%B5%AC%20%EB%8D%95%EC%96%91%EC%97%AD",
+      "nextM": null
      },
      {
       "n": "기찻길 터널 구간",
@@ -518,7 +700,8 @@
       "addr": null,
       "lat": null,
       "lng": null,
-      "naver": "https://map.naver.com/p/search/%EA%B8%B0%EC%B0%BB%EA%B8%B8%20%ED%84%B0%EB%84%90%20%EA%B5%AC%EA%B0%84"
+      "naver": "https://map.naver.com/p/search/%EA%B8%B0%EC%B0%BB%EA%B8%B8%20%ED%84%B0%EB%84%90%20%EA%B5%AC%EA%B0%84",
+      "nextM": null
      },
      {
       "n": "만흥공원",
@@ -579,6 +762,45 @@
     ],
     "poi": [
      {
+      "n": "동천",
+      "d": "출발점. 하천 둔치",
+      "addr": "전남광주통합특별시 순천시",
+      "lat": 34.9225179,
+      "lng": 127.5106625,
+      "naver": "https://map.naver.com/p/search/%EB%8F%99%EC%B2%9C",
+      "nextM": 1610
+     },
+     {
+      "n": "순천만국가정원",
+      "d": "남쪽 구간 표지",
+      "addr": "전남광주통합특별시 순천시 국가정원1호길 47",
+      "lat": 34.9273063,
+      "lng": 127.5084156,
+      "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EB%A7%8C%EA%B5%AD%EA%B0%80%EC%A0%95%EC%9B%90",
+      "nextM": 4533
+     },
+     {
+      "n": "죽도봉공원",
+      "d": "도심 방면 반환점",
+      "addr": "전남광주통합특별시 순천시",
+      "lat": 34.9539345,
+      "lng": 127.4946625,
+      "naver": "https://map.naver.com/p/search/%EC%A3%BD%EB%8F%84%EB%B4%89%EA%B3%B5%EC%9B%90",
+      "nextM": null
+     },
+     {
+      "n": "순천왕지천",
+      "d": "합류부 구간",
+      "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%99%95%EC%A7%80%EC%B2%9C",
+      "addr": null,
+      "lat": null,
+      "lng": null
+     }
+    ],
+    "lat": 34.9225179,
+    "lng": 127.5106625,
+    "related": [
+     {
       "n": "국가정원 동문",
       "d": "반환점. 주차 가능",
       "photo": null,
@@ -617,9 +839,7 @@
       "lng": 127.502633,
       "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%97%AD"
      }
-    ],
-    "lat": 34.9320513,
-    "lng": 127.5131992
+    ]
    }
   ]
  },
@@ -664,7 +884,8 @@
       "addr": "전북특별자치도 군산시 비응도동 91",
       "lat": 35.93871118923199,
       "lng": 126.53080123680301,
-      "naver": "https://map.naver.com/p/search/%EB%B9%84%EC%9D%91%ED%95%AD"
+      "naver": "https://map.naver.com/p/search/%EB%B9%84%EC%9D%91%ED%95%AD",
+      "nextM": null
      },
      {
       "n": "야미도",
