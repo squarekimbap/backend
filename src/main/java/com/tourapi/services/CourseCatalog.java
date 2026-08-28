@@ -24,7 +24,9 @@ public class CourseCatalog {
     /** 목록(카드) 응답에 내려줄 필드 — 본문(body 등)은 상세에서만. */
     private static final String[] SUMMARY_FIELDS = {
             "id", "n", "city", "cityId", "region", "km", "min", "lv", "mood",
-            "tags", "headline", "subhead", "photo", "photoTitle", "photoLicense", "url"
+            "tags", "headline", "subhead", "photo", "photoTitle", "photoLicense", "url",
+            // 홈 피드에서 지도에 찍거나 현재 위치와의 거리를 계산할 수 있게 좌표도 내려준다
+            "lat", "lng"
     };
 
     @Inject

@@ -80,12 +80,12 @@ public class CourseResourceTest {
     }
 
     @Test
-    public void 주변맛집_좌표없는_코스는_빈목록() {
-        // 수집 원본에 좌표가 없는 코스 — 업스트림을 부르지 않고 조용히 빈 목록
-        RestAssured.when().get("/v1/courses/anyang-pyeongchon-freedom/nearby")
-                .then().statusCode(200)
-                .body("count", equalTo(0))
-                .body("basedOn", org.hamcrest.Matchers.nullValue());
+    public void 모든_코스에_대표좌표가_있다() {
+        // 주변 맛집 기준점이 되는 좌표. 없으면 그 코스만 조용히 빈 목록이 되므로 회귀를 막는다
+        for (var course : catalog.list(null)) {
+            Assertions.assertTrue(course.hasNonNull("lat") && course.hasNonNull("lng"),
+                    "코스 좌표 누락: " + course.path("id").asText());
+        }
     }
 
     @Test
