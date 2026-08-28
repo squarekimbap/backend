@@ -38,7 +38,7 @@ public class AppleVerifier {
     String keysUrl;
 
     /** aud = 앱 번들 ID. 다른 앱에 발급된 토큰으로 로그인하는 것을 막는다. */
-    @ConfigProperty(name = "auth.apple.audience", defaultValue = "com.seungchan.eodirun")
+    @ConfigProperty(name = "auth.apple.audience", defaultValue = "com.mega.dali")
     String audience;
 
     private final HttpClient http = HttpClient.newBuilder().connectTimeout(CONNECT_TIMEOUT).build();
