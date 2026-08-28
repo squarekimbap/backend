@@ -47,36 +47,36 @@
       "n": "광주천",
       "d": "출발점. 우측 둔치가 러닝로",
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C",
-      "addr": null,
-      "lat": null,
-      "lng": null,
-      "nextM": null
+      "addr": "전남광주통합특별시 서구",
+      "lat": 35.167602,
+      "lng": 126.871587,
+      "nextM": 3613
      },
      {
       "n": "양동시장",
       "d": "도심 구간 표지",
       "naver": "https://map.naver.com/p/search/%EC%96%91%EB%8F%99%EC%8B%9C%EC%9E%A5",
       "addr": null,
-      "lat": null,
-      "lng": null,
-      "nextM": null
+      "lat": 35.1545129,
+      "lng": 126.901769,
+      "nextM": 2404
      },
      {
       "n": "무등경기장",
       "d": "북쪽 반환 후보",
       "naver": "https://map.naver.com/p/search/%EB%AC%B4%EB%93%B1%EA%B2%BD%EA%B8%B0%EC%9E%A5",
-      "addr": null,
-      "lat": null,
-      "lng": null,
-      "nextM": null
+      "addr": "전남광주통합특별시 북구",
+      "lat": 35.1674763,
+      "lng": 126.887125,
+      "nextM": 1865
      },
      {
       "n": "광주천 자전거길",
       "d": "합류부 방면 구간",
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8",
-      "addr": null,
-      "lat": null,
-      "lng": null
+      "addr": "전남광주통합특별시 서구",
+      "lat": 35.167602,
+      "lng": 126.871587
      }
     ],
     "related": [
@@ -119,7 +119,9 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%ED%98%B8%20%ED%98%B8%EC%88%98%EC%83%9D%ED%83%9C%EC%9B%90"
      }
-    ]
+    ],
+    "lat": 35.167602,
+    "lng": 126.871587
    },
    {
     "id": "gwangju-yeongsangang",
@@ -153,12 +155,19 @@
      {
       "n": "광주천 합류부",
       "d": "도심 코스와 연결",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "전남광주통합특별시 서구",
+      "lat": 35.167602,
+      "lng": 126.871587,
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%ED%95%A9%EB%A5%98%EB%B6%80",
       "nextM": null
-     },
+     }
+    ],
+    "photo": null,
+    "photoTitle": "영산강",
+    "photoLicense": null,
+    "lat": 35.167602,
+    "lng": 126.871587,
+    "related": [
      {
       "n": "승촌보",
       "d": "남쪽 확장 반환점",
@@ -167,10 +176,7 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%8A%B9%EC%B4%8C%EB%B3%B4"
      }
-    ],
-    "photo": null,
-    "photoTitle": "영산강",
-    "photoLicense": null
+    ]
    }
   ]
  },
@@ -688,20 +694,20 @@
      {
       "n": "구 덕양역",
       "d": "출발점",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "전남광주통합특별시 여수시 문수북4길 2-1",
+      "lat": 34.758769,
+      "lng": 127.710512,
       "naver": "https://map.naver.com/p/search/%EA%B5%AC%20%EB%8D%95%EC%96%91%EC%97%AD",
-      "nextM": null
+      "nextM": 5013
      },
      {
       "n": "기찻길 터널 구간",
       "d": "중간 볼거리",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "전남광주통합특별시 여수시 만성리길 5 손두부마을",
+      "lat": 34.7749034,
+      "lng": 127.7447193,
       "naver": "https://map.naver.com/p/search/%EA%B8%B0%EC%B0%BB%EA%B8%B8%20%ED%84%B0%EB%84%90%20%EA%B5%AC%EA%B0%84",
-      "nextM": null
+      "nextM": 333
      },
      {
       "n": "만흥공원",
@@ -714,7 +720,9 @@
     ],
     "photo": null,
     "photoTitle": "여수 기찻길",
-    "photoLicense": null
+    "photoLicense": null,
+    "lat": 34.7749034,
+    "lng": 127.7447193
    }
   ]
  },
@@ -786,15 +794,15 @@
       "lat": 34.9539345,
       "lng": 127.4946625,
       "naver": "https://map.naver.com/p/search/%EC%A3%BD%EB%8F%84%EB%B4%89%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "nextM": 4387
      },
      {
       "n": "순천왕지천",
       "d": "합류부 구간",
       "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%99%95%EC%A7%80%EC%B2%9C",
-      "addr": null,
-      "lat": null,
-      "lng": null
+      "addr": "전남광주통합특별시 순천시 왕지2길 4-14 1층 101호",
+      "lat": 34.9693371,
+      "lng": 127.5223935
      }
     ],
     "lat": 34.9225179,
@@ -898,7 +906,9 @@
     ],
     "photo": "https://tong.visitkorea.or.kr/cms/resource/54/4039054_image2_1.jpg",
     "photoTitle": "비응항",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 35.93871118923199,
+    "lng": 126.53080123680301
    }
   ]
  }

@@ -842,7 +842,9 @@
    ],
    "photo": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
    "photoTitle": "경복궁",
-   "photoLicense": "한국관광공사 · 공공누리 제1유형"
+   "photoLicense": "한국관광공사 · 공공누리 제1유형",
+   "lat": 37.5706048802754,
+   "lng": 126.976341183145
   },
   {
    "id": "seoul-wirye-humanring",
@@ -892,7 +894,9 @@
    ],
    "photo": "https://tong.visitkorea.or.kr/cms/resource/47/4018547_image2_1.jpg",
    "photoTitle": "아트박스 위례앨리웨이점",
-   "photoLicense": "한국관광공사 · 공공누리 제1유형"
+   "photoLicense": "한국관광공사 · 공공누리 제1유형",
+   "lat": 37.4747277,
+   "lng": 127.1428383
   },
   {
    "id": "seoul-haneul-park",

@@ -164,16 +164,16 @@
       "lat": 36.4050302,
       "lng": 127.4428168,
       "naver": "https://map.naver.com/p/search/%EC%9E%A5%EB%8F%99%EC%82%B0%EB%A6%BC%EC%9A%95%EC%9E%A5",
-      "nextM": null
+      "nextM": 1
      },
      {
       "n": "임도삼거리",
       "d": "황톳길 갈림 구간",
       "naver": "https://map.naver.com/p/search/%EC%9E%84%EB%8F%84%EC%82%BC%EA%B1%B0%EB%A6%AC",
-      "addr": null,
-      "lat": null,
-      "lng": null,
-      "nextM": null
+      "addr": "대전광역시 대덕구 장동 산62",
+      "lat": 36.4050334,
+      "lng": 127.4428072,
+      "nextM": 7326
      },
      {
       "n": "계족산성",
@@ -546,17 +546,17 @@
       "d": "가을 절정 구간",
       "naver": "https://map.naver.com/p/search/%EA%B3%A1%EA%B5%90%EC%B2%9C%20%EC%9D%80%ED%96%89%EB%82%98%EB%AC%B4%EA%B8%B8",
       "addr": null,
-      "lat": null,
-      "lng": null,
-      "nextM": null
+      "lat": 36.7966984,
+      "lng": 127.0304994,
+      "nextM": 1324
      },
      {
       "n": "현충사",
       "d": "반환점 인근",
       "naver": "https://map.naver.com/p/search/%ED%98%84%EC%B6%A9%EC%82%AC",
       "addr": null,
-      "lat": null,
-      "lng": null,
+      "lat": 36.8047399,
+      "lng": 127.0291481,
       "nextM": null
      },
      {

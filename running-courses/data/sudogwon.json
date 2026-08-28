@@ -773,24 +773,26 @@
      {
       "n": "자유공원 약수터",
       "d": "물 보급 지점",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 안양시 동안구 평촌대로 76 평촌아트홀",
+      "lat": 37.3795781,
+      "lng": 126.9646767,
       "naver": "https://map.naver.com/p/search/%EC%9E%90%EC%9C%A0%EA%B3%B5%EC%9B%90%20%EC%95%BD%EC%88%98%ED%84%B0",
       "nextM": null
      },
      {
       "n": "궁도장 오르막",
       "d": "200m·경사 15% — 힐 리피트 훈련 포인트",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 안양시 동안구 평촌대로 76 평촌아트홀",
+      "lat": 37.3795781,
+      "lng": 126.9646767,
       "naver": "https://map.naver.com/p/search/%EA%B6%81%EB%8F%84%EC%9E%A5%20%EC%98%A4%EB%A5%B4%EB%A7%89"
      }
     ],
     "photo": null,
     "photoTitle": "안양 자유공원",
-    "photoLicense": null
+    "photoLicense": null,
+    "lat": 37.3795781,
+    "lng": 126.9646767
    },
    {
     "id": "anyang-hakuicheon",
@@ -829,7 +831,12 @@
       "lng": 126.9381599,
       "naver": "https://map.naver.com/p/search/%EC%8C%8D%EA%B0%9C%EC%9A%B8",
       "nextM": null
-     },
+     }
+    ],
+    "photo": null,
+    "photoTitle": "학의천",
+    "photoLicense": null,
+    "related": [
      {
       "n": "백운호수 방면",
       "d": "동쪽 확장 반환점",
@@ -839,9 +846,8 @@
       "naver": "https://map.naver.com/p/search/%EB%B0%B1%EC%9A%B4%ED%98%B8%EC%88%98%20%EB%B0%A9%EB%A9%B4"
      }
     ],
-    "photo": null,
-    "photoTitle": "학의천",
-    "photoLicense": null
+    "lat": 37.3948899,
+    "lng": 126.9381599
    },
    {
     "id": "anyang-anyangcheon-jongju",
@@ -889,14 +895,14 @@
       "lat": 37.4386467,
       "lng": 126.8991427,
       "naver": "https://map.naver.com/p/search/%EA%B8%B0%EC%95%84%EB%8C%80%EA%B5%90",
-      "nextM": null
+      "nextM": 197
      },
      {
       "n": "안양천 합수부",
       "d": "한강 합류 — 종착점이자 확장 분기점",
       "addr": null,
-      "lat": null,
-      "lng": null,
+      "lat": 37.4375286,
+      "lng": 126.9002593,
       "naver": "https://map.naver.com/p/search/%EC%95%88%EC%96%91%EC%B2%9C%20%ED%95%A9%EC%88%98%EB%B6%80"
      }
     ],
@@ -945,12 +951,19 @@
      {
       "n": "백운호수 데크길",
       "d": "둘레 대부분이 데크",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 의왕시 학의동",
+      "lat": 37.3803653,
+      "lng": 127.0028132,
       "naver": "https://map.naver.com/p/search/%EB%B0%B1%EC%9A%B4%ED%98%B8%EC%88%98%20%EB%8D%B0%ED%81%AC%EA%B8%B8",
       "nextM": null
-     },
+     }
+    ],
+    "photo": "http://tong.visitkorea.or.kr/cms/resource/01/2742401_image2_1.jpeg",
+    "photoTitle": "기와 백운호수점",
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 37.3803653,
+    "lng": 127.0028132,
+    "related": [
      {
       "n": "학의천 진입로",
       "d": "평촌 방면 확장 지점",
@@ -959,10 +972,7 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%ED%95%99%EC%9D%98%EC%B2%9C%20%EC%A7%84%EC%9E%85%EB%A1%9C"
      }
-    ],
-    "photo": "http://tong.visitkorea.or.kr/cms/resource/01/2742401_image2_1.jpeg",
-    "photoTitle": "기와 백운호수점",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    ]
    }
   ]
  },
@@ -1007,14 +1017,14 @@
       "lat": 37.2406720138,
       "lng": 127.1010829441,
       "naver": "https://map.naver.com/p/search/%EA%B8%B0%ED%9D%A5%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "nextM": 3215
      },
      {
       "n": "신갈천 합류부",
       "d": "동백 방면 확장 지점",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 용인시 기흥구 농서동",
+      "lat": 37.2186253,
+      "lng": 127.0889001,
       "naver": "https://map.naver.com/p/search/%EC%8B%A0%EA%B0%88%EC%B2%9C%20%ED%95%A9%EB%A5%98%EB%B6%80"
      }
     ],
@@ -1065,12 +1075,19 @@
      {
       "n": "오산천 둔치",
       "d": "시내 관통 구간",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 오산시 누읍동 1",
+      "lat": 37.1398794,
+      "lng": 127.0623104,
       "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%82%B0%EC%B2%9C%20%EB%91%94%EC%B9%98",
       "nextM": null
-     },
+     }
+    ],
+    "photo": null,
+    "photoTitle": "오산천",
+    "photoLicense": null,
+    "lat": 37.1398794,
+    "lng": 127.0623104,
+    "related": [
      {
       "n": "치동천 합류부",
       "d": "동탄 방면 확장 지점",
@@ -1079,10 +1096,7 @@
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EC%B9%98%EB%8F%99%EC%B2%9C%20%ED%95%A9%EB%A5%98%EB%B6%80"
      }
-    ],
-    "photo": null,
-    "photoTitle": "오산천",
-    "photoLicense": null
+    ]
    }
   ]
  },
@@ -1127,14 +1141,14 @@
       "lat": 37.1669527885,
       "lng": 127.1024487705,
       "naver": "https://map.naver.com/p/search/%EB%8F%99%ED%83%84%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
-      "nextM": null
+      "nextM": 1997
      },
      {
       "n": "루나쇼 분수",
       "d": "야간 볼거리 — 관람 인파 주의",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 화성시 동탄구 동탄순환대로 69",
+      "lat": 37.1672782,
+      "lng": 127.1023041,
       "naver": "https://map.naver.com/p/search/%EB%A3%A8%EB%82%98%EC%87%BC%20%EB%B6%84%EC%88%98"
      }
     ],
@@ -1178,10 +1192,10 @@
       "n": "제부도 바닷길 입구",
       "d": "물때 확인 필수",
       "addr": null,
-      "lat": null,
-      "lng": null,
+      "lat": 37.1685538,
+      "lng": 126.6225566,
       "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%B0%94%EB%8B%B7%EA%B8%B8%20%EC%9E%85%EA%B5%AC",
-      "nextM": null
+      "nextM": 1847
      },
      {
       "n": "제부도 등대",
@@ -1251,29 +1265,31 @@
       "lat": 37.3475078614,
       "lng": 126.6887174374,
       "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%9D%B4%EB%8F%84",
-      "nextM": null
+      "nextM": 9694
      },
      {
       "n": "시화나래휴게소",
       "d": "중간 보급·달전망대",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 안산시 단원구 대부동동",
+      "lat": 37.3115991,
+      "lng": 126.6078961,
       "naver": "https://map.naver.com/p/search/%EC%8B%9C%ED%99%94%EB%82%98%EB%9E%98%ED%9C%B4%EA%B2%8C%EC%86%8C",
-      "nextM": null
+      "nextM": 3802
      },
      {
       "n": "방아머리해변",
       "d": "종착점(대부도)",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경기도 안산시 단원구 대부북동",
+      "lat": 37.2897536,
+      "lng": 126.5781242,
       "naver": "https://map.naver.com/p/search/%EB%B0%A9%EC%95%84%EB%A8%B8%EB%A6%AC%ED%95%B4%EB%B3%80"
      }
     ],
     "photo": "https://tong.visitkorea.or.kr/cms/resource/53/3512453_image2_1.jpg",
     "photoTitle": "시흥 오이도마을",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 37.3115991,
+    "lng": 126.6078961
    }
   ]
  }

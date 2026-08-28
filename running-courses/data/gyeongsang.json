@@ -170,9 +170,9 @@
       "n": "진밭골자연휴양림",
       "d": "오르막 시작 구간",
       "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "대구광역시 수성구 범물동",
+      "lat": 35.7978819,
+      "lng": 128.6774695,
       "nextM": null
      },
      {
@@ -392,7 +392,9 @@
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/16/3538016_image2_1.JPG",
     "photoTitle": "금호강 바람소리길 축제",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 35.8825752,
+    "lng": 128.6506105
    }
   ]
  },
@@ -815,16 +817,16 @@
       "lat": 35.1668596,
       "lng": 128.691525,
       "naver": "https://map.naver.com/p/search/%EC%A7%84%ED%95%B4%EB%93%9C%EB%A6%BC%EB%A1%9C%EB%93%9C",
-      "nextM": null
+      "nextM": 4414
      },
      {
       "n": "장복하늘마루길",
       "d": "진해만 조망 구간",
       "naver": "https://map.naver.com/p/search/%EC%9E%A5%EB%B3%B5%ED%95%98%EB%8A%98%EB%A7%88%EB%A3%A8%EA%B8%B8",
-      "addr": null,
-      "lat": null,
-      "lng": null,
-      "nextM": null
+      "addr": "경상남도 창원시 진해구 태백동 산84-3",
+      "lat": 35.172929,
+      "lng": 128.6570659,
+      "nextM": 6007
      },
      {
       "n": "안민고개",
@@ -1041,24 +1043,26 @@
      {
       "n": "남매지 데크길",
       "d": "둘레 순환",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상북도 경산시 계양동",
+      "lat": 35.827642,
+      "lng": 128.744513,
       "naver": "https://map.naver.com/p/search/%EB%82%A8%EB%A7%A4%EC%A7%80%20%EB%8D%B0%ED%81%AC%EA%B8%B8",
-      "nextM": null
+      "nextM": 1365
      },
      {
       "n": "영남대 방면",
       "d": "코스 확장 지점",
-      "addr": null,
-      "lat": null,
-      "lng": null,
+      "addr": "경상북도 경산시 계양로 149",
+      "lat": 35.8284249,
+      "lng": 128.7480624,
       "naver": "https://map.naver.com/p/search/%EC%98%81%EB%82%A8%EB%8C%80%20%EB%B0%A9%EB%A9%B4"
      }
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/79/3541879_image2_1.jpg",
     "photoTitle": "남매지",
-    "photoLicense": "한국관광공사 · 공공누리 제1유형"
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
+    "lat": 35.827642,
+    "lng": 128.744513
    }
   ]
  }
