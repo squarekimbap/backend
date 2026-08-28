@@ -73,6 +73,22 @@ public class CourseResourceTest {
     }
 
     @Test
+    public void 주변맛집_없는_id_404() {
+        RestAssured.when().get("/v1/courses/no-such-course/nearby")
+                .then().statusCode(404)
+                .body("error", equalTo("not_found"));
+    }
+
+    @Test
+    public void 주변맛집_좌표없는_코스는_빈목록() {
+        // 수집 원본에 좌표가 없는 코스 — 업스트림을 부르지 않고 조용히 빈 목록
+        RestAssured.when().get("/v1/courses/anyang-pyeongchon-freedom/nearby")
+                .then().statusCode(200)
+                .body("count", equalTo(0))
+                .body("basedOn", org.hamcrest.Matchers.nullValue());
+    }
+
+    @Test
     public void 없는_id_404() {
         RestAssured.when().get("/v1/courses/no-such-course")
                 .then().statusCode(404)

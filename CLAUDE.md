@@ -14,7 +14,7 @@
 - **AWS Lambda (java21) + Function URL** — Function URL은 API Gateway의 12개월-후-과금을 피하려고 선택(무료 유지).
 - **Java 21 + Quarkus 3.37** (`quarkus-amazon-lambda-http`) + **RESTEasy(JAX-RS)**. Java는 사용자의 Spring/Java 경험 활용. Quarkus는 콜드스타트(native) 목적.
 - **Maven** 빌드, **AWS SAM**(`template.yaml`) 배포.
-- **DynamoDB 캐시 도입됨**: 테이블 `tour-api-cache`(pk 단일키, TTL 속성 `ttl`, provisioned 5/5 — always-free 25/25 한도 내). *(예정)* **Cognito**(로그인/인증), **DynamoDB 사용자 데이터**, **SSM Parameter Store**(시크릿).
+- **DynamoDB 캐시·사용자 테이블과 Cognito 인증 배포됨**: `tour-api-cache`(pk, TTL, provisioned 5/5), `app-users`(userId, 5/5), Cognito User Pool. **SSM Parameter Store**(시크릿)는 예정.
 - 리전 **ap-northeast-2**(서울).
 
 ## AWS 계정
@@ -27,11 +27,14 @@
 - `GET /v1/tour/places?lat&lng[&radius&type&page&size]` → 위치기반 관광정보(TourAPI `locationBasedList2` 프록시). 라이브 검증됨(2026-07-01 배포).
 - `GET /v1/tour/popular?lat&lng[&size]` → 좌표 주변 인기 관광지 **집중률 순위**(30일 평균). **DynamoDB 캐시 적용**(키 `popular#<signguCd>#<KST yyyyMMdd>`, TTL 26h, size 자르기 전 전체 순위 저장): 시군구당 하루 첫 1회만 느림(~10s) → 이후 ~1.5s(워밍 히트, 로그 "집중률 캐시 히트"로 검증, 2026-07-02). 남은 최적화: 히트 시에도 좌표→시군구 역지오코딩(locationBasedList2 ~1s)은 매번 호출 — L1 인메모리로 줄일 수 있음.
 - `POST /v1/running/candidates` (러닝 Phase A) → 설문(lat·lng·distanceKm·shape[loop|oneway]·count) → 주변 관광지(타입 12·14·28) + 집중률 순위 매칭 후보. data.go.kr 4콜(타입3+지역)을 **전용 풀로 병렬화**(순차 6~12s → ~2s; Lambda 저코어라 commonPool 금지). 라이브 검증(2026-07-03): 콜드 6.8s / 워밍 0.4s.
-- `POST /v1/running/routes` (러닝 Phase B) → start+waypoints(1~5)+shape[+targetDistanceKm] → 순서 후보(선택/역순/근접, 중복 제거) → TMAP 보행 경로 + Google 고도(경로 100점 샘플) → 난이도(km당 상승 10↓하/25↓중/초과 상) → 코스 최대 3개(경로 path 최대 200점). 라이브 검증: ~0.8s.
+- JWT 필수 `POST /v1/running/routes` (호환 Phase B) → start+waypoints(1~5)+shape[+targetDistanceKm] → 선택/역순/근접 최대 3개를 TMAP+Google 고도로 제한 병렬 계산. 응답 계약은 유지하되 신규 보호 변경은 배포 전이다.
+- 신규 앱 흐름(로컬 구현, 배포 전): JWT 필수 `POST /v1/running/route-options`는 관광지 우선/거리 우선 최대 2개와 구간거리·Odii 도슨트 위치를 반환한다. Haversine 빔 탐색 후 TMAP 최대 5콜을 쓴다. 두 실시간 생성 API는 라우트 진입 기준 22초 deadline(JWT·콜드스타트 여유 8초), 사용자별 합산 분당 6회, 동일 입력 5분 캐시를 공유한다. 외부 HTTP timeout은 설정값과 absolute deadline 잔여시간 중 작은 값이며 단계 전환 때 시간이 없으면 후속 Elevation/Odii를 호출하지 않는다. DynamoDB는 2초 timeout·TTL 직접 검증·rate-limit 장애 fail-closed를 적용한다. `POST /v1/running/summary`는 선택 코스에 도착지 주변 TourAPI 음식점·카페를 붙인다.
 - `GET /v1/courses[?city=도시명|cityId]` · `GET /v1/courses/{id}` → **편집 코스 카탈로그**(어디 뛰지 수집본 + 러닝갤 큐레이션 64코스·32도시, 홈 피드/상세 화면용). 데이터는 `src/main/resources/data/courses.json` **번들**(DB 없음) — 원본은 `running-courses/data/*.json`(build.py 산출물 courses.json을 복사). 갱신 = 재복사 후 배포. id는 수집본 그대로(`seoul-banpo-10k` 형식, 42개 유일성 검증됨).
   ⚠️ 테스트 함정: 테스트용 MockEventServer가 큰(~24KB) 청크 응답을 종료하지 않아 read timeout — **전체 목록은 HTTP 테스트 금지, 서비스 레벨(CourseCatalog 주입)로 검증**(dev·실서버는 정상 확인).
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
-- 키 3개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`. 배포: `sam deploy ... --parameter-overrides TourApiKey=<키> TmapAppKey=<키> GoogleMapsApiKey=<키>`. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
+- `GET /v1/courses/{id}/nearby[?radius]` → 코스 상세의 **주변 맛집/카페**. 기준점은 좌표가 있는 마지막 poi. **1차 TourAPI(타입39) + 2차 네이버 지역검색(sort=comment=리뷰순) 교차검증** → `trust`: verified(양쪽) · trending(네이버만=최근 뜬 곳) · tour(관광공사만). 하루 캐시(`nearby#<id>#<반경>#<KST날짜>`, TTL 26h, **빈 결과는 캐시 안 함**). 좌표 미확보 코스(64개 중 9개)는 `count:0`으로 조용히 내려감.
+  ⚠️ **네이버 키 미검증**: 받은 자격증명(`NAVER_CLIENT_ID/SECRET`)이 검색·블로그 API 모두 **401 errorCode 024(인증 실패)**. 개발자센터에서 앱의 "사용 API"에 **검색**이 추가됐는지 + 키 오타를 확인할 것. 키가 없거나 틀려도 기능은 TourAPI 결과로 계속 동작(로그만 WARN).
+- 키 5개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`, `NaverClientId→NAVER_CLIENT_ID`, `NaverClientSecret→NAVER_CLIENT_SECRET`(네이버는 선택 — 비어도 배포는 진행, CI가 warning만). Odii 활용신청 후 `TourAudioEnabled=true`도 배포 파라미터에 넣는다. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
 ## 배포됨 — 인증/로그인 (2026-07-07 배포, 2026-08-19 라이브 재확인)
 - **이메일+카카오 인증 전체 구현·테스트 완료(34개 그린) 후 배포 완료.** UserPool(`app-users`, `ap-northeast-2_eaLSAOL0A`)·UserPoolClient(backend)·UsersTable(`app-users`, pk `userId`=sub) 모두 2026-07-07 12:48 생성됨.
@@ -95,7 +98,7 @@ sam delete --stack-name tour-api --region ap-northeast-2
 
 ## 현재 위치 (로드맵)
 hello world 배포까지 완료. 다음: 공통 유틸 → 시크릿/지역코드 → 프록시 엔드포인트 → ~~캐시~~(✅ DynamoDB, /popular 적용) → ~~러닝 Phase A/B~~(✅ 배포됨, 2026-07-03) → 인증/로그인(Cognito)+DB → 나머지 프록시(festivals·images 등) → native/rate limit.
-**앱 사용 API는 러닝 2개뿐**(candidates·routes — 설문→인기순 후보→선택→코스). `/tour/places`·`/tour/popular`는 앱 미사용이지만 유지 결정(2026-07-06): 디버깅·순위 캐시 확인·향후 관광 화면용. candidates가 내부에서 이 둘의 로직(nearbyPlaces·rankingForRegion)을 재사용하므로 삭제 금지.
+**신규 앱 생성 흐름은 러닝 3개**(candidates→route-options→summary). `/routes`는 구버전 호환용이다. `/tour/places`·`/tour/popular`는 앱 미사용이지만 유지하며 candidates·summary가 내부 로직을 재사용하므로 삭제 금지.
 러닝 구현 메모: 후보 정렬은 집중률 순위 우선(이름 정규화 매칭: 완전일치→포함관계 4자↑), Phase B의 walkDurationS는 TMAP 도보 기준(러닝 환산은 앱 몫). `.env`는 `KEY=값` 형식 유지(예전에 `KEY ="값"` 형식이라 dev 로더가 TMAP/Google 키를 못 읽었음 — 정규화함, 2026-07-03).
 캐시 구현 주의: `cache.table`은 env `CACHE_TABLE`로만 주입(MP-Config 자동 매핑). **properties에 `${CACHE_TABLE:}`로 쓰면 빈값이 '값 없음' 처리돼 기동 실패** → `RankingCache`는 `Optional<String>` 주입. 캐시 실패는 요청을 죽이지 않고 업스트림 폴백.
 첫 실제 엔드포인트 `/v1/tour/places`(위치기반 관광정보, TourAPI `locationBasedList2` 프록시) 구현됨 — 호출엔 **공공데이터포털 인증키**(`TOUR_API_KEY`) 필요.

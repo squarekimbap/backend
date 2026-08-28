@@ -14,6 +14,7 @@ public record CandidatesResponse(
         @Schema(description = "시도명", example = "서울특별시") String areaNm,
         @Schema(description = "시군구명", example = "중구") String signguNm,
         @Schema(description = "반환 후보 수") int count,
+        @Schema(description = "반환 후보 중 도슨트가 있는 장소 수") int storyCount,
         List<RunningCandidate> items
 ) {
 }

@@ -45,4 +45,34 @@ public final class Geo {
         }
         return up;
     }
+
+    /** 한 좌표와 polyline 사이의 최단거리(m). 짧은 구간에서는 지역 평면으로 근사한다. */
+    public static double distanceToPathMeters(double lat, double lng, List<double[]> path) {
+        if (path == null || path.isEmpty()) {
+            return Double.POSITIVE_INFINITY;
+        }
+        if (path.size() == 1) {
+            return haversineMeters(lat, lng, path.get(0)[0], path.get(0)[1]);
+        }
+
+        double best = Double.POSITIVE_INFINITY;
+        double cos = Math.cos(Math.toRadians(lat));
+        for (int i = 1; i < path.size(); i++) {
+            double[] a = path.get(i - 1);
+            double[] b = path.get(i);
+            double ax = Math.toRadians(a[1] - lng) * EARTH_R * cos;
+            double ay = Math.toRadians(a[0] - lat) * EARTH_R;
+            double bx = Math.toRadians(b[1] - lng) * EARTH_R * cos;
+            double by = Math.toRadians(b[0] - lat) * EARTH_R;
+            double dx = bx - ax;
+            double dy = by - ay;
+            double denom = dx * dx + dy * dy;
+            double t = denom == 0 ? 0 : -(ax * dx + ay * dy) / denom;
+            t = Math.max(0, Math.min(1, t));
+            double px = ax + t * dx;
+            double py = ay + t * dy;
+            best = Math.min(best, Math.hypot(px, py));
+        }
+        return best;
+    }
 }

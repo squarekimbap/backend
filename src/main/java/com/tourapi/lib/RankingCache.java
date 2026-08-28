@@ -5,15 +5,18 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
+import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration;
 import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
+import software.amazon.awssdk.services.dynamodb.model.ReturnValue;
 
 import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * DynamoDB 단일 테이블 캐시(키-값, TTL 자동 청소).
@@ -31,7 +34,8 @@ public class RankingCache {
     @Inject
     ObjectMapper mapper;
 
-    private volatile DynamoDbClient client;
+    volatile DynamoDbClient client;
+    private final ConcurrentHashMap<String, LocalCounter> localCounters = new ConcurrentHashMap<>();
 
     public boolean enabled() {
         return tableOpt.filter(t -> !t.isBlank()).isPresent();
@@ -49,6 +53,10 @@ public class RankingCache {
                     client = DynamoDbClient.builder()
                             .region(Region.of(region))
                             .httpClientBuilder(UrlConnectionHttpClient.builder())
+                            .overrideConfiguration(ClientOverrideConfiguration.builder()
+                                    .apiCallAttemptTimeout(Duration.ofMillis(1_200))
+                                    .apiCallTimeout(Duration.ofSeconds(2))
+                                    .build())
                             .build();
                 }
             }
@@ -65,6 +73,11 @@ public class RankingCache {
             GetItemResponse res = client().getItem(b -> b.tableName(table())
                     .key(Map.of("pk", AttributeValue.fromS(key))));
             if (!res.hasItem()) {
+                return null;
+            }
+            AttributeValue ttl = res.item().get("ttl");
+            long now = System.currentTimeMillis() / 1000;
+            if (ttl == null || ttl.n() == null || Long.parseLong(ttl.n()) <= now) {
                 return null;
             }
             AttributeValue payload = res.item().get("payload");
@@ -93,5 +106,53 @@ public class RankingCache {
         } catch (Exception e) {
             LOG.warnf("캐시 저장 실패(무시): %s", e.toString());
         }
+    }
+
+    /**
+     * 키별 고정 시간창 호출 제한. 배포 환경에서는 DynamoDB의 원자적 ADD를 사용하고,
+     * 로컬/테스트에서는 인스턴스 로컬 카운터를 쓴다. 배포 환경의 DynamoDB 확인이
+     * 실패하면 유료 API 보호를 위해 새 요청을 차단한다(fail closed).
+     */
+    public boolean allow(String key, int limit, Duration window) {
+        if (limit < 1 || window == null || window.isZero() || window.isNegative()) {
+            throw new IllegalArgumentException("올바르지 않은 호출 제한 설정");
+        }
+        if (!enabled()) {
+            return allowLocal(key, limit, window);
+        }
+        try {
+            long expireAt = System.currentTimeMillis() / 1000 + window.toSeconds();
+            var response = client().updateItem(b -> b.tableName(table())
+                    .key(Map.of("pk", AttributeValue.fromS(key)))
+                    .updateExpression("SET #ttl = if_not_exists(#ttl, :ttl) ADD #hits :one")
+                    .expressionAttributeNames(Map.of("#hits", "hits", "#ttl", "ttl"))
+                    .expressionAttributeValues(Map.of(
+                            ":one", AttributeValue.fromN("1"),
+                            ":ttl", AttributeValue.fromN(Long.toString(expireAt))))
+                    .returnValues(ReturnValue.UPDATED_NEW));
+            AttributeValue hits = response.attributes().get("hits");
+            return hits != null && Integer.parseInt(hits.n()) <= limit;
+        } catch (Exception e) {
+            LOG.warnf("호출 제한 저장 실패(유료 API 보호를 위해 차단): %s", e.toString());
+            return false;
+        }
+    }
+
+    private boolean allowLocal(String key, int limit, Duration window) {
+        long now = System.currentTimeMillis();
+        long windowMs = window.toMillis();
+        LocalCounter counter = localCounters.compute(key, (ignored, current) -> {
+            if (current == null || now >= current.expiresAtMs) {
+                return new LocalCounter(1, now + windowMs);
+            }
+            return new LocalCounter(current.count + 1, current.expiresAtMs);
+        });
+        if (localCounters.size() > 10_000) {
+            localCounters.entrySet().removeIf(entry -> now >= entry.getValue().expiresAtMs);
+        }
+        return counter.count <= limit;
+    }
+
+    private record LocalCounter(int count, long expiresAtMs) {
     }
 }

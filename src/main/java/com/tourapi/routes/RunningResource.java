@@ -3,11 +3,17 @@ package com.tourapi.routes;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.CandidatesResponse;
+import com.tourapi.model.CourseSummaryRequest;
+import com.tourapi.model.CourseSummaryResponse;
+import com.tourapi.model.RouteOptionsRequest;
+import com.tourapi.model.RouteOptionsResponse;
 import com.tourapi.model.RoutesRequest;
 import com.tourapi.model.RoutesResponse;
 import com.tourapi.model.RunningCandidatesRequest;
 import com.tourapi.model.WaypointDto;
+import com.tourapi.services.RunningGenerationRateLimiter;
 import com.tourapi.services.RunningService;
+import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -15,15 +21,18 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /** 러닝 추천 라우트. 얇게: 검증 → 서비스 위임 → 상태코드 매핑. TMAP/Google 키는 절대 노출 안 됨. */
 @Path("/v1/running")
@@ -36,6 +45,15 @@ public class RunningResource {
 
     @Inject
     RunningService runningService;
+
+    @Inject
+    RunningGenerationRateLimiter generationRateLimiter;
+
+    @Inject
+    JsonWebToken jwt;
+
+    @ConfigProperty(name = "running.generation.deadline-ms", defaultValue = "22000")
+    long generationDeadlineMs;
 
     @POST
     @Path("/candidates")
@@ -82,6 +100,7 @@ public class RunningResource {
 
     @POST
     @Path("/routes")
+    @Authenticated
     @Operation(summary = "코스 추천 (Phase B)",
             description = "선택한 경유지(1~5개)로 순서 후보(선택/역순/근접)를 만들어 TMAP 보행 경로 + 고도 난이도를 계산, 코스 최대 3개를 반환한다.")
     @APIResponses({
@@ -89,10 +108,14 @@ public class RunningResource {
                     content = @Content(schema = @Schema(implementation = RoutesResponse.class))),
             @APIResponse(responseCode = "400", description = "잘못된 요청",
                     content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "401", description = "로그인 필요"),
+            @APIResponse(responseCode = "429", description = "사용자별 분당 호출 한도 초과",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
             @APIResponse(responseCode = "502", description = "업스트림(TMAP/Elevation) 오류",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))
     })
     public Response routes(RoutesRequest req) {
+        long deadline = generationDeadline();
         double[] start;
         List<WaypointDto> waypoints;
         String shape;
@@ -111,10 +134,7 @@ public class RunningResource {
             if (waypoints.size() > 5) {
                 throw new BadParam("waypoints 최대 5개 (TMAP 경유지 제한)");
             }
-            for (int i = 0; i < waypoints.size(); i++) {
-                require("waypoints[" + i + "].lat", waypoints.get(i).lat(), -90, 90);
-                require("waypoints[" + i + "].lng", waypoints.get(i).lng(), -180, 180);
-            }
+            validateWaypoints("waypoints", waypoints);
             shape = shapeOf(req.shape());
             targetKm = req.targetDistanceKm();
             if (targetKm != null && (targetKm < 0.5 || targetKm > 60)) {
@@ -125,13 +145,128 @@ public class RunningResource {
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
 
+        Response limited = rateLimitResponse();
+        if (limited != null) {
+            return limited;
+        }
+
         try {
-            return Response.ok(runningService.routes(start, waypoints, shape, targetKm)).build();
+            return Response.ok(runningService.routes(
+                    start, waypoints, shape, targetKm, deadline)).build();
         } catch (UpstreamException e) {
             LOG.warnf("routes upstream 실패: %s", e.getMessage());
             return Response.status(502).entity(new ApiError("upstream_error", e.getMessage())).build();
         } catch (Exception e) {
             LOG.error("routes 처리 중 예외", e);
+            return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
+        }
+    }
+
+    @POST
+    @Path("/route-options")
+    @Authenticated
+    @Operation(summary = "화면 3 코스 선택지",
+            description = "사용자가 고른 관광지를 모두 지나는 옵션과 희망 거리에 가까운 옵션을 만든다.")
+    @APIResponses({
+            @APIResponse(responseCode = "200", description = "관광지 우선/거리 우선 옵션",
+                    content = @Content(schema = @Schema(implementation = RouteOptionsResponse.class))),
+            @APIResponse(responseCode = "400", description = "잘못된 요청",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "401", description = "로그인 필요"),
+            @APIResponse(responseCode = "429", description = "사용자별 분당 호출 한도 초과",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "502", description = "TMAP/Elevation 오류",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+    })
+    public Response routeOptions(RouteOptionsRequest req) {
+        long deadline = generationDeadline();
+        double[] start;
+        List<WaypointDto> selected;
+        List<WaypointDto> candidates;
+        String shape;
+        double targetKm;
+        try {
+            if (req == null || req.start() == null) {
+                throw new BadParam("start 필요");
+            }
+            start = new double[]{
+                    require("start.lat", req.start().lat(), -90, 90),
+                    require("start.lng", req.start().lng(), -180, 180)};
+            selected = req.selectedWaypoints() == null ? List.of() : req.selectedWaypoints();
+            candidates = req.candidateWaypoints() == null ? List.of() : req.candidateWaypoints();
+            if (selected.size() > 5) {
+                throw new BadParam("selectedWaypoints 최대 5개");
+            }
+            if (candidates.size() > 30) {
+                throw new BadParam("candidateWaypoints 최대 30개");
+            }
+            if (selected.isEmpty() && candidates.isEmpty()) {
+                throw new BadParam("selectedWaypoints 또는 candidateWaypoints 필요");
+            }
+            validateWaypoints("selectedWaypoints", selected);
+            validateWaypoints("candidateWaypoints", candidates);
+            shape = shapeOf(req.shape());
+            targetKm = require("targetDistanceKm", req.targetDistanceKm(), 0.5, 60);
+        } catch (BadParam e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ApiError("bad_request", e.getMessage())).build();
+        }
+
+        Response limited = rateLimitResponse();
+        if (limited != null) {
+            return limited;
+        }
+
+        try {
+            return Response.ok(runningService.routeOptions(
+                    start, selected, candidates, shape, targetKm, deadline)).build();
+        } catch (UpstreamException e) {
+            LOG.warnf("route-options upstream 실패: %s", e.getMessage());
+            return Response.status(502).entity(new ApiError("upstream_error", e.getMessage())).build();
+        } catch (Exception e) {
+            LOG.error("route-options 처리 중 예외", e);
+            return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
+        }
+    }
+
+    @POST
+    @Path("/summary")
+    @Operation(summary = "화면 4 코스 총정리",
+            description = "선택한 코스에 도착지 주변 맛집·카페를 붙여 반환한다.")
+    @APIResponses({
+            @APIResponse(responseCode = "200", description = "최종 코스 총정리",
+                    content = @Content(schema = @Schema(implementation = CourseSummaryResponse.class))),
+            @APIResponse(responseCode = "400", description = "잘못된 요청",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+    })
+    public Response summary(CourseSummaryRequest req) {
+        int radius;
+        try {
+            if (req == null || req.option() == null || req.option().course() == null
+                    || req.option().course().path() == null || req.option().course().path().isEmpty()) {
+                throw new BadParam("option.course.path 필요");
+            }
+            for (int i = 0; i < req.option().course().path().size(); i++) {
+                double[] point = req.option().course().path().get(i);
+                if (point == null || point.length < 2) {
+                    throw new BadParam("option.course.path[" + i + "] 좌표 형식 오류");
+                }
+                require("option.course.path[" + i + "][0]", point[0], -90, 90);
+                require("option.course.path[" + i + "][1]", point[1], -180, 180);
+            }
+            radius = req.nearbyRadiusM() == null ? 500 : req.nearbyRadiusM();
+            if (radius < 100 || radius > 2000) {
+                throw new BadParam("nearbyRadiusM 범위(100~2000) 벗어남: " + radius);
+            }
+        } catch (BadParam e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ApiError("bad_request", e.getMessage())).build();
+        }
+
+        try {
+            return Response.ok(runningService.summary(req.option(), radius)).build();
+        } catch (Exception e) {
+            LOG.error("summary 처리 중 예외", e);
             return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
         }
     }
@@ -157,6 +292,31 @@ public class RunningResource {
             throw new BadParam("shape는 loop | oneway: " + v);
         }
         return s;
+    }
+
+    private static void validateWaypoints(String field, List<WaypointDto> waypoints) {
+        for (int i = 0; i < waypoints.size(); i++) {
+            WaypointDto waypoint = waypoints.get(i);
+            if (waypoint == null) {
+                throw new BadParam(field + "[" + i + "] 값 필요");
+            }
+            require(field + "[" + i + "].lat", waypoint.lat(), -90, 90);
+            require(field + "[" + i + "].lng", waypoint.lng(), -180, 180);
+        }
+    }
+
+    private long generationDeadline() {
+        return System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(generationDeadlineMs);
+    }
+
+    private Response rateLimitResponse() {
+        if (generationRateLimiter.allow(jwt.getSubject())) {
+            return null;
+        }
+        return Response.status(429)
+                .header("Retry-After", "60")
+                .entity(new ApiError("rate_limited", "실시간 코스 생성은 분당 6회까지 가능"))
+                .build();
     }
 
     private static final class BadParam extends RuntimeException {

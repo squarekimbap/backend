@@ -36,6 +36,9 @@ public class TmapClient {
     @Inject
     ObjectMapper mapper;
 
+    @ConfigProperty(name = "tmap.request-timeout-seconds", defaultValue = "8")
+    int requestTimeoutSeconds;
+
     private final HttpClient http = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
             .build();
@@ -48,6 +51,11 @@ public class TmapClient {
      * start→(via…)→end 보행 경로. 좌표는 [lat,lng], via는 최대 5개(TMAP passList 제한).
      */
     public TmapRoute pedestrian(double[] start, List<double[]> via, double[] end) {
+        return pedestrian(start, via, end, Duration.ofSeconds(requestTimeoutSeconds));
+    }
+
+    /** 상위 코스 생성 deadline의 남은 시간을 개별 HTTP timeout에도 적용한다. */
+    public TmapRoute pedestrian(double[] start, List<double[]> via, double[] end, Duration remaining) {
         String key = appKey.filter(k -> !k.isBlank())
                 .orElseThrow(() -> new UpstreamException("TMAP_APP_KEY 미설정"));
 
@@ -68,7 +76,7 @@ public class TmapClient {
         body.put("endName", "end");
 
         HttpRequest req = HttpRequest.newBuilder(URI.create(pedestrianUrl))
-                .timeout(Duration.ofSeconds(10))
+                .timeout(effectiveTimeout(remaining, requestTimeoutSeconds))
                 .header("appKey", key)
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
@@ -117,5 +125,14 @@ public class TmapClient {
 
     private static String fmt(double v) {
         return String.format(Locale.ROOT, "%.6f", v);
+    }
+
+    private static Duration effectiveTimeout(Duration remaining, int configuredSeconds) {
+        Duration configured = Duration.ofSeconds(configuredSeconds);
+        if (remaining == null || remaining.isNegative() || remaining.isZero()) {
+            throw new UpstreamException("TMAP 호출 가용 시간 없음");
+        }
+        Duration timeout = remaining.compareTo(configured) < 0 ? remaining : configured;
+        return timeout.compareTo(Duration.ofMillis(1)) < 0 ? Duration.ofMillis(1) : timeout;
     }
 }

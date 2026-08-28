@@ -20,6 +20,21 @@ Parameters:
     NoEcho: true
     Default: ""
     Description: Google Maps API 키 (Elevation — 내부 전용, 앱 노출 금지)
+  NaverClientId:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: 네이버 개발자센터 검색 API Client ID (주변 맛집 교차검증 — 비우면 기능만 꺼짐)
+  NaverClientSecret:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: 네이버 개발자센터 검색 API Client Secret (내부 전용, 앱 노출 금지)
+  TourAudioEnabled:
+    Type: String
+    Default: "false"
+    AllowedValues: ["true", "false"]
+    Description: 공공데이터포털 Odii 활용신청 완료 후 true
 
 Resources:
   TourApi:
@@ -39,6 +54,9 @@ Resources:
           TOUR_API_KEY: !Ref TourApiKey
           TMAP_APP_KEY: !Ref TmapAppKey
           GOOGLE_MAPS_API_KEY: !Ref GoogleMapsApiKey
+          NAVER_CLIENT_ID: !Ref NaverClientId
+          NAVER_CLIENT_SECRET: !Ref NaverClientSecret
+          TOUR_AUDIO_ENABLED: !Ref TourAudioEnabled
           CACHE_TABLE: !Ref CacheTable
           USER_POOL_ID: !Ref UserPool
           USER_POOL_CLIENT_ID: !Ref UserPoolClient
@@ -63,7 +81,8 @@ Resources:
                 - cognito-idp:AdminUpdateUserAttributes
                 - cognito-idp:AdminDeleteUser
               Resource: !GetAtt UserPool.Arn
-      # API Gateway 대신 Function URL 사용 (무료 유지). NONE = 공개 호출 가능
+      # API Gateway 대신 Function URL 사용 (무료 유지). 네트워크 입구는 NONE이지만
+      # 비용이 드는 /running/routes·/route-options는 앱 계층 Cognito JWT로 보호한다.
       FunctionUrlConfig:
         AuthType: NONE
 

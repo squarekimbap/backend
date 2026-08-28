@@ -55,13 +55,19 @@ public class TourApiClient {
      * @param base 서비스 base URL (오퍼레이션 이름 제외)
      */
     public JsonNode getFrom(String base, String operation, Map<String, String> params) {
+        return getFrom(base, operation, params, Duration.ofSeconds(requestTimeoutSeconds));
+    }
+
+    /** 부가 기능처럼 더 짧은 시간 제한이 필요한 호출용 오버로드. */
+    public JsonNode getFrom(String base, String operation, Map<String, String> params,
+                            Duration timeout) {
         if (serviceKey == null || serviceKey.isBlank()) {
             throw new UpstreamException("TOUR_API_KEY 미설정 (공공데이터포털 인증키 필요)");
         }
 
         String url = base + "/" + operation + "?" + query(params);
         HttpRequest req = HttpRequest.newBuilder(URI.create(url))
-                .timeout(Duration.ofSeconds(requestTimeoutSeconds))
+                .timeout(timeout)
                 .header("Accept", "application/json")
                 .GET()
                 .build();

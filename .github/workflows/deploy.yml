@@ -91,7 +91,13 @@ jobs:
           TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
           TMAP_APP_KEY: ${{ secrets.TMAP_APP_KEY }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          # 네이버는 선택 — 비어 있으면 주변 맛집 교차검증만 꺼진 채 배포된다(배포 중단 아님)
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
         run: |
+          if [ -z "$NAVER_CLIENT_ID" ] || [ -z "$NAVER_CLIENT_SECRET" ]; then
+            echo "::warning::NAVER_CLIENT_ID/SECRET 미설정 — 주변 맛집은 TourAPI 결과만 사용됨"
+          fi
           sam deploy \
             --template-file template.yaml \
             --stack-name "$STACK_NAME" \
@@ -103,7 +109,9 @@ jobs:
             --parameter-overrides \
               TourApiKey="$TOUR_API_KEY" \
               TmapAppKey="$TMAP_APP_KEY" \
-              GoogleMapsApiKey="$GOOGLE_MAPS_API_KEY"
+              GoogleMapsApiKey="$GOOGLE_MAPS_API_KEY" \
+              NaverClientId="$NAVER_CLIENT_ID" \
+              NaverClientSecret="$NAVER_CLIENT_SECRET"
 
       # 배포 자체가 성공해도 키가 잘못 들어가면 런타임에서만 드러난다. 실제로 호출해 본다.
       - name: 스모크 테스트

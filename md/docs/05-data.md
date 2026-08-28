@@ -71,29 +71,29 @@ struct RunRecord {
 
 | API | 용도 | 파라미터 |
 |---|---|---|
-| TourAPI `locationBasedList` | 주변 관광지 조회 | `mapX`, `mapY`, `radius=2000`, `contentTypeId=12·14` |
+| TourAPI `locationBasedList2` | 주변 관광지 조회 | `mapX`, `mapY`, 거리·형태별 동적 반경(500m~20km), `contentTypeId=12·14·28` |
 | TourAPI 분류코드 | 무드 자동 결정 | `cat1`, `cat2`, `cat3` 분포 |
 | TourAPI 오디오 가이드 | 이야기 콘텐츠 | 재생 가능 여부 검증 필요 (P0) |
-| TMAP 보행 경로 | 경로 계산 | 구간별 호출 · 캐시 필수 |
+| TMAP 보행 경로 | 경로 계산 | 후보별 `passList` 단일 호출 · route-options 최대 5회/routes 최대 3회 · 동일 입력 5분 캐시 |
 
 ### 생성 로직
 
 ```
 ① 위치 확인 (CoreLocation)
-② locationBasedList(radius=2000) → 관광지 수·분류 분포
-③ 오디오 가이드 조회 → 이야기 유무
-④ [사용자 개입] 거리 선택 (3·5·10·15km)
-⑤ [선택] 꼭 지날 곳 고르기 — 건너뛰기 가능
-⑥ 경유지 조합 선택 — 거리별 권장 2·4·6·8곳
-⑦ TMAP 보행 경로 계산
-⑧ 거리 오차 10% 검사 → 초과 시 실패 화면
-⑨ 코스 상세로 직행 (ADR-022 — 결과 목록 없음)
+② [사용자 개입] 거리(3·5·10·15km)와 왕복/편도 선택
+③ `/v1/running/candidates` → 관광지와 Odii 도슨트 가용성 조회
+④ [선택] 꼭 지날 곳 0~5개 고르기 — 건너뛰기 가능
+⑤ `/v1/running/route-options` → 관광지 우선/거리 우선 경유지 조합
+⑥ TMAP 보행 경로 → Google 고도 → 구간거리·난이도·도슨트 매칭
+⑦ [사용자 개입] "고른 곳을 지나요" / "거리가 딱 맞아요" 중 선택
+⑧ `/v1/running/summary` → 도착지 주변 음식점·카페 결합
+⑨ 코스 총정리 화면
 ```
 
 실패 분기:
 
 - `nopoi` — 주변 관광지가 거리별 필요 수보다 적음
-- `dist` — 거리 오차 10% 초과
+- `dist` — 거리 우선 후보도 오차 10%를 넘음(`withinTolerance=false`로 대체 옵션 노출)
 - `route` — TMAP 경로 계산 실패
 
 ## 이미지 에셋

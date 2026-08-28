@@ -13,8 +13,8 @@
 
 | 영역 | 내용 | 추가 기술 |
 | --- | --- | --- |
-| 🔐 인증/로그인 | 회원가입·로그인·토큰 검증 | Amazon Cognito *(예정)* |
-| 🗄️ 데이터 | 사용자 데이터 *(예정)* · 응답 캐시 ✅ | DynamoDB |
+| 🔐 인증/로그인 | 회원가입·로그인·토큰 검증 | Amazon Cognito ✅ |
+| 🗄️ 데이터 | 사용자 데이터 · 응답 캐시 ✅ | DynamoDB |
 | 🧩 기능 API | 첫 도메인=관광/러닝, 이후 확장 | Quarkus(JAX-RS) |
 | 🔌 외부 API 프록시·집계 | 키 은닉 · 가공 · 캐싱 | — |
 
@@ -54,8 +54,8 @@ flowchart LR
 | 언어 | **Java 21** | 기존 Java/Spring 경험 활용, `java21` 런타임 일치 |
 | 프레임워크 | **Quarkus** + `quarkus-amazon-lambda-http` | 빠른 콜드스타트(native 가능), Function URL 지원 |
 | REST | **RESTEasy (JAX-RS)** | `@Path`/`@GET` |
-| 인증/로그인 *(예정)* | **Amazon Cognito** | 관리형 사용자 풀, 토큰 |
-| DB / 캐시 | **DynamoDB** (캐시 테이블 ✅ provisioned 5/5 + TTL · 사용자 데이터는 예정) | always-free |
+| 인증/로그인 | **Amazon Cognito** | 관리형 사용자 풀, 토큰 |
+| DB / 캐시 | **DynamoDB** (캐시·사용자 테이블 ✅ provisioned 합계 10/10 + TTL) | always-free |
 | 시크릿 *(예정)* | **SSM Parameter Store** (standard) | 무료 |
 | 빌드 / 배포 | **Maven** / **AWS SAM** (`template.yaml`) | Java 1급 지원 |
 | 리전 | **ap-northeast-2** (서울) | 한국 지연 최소 |
@@ -89,7 +89,7 @@ flowchart LR
 | --- | --- | --- |
 | 관광정보 | `locationBasedList2` · `searchFestival2` · `detailImage2` | 프록시 |
 | 걷기 | 두루누비 `courseList` | 프록시 |
-| 오디오 | Odii `themeSearchList`→`storyBasedList` | 프록시(2단계) |
+| 오디오 | Odii `themeLocationBasedList` · `storyLocationBasedList` | 내부 조회(후보·경로 주변) |
 | 중심관광지/집중률 | `areaBasedList1` · `tatsCnctrRatedList` | 집중률은 `/popular`로 프록시 · `areaBasedList1`은 내부(러닝) |
 | 경로/고도 | TMAP `pedestrian` · Google `elevation` | **🔒 내부 전용** |
 
@@ -101,27 +101,31 @@ flowchart LR
 | GET | `/v1/tour/popular` | 좌표→시군구 인기 관광지 순위(집중률 30일 평균) | ✅ 배포됨 |
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
-| POST | `/v1/running/routes` (Phase B) | 코스 추천(TMAP 경로 + 고도 난이도, 최대 3개) | ✅ 배포됨 |
+| POST | `/v1/running/routes` (호환) | JWT 필수 · 최대 3안(TMAP 3콜 상한·22초·공통 분당 6회·5분 캐시) | ✅ 보호 변경 구현 |
+| POST | `/v1/running/route-options` | JWT 필수 · 화면용 2안 + 도슨트·구간 거리(TMAP 5콜 상한·22초·공통 분당 6회·5분 캐시) | ✅ 구현 |
+| POST | `/v1/running/summary` | 선택 코스 + 도착지 주변 음식점·카페 총정리 | ✅ 구현 |
 | GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그(수집본+러닝갤 64코스·32도시, 홈 피드/상세) | ✅ |
-| POST | `/v1/auth/signup` · `/confirm` · `/login` · `/refresh` | 이메일 인증(Cognito 프록시) | ✅ 구현(배포 대기) |
-| POST | `/v1/auth/kakao` | 카카오 로그인(토큰 검증→Cognito 브릿지, 첫 로그인=자동 가입) | ✅ 구현(배포 대기) |
-| GET | `/v1/users/me` | 내 프로필 (**JWT 필수**) | ✅ 구현(배포 대기) |
+| POST | `/v1/auth/signup` · `/confirm` · `/login` · `/refresh` | 이메일 인증(Cognito 프록시) | ✅ 배포됨 |
+| POST | `/v1/auth/kakao` | 카카오 로그인(토큰 검증→Cognito 브릿지, 첫 로그인=자동 가입) | ✅ 배포됨 |
+| GET | `/v1/users/me` | 내 프로필 (**JWT 필수**) | ✅ 배포됨 |
 
-> 📱 **앱 연동은 [docs/app-api-flow.md](docs/app-api-flow.md)** — 앱이 부르는 건 러닝 2개뿐(호출 순서·요청/응답 예시·에러 처리 체크리스트).
+> 📱 **앱 연동은 [docs/app-api-flow.md](docs/app-api-flow.md)** — 생성은 candidates → route-options → summary 순서다.
+> 보호 변경 배포 전에 기존 `/routes` 호출에도 Bearer access token을 추가해야 한다. 401은 refresh 후 1회 재시도, 429는 `Retry-After: 60`, 앱 timeout은 30초다.
 
-### 러닝 추천 흐름 (사용자 선택이 중간에 껴서 2단계)
+### 러닝 추천 흐름 (앱 4단계)
 ```mermaid
 flowchart TD
-    S["설문(거리/형태/난이도/출발좌표)"] --> A
+    S["거리·왕복/편도·출발좌표"] --> A
     subgraph A_["Phase A — /running/candidates"]
-      A["좌표→지역코드"] --> B["locationBasedList2 + areaBasedList1 (병렬)"] --> C["집중률 매칭/정렬"]
+      A["좌표→지역코드"] --> B["관광지 타입 12·14·28 병렬 조회"] --> C["집중률·Odii 가용성 매칭/정렬"]
     end
     C --> U["사용자가 경유지 선택"]
     U --> E
-    subgraph B_["Phase B — /running/routes"]
-      E["순서후보(선택/역순/근접)"] --> F["TMAP + Elevation (병렬)"] --> G["고도 난이도→상위 3개"]
+    subgraph B_["Phase B — /running/route-options"]
+      E["Haversine 빔 탐색"] --> F["TMAP 최대 5콜 → Elevation 병렬"] --> G["도슨트·구간거리→최대 2개"]
     end
-    G --> R["추천 코스"]
+    G --> P["사용자가 어떤 길인지 선택"]
+    P --> H["/running/summary 맛집·카페"] --> R["최종 코스"]
 ```
 
 ### 데이터 가공 원칙 (공공데이터 함정 → 서버가 흡수)
@@ -168,6 +172,6 @@ sam delete --stack-name tour-api --region ap-northeast-2
 - [x] 서버리스 골조 + **hello world 배포·작동 확인** (`GET /hello` 200, 콜드 ~3.5s / 워밍 ~52ms)
 - [ ] 공통 유틸(정규화·resultCode·응답 봉투) · 시크릿(SSM) · 좌표→지역코드
 - [x] 캐시(DynamoDB, `/popular` 일 단위) — 나머지 프록시 엔드포인트(`/v1/tour/*` 등)는 진행 중
-- [x] **인증/로그인(Cognito)** · 사용자 프로필(DynamoDB `app-users`) — 이메일+카카오 브릿지 구현·테스트 완료, **배포 대기**
-- [ ] 러닝 추천 Phase A/B
+- [x] **인증/로그인(Cognito)** · 사용자 프로필(DynamoDB `app-users`) — 이메일+카카오 브릿지 구현·테스트·배포 완료
+- [x] 러닝 추천 Phase A/B + 화면용 관광지 우선/거리 우선/총정리 분리
 - [ ] native image(콜드스타트) · rate limit(쿼터 보호)
