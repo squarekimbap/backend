@@ -4,11 +4,11 @@
 
 | 항목 | 수 |
 |---|---|
-| 도시 | 21곳 |
-| 코스 | 77개 |
-| 이야기 (체크포인트) | 28곳 |
-| 코스 대표 사진 | 77장 |
-| 경유지 사진 | 16곳 |
+| 도시 | 32곳 |
+| 코스 | 64개 |
+| 이야기 (체크포인트) | 149곳 |
+| 코스 대표 사진 URL | 59개 |
+| 경유지 좌표 | 모든 코스 2곳 이상 |
 
 ## 코스 모델
 
@@ -22,9 +22,10 @@ struct Course {
     let level: Level            // 쉬움 / 보통 / 어려움
     let mood: String            // 문화유산 / 야경 / 풍경 / 평지 / 업힐 / 트레일
     let tags: [String]          // 초보 추천 · 야경 · 호수·강변 · 바다 · 숲길 · 여행 확장
-    let routed: Bool            // 길 안내 확보 여부 — false면 시작·GPX 잠금
-    let polyline: [Coordinate]? // routed일 때만
-    let poi: [String]           // 지나는 곳
+    let routed: Bool            // 응답 필드가 아니라 polyline.count >= 2로 파생
+    let polyline: [Coordinate]  // 서버 저장 TMAP 보행 경로, 최대 200점
+    let guide: [GuidePoint]     // TMAP 안내 문구
+    let poi: [POI]              // 지나는 곳
     let checkpoints: [Checkpoint]
     let source: Source          // 직접 제작 / 공공 출처 / 러너 후기
     // 원고가 있는 코스
@@ -38,6 +39,7 @@ struct Course {
 }
 
 struct Checkpoint {
+    let id: String
     let name: String
     let coordinate: Coordinate
     let radius: Double = 100    // m — ADR-031
@@ -126,7 +128,7 @@ struct RunRecord {
 | `river` `coast` | 왕복 — 갈 때와 올 때를 살짝 벌려 겹치지 않게 |
 | `trail` `hill` | 편도 — 숲길은 구불구불, 업힐은 지그재그 |
 
-실제 앱에서는 TMAP이 반환한 polyline으로 대체한다.
+큐레이션 64개 코스는 서버가 미리 계산한 TMAP `polyline`을 내려준다. 앱은 상세 응답에 2점 이상이 있으면 이를 그대로 사용하고 별도 TMAP 요청을 하지 않는다.
 
 ## GPX 내보내기
 

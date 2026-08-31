@@ -287,7 +287,40 @@ Content-Type: application/json
 | --- | --- | --- |
 | `GET /v1/courses` | 홈 피드 전체 | `{count, items:[요약]}` — 요약 = id·n·city·cityId·region·km·min·lv·mood·tags·headline·subhead·photo·photoTitle·photoLicense |
 | `GET /v1/courses?city=서울` (또는 `city=seoul`) | 도시 탭 | 위와 동일(필터됨) |
-| `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + `url`(공유용) + `body[]`(어떤 길인지) · `deep[]`(더 알아두면) · `ops[]`(가기 전에) · `unsure[]`(확인 중) · `poi[]`(아래) |
+| `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + 원고·`poi[]` + 정적 `polyline`·`guide`·`checkpoints`(아래) |
+
+**경로·안내·도슨트** — 64개 코스 모두 배열을 내려준다.
+
+```json
+{
+  "routeShape": "loop",
+  "distanceM": 5266,
+  "walkDurationS": 4370,
+  "ascentM": 31.4,
+  "ascentPerKm": 6.0,
+  "difficulty": "하",
+  "polyline": [[35.1581445, 129.1583542], [35.1578, 129.1571]],
+  "guide": [
+    {"lat": 35.1581, "lng": 129.1583, "text": "50m 앞 우회전"}
+  ],
+  "checkpoints": [
+    {
+      "id": "busan-haeundae-1",
+      "name": "동백섬",
+      "lat": 35.1539199,
+      "lng": 129.152185,
+      "audioSeconds": 15,
+      "description": "최치원이 시를 남긴 자리. 지금은 산책로가 섬을 한 바퀴 돈다."
+    }
+  ]
+}
+```
+
+- `polyline`은 `[[위도, 경도], ...]`이며 2~200점이다. 앱은 이 배열이 2점 이상이면 시작 버튼을 열고 TMAP 보강을 호출하지 않는다.
+- `guide`는 TMAP 보행 안내 지점이다. 다음 안내 지점에 접근할 때 `text`를 읽어 주는 데 쓴다.
+- `checkpoints`는 실제 경로 100m 안의 지점이다. `description`은 응답에는 포함되지만 100m 트리거 전에는 화면에 노출하지 않는다.
+- `audioSeconds`는 현재 원고 길이로 계산한 예상 낭독 시간이다. 음원 URL은 없으므로 앱의 TTS/기존 이야기 재생기를 사용한다.
+- `walkDurationS`는 TMAP 도보 기준이다. 러닝 예상 시간에는 기존 `min` 또는 사용자 페이스 환산값을 쓴다.
 
 **poi 항목 구조** (지나는 곳 1곳):
 
@@ -325,7 +358,7 @@ Content-Type: application/json
 - 하루 단위 캐시라 두 번째 호출부터는 즉시 응답
 - 좌표를 확보하지 못한 코스는 `count: 0`, `basedOn: null`로 내려간다(에러 아님) — 이 영역을 숨기면 된다
 - `url`: 코스 공유 기능에 그대로 사용(목록 요약에도 포함). 웹 상세 페이지가 생기면 서버 설정만 바꿔 교체
-- `nextM`·`addr`·`lat/lng`는 **null 가능** — null이면 해당 UI(거리 뱃지·주소 줄)를 숨길 것
+- `nextM`·`addr`은 **null 가능** — null이면 해당 UI(거리 뱃지·주소 줄)를 숨길 것. 현재 64개 코스는 좌표가 있는 POI를 최소 2곳씩 갖는다
 - id 예: `seoul-banpo-10k`, `busan-haeundae`. 없는 id → `404 {error:"not_found"}`
 - 정적 번들 데이터라 응답이 빠르고(수십 ms + 콜드스타트) 업스트림 실패(502)가 없다
 - 한글 city 파라미터는 **URL 인코딩** 필수 (iOS URLComponents 사용 시 자동)

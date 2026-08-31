@@ -9,11 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * 번들 데이터만 쓰므로 외부 의존 없이 도는 테스트.
- * ⚠️ 전체 목록(24KB)은 HTTP로 검증하지 않는다 — 테스트용 MockEventServer가
+ * ⚠️ 경로가 포함된 전체 목록·상세는 HTTP로 검증하지 않는다 — 테스트용 MockEventServer가
  * 큰 청크 응답을 종료하지 않아 read timeout(실서버·dev는 정상, 라이브 스모크로 확인).
  */
 @QuarkusTest
@@ -31,10 +30,9 @@ public class CourseResourceTest {
 
     @Test
     public void 러닝갤_신규코스_상세() {
-        RestAssured.when().get("/v1/courses/seoul-seokchon-lake")
-                .then().statusCode(200)
-                .body("src", equalTo("러너 후기 · 러닝갤"))
-                .body("poi[0].naver", notNullValue());
+        var course = catalog.byId("seoul-seokchon-lake");
+        Assertions.assertEquals("러너 후기 · 러닝갤", course.path("src").asText());
+        Assertions.assertFalse(course.path("poi").get(0).path("naver").asText().isBlank());
     }
 
     @Test
@@ -56,20 +54,22 @@ public class CourseResourceTest {
 
     @Test
     public void 상세_조회() {
-        RestAssured.when().get("/v1/courses/busan-haeundae")
-                .then().statusCode(200)
-                .body("id", equalTo("busan-haeundae"))
-                .body("body", notNullValue())
-                .body("poi[0].n", notNullValue());
+        var course = catalog.byId("busan-haeundae");
+        Assertions.assertEquals("busan-haeundae", course.path("id").asText());
+        Assertions.assertTrue(course.path("body").isArray());
+        Assertions.assertFalse(course.path("poi").get(0).path("n").asText().isBlank());
+        Assertions.assertTrue(course.path("polyline").size() > 1);
+        Assertions.assertFalse(course.path("guide").isEmpty());
+        Assertions.assertFalse(course.path("checkpoints").isEmpty());
     }
 
     @Test
     public void 상세에_공유url과_poi_보강필드() {
-        RestAssured.when().get("/v1/courses/seoul-banpo-10k")
-                .then().statusCode(200)
-                .body("url", equalTo(
-                        "https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws/v1/courses/seoul-banpo-10k"))
-                .body("poi[0].naver", notNullValue());
+        var course = catalog.byId("seoul-banpo-10k");
+        Assertions.assertEquals(
+                "https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws/v1/courses/seoul-banpo-10k",
+                course.path("url").asText());
+        Assertions.assertFalse(course.path("poi").get(0).path("naver").asText().isBlank());
     }
 
     @Test
@@ -85,6 +85,53 @@ public class CourseResourceTest {
         for (var course : catalog.list(null)) {
             Assertions.assertTrue(course.hasNonNull("lat") && course.hasNonNull("lng"),
                     "코스 좌표 누락: " + course.path("id").asText());
+        }
+    }
+
+    @Test
+    public void 모든_코스에_시작가능한_경로와_도슨트가_있다() {
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            var course = catalog.byId(id);
+            var polyline = course.path("polyline");
+            var guide = course.path("guide");
+            var checkpoints = course.path("checkpoints");
+
+            Assertions.assertTrue(polyline.isArray() && polyline.size() >= 2 && polyline.size() <= 200,
+                    "polyline 누락/크기 오류: " + id);
+            Assertions.assertTrue(guide.isArray() && !guide.isEmpty(), "guide 누락: " + id);
+            Assertions.assertTrue(checkpoints.isArray() && !checkpoints.isEmpty(),
+                    "checkpoints 누락: " + id);
+
+            for (var point : polyline) {
+                Assertions.assertEquals(2, point.size(), "polyline 좌표 형식 오류: " + id);
+                Assertions.assertTrue(point.get(0).asDouble() >= -90 && point.get(0).asDouble() <= 90,
+                        "polyline 위도 오류: " + id);
+                Assertions.assertTrue(point.get(1).asDouble() >= -180 && point.get(1).asDouble() <= 180,
+                        "polyline 경도 오류: " + id);
+            }
+            for (var item : checkpoints) {
+                Assertions.assertFalse(item.path("id").asText().isBlank(), "checkpoint id 누락: " + id);
+                Assertions.assertFalse(item.path("name").asText().isBlank(), "checkpoint name 누락: " + id);
+                Assertions.assertFalse(item.path("description").asText().isBlank(),
+                        "checkpoint description 누락: " + id);
+                Assertions.assertTrue(item.path("audioSeconds").asInt() > 0,
+                        "checkpoint audioSeconds 오류: " + id);
+            }
+        }
+    }
+
+    @Test
+    public void 모든_코스에_경유지_좌표가_두_곳_이상_있다() {
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            int coordinateCount = 0;
+            for (var poi : catalog.byId(id).path("poi")) {
+                if (poi.hasNonNull("lat") && poi.hasNonNull("lng")) {
+                    coordinateCount++;
+                }
+            }
+            Assertions.assertTrue(coordinateCount >= 2, "경유지 좌표 2곳 미만: " + id);
         }
     }
 

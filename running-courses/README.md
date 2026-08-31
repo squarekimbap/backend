@@ -5,6 +5,8 @@
 ```bash
 python3 build.py              # 전체 다시 생성
 python3 build.py gangwon      # data/gangwon.json 만
+python3 enrich_routes.py --dry-run  # TMAP·고도 호출 후 검증만
+python3 enrich_routes.py            # 경로·안내·체크포인트를 원본과 서버 번들에 저장
 ```
 
 ## 산출물
@@ -12,8 +14,8 @@ python3 build.py gangwon      # data/gangwon.json 만
 | 경로 | 내용 |
 |---|---|
 | `data/*.json` | **원본.** 여기만 고친다 |
-| `courses.json` | 앱에 넣을 병합본 (42개 코스) |
-| `<도시>.md` | 사람이 읽는 문서 (24개 도시) |
+| `courses.json` | 앱·서버에 넣을 병합본 (64개 코스) |
+| `<도시>.md` | 사람이 읽는 문서 (32개 도시) |
 | `images/<id>_hero.png` | 1125×900 — `.dhero` 375×300 @3x |
 | `images/<id>_thumb.png` | 156×156 — `.rth` 52×52 @3x, radius 11pt |
 | `images/<id>-poiN_thumb.png` | 경유지 썸네일 |
@@ -35,7 +37,11 @@ python3 build.py gangwon      # data/gangwon.json 만
   "photoLicense": "한국관광공사 · 공공누리 제1유형",
   "headline": "...", "subhead": "...",
   "body": [], "deep": [], "ops": [], "unsure": [],
-  "poi": [{ "n": "...", "d": "...", "photo": "..." }]
+  "poi": [{ "n": "...", "d": "...", "lat": 37.5, "lng": 127.0 }],
+  "polyline": [[37.5, 127.0]],
+  "guide": [{ "lat": 37.5, "lng": 127.0, "text": "직진" }],
+  "checkpoints": [{ "id": "...-1", "name": "...", "lat": 37.5, "lng": 127.0,
+    "audioSeconds": 20, "description": "..." }]
 }
 ```
 
@@ -73,23 +79,24 @@ python3 build.py gangwon      # data/gangwon.json 만
 
 ## 지금 담긴 범위
 
-24개 도시 · 42개 코스.
+32개 도시 · 64개 코스. 모든 코스에 TMAP 보행 경로·안내와 경로 100m 안 체크포인트가 저장돼 있다.
 
 | 권역 | 도시 |
 |---|---|
-| 수도권 | 서울 6 · 인천 2 · 수원 2 · 고양 1 · 성남 1 |
+| 수도권 | 서울 12 · 인천 2 · 수원 2 · 고양 1 · 성남 1 · 시흥 1 · 안양 3 · 오산 1 · 용인 1 · 의왕 1 · 화성 2 |
 | 강원 | 춘천 2 · 강릉 2 · 속초 1 |
 | 충청 | 대전 2 · 세종 1 · 청주 1 · 천안 1 |
-| 전라 | 전주 2 · 광주 1 · 목포 1 · 여수 1 · 순천 1 |
-| 경상 | 대구 2 · 창원 2 · 울산 1 · 포항 1 · 경주 1 |
+| 전라 | 전주 2 · 광주 2 · 목포 1 · 여수 2 · 순천 1 · 군산 1 |
+| 경상 | 대구 5 · 창원 2 · 울산 1 · 포항 1 · 경주 1 · 경산 1 |
 | 부산 | 부산 5 |
 | 제주 | 제주 2 |
 
-## 아직 안 한 것
+## 경로 데이터 갱신
 
-- 좌표. `polyline`과 체크포인트 `coordinate`가 비어 있어 지금은 전부 `routed: false` 상태로 봐야 한다
-- 체크포인트 이야기 원고
-- 트레일 전용 코스(북한산·관악산·무등산)는 도시 코스에 흡수돼 있고 따로 분리하지 않았다
+- `data/*.json`의 POI·거리·원고를 먼저 고친 뒤 `enrich_routes.py`를 실행한다.
+- 경로는 최대 200점이며 `[[lat,lng], ...]` 순서다. `guide`는 TMAP 안내 문구를 보존한다.
+- 체크포인트 설명은 POI 원고에서 만들고 실제 경로 100m 안의 지점만 남긴다. `audioSeconds`는 예상 낭독 시간이며 음원 파일 길이가 아니다.
+- 트레일 전용 코스(북한산·관악산·무등산)는 도시 코스에 흡수돼 있고 따로 분리하지 않았다.
 
 ## 코스 데이터가 아닌 문서
 

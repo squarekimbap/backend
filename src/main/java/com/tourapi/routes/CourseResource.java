@@ -31,7 +31,8 @@ import java.util.List;
 /**
  * 편집 코스 카탈로그 라우트 (홈 피드·코스 상세 화면용).
  * 응답은 수집본 스키마 그대로 — 상세: id·n·km·min·lv·mood·tags·headline·subhead·
- * body[]·deep[]·ops[]·unsure[]·poi[{n,d,photo}]·photo·photoTitle·photoLicense·city·region.
+ * body[]·deep[]·ops[]·unsure[]·poi[{n,d,photo}]·photo·photoTitle·photoLicense·city·region과
+ * polyline[[lat,lng]]·guide[{lat,lng,text}]·checkpoints[{id,name,lat,lng,audioSeconds,description}].
  */
 @Path("/v1/courses")
 @Produces(MediaType.APPLICATION_JSON)
@@ -63,7 +64,8 @@ public class CourseResource {
     @GET
     @Path("/{id}")
     @Operation(summary = "코스 상세",
-            description = "id로 코스 전체 원고(본문·팁·경유지·사진)를 조회한다. 예: seoul-banpo-10k")
+            description = "id로 코스 전체 원고와 정적 보행 경로(polyline), 안내(guide), "
+                    + "100m 진입 도슨트(checkpoints)를 조회한다. 예: seoul-banpo-10k")
     @APIResponses({
             @APIResponse(responseCode = "200", description = "코스 전체 필드(JSON)"),
             @APIResponse(responseCode = "404", description = "없는 id")
