@@ -1451,11 +1451,12 @@
      {
       "n": "용지봉",
       "d": "능선이 갈리는 지점. 고도를 가장 많이 올린 곳이고, 대구 남쪽 시가지가 아래로 트여 보인다.",
-      "addr": "대구광역시 수성구 들안로 9 1층",
-      "lat": 35.8305915,
-      "lng": 128.6162478,
+      "addr": "대구광역시 수성구 범물동",
+      "lat": 35.8032,
+      "lng": 128.64973,
       "naver": "https://map.naver.com/p/search/%EC%9A%A9%EC%A7%80%EB%B4%89",
-      "nextM": 3376
+      "nextM": null,
+      "_moved": true
      },
      {
       "n": "범물동",
@@ -2587,26 +2588,28 @@
      {
       "n": "83타워",
       "d": "코스의 기준점이 되는 전망 타워. 공원 어디서든 보여 초행자도 방향을 잡기 쉽다.",
-      "addr": "대구광역시 달서구 두류공원로 200 (두류동)",
-      "lat": 35.8550095336015,
-      "lng": 128.56009834355447,
+      "addr": "대구광역시 달서구 두류공원로 200",
+      "lat": 35.85273,
+      "lng": 128.56689,
       "naver": "https://map.naver.com/p/search/83%ED%83%80%EC%9B%8C",
-      "nextM": 2117
+      "nextM": null,
+      "_moved": true
      },
      {
       "n": "두류공원 야외음악당",
       "d": "순환로 절반쯤에서 만나는 광장. 공연과 행사가 열리는 곳이고 러닝 전후 스트레칭 공간으로 넓다.",
-      "addr": "대구광역시 중구 명덕로 91-1",
-      "lat": 35.8577387,
-      "lng": 128.5807174,
-      "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90%20%EC%95%BC%EC%99%B8%EC%9D%8C%EC%95%85%EB%8B%B9"
+      "addr": "대구광역시 달서구 야외음악당로 180",
+      "lat": 35.85108,
+      "lng": 128.55616,
+      "naver": "https://map.naver.com/p/search/%EB%91%90%EB%A5%98%EA%B3%B5%EC%9B%90%20%EC%95%BC%EC%99%B8%EC%9D%8C%EC%95%85%EB%8B%B9",
+      "_moved": true
      }
     ],
     "photo": "http://tong.visitkorea.or.kr/cms/resource/29/3573529_image2_1.jpg",
     "photoTitle": "대구두류공원",
     "photoLicense": "한국관광공사 · 공공누리 제1유형",
-    "lat": 35.8577387,
-    "lng": 128.5807174,
+    "lat": 35.85108,
+    "lng": 128.55616,
     "routeShape": "loop",
     "distanceM": 3080,
     "walkDurationS": 2504,
@@ -4844,7 +4847,8 @@
       "lat": 35.5525858,
       "lng": 129.3006879,
       "naver": "https://map.naver.com/p/search/%EC%8B%AD%EB%A6%AC%EB%8C%80%EC%88%B2",
-      "nextM": 2048
+      "nextM": 2048,
+      "_moved": true
      },
      {
       "n": "태화강전망대",
