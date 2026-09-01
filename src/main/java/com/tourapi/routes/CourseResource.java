@@ -32,7 +32,8 @@ import java.util.List;
 /**
  * 편집 코스 카탈로그 라우트 (홈 피드·코스 상세 화면용).
  * 응답은 수집본 스키마 그대로 — 상세: id·n·km·min·lv·mood·tags·headline·subhead·
- * body[]·deep[]·ops[]·unsure[]·poi[{n,d,photo}]·photo·photoTitle·photoLicense·city·region과
+ * body[]·deep[]·ops[]·unsure[]·sources[{title,url,type,checkedAt}]·
+ * poi[{n,d,photo}]·photo·photoTitle·photoLicense·city·region과
  * polyline[[lat,lng]]·guide[{lat,lng,text}]·checkpoints[{id,name,lat,lng,audioSeconds,description}].
  */
 @Path("/v1/courses")

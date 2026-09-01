@@ -76,6 +76,35 @@ public class CourseResourceTest {
     }
 
     @Test
+    public void 편집원고는_확인한_출처와_확인일을_함께_보관한다() {
+        var course = catalog.byId("seoul-namsan-loop");
+        var sources = course.path("sources");
+        Assertions.assertTrue(sources.isArray() && sources.size() >= 2);
+        for (var source : sources) {
+            Assertions.assertFalse(source.path("title").asText().isBlank());
+            Assertions.assertTrue(source.path("url").asText().startsWith("https://"));
+            Assertions.assertTrue(source.path("type").asText().equals("official")
+                    || source.path("type").asText().equals("community"));
+            Assertions.assertEquals("2026-09-01", source.path("checkedAt").asText());
+        }
+    }
+
+    @Test
+    public void 근거가_없거나_시효가_지난_대표_표현은_노출하지_않는다() {
+        for (var summary : catalog.list(null)) {
+            var course = catalog.byId(summary.path("id").asText());
+            String copy = course.path("headline").asText() + " "
+                    + course.path("subhead").asText() + " "
+                    + course.path("body") + " " + course.path("deep") + " "
+                    + course.path("ops") + " " + course.path("poi") + " "
+                    + course.path("checkpoints");
+            Assertions.assertFalse(copy.contains("서울 양대 마라톤의 출발선"));
+            Assertions.assertFalse(copy.contains("한강을 가로질러 달릴 수 있는 사실상 유일한 다리"));
+            Assertions.assertFalse(copy.contains("내리막은 차로 내려와 2회전 하는 방식이 현지 표준"));
+        }
+    }
+
+    @Test
     public void 상세에_공유url과_poi_보강필드() {
         var course = catalog.byId("seoul-banpo-10k");
         Assertions.assertEquals(
