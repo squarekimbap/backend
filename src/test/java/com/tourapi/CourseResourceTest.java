@@ -278,7 +278,13 @@ public class CourseResourceTest {
         Assertions.assertEquals(namespace, document.getDocumentElement().getNamespaceURI());
         Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trk").getLength() > 0);
         Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trkseg").getLength() > 0);
-        Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trkpt").getLength() > 1);
+        var trackPoints = document.getElementsByTagNameNS(namespace, "trkpt");
+        var sourcePath = catalog.byId("busan-haeundae").path("polyline");
+        Assertions.assertEquals(sourcePath.size(), trackPoints.getLength(),
+                "GPX는 제목만이 아니라 서버 polyline 전체를 Track 좌표로 내려줘야 함");
+        var firstTrackPoint = (org.w3c.dom.Element) trackPoints.item(0);
+        Assertions.assertEquals(sourcePath.get(0).get(0).asText(), firstTrackPoint.getAttribute("lat"));
+        Assertions.assertEquals(sourcePath.get(0).get(1).asText(), firstTrackPoint.getAttribute("lon"));
         Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "wpt").getLength() > 0);
     }
 

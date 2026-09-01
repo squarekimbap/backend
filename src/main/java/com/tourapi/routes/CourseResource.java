@@ -2,6 +2,7 @@ package com.tourapi.routes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.tourapi.lib.Geo;
 import com.tourapi.lib.RankingCache;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.CourseListResponse;
@@ -130,8 +131,9 @@ public class CourseResource {
     @GET
     @Path("/{id}/nearby")
     @Operation(summary = "코스 주변 맛집·카페",
-            description = "코스의 마지막 경유지를 기준으로 1차 TourAPI + 2차 네이버 지역검색을 교차검증해 반환한다. "
-                    + "코스 상세 화면에서 본문과 병렬로 호출하면 된다(느려도 상세는 먼저 뜬다). 하루 단위 캐시.")
+            description = "코스 경로(polyline)의 마지막 좌표, 즉 완주 지점을 기준으로 1차 TourAPI + "
+                    + "2차 네이버 지역검색을 교차검증해 최대 8곳을 반환한다. 코스 상세 화면에서 본문과 "
+                    + "병렬로 호출하면 된다(느려도 상세는 먼저 뜬다). 하루 단위 캐시.")
     @APIResponses({
             @APIResponse(responseCode = "200", description = "맛집/카페 목록(교차검증 순)"),
             @APIResponse(responseCode = "404", description = "없는 id")
@@ -149,34 +151,18 @@ public class CourseResource {
         int radiusM = radius == null ? 1500 : Math.max(300, Math.min(5000, radius));
         String canonicalId = c.path("id").asText(id);
 
-        // 기준점: 코스 대표 좌표가 있으면 그것부터.
-        // poi 목록은 수집본에서 '경로상 경유지'가 아니라 그 도시의 관련 스팟 추천이 섞여 있어서
-        // 마지막 poi를 그대로 쓰면 온천천 코스가 광안리 기준으로 잡히는 식의 사고가 난다.
-        double lat;
-        double lng;
-        String basedOn;
-        JsonNode base = null;
-        if (c.hasNonNull("lat") && c.hasNonNull("lng")) {
-            lat = c.path("lat").asDouble();
-            lng = c.path("lng").asDouble();
-            basedOn = c.path("n").asText(null);
-        } else {
-            for (JsonNode poi : c.path("poi")) {
-                if (poi.hasNonNull("lat") && poi.hasNonNull("lng")) {
-                    base = poi;
-                }
-            }
-            lat = base == null ? 0 : base.path("lat").asDouble();
-            lng = base == null ? 0 : base.path("lng").asDouble();
-            basedOn = base == null ? null : base.path("n").asText(null);
-        }
-        if (base == null && !(c.hasNonNull("lat") && c.hasNonNull("lng"))) {
-            // 좌표를 못 찾은 코스(수집 원본에 좌표 미확보) — 빈 목록으로 조용히 내려간다
+        NearbyAnchor anchor = nearbyAnchor(c);
+        if (anchor == null) {
+            // 경로·경유지·대표 좌표를 모두 못 찾은 코스 — 빈 목록으로 조용히 내려간다
             return Response.ok(new CourseNearbyResponse(canonicalId, null, null, null, radiusM, 0, List.of()))
                     .build();
         }
+        double lat = anchor.lat();
+        double lng = anchor.lng();
+        String basedOn = anchor.basedOn();
 
-        String cacheKey = "nearby#" + canonicalId + "#" + radiusM + "#"
+        // v2는 대표점 기준이던 v1 캐시와 섞지 않는다.
+        String cacheKey = "nearby-v2#" + canonicalId + "#" + radiusM + "#"
                 + LocalDate.now(KST).format(DateTimeFormatter.BASIC_ISO_DATE);
 
         CourseNearbyResponse cached = cache.get(cacheKey, CourseNearbyResponse.class);
@@ -193,5 +179,69 @@ public class CourseResource {
             cache.put(cacheKey, body, Duration.ofHours(26));
         }
         return Response.ok(body).build();
+    }
+
+    /** 완주 지점: polyline 마지막 유효 좌표 → 마지막 POI → 대표 좌표 순으로 폴백한다. */
+    static NearbyAnchor nearbyAnchor(JsonNode course) {
+        JsonNode path = course.path("polyline");
+        if (path.isArray()) {
+            for (int i = path.size() - 1; i >= 0; i--) {
+                JsonNode point = path.get(i);
+                if (point.isArray() && point.size() >= 2 && validCoordinate(point.get(0), point.get(1))) {
+                    double lat = point.get(0).asDouble();
+                    double lng = point.get(1).asDouble();
+                    return new NearbyAnchor(lat, lng, nearestPoiName(course.path("poi"), lat, lng));
+                }
+            }
+        }
+
+        JsonNode poi = course.path("poi");
+        if (poi.isArray()) {
+            for (int i = poi.size() - 1; i >= 0; i--) {
+                JsonNode item = poi.get(i);
+                if (validCoordinate(item.path("lat"), item.path("lng"))) {
+                    return new NearbyAnchor(item.path("lat").asDouble(), item.path("lng").asDouble(),
+                            item.path("n").asText(null));
+                }
+            }
+        }
+
+        if (validCoordinate(course.path("lat"), course.path("lng"))) {
+            return new NearbyAnchor(course.path("lat").asDouble(), course.path("lng").asDouble(),
+                    course.path("n").asText(null));
+        }
+        return null;
+    }
+
+    private static String nearestPoiName(JsonNode poi, double lat, double lng) {
+        String nearest = null;
+        double nearestM = Double.POSITIVE_INFINITY;
+        if (poi.isArray()) {
+            for (JsonNode item : poi) {
+                if (!validCoordinate(item.path("lat"), item.path("lng"))) {
+                    continue;
+                }
+                double distanceM = Geo.haversineMeters(
+                        lat, lng, item.path("lat").asDouble(), item.path("lng").asDouble());
+                if (distanceM < nearestM) {
+                    nearestM = distanceM;
+                    nearest = item.path("n").asText(null);
+                }
+            }
+        }
+        return nearest;
+    }
+
+    private static boolean validCoordinate(JsonNode latNode, JsonNode lngNode) {
+        if (latNode == null || lngNode == null || !latNode.isNumber() || !lngNode.isNumber()) {
+            return false;
+        }
+        double lat = latNode.asDouble();
+        double lng = lngNode.asDouble();
+        return Double.isFinite(lat) && Double.isFinite(lng)
+                && lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
+    }
+
+    record NearbyAnchor(double lat, double lng, String basedOn) {
     }
 }

@@ -32,7 +32,7 @@
 - `GET /v1/courses/{id}/gpx` → 앱이 XML을 직접 만들지 않고 공유할 Garmin Connect 코스용 GPX 1.1 Track. `polyline`은 `trk/trkseg/trkpt`, 좌표가 있는 `poi`는 표준 `wpt`로 내보낸다. Garmin Connect가 외부 waypoint를 보존하지 않을 수 있으므로 경유지명 표시는 보장하지 않는다.
   ⚠️ 테스트 함정: 테스트용 MockEventServer가 큰(~24KB) 청크 응답을 종료하지 않아 read timeout — **전체 목록은 HTTP 테스트 금지, 서비스 레벨(CourseCatalog 주입)로 검증**(dev·실서버는 정상 확인).
 - Swagger UI `/q/swagger-ui` · 스펙 `/q/openapi` (현재 공개 노출 — 닫으려면 `quarkus.swagger-ui.always-include=false`).
-- `GET /v1/courses/{id}/nearby[?radius]` → 코스 상세의 **주변 맛집/카페**. 기준점은 좌표가 있는 마지막 poi. **1차 TourAPI(타입39) + 2차 네이버 지역검색(sort=comment=리뷰순) 교차검증** → `trust`: verified(양쪽) · trending(네이버만=최근 뜬 곳) · tour(관광공사만). 하루 캐시(`nearby#<id>#<반경>#<KST날짜>`, TTL 26h, **빈 결과는 캐시 안 함**). 좌표 미확보 코스(64개 중 9개)는 `count:0`으로 조용히 내려감.
+- `GET /v1/courses/{id}/nearby[?radius]` → 코스 상세의 **뛰고 나서 들를 맛집/카페**. 기준점은 `polyline`의 마지막 좌표인 실제 완주 지점이며 최대 8곳을 반환한다. 경로가 없을 때만 마지막 poi→대표 좌표 순으로 폴백한다. **1차 TourAPI(타입39) + 2차 네이버 지역검색(sort=comment=리뷰순) 교차검증** → `trust`: verified(양쪽) · trending(네이버만=최근 뜬 곳) · tour(관광공사만). 하루 캐시(`nearby-v2#<id>#<반경>#<KST날짜>`, TTL 26h, **빈 결과는 캐시 안 함**).
   ⚠️ **네이버 검색 API는 NAVER API HUB로 이관됨**(개발자센터 아님). 옛 방식으로 부르면 키가 맞아도 401 errorCode 024가 난다 — 실제로 이 함정에 한 번 빠졌다.
   - (옛) `openapi.naver.com/v1/search/local.json` + `X-Naver-Client-Id/Secret`
   - (현) `naverapihub.apigw.ntruss.com/search/v1/local` + `X-NCP-APIGW-API-KEY-ID/KEY` ← 키는 **NCP 콘솔**에서 발급. 개발자센터 등록 폼의 "사용 API" 목록엔 검색이 아예 없다.

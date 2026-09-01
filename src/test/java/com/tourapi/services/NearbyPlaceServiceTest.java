@@ -43,6 +43,24 @@ class NearbyPlaceServiceTest {
     }
 
     @Test
+    void 뛰고나서_들를곳은_한업종이부족해도_최대8개를채운다() {
+        List<NearbyPlace> out = NearbyPlaceService.topBalanced(List.of(
+                place("식당1", "restaurant", "verified", 100),
+                place("식당2", "restaurant", "tour", 200),
+                place("식당3", "restaurant", "tour", 300),
+                place("식당4", "restaurant", "tour", 400),
+                place("식당5", "restaurant", "tour", 500),
+                place("식당6", "restaurant", "tour", 600),
+                place("식당7", "restaurant", "tour", 700),
+                place("식당8", "restaurant", "tour", 800),
+                place("식당9", "restaurant", "tour", 900),
+                place("카페1", "cafe", "tour", 150)), 8);
+
+        assertEquals(8, out.size());
+        assertEquals(1, out.stream().filter(place -> "cafe".equals(place.kind())).count());
+    }
+
+    @Test
     void 네이버_업종이_있으면_카페로_분류() {
         assertEquals("cafe", NearbyPlaceService.kind("무명상회", "카페,디저트"));
         assertEquals("restaurant", NearbyPlaceService.kind("무명상회", "한식>육류,고기"));

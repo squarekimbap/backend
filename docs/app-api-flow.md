@@ -315,7 +315,7 @@ X-RateLimit-Reset: 1788274800
 - `audioSeconds`는 현재 원고 길이로 계산한 예상 낭독 시간이다. 음원 URL은 없으므로 앱의 TTS/기존 이야기 재생기를 사용한다.
 - `walkDurationS`는 TMAP 도보 기준이다. 러닝 예상 시간에는 기존 `min` 또는 사용자 페이스 환산값을 쓴다.
 
-**Garmin GPX 공유** — 앱에서 XML을 다시 만들지 말고 상세의 `id`로 `GET /v1/courses/{id}/gpx`를 호출해 받은 파일을 그대로 `UIActivityViewController`에 넘긴다. 파일은 GPX 1.1의 `trk → trkseg → trkpt` 구조다. `poi`는 `wpt`도 함께 넣지만 Garmin Connect가 외부 waypoint를 보존하지 않을 수 있으므로 시계의 경유지명 표시는 보장하지 않는다. 사용자는 Garmin Connect의 **훈련 및 계획 → 코스 → 가져오기**로 열어야 하며, 일반 활동 데이터 가져오기로 올리지 않는다.
+**Garmin GPX 공유** — 앱에서 XML을 다시 만들지 말고 상세의 `id`로 `GET /v1/courses/{id}/gpx`를 호출해 받은 파일을 로컬 임시 디렉터리에 `{id}.gpx`로 저장한다. `UIActivityViewController(activityItems:)`에는 코스 제목·공유 URL·XML 문자열이 아니라 **저장한 GPX 파일의 로컬 URL 하나만** 넘긴다. 응답은 `application/gpx+xml`이고 파일은 GPX 1.1의 `trk → trkseg → trkpt` 좌표로 실제 러닝 경로선을 담는다. `poi`는 `wpt`도 함께 넣지만 Garmin Connect가 외부 waypoint를 보존하지 않을 수 있으므로 시계의 경유지명 표시는 보장하지 않는다. 사용자는 공유 시트에서 Garmin Connect를 선택한 뒤 러닝 코스 유형으로 저장해야 한다. 웹에서는 Garmin Connect의 **훈련 및 계획 → 코스 → 가져오기**로 열며, 일반 활동 데이터 가져오기로 올리지 않는다.
 
 **poi 항목 구조** (지나는 곳 1곳):
 
@@ -347,7 +347,7 @@ X-RateLimit-Reset: 1788274800
 
 **주변 맛집·카페** — `GET /v1/courses/{id}/nearby[?radius=1500]`
 
-코스 상세 화면의 "주변 식당·카페" 영역용. 상세 본문과 **병렬로 호출**하면 된다(느려도 본문은 먼저 뜬다).
+코스 상세 화면의 "뛰고 나서 들를 곳" 영역용. 코스 `polyline`의 마지막 좌표인 **실제 완주 지점**을 기준으로 최대 8곳을 반환한다. 상세 본문과 **병렬로 호출**하면 된다(느려도 본문은 먼저 뜬다).
 
 ```json
 { "courseId": "seoul-banpo-10k", "basedOn": "잠수교",
@@ -366,6 +366,7 @@ X-RateLimit-Reset: 1788274800
 | `tour` | 관광공사에만 있음 | 뱃지 없음 |
 
 - 정렬은 서버가 이미 함: **교차검증된 곳(verified)만 맨 앞**, 나머지는 거리순. 식당·카페가 한쪽으로 쏠리지 않게 균형을 맞춘다
+- 서버는 `items`를 최대 8개까지 내려준다. 앱에서 `prefix(4)` 등으로 자르지 말고 8개를 모두 표시하거나, 첫 4개 아래에 "더 보기"로 나머지를 펼친다
 - `category`·`link`·`image`·`tel`·`distanceM`은 **null 가능**
 - 하루 단위 캐시라 두 번째 호출부터는 즉시 응답
 - 좌표를 확보하지 못한 코스는 `count: 0`, `basedOn: null`로 내려간다(에러 아님) — 이 영역을 숨기면 된다
