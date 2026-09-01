@@ -21,6 +21,20 @@ import java.util.Map;
 @ApplicationScoped
 public class CourseCatalog {
 
+    /** 스토어 출시 전 iOS 번들에 저장됐던 ID 중 현재 카탈로그와 동일한 코스. */
+    private static final Map<String, String> LEGACY_IDS = Map.ofEntries(
+            Map.entry("seoul-banpo-night", "seoul-banpo-10k"),
+            Map.entry("seoul-namsan", "seoul-namsan-loop"),
+            Map.entry("busan-gwangalli", "busan-gwangalli-night"),
+            Map.entry("busan-songdo", "busan-songdo-cloud"),
+            Map.entry("gyeongju-bomun", "gyeongju-bomunho"),
+            Map.entry("gangneung-anmok", "gangneung-anmok-sunrise"),
+            Map.entry("jeju-yongduam", "jeju-yongdam-coast"),
+            Map.entry("seoul-yeouido", "seoul-yeouido-5k"),
+            Map.entry("seoul-gyeongbok", "seoul-gyeongbokgung-wall"),
+            Map.entry("seoul-olympic", "seoul-olympic-loop")
+    );
+
     /** 목록(카드) 응답에 내려줄 필드 — 본문(body 등)은 상세에서만. */
     private static final String[] SUMMARY_FIELDS = {
             "id", "n", "city", "cityId", "region", "km", "min", "lv", "mood",
@@ -75,6 +89,15 @@ public class CourseCatalog {
                 s.set("waypoints", waypoints);
                 sums.add(s);
             }
+            for (Map.Entry<String, String> alias : LEGACY_IDS.entrySet()) {
+                if (map.containsKey(alias.getKey())) {
+                    throw new IllegalStateException("구 ID가 현재 코스 id와 충돌: " + alias.getKey());
+                }
+                if (!map.containsKey(alias.getValue())) {
+                    throw new IllegalStateException("구 ID 대상 코스 누락: " + alias.getKey()
+                            + " -> " + alias.getValue());
+                }
+            }
             this.byId = map;
             this.summaries = sums;
         } catch (IllegalStateException e) {
@@ -101,6 +124,9 @@ public class CourseCatalog {
 
     /** 상세(전체 필드). 없으면 null. */
     public JsonNode byId(String id) {
-        return byId.get(id);
+        if (id == null) {
+            return null;
+        }
+        return byId.get(LEGACY_IDS.getOrDefault(id, id));
     }
 }

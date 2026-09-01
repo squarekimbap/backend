@@ -263,7 +263,24 @@ X-RateLimit-Reset: 1788274800
 | `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + 원고·`poi[]` + 정적 `polyline`·`guide`·`checkpoints`(아래) |
 | `GET /v1/courses/{id}/gpx` | Garmin 코스 공유 | `application/gpx+xml` GPX 1.1 Track 파일. 앱은 응답 파일을 그대로 공유 |
 
-홈 코스 카드는 `km`를 본문에 표시하지 않고 `waypoints`를 받은 순서대로 최대 3곳까지 보여준다. 예: `해운대해수욕장 · 동백섬 · 누리마루`. `km`는 거리 필터와 상세 화면 수치에만 사용한다. `waypoints`는 문자열 배열이며 비어 있으면 해당 줄을 숨긴다.
+홈 코스 카드는 `km`를 본문에 표시하지 않고 `waypoints`를 받은 순서대로 최대 3곳까지 보여준다. 예: `해운대해수욕장 · 동백섬 · 누리마루`. `km`는 거리 필터와 상세 화면 수치에만 사용한다.
+
+```json
+{
+  "count": 64,
+  "items": [
+    {
+      "id": "sokcho-yeongnangho",
+      "waypoints": ["영랑호", "영랑호수윗길", "범바위"],
+      "photo": "https://..."
+    }
+  ]
+}
+```
+
+- **목록** `items[].waypoints`는 홈 카드용 **이름 문자열 배열**이다. 비어 있으면 해당 줄을 숨긴다.
+- **상세**에는 `waypoints` 객체 배열을 쓰지 않는다. 좌표·설명·사진을 포함한 경유지는 아래의 `poi[]`다.
+- 코스 대표 `photo`·`photoTitle`·`photoLicense`는 API 계약상 **null 가능**하다. null이면 기본 이미지를 표시한다.
 
 **경로·안내·도슨트** — 64개 코스 모두 배열을 내려준다.
 
@@ -311,6 +328,23 @@ X-RateLimit-Reset: 1788274800
   "nextM": 4719 }                                   // 다음 경유지까지 도보 m. null 가능(마지막/미확보)
 ```
 
+**기존 iOS 번들 ID 호환** — 아래 구 ID로 상세·GPX·주변 장소를 호출해도 같은 코스를 찾는다. 응답의 `id`·`url`과 GPX 파일명은 신 ID로 정규화된다.
+
+| 구 ID | 신 ID |
+| --- | --- |
+| `seoul-banpo-night` | `seoul-banpo-10k` |
+| `seoul-namsan` | `seoul-namsan-loop` |
+| `busan-gwangalli` | `busan-gwangalli-night` |
+| `busan-songdo` | `busan-songdo-cloud` |
+| `gyeongju-bomun` | `gyeongju-bomunho` |
+| `gangneung-anmok` | `gangneung-anmok-sunrise` |
+| `jeju-yongduam` | `jeju-yongdam-coast` |
+| `seoul-yeouido` | `seoul-yeouido-5k` |
+| `seoul-gyeongbok` | `seoul-gyeongbokgung-wall` |
+| `seoul-olympic` | `seoul-olympic-loop` |
+
+나머지 옛 번들 ID는 같은 경로의 현재 코스가 없어 임의로 연결하지 않는다. iOS 번들의 좌표·경유지를 서버 코스로 복원한 뒤 추가한다.
+
 **주변 맛집·카페** — `GET /v1/courses/{id}/nearby[?radius=1500]`
 
 코스 상세 화면의 "주변 식당·카페" 영역용. 상세 본문과 **병렬로 호출**하면 된다(느려도 본문은 먼저 뜬다).
@@ -340,7 +374,7 @@ X-RateLimit-Reset: 1788274800
 - id 예: `seoul-banpo-10k`, `busan-haeundae`. 없는 id → `404 {error:"not_found"}`
 - 정적 번들 데이터라 응답이 빠르고(수십 ms + 콜드스타트) 업스트림 실패(502)가 없다
 - 한글 city 파라미터는 **URL 인코딩** 필수 (iOS URLComponents 사용 시 자동)
-- 사진 표기: `photoLicense`(공공누리) 문구를 상세 화면 하단에 노출할 것
+- 사진 표기: `photoLicense` 문구를 상세 화면 하단에 노출할 것. 공공누리 제4유형 사진은 자르기·색보정 없이 원본 비율로 표시하며 상업적 이용이 금지된다. 유료화·광고 도입 전 다른 라이선스 사진으로 교체할 것
 
 ## (참고) 앱에서 호출하지 않는 엔드포인트
 

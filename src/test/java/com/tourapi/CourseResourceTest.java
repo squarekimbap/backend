@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
@@ -39,6 +40,59 @@ public class CourseResourceTest {
         Assertions.assertNotNull(catalog.list(null).get(0).get("headline"));
         Assertions.assertTrue(catalog.list(null).get(0).path("waypoints").isArray());
         Assertions.assertFalse(catalog.list(null).get(0).path("waypoints").isEmpty());
+        for (var summary : catalog.list(null)) {
+            for (var waypoint : summary.path("waypoints")) {
+                Assertions.assertTrue(waypoint.isTextual(),
+                        "목록 waypoints는 이름 문자열이어야 함: " + summary.path("id").asText());
+            }
+            Assertions.assertTrue(catalog.byId(summary.path("id").asText()).path("poi").get(0).isObject(),
+                    "상세 poi는 객체여야 함: " + summary.path("id").asText());
+        }
+    }
+
+    @Test
+    public void 구코스_id_10개는_확인된_신코스로_조회된다() {
+        Map<String, String> aliases = Map.ofEntries(
+                Map.entry("seoul-banpo-night", "seoul-banpo-10k"),
+                Map.entry("seoul-namsan", "seoul-namsan-loop"),
+                Map.entry("busan-gwangalli", "busan-gwangalli-night"),
+                Map.entry("busan-songdo", "busan-songdo-cloud"),
+                Map.entry("gyeongju-bomun", "gyeongju-bomunho"),
+                Map.entry("gangneung-anmok", "gangneung-anmok-sunrise"),
+                Map.entry("jeju-yongduam", "jeju-yongdam-coast"),
+                Map.entry("seoul-yeouido", "seoul-yeouido-5k"),
+                Map.entry("seoul-gyeongbok", "seoul-gyeongbokgung-wall"),
+                Map.entry("seoul-olympic", "seoul-olympic-loop")
+        );
+
+        aliases.forEach((legacyId, canonicalId) -> {
+            var course = catalog.byId(legacyId);
+            Assertions.assertNotNull(course, "구 ID 조회 실패: " + legacyId);
+            Assertions.assertEquals(canonicalId, course.path("id").asText(), "구 ID 정규화 실패: " + legacyId);
+        });
+    }
+
+    @Test
+    public void 확인되지_않은_구코스_id는_다른코스로_추측하지_않는다() {
+        Assertions.assertNull(catalog.byId("seoul-nodeul"));
+        Assertions.assertNull(catalog.byId("gyeongju-daereungwon"));
+        Assertions.assertNull(catalog.byId("jeju-seogwipo"));
+    }
+
+    @Test
+    public void 대표사진이_없던_다섯코스에_출처있는_사진이_있다() {
+        for (String id : new String[]{
+                "gwangju-yeongsangang",
+                "yeosu-old-railroad",
+                "anyang-pyeongchon-freedom",
+                "anyang-hakuicheon",
+                "osan-osancheon"
+        }) {
+            var course = catalog.byId(id);
+            Assertions.assertTrue(course.path("photo").asText().startsWith("https://"), "사진 누락: " + id);
+            Assertions.assertFalse(course.path("photoTitle").asText().isBlank(), "사진 제목 누락: " + id);
+            Assertions.assertFalse(course.path("photoLicense").asText().isBlank(), "사진 출처 누락: " + id);
+        }
     }
 
     @Test
@@ -63,6 +117,26 @@ public class CourseResourceTest {
                 .then().statusCode(200)
                 .body("count", greaterThan(0))
                 .body("items[0].cityId", equalTo("busan"));
+    }
+
+    @Test
+    public void OpenAPI_목록_waypoints는_문자열배열이다() throws Exception {
+        String body = RestAssured.given()
+                .queryParam("format", "json")
+                .when().get("/q/openapi")
+                .then().statusCode(200)
+                .extract().asString();
+        var properties = new com.fasterxml.jackson.databind.ObjectMapper().readTree(body)
+                .path("components").path("schemas").path("CourseListItem").path("properties");
+        var waypoints = properties.path("waypoints");
+        Assertions.assertEquals("array", waypoints.path("type").asText());
+        Assertions.assertEquals("string", waypoints.path("items").path("type").asText());
+        for (String property : new String[]{"photo", "photoTitle", "photoLicense"}) {
+            var photoField = properties.path(property);
+            boolean nullable = photoField.path("nullable").asBoolean()
+                    || (photoField.path("type").isArray() && photoField.path("type").toString().contains("null"));
+            Assertions.assertTrue(nullable, property + " nullable 계약 누락: " + photoField.toPrettyString());
+        }
     }
 
     @Test
@@ -206,6 +280,14 @@ public class CourseResourceTest {
         Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trkseg").getLength() > 0);
         Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trkpt").getLength() > 1);
         Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "wpt").getLength() > 0);
+    }
+
+    @Test
+    public void 구코스_id의_GPX파일명은_신id로_정규화된다() {
+        Response response = courseResource.gpx("seoul-banpo-night");
+        Assertions.assertEquals(200, response.getStatus());
+        Assertions.assertEquals("attachment; filename=\"seoul-banpo-10k.gpx\"",
+                response.getHeaderString("Content-Disposition"));
     }
 
     @Test

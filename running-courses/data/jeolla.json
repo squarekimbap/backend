@@ -1282,9 +1282,9 @@
       "naver": "https://map.naver.com/p/search/%EC%98%81%EC%82%B0%EA%B0%95%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8"
      }
     ],
-    "photo": null,
-    "photoTitle": "영산강",
-    "photoLicense": null,
+    "photo": "https://tong.visitkorea.or.kr/cms/resource/23/3368223_image2_1.jpg",
+    "photoTitle": "영산강 자전거길",
+    "photoLicense": "한국관광공사 · 공공누리 제3유형",
     "lat": 35.167602,
     "lng": 126.871587,
     "related": [
@@ -6831,9 +6831,9 @@
       "naver": "https://map.naver.com/p/search/%EB%A7%8C%ED%9D%A5%EA%B3%B5%EC%9B%90"
      }
     ],
-    "photo": null,
-    "photoTitle": "여수 기찻길",
-    "photoLicense": null,
+    "photo": "https://tong.visitkorea.or.kr/cms/resource/33/3520933_image2_1.jpg",
+    "photoTitle": "만흥공원 — 전라선 옛 기찻길 종점 구간",
+    "photoLicense": "한국관광공사 · 공공누리 제1유형",
     "lat": 34.7749034,
     "lng": 127.7447193,
     "routeShape": "loop",

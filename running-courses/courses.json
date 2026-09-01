@@ -30068,9 +30068,9 @@
     "naver": "https://map.naver.com/p/search/%EC%98%81%EC%82%B0%EA%B0%95%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8"
    }
   ],
-  "photo": null,
-  "photoTitle": "영산강",
-  "photoLicense": null,
+  "photo": "https://tong.visitkorea.or.kr/cms/resource/23/3368223_image2_1.jpg",
+  "photoTitle": "영산강 자전거길",
+  "photoLicense": "한국관광공사 · 공공누리 제3유형",
   "lat": 35.167602,
   "lng": 126.871587,
   "related": [
@@ -35611,9 +35611,9 @@
     "naver": "https://map.naver.com/p/search/%EB%A7%8C%ED%9D%A5%EA%B3%B5%EC%9B%90"
    }
   ],
-  "photo": null,
-  "photoTitle": "여수 기찻길",
-  "photoLicense": null,
+  "photo": "https://tong.visitkorea.or.kr/cms/resource/33/3520933_image2_1.jpg",
+  "photoTitle": "만흥공원 — 전라선 옛 기찻길 종점 구간",
+  "photoLicense": "한국관광공사 · 공공누리 제1유형",
   "lat": 34.7749034,
   "lng": 127.7447193,
   "routeShape": "loop",
@@ -56463,9 +56463,9 @@
     "naver": "https://map.naver.com/p/search/%EA%B6%81%EB%8F%84%EC%9E%A5%20%EC%98%A4%EB%A5%B4%EB%A7%89"
    }
   ],
-  "photo": null,
-  "photoTitle": "안양 자유공원",
-  "photoLicense": null,
+  "photo": "https://www.anyang.go.kr/DATA/tour/34/thumb/p_E06BC5C9-B45C-03B9-DC0A-173082BEC461-20191128.jpg",
+  "photoTitle": "평촌 자유공원 전경",
+  "photoLicense": "안양시 문화관광 · 공공누리 제4유형(출처표시·상업이용금지·변경금지)",
   "lat": 37.3795781,
   "lng": 126.9646767,
   "routeShape": "loop",
@@ -57095,9 +57095,9 @@
     "naver": "https://map.naver.com/p/search/%ED%95%99%EC%9D%98%EC%B2%9C"
    }
   ],
-  "photo": null,
-  "photoTitle": "학의천",
-  "photoLicense": null,
+  "photo": "https://www.anyang.go.kr/site/tour/images/contents/course8_1.jpg",
+  "photoTitle": "학의천 산책로",
+  "photoLicense": "안양시 문화관광 · 공공누리 제4유형(출처표시·상업이용금지·변경금지)",
   "related": [
    {
     "n": "백운호수 방면",
@@ -61449,9 +61449,9 @@
     "naver": "https://map.naver.com/p/search/%EC%98%A4%EC%82%B0%EC%B2%9C"
    }
   ],
-  "photo": null,
-  "photoTitle": "오산천",
-  "photoLicense": null,
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/6/61/Tree_in_Osancheon.jpg",
+  "photoTitle": "오산천의 가을 나무",
+  "photoLicense": "Wikimedia Commons · revi · CC BY 2.0 KR",
   "lat": 37.1398794,
   "lng": 127.0623104,
   "related": [
