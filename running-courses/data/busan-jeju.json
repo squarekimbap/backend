@@ -7,8 +7,8 @@
    {
     "id": "busan-haeundae",
     "n": "해운대 동백섬 해안",
-    "km": 5.0,
-    "min": 30,
+    "km": 5.3,
+    "min": 32,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [
@@ -73,16 +73,7 @@
       "addr": "부산광역시 해운대구 동백로 116 누리마루APEC하우스",
       "lat": 35.1523659,
       "lng": 129.1513416,
-      "naver": "https://map.naver.com/p/search/%EB%88%84%EB%A6%AC%EB%A7%88%EB%A3%A8APEC%ED%95%98%EC%9A%B0%EC%8A%A4",
-      "nextM": 2890
-     },
-     {
-      "n": "미포",
-      "d": "코스 동쪽 반환점이 되는 작은 포구. 방파제 너머 어선과 고층 빌딩이 한 프레임에 잡히고, 달맞이길 카페 골목으로 이어진다.",
-      "addr": "부산광역시 해운대구 달맞이길62번길 13",
-      "lat": 35.158138,
-      "lng": 129.1728559,
-      "naver": "https://map.naver.com/p/search/%EB%AF%B8%ED%8F%AC"
+      "naver": "https://map.naver.com/p/search/%EB%88%84%EB%A6%AC%EB%A7%88%EB%A3%A8APEC%ED%95%98%EC%9A%B0%EC%8A%A4"
      }
     ],
     "lat": 35.1581445,
@@ -126,6 +117,16 @@
       "lat": null,
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EA%B7%B8%EB%A6%B0%EB%A0%88%EC%9D%BC%EC%9B%A8%EC%9D%B4"
+     },
+     {
+      "n": "미포",
+      "d": "코스 동쪽 반환점이 되는 작은 포구. 방파제 너머 어선과 고층 빌딩이 한 프레임에 잡히고, 달맞이길 카페 골목으로 이어진다.",
+      "photo": null,
+      "addr": "부산광역시 해운대구 달맞이길62번길 13",
+      "lat": 35.158138,
+      "lng": 129.1728559,
+      "naver": "https://map.naver.com/p/search/%EB%AF%B8%ED%8F%AC",
+      "nextM": null
      }
     ],
     "routeShape": "loop",
@@ -1066,8 +1067,8 @@
    {
     "id": "busan-gwangalli-night",
     "n": "광안리 민락수변 야간",
-    "km": 5.0,
-    "min": 30,
+    "km": 4.8,
+    "min": 29,
     "lv": "쉬움",
     "mood": "야경",
     "tags": [
@@ -2165,8 +2166,8 @@
    {
     "id": "busan-oncheoncheon",
     "n": "온천천 시민공원",
-    "km": 8.0,
-    "min": 48,
+    "km": 8.7,
+    "min": 52,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -3328,8 +3329,8 @@
    {
     "id": "busan-samnak-lsd",
     "n": "삼락생태공원 장거리",
-    "km": 12.0,
-    "min": 72,
+    "km": 11.8,
+    "min": 71,
     "lv": "보통",
     "mood": "평지",
     "tags": [
@@ -4490,8 +4491,8 @@
    {
     "id": "busan-songdo-cloud",
     "n": "송도 구름산책로",
-    "km": 3.0,
-    "min": 20,
+    "km": 2.9,
+    "min": 19,
     "lv": "보통",
     "mood": "풍경",
     "tags": [
@@ -4556,16 +4557,7 @@
       "addr": "부산광역시 서구 송도해변로 171",
       "lat": 35.0766432,
       "lng": 129.0233986,
-      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4",
-      "nextM": 3574
-     },
-     {
-      "n": "암남공원",
-      "d": "해안 절벽 위 숲에 자리한 종점. 시가지 소음이 잦아들고 숲 그늘과 파도 소리만 남는다.",
-      "addr": "부산광역시 서구 암남공원로 179-20",
-      "lat": 35.0599107,
-      "lng": 129.0162416,
-      "naver": "https://map.naver.com/p/search/%EC%95%94%EB%82%A8%EA%B3%B5%EC%9B%90"
+      "naver": "https://map.naver.com/p/search/%EC%86%A1%EB%8F%84%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4"
      }
     ],
     "related": [
@@ -4607,6 +4599,16 @@
       "lat": 35.1628751551535,
       "lng": 129.159811309804,
       "naver": "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5"
+     },
+     {
+      "n": "암남공원",
+      "d": "해안 절벽 위 숲에 자리한 종점. 시가지 소음이 잦아들고 숲 그늘과 파도 소리만 남는다.",
+      "photo": null,
+      "addr": "부산광역시 서구 암남공원로 179-20",
+      "lat": 35.0599107,
+      "lng": 129.0162416,
+      "naver": "https://map.naver.com/p/search/%EC%95%94%EB%82%A8%EA%B3%B5%EC%9B%90",
+      "nextM": null
      }
     ],
     "lat": 35.0759052,
@@ -5493,8 +5495,8 @@
    {
     "id": "jeju-yongdam-coast",
     "n": "용담 해안도로",
-    "km": 6.0,
-    "min": 36,
+    "km": 5.3,
+    "min": 32,
     "lv": "쉬움",
     "mood": "야경",
     "tags": [
@@ -5561,16 +5563,7 @@
       "addr": "제주특별자치도 제주시 용담삼동 2396-16",
       "lat": 33.5175582,
       "lng": 126.4866639,
-      "naver": "https://map.naver.com/p/search/%EC%96%B4%EC%98%81%EA%B3%B5%EC%9B%90",
-      "nextM": 2651
-     },
-     {
-      "n": "도두봉",
-      "d": "코스 서쪽 반환점인 낮은 오름. 올라서면 공항 활주로와 바다가 한눈에 내려다보인다.",
-      "addr": "제주특별자치도 제주시 도두항길 4-17",
-      "lat": 33.507985,
-      "lng": 126.4683496,
-      "naver": "https://map.naver.com/p/search/%EB%8F%84%EB%91%90%EB%B4%89"
+      "naver": "https://map.naver.com/p/search/%EC%96%B4%EC%98%81%EA%B3%B5%EC%9B%90"
      }
     ],
     "related": [
@@ -5612,6 +5605,16 @@
       "lat": 33.2447166744,
       "lng": 126.559550845,
       "naver": "https://map.naver.com/p/search/%EC%B2%9C%EC%A7%80%EC%97%B0%ED%8F%AD%ED%8F%AC"
+     },
+     {
+      "n": "도두봉",
+      "d": "코스 서쪽 반환점인 낮은 오름. 올라서면 공항 활주로와 바다가 한눈에 내려다보인다.",
+      "photo": null,
+      "addr": "제주특별자치도 제주시 도두항길 4-17",
+      "lat": 33.507985,
+      "lng": 126.4683496,
+      "naver": "https://map.naver.com/p/search/%EB%8F%84%EB%91%90%EB%B4%89",
+      "nextM": null
      }
     ],
     "lat": 33.51608,
@@ -6506,8 +6509,8 @@
    {
     "id": "jeju-saryeoni",
     "n": "사려니숲길",
-    "km": 10.0,
-    "min": 75,
+    "km": 9.2,
+    "min": 69,
     "lv": "보통",
     "mood": "트레일",
     "tags": [
@@ -6557,16 +6560,7 @@
       "lat": 33.4226957,
       "lng": 126.626798,
       "naver": "https://map.naver.com/p/search/%EC%82%AC%EB%A0%A4%EB%8B%88%EC%88%B2%EA%B8%B8",
-      "nextM": 6244
-     },
-     {
-      "n": "물찻오름",
-      "d": "분화구에 물이 고이는 오름으로 알려진 곳. 숲 안쪽 깊이 들어왔음을 알려주는 표지다.",
-      "addr": "제주특별자치도 제주시 조천읍 교래리",
-      "lat": 33.3948479,
-      "lng": 126.6528742,
-      "naver": "https://map.naver.com/p/search/%EB%AC%BC%EC%B0%BB%EC%98%A4%EB%A6%84",
-      "nextM": 5093
+      "nextM": 9172
      },
      {
       "n": "붉은오름자연휴양림",
@@ -6625,6 +6619,16 @@
       "lat": 33.34267,
       "lng": 126.64444,
       "naver": "https://map.naver.com/p/search/%EC%82%AC%EB%A0%A4%EB%8B%88%EC%98%A4%EB%A6%84",
+      "nextM": null
+     },
+     {
+      "n": "물찻오름",
+      "d": "분화구에 물이 고이는 오름으로 알려진 곳. 숲 안쪽 깊이 들어왔음을 알려주는 표지다.",
+      "photo": null,
+      "addr": "제주특별자치도 제주시 조천읍 교래리",
+      "lat": 33.3948479,
+      "lng": 126.6528742,
+      "naver": "https://map.naver.com/p/search/%EB%AC%BC%EC%B0%BB%EC%98%A4%EB%A6%84",
       "nextM": null
      }
     ],

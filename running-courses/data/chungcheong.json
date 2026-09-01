@@ -6,9 +6,9 @@
   "courses": [
    {
     "id": "daejeon-gapcheon",
-    "n": "갑천 10km",
-    "km": 10.0,
-    "min": 60,
+    "n": "갑천 강변",
+    "km": 8.8,
+    "min": 53,
     "lv": "보통",
     "mood": "평지",
     "tags": [
@@ -22,7 +22,7 @@
     "photoTitle": "갑천",
     "photoLicense": "한국관광공사 · 공공누리 제1유형",
     "headline": "갑천, 대전의 저녁이 모이는 강변",
-    "subhead": "엑스포다리와 한빛탑을 지나며 10km를 만든다. 강 건너 도시 불빛이 후반 길잡이가 된다.",
+    "subhead": "엑스포다리와 한빛탑을 지나며 거리를 채운다. 강 건너 도시 불빛이 후반 길잡이가 된다.",
     "body": [
      "도안동 갑천 둔치에서 출발한다. 물길을 왼쪽에 두고 하류로 방향을 잡으면 길이 끊기지 않고 이어진다. 대전에서 러닝 얘기를 하면 갑천이 자주 쓰는 코스인 이유가 여기 있다. 신호 없이 10km를 통으로 채울 수 있는 길이 도심 한복판을 관통한다.",
      "초반은 둔치 사이를 지나고, 월평동을 넘어서면 오른쪽으로 둔산 신도심의 건물이 벽처럼 늘어선다. 대전 서구는 넓은 공원과 한적한 강변길, 도심 숲길이 겹치는 동네라 러닝 환경이 특히 좋다는 평을 받는데, 갑천이 그 중심축이다.",
@@ -1304,8 +1304,8 @@
    {
     "id": "daejeon-gyejoksan",
     "n": "계족산 황톳길",
-    "km": 14.5,
-    "min": 110,
+    "km": 14.7,
+    "min": 112,
     "lv": "어려움",
     "mood": "트레일",
     "tags": [
@@ -1371,16 +1371,7 @@
       "addr": "대전광역시 동구 효평동",
       "lat": 36.3947339,
       "lng": 127.4548798,
-      "naver": "https://map.naver.com/p/search/%EA%B3%84%EC%A1%B1%EC%82%B0%EC%84%B1",
-      "nextM": 3037
-     },
-     {
-      "n": "절고개",
-      "d": "임도 반환점. 여기까지 왕복으로 끊으면 전 구간 종주보다 부담이 크게 줄어든다.",
-      "addr": "대전광역시 동구 효평동",
-      "lat": 36.3781732,
-      "lng": 127.4528136,
-      "naver": "https://map.naver.com/p/search/%EC%A0%88%EA%B3%A0%EA%B0%9C"
+      "naver": "https://map.naver.com/p/search/%EA%B3%84%EC%A1%B1%EC%82%B0%EC%84%B1"
      }
     ],
     "related": [
@@ -1422,6 +1413,16 @@
       "lat": 36.4011148323,
       "lng": 127.5101665667,
       "naver": "https://map.naver.com/p/search/%EB%8C%80%EC%B2%AD%ED%98%B8"
+     },
+     {
+      "n": "절고개",
+      "d": "임도 반환점. 여기까지 왕복으로 끊으면 전 구간 종주보다 부담이 크게 줄어든다.",
+      "photo": null,
+      "addr": "대전광역시 동구 효평동",
+      "lat": 36.3781732,
+      "lng": 127.4528136,
+      "naver": "https://map.naver.com/p/search/%EC%A0%88%EA%B3%A0%EA%B0%9C",
+      "nextM": null
      }
     ],
     "lat": 36.4050302,
@@ -2333,8 +2334,8 @@
    {
     "id": "sejong-eung-bridge",
     "n": "이응다리와 호수공원",
-    "km": 6.0,
-    "min": 38,
+    "km": 5.5,
+    "min": 35,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -2383,16 +2384,7 @@
       "lat": 36.4991657,
       "lng": 127.270145,
       "naver": "https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90",
-      "nextM": 3757
-     },
-     {
-      "n": "금강보행교",
-      "d": "이응다리. 금강 위에 원형으로 놓인 보행 전용교로, 한 바퀴 도는 것만으로 순환이 된다.",
-      "addr": "세종특별자치시 세종동 29-111",
-      "lat": 36.4835615,
-      "lng": 127.2887819,
-      "naver": "https://map.naver.com/p/search/%EA%B8%88%EA%B0%95%EB%B3%B4%ED%96%89%EA%B5%90",
-      "nextM": 2977
+      "nextM": 1162
      },
      {
       "n": "세종중앙공원",
@@ -2453,6 +2445,16 @@
       "lat": null,
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EA%B0%91%EC%B2%9C"
+     },
+     {
+      "n": "금강보행교",
+      "d": "이응다리. 금강 위에 원형으로 놓인 보행 전용교로, 한 바퀴 도는 것만으로 순환이 된다.",
+      "photo": null,
+      "addr": "세종특별자치시 세종동 29-111",
+      "lat": 36.4835615,
+      "lng": 127.2887819,
+      "naver": "https://map.naver.com/p/search/%EA%B8%88%EA%B0%95%EB%B3%B4%ED%96%89%EA%B5%90",
+      "nextM": null
      }
     ],
     "routeShape": "loop",
@@ -3378,9 +3380,9 @@
   "courses": [
    {
     "id": "cheongju-musimcheon",
-    "n": "무심천 왕복 10km",
-    "km": 10.0,
-    "min": 60,
+    "n": "무심천 왕복",
+    "km": 10.9,
+    "min": 65,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -3437,17 +3439,7 @@
       "addr": "충청북도 청주시 서원구 사직대로 229",
       "lat": 36.6365136,
       "lng": 127.4734123,
-      "naver": "https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EC%B2%B4%EC%9C%A1%EA%B4%80",
-      "nextM": 3636
-     },
-     {
-      "n": "수영교",
-      "d": "남쪽 상류 방향의 중간 반환 후보. 여기서 되돌아오면 10km보다 짧게 끊을 수 있다.",
-      "addr": "충청북도 청주시 서원구 분평동",
-      "lat": 36.6158637,
-      "lng": 127.494518,
-      "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B5%90",
-      "_moved": true
+      "naver": "https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EC%B2%B4%EC%9C%A1%EA%B4%80"
      }
     ],
     "related": [
@@ -3498,6 +3490,16 @@
       "lat": 36.6743949,
       "lng": 127.447778,
       "naver": "https://map.naver.com/p/search/%EB%AC%B8%EC%95%94%EC%83%9D%ED%83%9C%EA%B3%B5%EC%9B%90",
+      "nextM": null
+     },
+     {
+      "n": "수영교",
+      "d": "남쪽 상류 방향의 중간 반환 후보. 여기서 되돌아오면 10km보다 짧게 끊을 수 있다.",
+      "photo": null,
+      "addr": "충청북도 청주시 서원구 분평동",
+      "lat": 36.6158637,
+      "lng": 127.494518,
+      "naver": "https://map.naver.com/p/search/%EC%88%98%EC%98%81%EA%B5%90",
       "nextM": null
      }
     ],
@@ -4507,8 +4509,8 @@
    {
     "id": "cheonan-gokgyocheon",
     "n": "곡교천 은행나무길",
-    "km": 10.0,
-    "min": 62,
+    "km": 10.2,
+    "min": 63,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [

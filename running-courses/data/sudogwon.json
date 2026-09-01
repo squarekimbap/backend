@@ -7,8 +7,8 @@
    {
     "id": "incheon-songdo-loop",
     "n": "송도 센트럴파크 순환",
-    "km": 3.6,
-    "min": 22,
+    "km": 3.8,
+    "min": 23,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -1036,8 +1036,8 @@
    {
     "id": "incheon-arabaetgil-lsd",
     "n": "아라뱃길 장거리",
-    "km": 20.0,
-    "min": 122,
+    "km": 20.7,
+    "min": 126,
     "lv": "어려움",
     "mood": "평지",
     "tags": [
@@ -2302,8 +2302,8 @@
    {
     "id": "goyang-ilsan-lake",
     "n": "일산호수공원 순환",
-    "km": 4.7,
-    "min": 30,
+    "km": 4.5,
+    "min": 29,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -3183,8 +3183,8 @@
    {
     "id": "suwon-gwanggyo-lake",
     "n": "광교호수공원 두 호수",
-    "km": 7.0,
-    "min": 42,
+    "km": 6.6,
+    "min": 40,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [
@@ -4317,8 +4317,8 @@
    {
     "id": "suwon-hwaseong-wall",
     "n": "수원화성 성곽길",
-    "km": 5.7,
-    "min": 36,
+    "km": 6.0,
+    "min": 38,
     "lv": "보통",
     "mood": "문화유산",
     "tags": [
@@ -5450,8 +5450,8 @@
    {
     "id": "seongnam-tancheon",
     "n": "탄천 장거리",
-    "km": 15.0,
-    "min": 92,
+    "km": 14.1,
+    "min": 86,
     "lv": "보통",
     "mood": "평지",
     "tags": [
@@ -6831,8 +6831,8 @@
    {
     "id": "anyang-pyeongchon-freedom",
     "n": "평촌 자유공원 순환",
-    "km": 1.7,
-    "min": 12,
+    "km": 1.6,
+    "min": 11,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -6874,7 +6874,7 @@
       "lat": 37.3795781,
       "lng": 126.9646767,
       "naver": "https://map.naver.com/p/search/%EC%9E%90%EC%9C%A0%EA%B3%B5%EC%9B%90%20%EC%95%BD%EC%88%98%ED%84%B0",
-      "nextM": null
+      "nextM": 411
      },
      {
       "n": "궁도장 오르막",
@@ -7459,8 +7459,8 @@
    {
     "id": "anyang-hakuicheon",
     "n": "학의천 하천길",
-    "km": 5.0,
-    "min": 33,
+    "km": 5.5,
+    "min": 36,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -8499,8 +8499,8 @@
    {
     "id": "anyang-anyangcheon-jongju",
     "n": "안양천 종주 (쌍개울→한강)",
-    "km": 14.0,
-    "min": 88,
+    "km": 13.8,
+    "min": 87,
     "lv": "어려움",
     "mood": "평지",
     "tags": [
@@ -9828,8 +9828,8 @@
    {
     "id": "uiwang-baegun-lake",
     "n": "백운호수 데크길 한 바퀴",
-    "km": 3.0,
-    "min": 20,
+    "km": 3.3,
+    "min": 22,
     "lv": "쉬움",
     "mood": "호수·강변",
     "tags": [
@@ -10616,8 +10616,8 @@
    {
     "id": "yongin-giheung-lake",
     "n": "기흥호수공원 한 바퀴",
-    "km": 10.0,
-    "min": 65,
+    "km": 10.2,
+    "min": 66,
     "lv": "보통",
     "mood": "호수·강변",
     "tags": [
@@ -13448,8 +13448,8 @@
    {
     "id": "hwaseong-jebudo",
     "n": "제부도 해안 한 바퀴",
-    "km": 5.0,
-    "min": 33,
+    "km": 4.8,
+    "min": 32,
     "lv": "쉬움",
     "mood": "바다",
     "tags": [
@@ -13492,16 +13492,7 @@
       "lat": 37.1685538,
       "lng": 126.6225566,
       "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%B0%94%EB%8B%B7%EA%B8%B8%20%EC%9E%85%EA%B5%AC",
-      "nextM": 1847
-     },
-     {
-      "n": "제부도 등대",
-      "d": "출발점에서 약 1.8km 지점의 해안 산책로 반환점. 서해 수평선이 가장 넓게 트이는 자리다.",
-      "addr": "경기도 화성시 서신면 제부리 289-20",
-      "lat": 37.1791911,
-      "lng": 126.6219931,
-      "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%93%B1%EB%8C%80",
-      "nextM": 1243
+      "nextM": 807
      },
      {
       "n": "제부도 아트파크",
@@ -14407,6 +14398,18 @@
       "type": "community",
       "checkedAt": "2026-09-01"
      }
+    ],
+    "related": [
+     {
+      "n": "제부도 등대",
+      "d": "출발점에서 약 1.8km 지점의 해안 산책로 반환점. 서해 수평선이 가장 넓게 트이는 자리다.",
+      "photo": null,
+      "addr": "경기도 화성시 서신면 제부리 289-20",
+      "lat": 37.1791911,
+      "lng": 126.6219931,
+      "naver": "https://map.naver.com/p/search/%EC%A0%9C%EB%B6%80%EB%8F%84%20%EB%93%B1%EB%8C%80",
+      "nextM": null
+     }
     ]
    }
   ]
@@ -14418,9 +14421,9 @@
   "courses": [
    {
     "id": "siheung-sihwa-seawall",
-    "n": "시화방조제 편도 10km",
-    "km": 10.0,
-    "min": 62,
+    "n": "시화방조제 편도",
+    "km": 9.3,
+    "min": 58,
     "lv": "보통",
     "mood": "바다",
     "tags": [
@@ -14472,16 +14475,7 @@
       "addr": "경기도 안산시 단원구 대부동동",
       "lat": 37.3115991,
       "lng": 126.6078961,
-      "naver": "https://map.naver.com/p/search/%EC%8B%9C%ED%99%94%EB%82%98%EB%9E%98%ED%9C%B4%EA%B2%8C%EC%86%8C",
-      "nextM": 3802
-     },
-     {
-      "n": "방아머리해변",
-      "d": "대부도 쪽 종착점. 편도로 끝낼 경우 여기서 대중교통으로 복귀하는 설계가 된다.",
-      "addr": "경기도 안산시 단원구 대부북동",
-      "lat": 37.2897536,
-      "lng": 126.5781242,
-      "naver": "https://map.naver.com/p/search/%EB%B0%A9%EC%95%84%EB%A8%B8%EB%A6%AC%ED%95%B4%EB%B3%80"
+      "naver": "https://map.naver.com/p/search/%EC%8B%9C%ED%99%94%EB%82%98%EB%9E%98%ED%9C%B4%EA%B2%8C%EC%86%8C"
      }
     ],
     "photo": "https://tong.visitkorea.or.kr/cms/resource/53/3512453_image2_1.jpg",
@@ -15143,6 +15137,18 @@
       "url": "https://gall.dcinside.com/mgallery/board/view/?id=running&no=572132",
       "type": "community",
       "checkedAt": "2026-09-01"
+     }
+    ],
+    "related": [
+     {
+      "n": "방아머리해변",
+      "d": "대부도 쪽 종착점. 편도로 끝낼 경우 여기서 대중교통으로 복귀하는 설계가 된다.",
+      "photo": null,
+      "addr": "경기도 안산시 단원구 대부북동",
+      "lat": 37.2897536,
+      "lng": 126.5781242,
+      "naver": "https://map.naver.com/p/search/%EB%B0%A9%EC%95%84%EB%A8%B8%EB%A6%AC%ED%95%B4%EB%B3%80",
+      "nextM": null
      }
     ]
    }

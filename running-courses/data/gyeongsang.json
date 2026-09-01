@@ -7,8 +7,8 @@
    {
     "id": "daegu-sincheon",
     "n": "신천 둔치 왕복",
-    "km": 10.0,
-    "min": 60,
+    "km": 9.9,
+    "min": 59,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -1403,8 +1403,8 @@
    {
     "id": "daegu-jinbatgol-uphill",
     "n": "진밭골 업힐 2회전",
-    "km": 8.0,
-    "min": 70,
+    "km": 9.7,
+    "min": 85,
     "lv": "어려움",
     "mood": "업힐",
     "tags": [
@@ -1453,17 +1453,7 @@
       "lat": 35.7978819,
       "lng": 128.6774695,
       "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8",
-      "nextM": null
-     },
-     {
-      "n": "용지봉",
-      "d": "능선이 갈리는 지점. 고도를 가장 많이 올린 곳이고, 대구 남쪽 시가지가 아래로 트여 보인다.",
-      "addr": "대구광역시 수성구 범물동",
-      "lat": 35.8032,
-      "lng": 128.64973,
-      "naver": "https://map.naver.com/p/search/%EC%9A%A9%EC%A7%80%EB%B4%89",
-      "nextM": null,
-      "_moved": true
+      "nextM": 4854
      },
      {
       "n": "범물동",
@@ -1521,6 +1511,16 @@
       "lat": 35.7978819,
       "lng": 128.6774695,
       "naver": "https://map.naver.com/p/search/%EC%A7%84%EB%B0%AD%EA%B3%A8%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC",
+      "nextM": null
+     },
+     {
+      "n": "용지봉",
+      "d": "능선이 갈리는 지점. 고도를 가장 많이 올린 곳이고, 대구 남쪽 시가지가 아래로 트여 보인다.",
+      "photo": null,
+      "addr": "대구광역시 수성구 범물동",
+      "lat": 35.8032,
+      "lng": 128.64973,
+      "naver": "https://map.naver.com/p/search/%EC%9A%A9%EC%A7%80%EB%B4%89",
       "nextM": null
      }
     ],
@@ -2418,8 +2418,8 @@
    {
     "id": "daegu-duryu-park",
     "n": "두류공원 순환",
-    "km": 3.0,
-    "min": 20,
+    "km": 3.2,
+    "min": 21,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -3486,8 +3486,8 @@
    {
     "id": "daegu-suseongmot",
     "n": "수성못 한 바퀴",
-    "km": 2.0,
-    "min": 14,
+    "km": 2.1,
+    "min": 15,
     "lv": "쉬움",
     "mood": "호수·강변",
     "tags": [
@@ -4066,8 +4066,8 @@
    {
     "id": "daegu-geumhogang",
     "n": "금호강 하천길 LSD",
-    "km": 10.0,
-    "min": 65,
+    "km": 9.4,
+    "min": 61,
     "lv": "보통",
     "mood": "평지",
     "tags": [
@@ -5106,8 +5106,8 @@
    {
     "id": "ulsan-taehwagang",
     "n": "태화강 국가정원과 십리대숲",
-    "km": 8.0,
-    "min": 48,
+    "km": 7.9,
+    "min": 47,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [
@@ -6282,8 +6282,8 @@
    {
     "id": "pohang-yeongildae",
     "n": "영일대 해변 왕복",
-    "km": 3.4,
-    "min": 21,
+    "km": 3.5,
+    "min": 22,
     "lv": "쉬움",
     "mood": "일출",
     "tags": [
@@ -6968,8 +6968,8 @@
    {
     "id": "changwon-yongji",
     "n": "용지호수 반복 순환",
-    "km": 6.0,
-    "min": 36,
+    "km": 5.9,
+    "min": 35,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -8107,8 +8107,8 @@
    {
     "id": "changwon-jinhae-dreamroad",
     "n": "진해 드림로드",
-    "km": 9.0,
-    "min": 75,
+    "km": 9.4,
+    "min": 78,
     "lv": "어려움",
     "mood": "트레일",
     "tags": [
@@ -9140,8 +9140,8 @@
    {
     "id": "gyeongju-bomunho",
     "n": "보문호 순환",
-    "km": 6.5,
-    "min": 40,
+    "km": 6.4,
+    "min": 39,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [
@@ -10226,8 +10226,8 @@
    {
     "id": "gyeongsan-nammaeji",
     "n": "남매지 한 바퀴",
-    "km": 2.0,
-    "min": 14,
+    "km": 1.9,
+    "min": 13,
     "lv": "쉬움",
     "mood": "호수·강변",
     "tags": [

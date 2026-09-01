@@ -7,8 +7,8 @@
    {
     "id": "chuncheon-uiamho",
     "n": "의암호 호반길",
-    "km": 9.0,
-    "min": 54,
+    "km": 8.3,
+    "min": 50,
     "lv": "보통",
     "mood": "풍경",
     "tags": [
@@ -1040,8 +1040,8 @@
    {
     "id": "chuncheon-gongjicheon",
     "n": "공지천 수변길 회복런",
-    "km": 4.0,
-    "min": 26,
+    "km": 3.8,
+    "min": 25,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -1686,8 +1686,8 @@
    {
     "id": "gangneung-gyeongpo",
     "n": "경포호 순환",
-    "km": 4.3,
-    "min": 26,
+    "km": 4.6,
+    "min": 28,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [
@@ -1745,16 +1745,7 @@
       "lat": 37.8012144,
       "lng": 128.9116613,
       "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EB%8C%80",
-      "nextM": 2735
-     },
-     {
-      "n": "경포가시연습지",
-      "d": "호수 남쪽의 습지 구간. 가시연을 되살린 습지로, 계절에 따라 물풀과 새가 만드는 풍경이 크게 바뀐다.",
-      "addr": "강원특별자치도 강릉시 운정동 643",
-      "lat": 37.7889554,
-      "lng": 128.8969292,
-      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EA%B0%80%EC%8B%9C%EC%97%B0%EC%8A%B5%EC%A7%80",
-      "nextM": 2592
+      "nextM": 1567
      },
      {
       "n": "허난설헌생가터",
@@ -1801,6 +1792,16 @@
       "lat": 37.7945,
       "lng": 128.9155,
       "naver": "https://map.naver.com/p/search/%EC%B4%88%EB%8B%B9%EC%88%9C%EB%91%90%EB%B6%80%EB%A7%88%EC%9D%84"
+     },
+     {
+      "n": "경포가시연습지",
+      "d": "호수 남쪽의 습지 구간. 가시연을 되살린 습지로, 계절에 따라 물풀과 새가 만드는 풍경이 크게 바뀐다.",
+      "photo": null,
+      "addr": "강원특별자치도 강릉시 운정동 643",
+      "lat": 37.7889554,
+      "lng": 128.8969292,
+      "naver": "https://map.naver.com/p/search/%EA%B2%BD%ED%8F%AC%EA%B0%80%EC%8B%9C%EC%97%B0%EC%8A%B5%EC%A7%80",
+      "nextM": null
      }
     ],
     "lat": 37.797933,
@@ -2712,8 +2713,8 @@
    {
     "id": "gangneung-anmok-sunrise",
     "n": "안목해변 일출런",
-    "km": 5.0,
-    "min": 32,
+    "km": 5.1,
+    "min": 33,
     "lv": "쉬움",
     "mood": "일출",
     "tags": [
@@ -3728,8 +3729,8 @@
    {
     "id": "sokcho-yeongnangho",
     "n": "영랑호 순환",
-    "km": 7.7,
-    "min": 46,
+    "km": 7.1,
+    "min": 42,
     "lv": "쉬움",
     "mood": "풍경",
     "tags": [

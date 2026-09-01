@@ -7,8 +7,8 @@
    {
     "id": "gwangju-gwangjucheon",
     "n": "광주천 왕복 10km",
-    "km": 10.0,
-    "min": 60,
+    "km": 9.9,
+    "min": 59,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -76,16 +76,7 @@
       "naver": "https://map.naver.com/p/search/%EB%AC%B4%EB%93%B1%EA%B2%BD%EA%B8%B0%EC%9E%A5",
       "addr": "전남광주통합특별시 북구",
       "lat": 35.1674763,
-      "lng": 126.887125,
-      "nextM": 1865
-     },
-     {
-      "n": "광주천 자전거길",
-      "d": "영산강 합류부 방면으로 이어지는 구간. 거리를 늘리고 싶은 날 장거리 확장의 입구가 된다.",
-      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8",
-      "addr": "전남광주통합특별시 서구",
-      "lat": 35.167602,
-      "lng": 126.871587
+      "lng": 126.887125
      }
     ],
     "related": [
@@ -127,6 +118,16 @@
       "lat": null,
       "lng": null,
       "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%ED%98%B8%20%ED%98%B8%EC%88%98%EC%83%9D%ED%83%9C%EC%9B%90"
+     },
+     {
+      "n": "광주천 자전거길",
+      "d": "영산강 합류부 방면으로 이어지는 구간. 거리를 늘리고 싶은 날 장거리 확장의 입구가 된다.",
+      "photo": null,
+      "addr": "전남광주통합특별시 서구",
+      "lat": 35.167602,
+      "lng": 126.871587,
+      "naver": "https://map.naver.com/p/search/%EA%B4%91%EC%A3%BC%EC%B2%9C%20%EC%9E%90%EC%A0%84%EA%B1%B0%EA%B8%B8",
+      "nextM": null
      }
     ],
     "lat": 35.15689,
@@ -1226,8 +1227,8 @@
    {
     "id": "gwangju-yeongsangang",
     "n": "영산강 자전거길 러닝",
-    "km": 10.0,
-    "min": 62,
+    "km": 10.1,
+    "min": 63,
     "lv": "보통",
     "mood": "평지",
     "tags": [
@@ -2463,8 +2464,8 @@
    {
     "id": "jeonju-jeonjucheon-dawn",
     "n": "전주천 새벽런",
-    "km": 8.0,
-    "min": 48,
+    "km": 8.2,
+    "min": 49,
     "lv": "쉬움",
     "mood": "문화유산",
     "tags": [
@@ -3602,8 +3603,8 @@
    {
     "id": "jeonju-deokjin",
     "n": "덕진공원 회복런",
-    "km": 3.0,
-    "min": 20,
+    "km": 2.7,
+    "min": 18,
     "lv": "쉬움",
     "mood": "평지",
     "tags": [
@@ -4463,8 +4464,8 @@
    {
     "id": "mokpo-pyeonghwa-20k",
     "n": "평화광장에서 하구둑까지",
-    "km": 20.0,
-    "min": 122,
+    "km": 21.1,
+    "min": 129,
     "lv": "어려움",
     "mood": "평지",
     "tags": [
@@ -4513,16 +4514,7 @@
       "lat": 34.796225,
       "lng": 126.433325,
       "naver": "https://map.naver.com/p/search/%ED%8F%89%ED%99%94%EA%B4%91%EC%9E%A5",
-      "nextM": 6796
-     },
-     {
-      "n": "목포해상케이블카",
-      "d": "약 6.8km 지점, 코스 서쪽 끝 표지. 유달산과 고하도 사이 바다 위로 케이블카가 오간다.",
-      "addr": "전남광주통합특별시 목포시 해양대학로 240",
-      "lat": 34.7993796,
-      "lng": 126.3700419,
-      "naver": "https://map.naver.com/p/search/%EB%AA%A9%ED%8F%AC%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4",
-      "nextM": 6301
+      "nextM": 1599
      },
      {
       "n": "갓바위",
@@ -4583,6 +4575,16 @@
       "lat": 34.8045126304,
       "lng": 126.3651120933,
       "naver": "https://map.naver.com/p/search/%EB%B6%81%ED%95%AD"
+     },
+     {
+      "n": "목포해상케이블카",
+      "d": "약 6.8km 지점, 코스 서쪽 끝 표지. 유달산과 고하도 사이 바다 위로 케이블카가 오간다.",
+      "photo": null,
+      "addr": "전남광주통합특별시 목포시 해양대학로 240",
+      "lat": 34.7993796,
+      "lng": 126.3700419,
+      "naver": "https://map.naver.com/p/search/%EB%AA%A9%ED%8F%AC%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4",
+      "nextM": null
      }
     ],
     "routeShape": "loop",
@@ -5609,8 +5611,8 @@
    {
     "id": "yeosu-expo-9k",
     "n": "엑스포와 오동도 한 바퀴",
-    "km": 9.0,
-    "min": 52,
+    "km": 8.9,
+    "min": 51,
     "lv": "보통",
     "mood": "풍경",
     "tags": [
@@ -6765,8 +6767,8 @@
    {
     "id": "yeosu-old-railroad",
     "n": "전라선 옛 기찻길 공원",
-    "km": 16.0,
-    "min": 100,
+    "km": 17.7,
+    "min": 111,
     "lv": "보통",
     "mood": "숲길",
     "tags": [
@@ -6776,8 +6778,8 @@
     "scene": "trail",
     "time": "day",
     "src": "러너 후기 · 러닝갤",
-    "headline": "전라선 옛 기찻길, 화장실 걱정 없는 16km 그린웨이",
-    "subhead": "구 덕양역에서 만흥공원까지. 폐선부지를 살린 자전거도로·산책로 16km.",
+    "headline": "전라선 옛 기찻길, 화장실 걱정 없는 그린웨이",
+    "subhead": "구 덕양역에서 만흥공원까지. 폐선부지를 살린 자전거도로·산책로.",
     "body": [
      "구 덕양역 자리에서 출발한다. 전라선 복선화로 기차가 다니지 않게 된 옛 철길이 16km의 공원길로 다시 놓였고, 이 코스는 그 위를 그대로 달린다. 출발해서 약 5km 지점에 터널 구간이 있다. 기차가 지나던 굴을 그대로 통과하는, 이 코스에서만 겪는 장면이다.",
      "철길이었던 길의 미덕은 경사에 있다. 기차가 오를 수 있는 완만한 기울기로만 놓였기 때문에 급한 오르막이 없고, 길게 뻗은 직선의 리듬이 장거리 러닝에 잘 맞는다. 터널과 시골 풍경이 번갈아 나와 16km가 지루하지 않고, 곧은 시선 끝에 논밭과 마을이 차례로 걸린다.",
@@ -7851,16 +7853,7 @@
       "addr": "전남광주통합특별시 순천시",
       "lat": 34.9539345,
       "lng": 127.4946625,
-      "naver": "https://map.naver.com/p/search/%EC%A3%BD%EB%8F%84%EB%B4%89%EA%B3%B5%EC%9B%90",
-      "nextM": 4387
-     },
-     {
-      "n": "순천왕지천",
-      "d": "동천에 왕지천이 합류하는 북쪽 구간. 여기까지 다녀오면 자연스러운 연장 코스가 된다.",
-      "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%99%95%EC%A7%80%EC%B2%9C",
-      "addr": "전남광주통합특별시 순천시 왕지2길 4-14 1층 101호",
-      "lat": 34.9693371,
-      "lng": 127.5223935
+      "naver": "https://map.naver.com/p/search/%EC%A3%BD%EB%8F%84%EB%B4%89%EA%B3%B5%EC%9B%90"
      }
     ],
     "lat": 34.9225179,
@@ -7904,6 +7897,16 @@
       "lat": 34.9454441,
       "lng": 127.502633,
       "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%97%AD"
+     },
+     {
+      "n": "순천왕지천",
+      "d": "동천에 왕지천이 합류하는 북쪽 구간. 여기까지 다녀오면 자연스러운 연장 코스가 된다.",
+      "photo": null,
+      "addr": "전남광주통합특별시 순천시 왕지2길 4-14 1층 101호",
+      "lat": 34.9693371,
+      "lng": 127.5223935,
+      "naver": "https://map.naver.com/p/search/%EC%88%9C%EC%B2%9C%EC%99%95%EC%A7%80%EC%B2%9C",
+      "nextM": null
      }
     ],
     "routeShape": "oneway",
@@ -8961,9 +8964,9 @@
   "courses": [
    {
     "id": "gunsan-saemangeum",
-    "n": "새만금 방조제 편도 10km",
-    "km": 10.0,
-    "min": 62,
+    "n": "새만금 방조제 편도",
+    "km": 10.8,
+    "min": 67,
     "lv": "보통",
     "mood": "바다",
     "tags": [
@@ -9006,7 +9009,7 @@
       "lat": 35.93871118923199,
       "lng": 126.53080123680301,
       "naver": "https://map.naver.com/p/search/%EB%B9%84%EC%9D%91%ED%95%AD",
-      "nextM": null
+      "nextM": 10804
      },
      {
       "n": "야미도",
