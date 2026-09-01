@@ -63,6 +63,16 @@ public class CourseCatalog {
                         s.set(f, c.get(f));
                     }
                 }
+                // 홈 카드는 코스 거리보다 실제로 지나는 곳을 보여준다. 상세를 카드 수만큼
+                // 추가 호출하지 않도록 이름만 가벼운 배열로 목록 응답에 포함한다.
+                ArrayNode waypoints = mapper.createArrayNode();
+                for (JsonNode poi : c.path("poi")) {
+                    String name = poi.path("n").asText("").trim();
+                    if (!name.isEmpty()) {
+                        waypoints.add(name);
+                    }
+                }
+                s.set("waypoints", waypoints);
                 sums.add(s);
             }
             this.byId = map;

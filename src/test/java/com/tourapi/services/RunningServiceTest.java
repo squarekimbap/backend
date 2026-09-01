@@ -3,7 +3,6 @@ package com.tourapi.services;
 import com.tourapi.lib.RankingCache;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.RouteOptionsResponse;
-import com.tourapi.model.RoutesResponse;
 import com.tourapi.model.WaypointDto;
 import org.junit.jupiter.api.Test;
 
@@ -38,24 +37,6 @@ class RunningServiceTest {
         RouteOptionsResponse response = service.routeOptions(
                 new double[]{37.0, 127.0}, List.of(),
                 List.of(new WaypointDto("A", 37.01, 127.0)), "loop", 3);
-
-        assertSame(cached, response);
-        verifyNoInteractions(generator);
-    }
-
-    @Test
-    void 기존Routes도동일입력캐시를사용한다() {
-        RankingCache cache = mock(RankingCache.class);
-        RunningRouteService generator = mock(RunningRouteService.class);
-        RunningService service = new RunningService();
-        service.cache = cache;
-        service.routeService = generator;
-        RoutesResponse cached = new RoutesResponse("loop", 0, List.of());
-        when(cache.get(anyString(), eq(RoutesResponse.class))).thenReturn(cached);
-
-        RoutesResponse response = service.routes(
-                new double[]{37.0, 127.0},
-                List.of(new WaypointDto("A", 37.01, 127.0)), "loop", 3.0);
 
         assertSame(cached, response);
         verifyNoInteractions(generator);

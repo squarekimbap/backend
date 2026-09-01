@@ -6,7 +6,6 @@ import com.tourapi.model.CandidatesResponse;
 import com.tourapi.model.CourseSummaryResponse;
 import com.tourapi.model.RouteOption;
 import com.tourapi.model.RouteOptionsResponse;
-import com.tourapi.model.RoutesResponse;
 import com.tourapi.model.WaypointDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -31,9 +30,6 @@ public class RunningService {
     RunningCandidateService candidateService;
 
     @Inject
-    RunningRouteService routeService;
-
-    @Inject
     RunningRouteOptionService routeOptionService;
 
     @Inject
@@ -44,28 +40,6 @@ public class RunningService {
 
     public CandidatesResponse candidates(double lat, double lng, double distanceKm, String shape, int count) {
         return candidateService.candidates(lat, lng, distanceKm, shape, count);
-    }
-
-    /** 기존 앱 호환 API. 선택순/역순/근접순 최대 3개를 그대로 제공한다. */
-    public RoutesResponse routes(double[] start, List<WaypointDto> waypoints, String shape, Double targetKm) {
-        return routes(start, waypoints, shape, targetKm, deadlineAfter(DEFAULT_DEADLINE_MS));
-    }
-
-    public RoutesResponse routes(double[] start,
-                                 List<WaypointDto> waypoints,
-                                 String shape,
-                                 Double targetKm,
-                                 long deadlineNanos) {
-        String key = routesCacheKey(start, waypoints, shape, targetKm);
-        RoutesResponse cached = cacheGet(key, RoutesResponse.class, deadlineNanos);
-        if (cached != null) {
-            return cached;
-        }
-        requireGenerationBudget(deadlineNanos);
-        RoutesResponse response = routeService.routes(
-                start, waypoints, shape, targetKm, deadlineNanos);
-        cachePut(key, response, deadlineNanos);
-        return response;
     }
 
     public RouteOptionsResponse routeOptions(double[] start,
@@ -110,17 +84,6 @@ public class RunningService {
         appendWaypoints(raw, selected);
         raw.append('|');
         appendWaypoints(raw, candidates);
-        return "running#" + sha256(raw.toString());
-    }
-
-    static String routesCacheKey(double[] start,
-                                 List<WaypointDto> waypoints,
-                                 String shape,
-                                 Double targetKm) {
-        StringBuilder raw = new StringBuilder("routes-v2|")
-                .append(start[0]).append('|').append(start[1]).append('|')
-                .append(shape).append('|').append(targetKm).append('|');
-        appendWaypoints(raw, waypoints);
         return "running#" + sha256(raw.toString());
     }
 

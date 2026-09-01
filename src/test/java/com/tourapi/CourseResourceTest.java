@@ -1,11 +1,18 @@
 package com.tourapi;
 
 import com.tourapi.services.CourseCatalog;
+import com.tourapi.routes.CourseResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
@@ -21,11 +28,16 @@ public class CourseResourceTest {
     @Inject
     CourseCatalog catalog;
 
+    @Inject
+    CourseResource courseResource;
+
     @Test
     public void 카탈로그_전체_64개_로드() {
         Assertions.assertEquals(64, catalog.list(null).size());
         Assertions.assertNotNull(catalog.list(null).get(0).get("id"));
         Assertions.assertNotNull(catalog.list(null).get(0).get("headline"));
+        Assertions.assertTrue(catalog.list(null).get(0).path("waypoints").isArray());
+        Assertions.assertFalse(catalog.list(null).get(0).path("waypoints").isEmpty());
     }
 
     @Test
@@ -139,6 +151,38 @@ public class CourseResourceTest {
     public void 없는_id_404() {
         RestAssured.when().get("/v1/courses/no-such-course")
                 .then().statusCode(404)
+                .body("error", equalTo("not_found"));
+    }
+
+    @Test
+    public void Garmin용GPX는_표준Track과경유지를내려준다() throws Exception {
+        // Mock Lambda 서버는 큰 청크 응답을 종료하지 않는 문제가 있어 리소스를 직접 검증한다.
+        Response response = courseResource.gpx("busan-haeundae");
+        Assertions.assertEquals(200, response.getStatus());
+        Assertions.assertEquals("application/gpx+xml;charset=UTF-8",
+                response.getMediaType().toString());
+        Assertions.assertEquals("attachment; filename=\"busan-haeundae.gpx\"",
+                response.getHeaderString("Content-Disposition"));
+        String gpx = (String) response.getEntity();
+
+        var factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        var document = factory.newDocumentBuilder().parse(
+                new ByteArrayInputStream(gpx.getBytes(StandardCharsets.UTF_8)));
+        String namespace = "http://www.topografix.com/GPX/1/1";
+        Assertions.assertEquals("gpx", document.getDocumentElement().getLocalName());
+        Assertions.assertEquals(namespace, document.getDocumentElement().getNamespaceURI());
+        Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trk").getLength() > 0);
+        Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trkseg").getLength() > 0);
+        Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "trkpt").getLength() > 1);
+        Assertions.assertTrue(document.getElementsByTagNameNS(namespace, "wpt").getLength() > 0);
+    }
+
+    @Test
+    public void 없는코스의_GPX는404() {
+        RestAssured.when().get("/v1/courses/no-such-course/gpx")
+                .then().statusCode(404)
+                .contentType(ContentType.JSON)
                 .body("error", equalTo("not_found"));
     }
 }

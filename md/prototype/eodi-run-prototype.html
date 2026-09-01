@@ -1126,7 +1126,7 @@ button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer
   <p class="pn">홈 카드와 같은 언어입니다. 배경 결 + 어둡게 누르기 + 흰 경로선 + 큰 숫자. <b>어둡게·밝게</b> 두 버전을 고를 수 있고, 이야기 링이 그대로 들어가서 <b>그 사람의 진행 상황이 공유</b>됩니다.</p>
 
   <p class="pl">GPX 검증</p>
-  <p class="pn">실제로 유효한 <b>GPX 1.1</b>을 만듭니다. trkpt 11개, wpt 5개, 좌표가 경주 범위 안. 지나는 곳이 <b>wpt로 들어가서 가민 화면에 지점 이름이 표시</b>됩니다. 출처 표기도 metadata에 들어갑니다.</p>
+  <p class="pn">앱이 XML을 만들지 않고 서버의 <b>GPX 1.1 Track</b> 파일을 그대로 공유합니다. 지나는 곳도 wpt로 들어가지만 Garmin Connect에서 지점명이 유지되지 않을 수 있습니다. 출처 표기는 서버 metadata에 들어갑니다.</p>
 
   <p class="pl">경로 미확보는 GPX 잠김</p>
   <p class="pn">점선으로 표시한 대략적 형태가 파일로 나가면 사용자가 믿고 따라갑니다. <b>길 안내가 확보된 코스만</b> 내보낼 수 있습니다.</p>
@@ -1452,17 +1452,17 @@ const REGION_ORDER=["수도권","강원","충청","전라","경상","부산","�
 /* 추천 탭: 편집된 카드. 경주 코스 하나 + 테마 묶음 */
 const RECO=[
   {badge:"오늘 이 코스", tag:"쉬움", n:"황리단길에서 시작하는 유적 한 바퀴", title:"첨성대와 대릉원을\n한 번에 지나는 3km",
-   sub:"3.2km · 24분", story:"이야기 1/3", src:"직접 제작", cta:"코스 보기", s:"hist", sc:"tower", open:1},
+   waypoints:["황리단길","대릉원","첨성대"], story:"이야기 1/3", src:"직접 제작", cta:"코스 보기", s:"hist", sc:"tower", open:1},
   {badge:"가을에 뛰기 좋은 코스", tag:"테마 6개", n:"보문호를 한 바퀴 도는 호반길", title:"10월의 경주는\n달리기에 가장 좋습니다",
-   sub:"코스 6개", story:"이야기 2/18", src:"직접 제작", cta:"코스 6개 보기", s:"bomu", sc:"tomb", open:0},
+   theme:true, sub:"코스 6개", story:"이야기 2/18", src:"직접 제작", cta:"코스 6개 보기", s:"bomu", sc:"tomb", open:0},
   {badge:"상시 러닝 코스", tag:"야경 · 바다", n:"광안리 민락수변 야경",
-   title:"광안대교를 보며\n달리는 부산의 밤", sub:"5.5km · 33분 · 저녁·밤",
+   title:"광안대교를 보며\n달리는 부산의 밤", waypoints:["광안리해수욕장","민락수변공원","광안대교 조망 구간"],
    story:null, src:"러너 후기 · 편집부", cta:"코스 보기", s:"bomu", sc:"night", open:0},
   {badge:"상시 러닝 코스", tag:"초보 추천", n:"한강 반포-잠원",
-   title:"서울 러너들이\n가장 자주 돌아오는 길", sub:"7.0km · 45분 · 해 질 무렵",
+   title:"서울 러너들이\n가장 자주 돌아오는 길", waypoints:["반포한강공원","세빛섬","잠원한강공원"],
    story:null, src:"러너 후기 · 편집부", cta:"코스 보기", s:"hist", sc:"lake", open:0},
   {badge:"이야기가 많은 코스", tag:"테마 5개", n:"황리단길에서 시작하는 유적 한 바퀴", title:"달리면서 듣는\n신라 천 년의 이야기",
-   sub:"코스 5개", story:"이야기 4/19", src:"직접 제작", cta:"코스 5개 보기", s:"hist", sc:"pine", open:0}
+   theme:true, sub:"코스 5개", story:"이야기 4/19", src:"직접 제작", cta:"코스 5개 보기", s:"hist", sc:"pine", open:0}
 ];
 
 /* 내가 추가한 도시. 처음에는 경주만 */
@@ -1530,6 +1530,14 @@ function srcShort(src){
   if(t.includes("편집부"))    return "후기 모음 · 편집";
   return "러너 후기";
 }
+function waypointSummary(c){
+  if(c.theme) return c.sub||"";
+  let names=Array.isArray(c.waypoints)?c.waypoints:Array.isArray(c.poi)?c.poi:[];
+  if(!names.length && typeof c.route==="string" && c.route.includes("→")) {
+    names=c.route.split("→").map(x=>x.trim()).filter(Boolean);
+  }
+  return names.slice(0,3).join(" · ")||"경유지 정보 준비 중";
+}
 function card(c,seed){
   const np=NOPHOTO;
   const im=IMG[c.title]||IMG[c.n]||null;
@@ -1543,7 +1551,7 @@ function card(c,seed){
     <span class="cbody">
       <span class="tag">${c.tag}</span>
       <p class="ctitle">${c.title.replace(/\n/g,"<br>")}</p>
-      <p class="csub">${c.sub}${c.story?" · "+c.story:""}${c.src?`<br><span class="srcline">${srcShort(c.src)}</span>`:""}</p>
+      <p class="csub">${waypointSummary(c)}${c.story?" · "+c.story:""}${c.src?`<br><span class="srcline">${srcShort(c.src)}</span>`:""}</p>
       <span class="cbtn">${c.cta}</span>
     </span>
   </button>`;
@@ -1570,7 +1578,7 @@ function render(){
     const c=cityOf(TAB);
     body.innerHTML=loop(c.courses.map(x=>({
       badge:x.mood, tag:x.lv, title:x.n, n:x.n, s:x.s, sc:x.sc, open:x.open,
-      sub:`${x.km}km · ${x.min}분`, src:x.src, story:x.total?`이야기 ${x.open}/${x.total}`:null,
+      waypoints:x.waypoints||x.poi||[], route:x.route, src:x.src, story:x.total?`이야기 ${x.open}/${x.total}`:null,
       cta:"코스 보기"
     })),5);
   }
@@ -2362,47 +2370,31 @@ $("#mysetting").onclick=()=>openSetting();
    GPX = 파일 (가민·스트라바) · 스토리 = 이미지 · 카카오 = 링크
    결과물이 셋 다 달라서 시트에서 갈라준다.                             */
 
-/* 화면 좌표를 다시 위경도로 — 실제로는 코스의 원본 polyline을 그대로 쓴다 */
-const GJ_ORIGIN=[35.8320,129.2110];
-function toLatLng(pts){
-  const xs=pts.map(p=>p[0]), ys=pts.map(p=>p[1]);
-  const w=(Math.max(...xs)-Math.min(...xs))||1, h=(Math.max(...ys)-Math.min(...ys))||1;
-  /* 화면 폭을 약 1.6km로 가정해 스케일 */
-  const spanLng=0.018, spanLat=0.012;
-  return pts.map(([x,y])=>[
-    +(GJ_ORIGIN[0]+ (1-(y-Math.min(...ys))/h)*spanLat).toFixed(6),
-    +(GJ_ORIGIN[1]+ ((x-Math.min(...xs))/w)*spanLng).toFixed(6)
-  ]);
+const COURSE_API="https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws";
+const COURSE_ID_BY_NAME={
+  "반포 한강 10km 왕복":"seoul-banpo-10k","한강 반포-잠원":"seoul-banpo-10k",
+  "여의도 한강 첫 5K":"seoul-yeouido-5k","남산 북측순환로 왕복":"seoul-namsan-loop",
+  "올림픽공원 몽촌토성 순환":"seoul-olympic-loop","경의선숲길 아침런":"seoul-gyeongui-morning",
+  "뚝섬 한강 잠수교 왕복":"seoul-ttukseom-7k","송도 센트럴파크 순환":"incheon-songdo-loop",
+  "아라뱃길 LSD":"incheon-arabaetgil-lsd","수원 화성 성곽길":"suwon-hwaseong-wall",
+  "진밭골 업힐 2회전":"daegu-jinbatgol-uphill","온천천 시민공원":"busan-oncheoncheon",
+  "송도 구름산책로":"busan-songdo-cloud",
+  "석촌호수 순환":"seoul-seokchon-lake","영랑호 순환":"sokcho-yeongnangho",
+  "보문호를 한 바퀴 도는 호반길":"gyeongju-bomunho",
+  "광안리 민락수변 야경":"busan-gwangalli-night","사려니숲길 트레일":"jeju-saryeoni",
+  "수성못 순환":"daegu-suseongmot","해운대 동백섬 미포":"busan-haeundae"
+};
+function serverCourseId(c,required=true){
+  const id=c.id||c.courseId||COURSE_ID_BY_NAME[c.n]||COURSE_ID_BY_NAME[c.title];
+  if(!id && required) throw new Error("서버 GPX가 준비된 코스가 아닙니다");
+  return id;
 }
-
-function buildGPX(c){
-  const pts=toLatLng(fitPath(MAPSHAPE[shapeKeyOf(c)],375,212,30));
-  const now=new Date().toISOString();
-  const name=(c.n||"코스").replace(/[<>&]/g,"");
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="어디 뛰지" xmlns="http://www.topografix.com/GPX/1/1">
-  <metadata>
-    <name>${name}</name>
-    <desc>${c.km}km · 약 ${c.min}분 · ${c.lv}. 관광 정보는 한국관광공사 TourAPI, 보행 경로는 TMAP을 사용했습니다.</desc>
-    <time>${now}</time>
-  </metadata>
-  <trk>
-    <name>${name}</name>
-    <trkseg>
-${pts.map(([la,lo])=>`      <trkpt lat="${la}" lon="${lo}"></trkpt>`).join("\n")}
-    </trkseg>
-  </trk>
-${(c.poi||[]).slice(0,8).map((n,i)=>{const [la,lo]=pts[Math.round(i*(pts.length-1)/Math.max(1,Math.min(8,(c.poi||[]).length)-1||1))]||pts[0];
-  return `  <wpt lat="${la}" lon="${lo}"><name>${n}</name><type>관광지</type></wpt>`}).join("\n")}
-</gpx>`;
-}
-function downloadGPX(c){
-  const blob=new Blob([buildGPX(c)],{type:"application/gpx+xml"});
+async function downloadGPX(c){
+  const id=serverCourseId(c);
   const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download=`${(c.n||"course").replace(/[\/\\:*?"<>|]/g,"")}.gpx`;
+  a.href=`${COURSE_API}/v1/courses/${encodeURIComponent(id)}/gpx`;
+  a.download=`${id}.gpx`;
   document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 
 /* 스토리 카드 — 540×960
@@ -2613,10 +2605,11 @@ const ICO={
 function openShare(){
   const c=CUR; if(!c) return;
   const routed=c.routed!==false;
+  const gpxReady=routed && !!serverCourseId(c,false);
   $("#shbody").innerHTML=`
-    <button class="shrow" id="sh-gpx" ${routed?"":'aria-disabled="true"'}>
+    <button class="shrow" id="sh-gpx" ${gpxReady?"":'disabled aria-disabled="true"'}>
       <span class="si">${ICO.gpx}</span>
-      <span class="st2"><b>GPX 파일로 저장</b><i>${routed?"가민, 순토, 스트라바에 올려서 쓸 수 있어요":"길 안내가 준비되면 내보낼 수 있어요"}</i></span>
+      <span class="st2"><b>GPX 파일 공유</b><i>${gpxReady?"Garmin Connect의 코스 가져오기로 열어주세요":routed?"서버 GPX가 준비되면 내보낼 수 있어요":"길 안내가 준비되면 내보낼 수 있어요"}</i></span>
     </button>
     <button class="shrow" id="sh-story">
       <span class="si">${ICO.story}</span>
@@ -2630,8 +2623,11 @@ function openShare(){
       <span class="si">${ICO.more}</span>
       <span class="st2"><b>다른 앱으로</b><i>기기에 있는 앱 중에서 골라요</i></span>
     </button>
-    <p class="shnote">GPX에는 코스 좌표와 지나는 곳이 담깁니다. 관광 정보는 한국관광공사, 보행 경로는 TMAP 자료를 사용했다는 표기가 파일에 함께 들어갑니다.</p>`;
-  $("#sh-gpx").onclick=()=>{ downloadGPX(c); closeShare(); };
+    <p class="shnote">서버가 만든 GPX 1.1 Track 파일을 그대로 공유합니다. 지나는 곳도 담지만 Garmin Connect에서 지점명이 유지되지 않을 수 있습니다.</p>`;
+  $("#sh-gpx").onclick=gpxReady?async()=>{
+    try{ await downloadGPX(c); closeShare(); }
+    catch(e){ alert(e.message||"GPX 파일을 불러오지 못했습니다"); }
+  }:()=>{};
   $("#sh-story").onclick=()=>{
     closeShare(); stack.push("story"); paint();
     drawStory(c);                                  /* 먼저 결 배경으로 즉시 표시 */

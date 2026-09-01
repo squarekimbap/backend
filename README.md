@@ -101,16 +101,16 @@ flowchart LR
 | GET | `/v1/tour/popular` | 좌표→시군구 인기 관광지 순위(집중률 30일 평균) | ✅ 배포됨 |
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
-| POST | `/v1/running/routes` (호환) | JWT 필수 · 최대 3안(TMAP 3콜 상한·22초·공통 분당 6회·5분 캐시) | ✅ 보호 변경 구현 |
-| POST | `/v1/running/route-options` | JWT 필수 · 화면용 2안 + 도슨트·구간 거리(TMAP 5콜 상한·22초·공통 분당 6회·5분 캐시) | ✅ 구현 |
+| POST | `/v1/running/route-options` | JWT 필수 · 화면용 2안 + 도슨트·구간 거리(TMAP 5콜 상한·22초·공통 KST 일 3회·분당 6회·5분 캐시) | ✅ 구현 |
 | POST | `/v1/running/summary` | 선택 코스 + 도착지 주변 음식점·카페 총정리 | ✅ 구현 |
-| GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그(수집본+러닝갤 64코스·32도시, 홈 피드/상세) | ✅ |
+| GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그(수집본+러닝갤 64코스·32도시, 홈 피드/상세). 목록에 홈 표시용 `waypoints` 포함 | ✅ |
+| GET | `/v1/courses/{id}/gpx` | Garmin Connect 코스 가져오기용 GPX 1.1 Track 파일 | ✅ 구현 |
 | POST | `/v1/auth/signup` · `/confirm` · `/login` · `/refresh` | 이메일 인증(Cognito 프록시) | ✅ 배포됨 |
 | POST | `/v1/auth/kakao` | 카카오 로그인(토큰 검증→Cognito 브릿지, 첫 로그인=자동 가입) | ✅ 배포됨 |
 | GET | `/v1/users/me` | 내 프로필 (**JWT 필수**) | ✅ 배포됨 |
 
 > 📱 **앱 연동은 [docs/app-api-flow.md](docs/app-api-flow.md)** — 생성은 candidates → route-options → summary 순서다.
-> 보호 변경 배포 전에 기존 `/routes` 호출에도 Bearer access token을 추가해야 한다. 401은 refresh 후 1회 재시도, 429는 `Retry-After: 60`, 앱 timeout은 30초다.
+> `route-options`에는 Bearer access token이 필요하다. 생성 요청마다 UUID `Idempotency-Key`를 보내고 재시도에는 같은 값을 쓴다. 401은 refresh 후 1회 재시도하고, 409·410·429·503은 `X-RateLimit-Scope`와 오류 코드를 따른다. 완료된 같은 요청은 5분 동안 저장된 200 응답을 재생하고 이후에는 410으로 종료한다. 원장은 KST 자정과 무관하게 같은 요청을 찾는다. 409 재조회는 `Retry-After: 8`을 지켜야 하며 모든 HTTP 시도는 분당 보호 횟수에 포함된다. 앱 timeout은 30초다.
 
 ### 러닝 추천 흐름 (앱 4단계)
 ```mermaid
@@ -174,4 +174,5 @@ sam delete --stack-name tour-api --region ap-northeast-2
 - [x] 캐시(DynamoDB, `/popular` 일 단위) — 나머지 프록시 엔드포인트(`/v1/tour/*` 등)는 진행 중
 - [x] **인증/로그인(Cognito)** · 사용자 프로필(DynamoDB `app-users`) — 이메일+카카오 브릿지 구현·테스트·배포 완료
 - [x] 러닝 추천 Phase A/B + 화면용 관광지 우선/거리 우선/총정리 분리
-- [ ] native image(콜드스타트) · rate limit(쿼터 보호)
+- [ ] native image(콜드스타트)
+- [x] 실시간 생성 rate limit(사용자별 KST 일 3회·분당 6회·멱등 상태 원장/응답 재생·소유자 한정 실패 환불)

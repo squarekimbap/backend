@@ -16,7 +16,7 @@
 | 항목 | 값 |
 | --- | --- |
 | Base URL | `https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws` |
-| 인증 필요 | `/v1/users/*`, `/v1/running/routes`, `/v1/running/route-options`. `Authorization: Bearer <accessToken>` |
+| 인증 필요 | `/v1/users/*`, `/v1/running/route-options`. `Authorization: Bearer <accessToken>` |
 | 에러 본문 | `{ "error": "코드", "message": "설명" }` (전 엔드포인트 공통) |
 
 **토큰 3종** (`login`·`kakao`·`refresh` 응답):

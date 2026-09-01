@@ -76,7 +76,7 @@ struct RunRecord {
 | TourAPI `locationBasedList2` | 주변 관광지 조회 | `mapX`, `mapY`, 거리·형태별 동적 반경(500m~20km), `contentTypeId=12·14·28` |
 | TourAPI 분류코드 | 무드 자동 결정 | `cat1`, `cat2`, `cat3` 분포 |
 | TourAPI 오디오 가이드 | 이야기 콘텐츠 | 재생 가능 여부 검증 필요 (P0) |
-| TMAP 보행 경로 | 경로 계산 | 후보별 `passList` 단일 호출 · route-options 최대 5회/routes 최대 3회 · 동일 입력 5분 캐시 |
+| TMAP 보행 경로 | 경로 계산 | 후보별 `passList` 단일 호출 · route-options 최대 5회 · 동일 입력 5분 캐시 |
 
 ### 생성 로직
 
@@ -133,16 +133,24 @@ struct RunRecord {
 ## GPX 내보내기
 
 ```xml
-<gpx version="1.1" creator="어디 뛰지">
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Tour API"
+     xmlns="http://www.topografix.com/GPX/1/1"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
     <name>코스명</name>
-    <desc>거리 · 시간 · 강도. 관광 정보는 한국관광공사 TourAPI,
-          보행 경로는 TMAP을 사용했습니다.</desc>
+    <desc>한국관광공사 관광정보와 TMAP 보행 경로를 바탕으로 만든 러닝 코스</desc>
   </metadata>
-  <trk><trkseg><trkpt lat="" lon=""/>…</trkseg></trk>
-  <wpt lat="" lon=""><name>첨성대</name><type>관광지</type></wpt>
+  <wpt lat="35.8347" lon="129.2191"><name>첨성대</name><type>Waypoint</type></wpt>
+  <trk>
+    <name>코스명</name><type>running</type>
+    <trkseg><trkpt lat="35.832" lon="129.211"/>…</trkseg>
+  </trk>
 </gpx>
 ```
 
-- 지나는 곳을 `wpt`로 넣어야 가민 화면에 지점 이름이 표시된다
+- 앱이 XML을 만들지 않고 `GET /v1/courses/{id}/gpx` 응답 파일을 그대로 공유한다
+- GPX 1.1 XSD 순서에 맞게 `metadata → wpt → trk`로 구성한다
+- `wpt`는 파일에 포함되지만 Garmin Connect가 외부 waypoint를 보존하지 않을 수 있어 시계의 지점명 표시는 보장하지 않는다
 - `routed == false`인 코스는 **내보내기 금지** — 대략 형태가 파일로 나가면 사용자가 믿고 따라간다

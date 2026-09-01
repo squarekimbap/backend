@@ -14,11 +14,13 @@
 
 ## 앱 팀 전달사항 (보호 변경 배포 전 필수)
 
-- `POST /v1/running/routes`와 `POST /v1/running/route-options` 요청에 `Authorization: Bearer <accessToken>`을 반드시 추가한다. 기존 `/routes`도 이제 무토큰이면 401이다.
-- 두 생성 API는 사용자 기준 합산 분당 6회다. 429이면 `Retry-After: 60`을 따르고 생성 버튼을 잠시 비활성화한다.
+- `POST /v1/running/route-options` 요청에 `Authorization: Bearer <accessToken>`을 반드시 추가한다.
+- 생성 버튼을 누를 때마다 새 UUID를 만들고 `Idempotency-Key` 헤더에 넣는다. 네트워크·409·500·502·503 재시도는 반드시 같은 UUID를 재사용하고, 사용자가 새로 생성하면 새 UUID를 만든다.
+- 코스 생성은 사용자 기준 **KST 하루 3회**다. 모든 HTTP 시도를 합산하는 분당 6회 보호도 유지하므로 409는 반드시 서버가 준 `Retry-After: 8` 간격으로만 재조회한다.
+- 생성 응답의 `X-RateLimit-Remaining`으로 남은 일일 횟수를 갱신한다. 409·410·429·503이면 `X-RateLimit-Scope`와 오류 코드를 따른다.
 - 앱 HTTP timeout은 30초로 둔다. 서버는 라우트 진입부터 22초 안에 끝내며 남은 시간이 소진되면 다음 TMAP·Elevation·Odii 호출을 시작하지 않는다.
 - 401이면 refresh 토큰으로 access token을 갱신한 뒤 딱 1회만 재시도한다. 다시 401이면 로그인 화면으로 보낸다.
-- `candidates`와 `summary`의 인증 계약은 바뀌지 않았다. 기존 `/routes`의 요청·응답 JSON도 그대로다.
+- `candidates`와 `summary`의 인증 계약은 바뀌지 않았다.
 
 ```mermaid
 sequenceDiagram
@@ -42,12 +44,12 @@ sequenceDiagram
 | --- | --- |
 | Base URL | `https://akt4wffwphw5czb3ofr2hy4hhm0emmil.lambda-url.ap-northeast-2.on.aws` |
 | Content-Type | `application/json` (요청·응답 모두) |
-| 인증 | 실시간 생성 `routes`·`route-options`는 `Authorization: Bearer <accessToken>` 필수. 후보·총정리는 공개 |
+| 인증 | 실시간 생성 `route-options`는 `Authorization: Bearer <accessToken>` 필수. 후보·총정리는 공개 |
 | API 문서 | Swagger UI `{BASE}/q/swagger-ui` · OpenAPI 스펙 `{BASE}/q/openapi?format=json` |
 
 Odii 도슨트는 공공데이터포털 `관광지 오디오 가이드정보_GW` 활용신청 후 배포 파라미터 `TourAudioEnabled=true`로 켠다. 꺼져 있거나 장애가 나도 코스 생성은 계속된다.
 
-**애플리케이션 에러 응답(공통 형식)** — 400·429·500·502는 상태코드와 함께 이 JSON을 쓴다. 인증 필터가 먼저 차단하는 401은 응답 본문에 의존하지 않는다.
+**애플리케이션 에러 응답(공통 형식)** — 400·409·410·429·500·502·503은 상태코드와 함께 이 JSON을 쓴다. 인증 필터가 먼저 차단하는 401은 응답 본문에 의존하지 않는다.
 
 ```json
 { "error": "bad_request", "message": "lat 필수" }
@@ -57,7 +59,10 @@ Odii 도슨트는 공공데이터포털 `관광지 오디오 가이드정보_GW`
 | --- | --- | --- |
 | 400 | `bad_request` | 요청 값 오류. `message`를 개발 중 확인(사용자에겐 일반 문구) |
 | 401 | — | 실시간 코스 생성 토큰 누락·만료. refresh 후 1회 재시도 |
-| 429 | `rate_limited` | `routes`·`route-options` 합산 사용자별 분당 6회 초과. `Retry-After: 60` 뒤 재시도 |
+| 409 | `idempotency_in_progress` | 같은 키·본문의 요청을 다른 실행이 처리 중. `Retry-After` 뒤 같은 요청 재시도 |
+| 410 | `idempotency_result_expired` | 같은 키의 성공 응답 5분 보관 기간 만료. 자동 재시도하지 말고 사용자가 다시 생성할 때 새 키 사용 |
+| 429 | `rate_limited` | 일일 3회 또는 분당 6회 초과. `X-RateLimit-Scope`와 `Retry-After` 확인 |
+| 503 | `quota_unavailable` / `idempotency_unavailable` | 횟수 또는 성공 응답 저장 결과를 확정할 수 없음. 남은 횟수 UI를 바꾸지 말고 같은 `Idempotency-Key`로 `Retry-After` 뒤 재시도 |
 | 502 | `upstream_error` | 외부 API(공공데이터·TMAP·Google) 실패. **재시도 1회 → 안내 토스트** |
 | 500 | `internal_error` | 서버 오류. 안내 토스트 |
 
@@ -147,6 +152,7 @@ Odii 도슨트는 공공데이터포털 `관광지 오디오 가이드정보_GW`
 
 ```http
 Authorization: Bearer <accessToken>
+Idempotency-Key: 135a2e12-6189-4e76-ae3c-cb0dac7d11b2
 Content-Type: application/json
 ```
 
@@ -184,74 +190,42 @@ Content-Type: application/json
 
 > 현재 거리 우선은 최대 12개 가까운 후보를 대상으로 Haversine 근사 빔 탐색을 수행한 뒤 상위 조합만 실제 지도 경로로 검증한다. 한 요청의 TMAP 호출은 관광지 우선 후보를 포함해 최대 5회다. 라우트 진입·호출 제한·캐시 조회부터 전체 22초 예산을 공유하고 TMAP·Elevation을 제한 병렬 처리한다. Lambda 30초 중 나머지는 JWT 검증·콜드스타트 여유다. ±10%를 보장하지 않으므로 반드시 `withinTolerance`를 확인한다.
 
-동일 입력의 성공 응답은 5분 캐시된다. `routes`와 합산해 사용자별 분당 6회 제한이며 한도를 넘으면 `429`와 `Retry-After: 60`이 반환된다.
+동일 입력의 성공 응답은 5분 캐시된다. 새 `Idempotency-Key`로 요청한 캐시 응답도 생성 1회로 계산하지만, 같은 키·같은 본문의 재시도는 다시 차감하지 않는다.
 
-### 기존 앱 호환 — `POST /v1/running/routes`
+### 사용자별 생성 횟수
 
-응답 계약은 기존 앱을 위해 유지하지만 비용 보호를 위해 로그인 토큰은 필수다. 출발점 + 선택한 경유지를 보내면 선택순/역순/근접순별 코스를 최대 3개 반환한다. TMAP·Elevation 후보를 최대 3개 병렬 계산하고, `route-options`와 22초 예산·분당 6회 한도·동일 입력 5분 캐시를 공유한다. 신규 앱은 `/route-options`를 사용한다.
+유효하지 않은 400 요청과 인증 실패 401은 차감하지 않는다. 서버는 쿼터 예약과 요청 상태 원장 생성을 DynamoDB 트랜잭션 하나로 처리한다. 경로 생성 서비스가 서버·TMAP·고도 오류로 500/502를 반환하면 현재 실행 소유자의 원장 삭제와 일일 횟수 환불도 트랜잭션 하나로 처리한다. 이 실패 정리는 확인 조회나 동기 재시도를 덧붙이지 않아 DynamoDB 대기가 최대 2초를 넘지 않는다.
 
-### 요청
+서버는 멱등 키와 요청 본문의 지문을 묶어 예약 ID를 만든다. 처음 요청은 30초 실행 임대를 얻고, 같은 요청이 동시에 오면 생성 서비스를 다시 호출하지 않고 `409 idempotency_in_progress`를 반환한다. 멱등 원장 키에는 날짜를 넣지 않아 KST 자정을 넘어 재시도해도 최초 요청과 원래 날짜 쿼터를 그대로 찾는다. 성공 상태 메타데이터는 원장에 남기되 좌표가 든 응답 JSON은 별도 압축 항목에 5분만 저장한다. 이 시간 안의 같은 키·본문 요청은 TMAP을 다시 호출하지 않고 저장된 200 응답을 재생한다. 5분 뒤 같은 키가 오면 서비스를 다시 실행하지 않고 410을 반환한다. 실행이 중단되면 임대 만료 후 같은 요청이 소유권을 넘겨받을 수 있다. 다른 실행은 소유자 조건 때문에 먼저 성공한 요청의 횟수를 환불할 수 없다.
 
-```json
-{
-  "start": { "lat": 37.5665, "lng": 126.9780 },
-  "waypoints": [
-    { "name": "명동", "lat": 37.562152093, "lng": 126.984915005 },
-    { "name": "서울 명동성당", "lat": 37.5633131117, "lng": 126.9872814233 }
-  ],
-  "shape": "loop",
-  "targetDistanceKm": 5
-}
-```
+같은 키라도 본문이 다르면 별도 생성으로 계산된다. 환불할 때는 예약 ID를 카운터의 String Set에서 제거하므로 반복 실패가 DynamoDB 항목을 무한히 키우지 않는다. 헤더가 없는 구버전 앱은 서버가 UUID를 만들어 계속 처리하지만, 응답 자체를 잃은 재시도까지 보호하려면 앱이 요청 전에 UUID를 만들어 보내야 한다.
 
-| 필드 | 타입 | 필수 | 설명 |
-| --- | --- | --- | --- |
-| `start.lat/lng` | number | ✅ | 출발점 (①과 같은 좌표 권장) |
-| `waypoints[]` | array | ✅ | **1~5개**. `name`은 선택(없으면 "경유지N"으로 표기됨) |
-| `shape` | string | | `loop`(기본) → 출발지로 복귀 / `oneway` → 마지막 경유지가 도착점 |
-| `targetDistanceKm` | number | | 희망 거리. 주면 **이 거리에 가까운 코스부터** 정렬, 없으면 짧은 순 |
-
-### 응답 (실제 예시)
-
-```json
-{
-  "shape": "loop", "count": 2,
-  "courses": [
-    {
-      "label": "선택순",
-      "waypointOrder": ["명동", "서울 명동성당"],
-      "distanceM": 2764,
-      "walkDurationS": 2340,
-      "ascentM": 25.7,
-      "ascentPerKm": 9.3,
-      "difficulty": "하",
-      "path": [[37.56649, 126.97797], [37.56653, 126.97812], ...]
-    },
-    { "label": "역순", "waypointOrder": ["서울 명동성당", "명동"], ... }
-  ]
-}
-```
-
-| 필드 | 설명 / 앱 처리 |
+| 응답 헤더 | 의미 |
 | --- | --- |
-| `label` | `선택순` / `역순` / `근접순` — 코스 카드 뱃지. 결과가 같은 순서는 서버가 제거하므로 1~3개만 옴 |
-| `waypointOrder` | 방문 순서(이름) — "시청 → 명동 → 명동성당 → 시청" 문구 |
-| `distanceM` | 총 거리(m) — "2.76 km" |
-| `walkDurationS` | ⚠️ **도보 기준**(TMAP). 그대로 쓰지 말 것 → 아래 러닝 시간 환산 |
-| `ascentM` / `ascentPerKm` | 누적 상승고도(m) / km당 상승 — "상승 26m" |
-| `difficulty` | `하`/`중`/`상` (km당 상승 10m↓/25m↓/초과) — 색 뱃지 (예: 초록/노랑/빨강) |
-| `path` | `[[lat,lng], ...]` 최대 200점 — **그대로 지도 Polyline**으로 그리면 됨 |
+| `Idempotency-Key` | 요청에서 받은 생성 UUID. 구버전 앱이 생략한 경우 서버가 만든 UUID |
+| `X-RateLimit-Scope` | 성공 시 `daily`. 차단 원인이 일일·분당·동일 요청 진행 중·멱등 응답 만료·저장소 장애면 각각 `daily`, `minute`, `idempotency`, `idempotency_expired`, `backend` |
+| `X-RateLimit-Limit` | 적용된 한도. 일일 3, 분당 6 |
+| `X-RateLimit-Remaining` | 해당 범위의 남은 횟수. 성공 응답에서는 남은 일일 생성 횟수. 예약 후 표시용 조회만 실패하면 이 헤더를 생략하므로 앱은 기존 값을 유지 |
+| `X-RateLimit-Reset` | 초기화 시각의 Unix epoch seconds. 일일 한도는 다음 KST 자정 |
+| `Retry-After` | 409·429·503에서 재시도까지 남은 초 |
 
-**러닝 예상 시간 환산(앱에서)**:
+일일 한도 429 예시:
 
+```http
+HTTP/1.1 429 Too Many Requests
+Idempotency-Key: 135a2e12-6189-4e76-ae3c-cb0dac7d11b2
+Retry-After: 18342
+X-RateLimit-Scope: daily
+X-RateLimit-Limit: 3
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 1788274800
 ```
-예상 시간(분) = distanceM / 1000 × 사용자 페이스(분/km)
-예) 2764m, 페이스 6분/km → 약 17분
+
+```json
+{"error":"rate_limited","message":"오늘 코스 생성 3회를 모두 사용했습니다. 한국시간 자정 이후 다시 이용할 수 있습니다"}
 ```
 
-사용자가 코스를 고르면 해당 `RouteOption` 전체를 ④에 넘긴다.
-
----
+앱은 `daily` 차단이면 초기화 시각까지 생성 버튼을 잠그고 “오늘 생성 횟수를 모두 사용했어요”를 표시한다. `minute` 차단이면 `Retry-After` 동안만 버튼을 잠시 비활성화한다. `idempotency`/409는 별도 오류 화면을 띄우지 않고 서버가 준 `Retry-After: 8` 뒤 같은 키·본문으로 다시 조회한다. 연결 직후 한 번 즉시 재시도한 최악 조건에서도 최초 요청과 8·16·24·32초 재조회가 분당 6회 안에 들어와 30초 임대 인계를 막지 않는다. `idempotency_expired`/410은 자동 재시도를 멈추고 “결과 보관 시간이 지났어요. 다시 생성해주세요”를 표시하며, 사용자가 다시 누를 때만 새 UUID를 만든다. `backend`/503은 저장 결과가 확정되지 않은 상태이므로 횟수 소진으로 표시하거나 로컬 잔여량을 0으로 덮지 않는다. 같은 키·본문으로 재시도하면 처리 중에는 409, 완료 후 5분 안에는 저장된 200 응답을 받는다. 500/502 뒤 실제 생성 재실행은 같은 멱등 키를 쓰더라도 새로운 분당 시도로 계산된다. 현재는 기본 3회만 적용하며 완주 보너스는 아직 응답에 포함하지 않는다.
 
 ## 4️⃣ 총정리·맛집·카페 — `POST /v1/running/summary`
 
@@ -276,8 +250,7 @@ Content-Type: application/json
 - [ ] `storyCount=0`은 주변 도슨트 없음뿐 아니라 Odii 비활성/장애도 포함
 - [ ] 거리 우선 옵션은 `withinTolerance=false`일 수 있으므로 “딱 맞아요” 문구를 앱에서 고정하지 말 것
 - [ ] 502 → 1회 재시도 후 안내. 400은 앱 버그(검증 로직 확인)
-- [ ] 앱 HTTP 타임아웃 30초 + 첫 호출 로딩 UI(스켈레톤). `routes`·`route-options` 애플리케이션 예산은 라우트 진입부터 22초
-- [ ] `waypoints` 6개 이상 선택 못 하게 UI에서 제한 (서버도 400으로 막음)
+- [ ] 앱 HTTP 타임아웃 30초 + 첫 호출 로딩 UI(스켈레톤). `route-options` 애플리케이션 예산은 라우트 진입부터 22초
 
 ## 5️⃣ 편집 코스 카탈로그 — `GET /v1/courses`
 
@@ -285,9 +258,12 @@ Content-Type: application/json
 
 | 호출 | 용도 | 응답 |
 | --- | --- | --- |
-| `GET /v1/courses` | 홈 피드 전체 | `{count, items:[요약]}` — 요약 = id·n·city·cityId·region·km·min·lv·mood·tags·headline·subhead·photo·photoTitle·photoLicense |
+| `GET /v1/courses` | 홈 피드 전체 | `{count, items:[요약]}` — 요약 = id·n·city·cityId·region·km·min·lv·mood·tags·headline·subhead·photo·photoTitle·photoLicense·`waypoints[]` |
 | `GET /v1/courses?city=서울` (또는 `city=seoul`) | 도시 탭 | 위와 동일(필터됨) |
 | `GET /v1/courses/{id}` | 코스 상세 | 전체 필드 — 위 요약 + 원고·`poi[]` + 정적 `polyline`·`guide`·`checkpoints`(아래) |
+| `GET /v1/courses/{id}/gpx` | Garmin 코스 공유 | `application/gpx+xml` GPX 1.1 Track 파일. 앱은 응답 파일을 그대로 공유 |
+
+홈 코스 카드는 `km`를 본문에 표시하지 않고 `waypoints`를 받은 순서대로 최대 3곳까지 보여준다. 예: `해운대해수욕장 · 동백섬 · 누리마루`. `km`는 거리 필터와 상세 화면 수치에만 사용한다. `waypoints`는 문자열 배열이며 비어 있으면 해당 줄을 숨긴다.
 
 **경로·안내·도슨트** — 64개 코스 모두 배열을 내려준다.
 
@@ -321,6 +297,8 @@ Content-Type: application/json
 - `checkpoints`는 실제 경로 100m 안의 지점이다. `description`은 응답에는 포함되지만 100m 트리거 전에는 화면에 노출하지 않는다.
 - `audioSeconds`는 현재 원고 길이로 계산한 예상 낭독 시간이다. 음원 URL은 없으므로 앱의 TTS/기존 이야기 재생기를 사용한다.
 - `walkDurationS`는 TMAP 도보 기준이다. 러닝 예상 시간에는 기존 `min` 또는 사용자 페이스 환산값을 쓴다.
+
+**Garmin GPX 공유** — 앱에서 XML을 다시 만들지 말고 상세의 `id`로 `GET /v1/courses/{id}/gpx`를 호출해 받은 파일을 그대로 `UIActivityViewController`에 넘긴다. 파일은 GPX 1.1의 `trk → trkseg → trkpt` 구조다. `poi`는 `wpt`도 함께 넣지만 Garmin Connect가 외부 waypoint를 보존하지 않을 수 있으므로 시계의 경유지명 표시는 보장하지 않는다. 사용자는 Garmin Connect의 **훈련 및 계획 → 코스 → 가져오기**로 열어야 하며, 일반 활동 데이터 가져오기로 올리지 않는다.
 
 **poi 항목 구조** (지나는 곳 1곳):
 

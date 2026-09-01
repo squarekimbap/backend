@@ -32,37 +32,11 @@ public class RunningResourceTest {
     }
 
     @Test
-    @TestSecurity(user = "routes-empty", roles = {})
-    @JwtSecurity(claims = {@Claim(key = "sub", value = "routes-empty")})
-    public void routes_경유지없으면_400() {
+    public void 레거시Routes는제거되어_404() {
         RestAssured.given().contentType(ContentType.JSON)
-                .body("{\"start\":{\"lat\":37.5665,\"lng\":126.978},\"waypoints\":[]}")
+                .body("{\"start\":{\"lat\":37.5665,\"lng\":126.978}}")
                 .when().post("/v1/running/routes")
-                .then().statusCode(400)
-                .body("error", equalTo("bad_request"));
-    }
-
-    @Test
-    @TestSecurity(user = "routes-six", roles = {})
-    @JwtSecurity(claims = {@Claim(key = "sub", value = "routes-six")})
-    public void routes_경유지6개면_400() {
-        String wp = "{\"lat\":37.56,\"lng\":126.97}";
-        RestAssured.given().contentType(ContentType.JSON)
-                .body("{\"start\":{\"lat\":37.5665,\"lng\":126.978},\"waypoints\":["
-                        + wp + "," + wp + "," + wp + "," + wp + "," + wp + "," + wp + "]}")
-                .when().post("/v1/running/routes")
-                .then().statusCode(400);
-    }
-
-    @Test
-    @TestSecurity(user = "routes-null", roles = {})
-    @JwtSecurity(claims = {@Claim(key = "sub", value = "routes-null")})
-    public void routes_경유지null이면_400() {
-        RestAssured.given().contentType(ContentType.JSON)
-                .body("{\"start\":{\"lat\":37.5665,\"lng\":126.978},\"waypoints\":[null]}")
-                .when().post("/v1/running/routes")
-                .then().statusCode(400)
-                .body("error", equalTo("bad_request"));
+                .then().statusCode(404);
     }
 
     @Test

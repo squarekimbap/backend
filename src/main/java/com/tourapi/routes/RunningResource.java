@@ -1,5 +1,7 @@
 package com.tourapi.routes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.CandidatesResponse;
@@ -7,8 +9,6 @@ import com.tourapi.model.CourseSummaryRequest;
 import com.tourapi.model.CourseSummaryResponse;
 import com.tourapi.model.RouteOptionsRequest;
 import com.tourapi.model.RouteOptionsResponse;
-import com.tourapi.model.RoutesRequest;
-import com.tourapi.model.RoutesResponse;
 import com.tourapi.model.RunningCandidatesRequest;
 import com.tourapi.model.WaypointDto;
 import com.tourapi.services.RunningGenerationRateLimiter;
@@ -16,6 +16,7 @@ import com.tourapi.services.RunningService;
 import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -23,8 +24,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.ParameterIn;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
@@ -32,6 +35,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /** 러닝 추천 라우트. 얇게: 검증 → 서비스 위임 → 상태코드 매핑. TMAP/Google 키는 절대 노출 안 됨. */
@@ -51,6 +55,9 @@ public class RunningResource {
 
     @Inject
     JsonWebToken jwt;
+
+    @Inject
+    ObjectMapper mapper;
 
     @ConfigProperty(name = "running.generation.deadline-ms", defaultValue = "22000")
     long generationDeadlineMs;
@@ -99,70 +106,6 @@ public class RunningResource {
     }
 
     @POST
-    @Path("/routes")
-    @Authenticated
-    @Operation(summary = "코스 추천 (Phase B)",
-            description = "선택한 경유지(1~5개)로 순서 후보(선택/역순/근접)를 만들어 TMAP 보행 경로 + 고도 난이도를 계산, 코스 최대 3개를 반환한다.")
-    @APIResponses({
-            @APIResponse(responseCode = "200", description = "코스 목록(최대 3)",
-                    content = @Content(schema = @Schema(implementation = RoutesResponse.class))),
-            @APIResponse(responseCode = "400", description = "잘못된 요청",
-                    content = @Content(schema = @Schema(implementation = ApiError.class))),
-            @APIResponse(responseCode = "401", description = "로그인 필요"),
-            @APIResponse(responseCode = "429", description = "사용자별 분당 호출 한도 초과",
-                    content = @Content(schema = @Schema(implementation = ApiError.class))),
-            @APIResponse(responseCode = "502", description = "업스트림(TMAP/Elevation) 오류",
-                    content = @Content(schema = @Schema(implementation = ApiError.class)))
-    })
-    public Response routes(RoutesRequest req) {
-        long deadline = generationDeadline();
-        double[] start;
-        List<WaypointDto> waypoints;
-        String shape;
-        Double targetKm;
-        try {
-            if (req == null || req.start() == null) {
-                throw new BadParam("start 필요");
-            }
-            start = new double[]{
-                    require("start.lat", req.start().lat(), -90, 90),
-                    require("start.lng", req.start().lng(), -180, 180)};
-            waypoints = req.waypoints();
-            if (waypoints == null || waypoints.isEmpty()) {
-                throw new BadParam("waypoints 1개 이상 필요");
-            }
-            if (waypoints.size() > 5) {
-                throw new BadParam("waypoints 최대 5개 (TMAP 경유지 제한)");
-            }
-            validateWaypoints("waypoints", waypoints);
-            shape = shapeOf(req.shape());
-            targetKm = req.targetDistanceKm();
-            if (targetKm != null && (targetKm < 0.5 || targetKm > 60)) {
-                throw new BadParam("targetDistanceKm 범위(0.5~60) 벗어남: " + targetKm);
-            }
-        } catch (BadParam e) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new ApiError("bad_request", e.getMessage())).build();
-        }
-
-        Response limited = rateLimitResponse();
-        if (limited != null) {
-            return limited;
-        }
-
-        try {
-            return Response.ok(runningService.routes(
-                    start, waypoints, shape, targetKm, deadline)).build();
-        } catch (UpstreamException e) {
-            LOG.warnf("routes upstream 실패: %s", e.getMessage());
-            return Response.status(502).entity(new ApiError("upstream_error", e.getMessage())).build();
-        } catch (Exception e) {
-            LOG.error("routes 처리 중 예외", e);
-            return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
-        }
-    }
-
-    @POST
     @Path("/route-options")
     @Authenticated
     @Operation(summary = "화면 3 코스 선택지",
@@ -173,18 +116,28 @@ public class RunningResource {
             @APIResponse(responseCode = "400", description = "잘못된 요청",
                     content = @Content(schema = @Schema(implementation = ApiError.class))),
             @APIResponse(responseCode = "401", description = "로그인 필요"),
-            @APIResponse(responseCode = "429", description = "사용자별 분당 호출 한도 초과",
+            @APIResponse(responseCode = "409", description = "같은 멱등 키의 생성 요청 처리 중",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "410", description = "멱등 응답 보관 기간 만료",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "429", description = "사용자별 분당 또는 KST 일일 생성 한도 초과",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @APIResponse(responseCode = "503", description = "생성 횟수 저장소 일시 장애",
                     content = @Content(schema = @Schema(implementation = ApiError.class))),
             @APIResponse(responseCode = "502", description = "TMAP/Elevation 오류",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))
     })
-    public Response routeOptions(RouteOptionsRequest req) {
+    public Response routeOptions(RouteOptionsRequest req,
+                                 @Parameter(name = "Idempotency-Key", in = ParameterIn.HEADER,
+                                         description = "생성 시 만든 UUID. 같은 요청 재시도에는 같은 값 사용")
+                                 @HeaderParam("Idempotency-Key") String suppliedIdempotencyKey) {
         long deadline = generationDeadline();
         double[] start;
         List<WaypointDto> selected;
         List<WaypointDto> candidates;
         String shape;
         double targetKm;
+        String idempotencyKey;
         try {
             if (req == null || req.start() == null) {
                 throw new BadParam("start 필요");
@@ -207,25 +160,41 @@ public class RunningResource {
             validateWaypoints("candidateWaypoints", candidates);
             shape = shapeOf(req.shape());
             targetKm = require("targetDistanceKm", req.targetDistanceKm(), 0.5, 60);
+            idempotencyKey = idempotencyKey(suppliedIdempotencyKey);
         } catch (BadParam e) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
 
-        Response limited = rateLimitResponse();
+        RunningGenerationRateLimiter.Reservation reservation = generationRateLimiter.acquire(
+                jwt.getSubject(), idempotencyKey, requestFingerprint("route-options", req));
+        Response limited = rateLimitResponse(reservation, idempotencyKey);
         if (limited != null) {
             return limited;
         }
+        if (reservation.replayed()) {
+            return generationHeaders(Response.ok(
+                    reservation.replayPayload(), MediaType.APPLICATION_JSON_TYPE),
+                    reservation, idempotencyKey).build();
+        }
 
         try {
-            return Response.ok(runningService.routeOptions(
-                    start, selected, candidates, shape, targetKm, deadline)).build();
+            RouteOptionsResponse response = runningService.routeOptions(
+                    start, selected, candidates, shape, targetKm, deadline);
+            if (!generationRateLimiter.complete(reservation, response)) {
+                return generationStateUnavailable(idempotencyKey);
+            }
+            return generationHeaders(Response.ok(response), reservation, idempotencyKey).build();
         } catch (UpstreamException e) {
+            generationRateLimiter.refund(reservation);
             LOG.warnf("route-options upstream 실패: %s", e.getMessage());
-            return Response.status(502).entity(new ApiError("upstream_error", e.getMessage())).build();
+            return Response.status(502).header("Idempotency-Key", idempotencyKey)
+                    .entity(new ApiError("upstream_error", e.getMessage())).build();
         } catch (Exception e) {
+            generationRateLimiter.refund(reservation);
             LOG.error("route-options 처리 중 예외", e);
-            return Response.status(500).entity(new ApiError("internal_error", "일시적 오류")).build();
+            return Response.status(500).header("Idempotency-Key", idempotencyKey)
+                    .entity(new ApiError("internal_error", "일시적 오류")).build();
         }
     }
 
@@ -309,14 +278,90 @@ public class RunningResource {
         return System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(generationDeadlineMs);
     }
 
-    private Response rateLimitResponse() {
-        if (generationRateLimiter.allow(jwt.getSubject())) {
+    private String requestFingerprint(String endpoint, Object request) {
+        try {
+            return endpoint + "\n" + mapper.writeValueAsString(request);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("코스 생성 요청 지문 생성 실패", e);
+        }
+    }
+
+    private static String idempotencyKey(String supplied) {
+        if (supplied == null || supplied.isBlank()) {
+            return UUID.randomUUID().toString();
+        }
+        String value = supplied.trim();
+        try {
+            if (!UUID.fromString(value).toString().equalsIgnoreCase(value)) {
+                throw new IllegalArgumentException("canonical UUID 필요");
+            }
+        } catch (IllegalArgumentException e) {
+            throw new BadParam("Idempotency-Key는 UUID 형식이어야 합니다");
+        }
+        return value.toLowerCase();
+    }
+
+    private Response rateLimitResponse(RunningGenerationRateLimiter.Reservation reservation,
+                                       String idempotencyKey) {
+        if (reservation.allowed()) {
             return null;
         }
-        return Response.status(429)
+        if (reservation.scope() == RunningGenerationRateLimiter.Scope.IDEMPOTENCY_EXPIRED) {
+            return Response.status(410)
+                    .header("Idempotency-Key", idempotencyKey)
+                    .header("X-RateLimit-Scope", reservation.scope().headerValue())
+                    .entity(new ApiError("idempotency_result_expired",
+                            "이 생성 요청의 저장 결과가 만료됐습니다. 새 요청으로 다시 생성해주세요"))
+                    .build();
+        }
+        if (reservation.scope() == RunningGenerationRateLimiter.Scope.IDEMPOTENCY) {
+            return Response.status(409)
+                    .header("Idempotency-Key", idempotencyKey)
+                    .header("X-RateLimit-Scope", reservation.scope().headerValue())
+                    .header("Retry-After", Long.toString(reservation.retryAfterSeconds()))
+                    .entity(new ApiError("idempotency_in_progress",
+                            "같은 코스 생성 요청을 처리 중입니다. 잠시 후 다시 시도해주세요"))
+                    .build();
+        }
+        if (reservation.scope() == RunningGenerationRateLimiter.Scope.BACKEND) {
+            return generationHeaders(Response.status(503), reservation, idempotencyKey)
+                    .header("Retry-After", Long.toString(reservation.retryAfterSeconds()))
+                    .entity(new ApiError("quota_unavailable",
+                            "코스 생성 횟수를 확인할 수 없습니다. 잠시 후 다시 시도해주세요"))
+                    .build();
+        }
+        String message = reservation.scope() == RunningGenerationRateLimiter.Scope.DAILY
+                ? "오늘 코스 생성 " + reservation.limit()
+                    + "회를 모두 사용했습니다. 한국시간 자정 이후 다시 이용할 수 있습니다"
+                : "실시간 코스 생성은 분당 " + reservation.limit() + "회까지 가능";
+        return generationHeaders(Response.status(429), reservation, idempotencyKey)
+                .header("Retry-After", Long.toString(reservation.retryAfterSeconds()))
+                .entity(new ApiError("rate_limited", message)).build();
+    }
+
+    private Response generationStateUnavailable(String idempotencyKey) {
+        var unavailable = RunningGenerationRateLimiter.Reservation.unavailable(
+                System.currentTimeMillis() / 1000 + 60);
+        return generationHeaders(Response.status(503), unavailable, idempotencyKey)
                 .header("Retry-After", "60")
-                .entity(new ApiError("rate_limited", "실시간 코스 생성은 분당 6회까지 가능"))
+                .entity(new ApiError("idempotency_unavailable",
+                        "생성 결과를 안전하게 저장하지 못했습니다. 같은 요청으로 다시 시도해주세요"))
                 .build();
+    }
+
+    private static Response.ResponseBuilder generationHeaders(
+            Response.ResponseBuilder response,
+            RunningGenerationRateLimiter.Reservation reservation,
+            String idempotencyKey) {
+        Response.ResponseBuilder headers = response
+                .header("Idempotency-Key", idempotencyKey)
+                .header("X-RateLimit-Scope", reservation.scope().headerValue())
+                .header("X-RateLimit-Limit", Integer.toString(reservation.limit()))
+                .header("X-RateLimit-Reset", Long.toString(reservation.resetEpochSeconds()));
+        if (reservation.remainingKnown()) {
+            headers.header("X-RateLimit-Remaining", Integer.toString(reservation.remaining()));
+        }
+        return headers;
     }
 
     private static final class BadParam extends RuntimeException {

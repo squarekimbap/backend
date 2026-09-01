@@ -6,33 +6,18 @@ import com.tourapi.lib.TmapClient;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.Course;
 import com.tourapi.model.RouteSegment;
-import com.tourapi.model.RoutesResponse;
 import com.tourapi.model.WaypointDto;
-import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.jboss.logging.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.time.Duration;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 /** TMAP 경로·고도·난이도 계산. 후보 탐색이나 화면 조립 책임은 갖지 않는다. */
 @ApplicationScoped
 public class RunningRouteService {
-
-    private static final Logger LOG = Logger.getLogger(RunningRouteService.class);
 
     @Inject
     TmapClient tmap;
@@ -40,63 +25,7 @@ public class RunningRouteService {
     @Inject
     ElevationClient elevationClient;
 
-    private final ExecutorService legacyRoutePool = Executors.newFixedThreadPool(
-            3, daemonThreads("legacy-route-upstream-"));
-
-    public RoutesResponse routes(double[] start, List<WaypointDto> waypoints, String shape, Double targetKm) {
-        return routes(start, waypoints, shape, targetKm,
-                System.nanoTime() + TimeUnit.SECONDS.toNanos(22));
-    }
-
-    public RoutesResponse routes(double[] start,
-                                 List<WaypointDto> waypoints,
-                                 String shape,
-                                 Double targetKm,
-                                 long deadlineNanos) {
-        boolean loop = !"oneway".equals(shape);
-        LinkedHashMap<String, List<WaypointDto>> orderings = standardOrderings(start, waypoints);
-        List<CompletableFuture<Course>> futures = new ArrayList<>();
-        for (Map.Entry<String, List<WaypointDto>> entry : orderings.entrySet()) {
-            futures.add(CompletableFuture.supplyAsync(() -> {
-                RoutePlan plan = plan(entry.getKey(), start, entry.getValue(), loop, deadlineNanos);
-                return toCourse(plan, deadlineNanos);
-            }, legacyRoutePool));
-        }
-        awaitCourses(futures, deadlineNanos);
-
-        List<Course> courses = new ArrayList<>();
-        for (CompletableFuture<Course> future : futures) {
-            if (!future.isDone() || future.isCancelled() || future.isCompletedExceptionally()) {
-                future.cancel(true);
-                continue;
-            }
-            courses.add(future.join());
-        }
-        if (courses.isEmpty()) {
-            throw new UpstreamException("제한 시간 안에 완료된 기존 코스 후보가 없음");
-        }
-        sortByTarget(courses, targetKm);
-        List<Course> top = courses.size() > 3 ? List.copyOf(courses.subList(0, 3)) : courses;
-        return new RoutesResponse(loop ? "loop" : "oneway", top.size(), top);
-    }
-
-    private static LinkedHashMap<String, List<WaypointDto>> standardOrderings(
-            double[] start, List<WaypointDto> waypoints) {
-        LinkedHashMap<String, List<WaypointDto>> orderings = new LinkedHashMap<>();
-        putOrder(orderings, "선택순", waypoints);
-        List<WaypointDto> reversed = new ArrayList<>(waypoints);
-        Collections.reverse(reversed);
-        putOrder(orderings, "역순", reversed);
-        putOrder(orderings, "근접순", nearestOrder(start, waypoints));
-        return orderings;
-    }
-
     /** 순서 하나의 TMAP 경로만 계산한다. 거리 후보 탐색에서는 고도 호출 전에 이 결과로 비교한다. */
-    RoutePlan plan(String label, double[] start, List<WaypointDto> order, boolean loop) {
-        return plan(label, start, order, loop,
-                System.nanoTime() + TimeUnit.SECONDS.toNanos(22));
-    }
-
     RoutePlan plan(String label,
                    double[] start,
                    List<WaypointDto> order,
@@ -122,10 +51,6 @@ public class RunningRouteService {
         }
         return new RoutePlan(label, List.copyOf(order),
                 tmap.pedestrian(start, via, end, remaining(deadlineNanos, "TMAP")));
-    }
-
-    Course toCourse(RoutePlan plan) {
-        return toCourse(plan, System.nanoTime() + TimeUnit.SECONDS.toNanos(22));
     }
 
     Course toCourse(RoutePlan plan, long deadlineNanos) {
@@ -217,26 +142,6 @@ public class RunningRouteService {
         return signature.toString();
     }
 
-    private static void putOrder(Map<String, List<WaypointDto>> orderings, String label,
-                                 List<WaypointDto> order) {
-        String signature = signature(order);
-        for (List<WaypointDto> existing : orderings.values()) {
-            if (signature(existing).equals(signature)) {
-                return;
-            }
-        }
-        orderings.put(label, List.copyOf(order));
-    }
-
-    private static void sortByTarget(List<Course> courses, Double targetKm) {
-        if (targetKm == null) {
-            courses.sort(Comparator.comparingInt(Course::distanceM));
-        } else {
-            courses.sort(Comparator.comparingDouble(
-                    course -> Math.abs(course.distanceM() / 1000.0 - targetKm)));
-        }
-    }
-
     private static List<String> waypointNames(List<WaypointDto> order) {
         List<String> names = new ArrayList<>();
         for (int i = 0; i < order.size(); i++) {
@@ -287,46 +192,6 @@ public class RunningRouteService {
             throw new UpstreamException(stage + " 호출 가용 시간 없음");
         }
         return Duration.ofNanos(Math.max(TimeUnit.MILLISECONDS.toNanos(1), nanos));
-    }
-
-    private static void awaitCourses(List<CompletableFuture<Course>> futures, long deadlineNanos) {
-        CompletableFuture<Void> all = CompletableFuture.allOf(
-                futures.toArray(CompletableFuture[]::new));
-        try {
-            all.get(Math.max(1, deadlineNanos - System.nanoTime()), TimeUnit.NANOSECONDS);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        } catch (ExecutionException e) {
-            LOG.warnf("기존 코스 일부 계산 실패: %s", rootMessage(e));
-        } catch (TimeoutException e) {
-            LOG.warn("기존 코스 생성 전체 제한 시간 도달");
-        }
-    }
-
-    private static String rootMessage(Exception error) {
-        Throwable cause = error;
-        while (cause.getCause() != null) {
-            cause = cause.getCause();
-        }
-        return cause.getMessage() == null ? cause.getClass().getSimpleName() : cause.getMessage();
-    }
-
-    private static ThreadFactory daemonThreads(String prefix) {
-        return new ThreadFactory() {
-            private int sequence;
-
-            @Override
-            public synchronized Thread newThread(Runnable runnable) {
-                Thread thread = new Thread(runnable, prefix + (++sequence));
-                thread.setDaemon(true);
-                return thread;
-            }
-        };
-    }
-
-    @PreDestroy
-    void closePool() {
-        legacyRoutePool.shutdownNow();
     }
 
     record RoutePlan(String label, List<WaypointDto> order, TmapClient.TmapRoute route) {

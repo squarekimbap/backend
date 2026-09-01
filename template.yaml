@@ -66,6 +66,12 @@ Resources:
         - AWSLambdaBasicExecutionRole
         - DynamoDBCrudPolicy:
             TableName: !Ref CacheTable
+        # 코스 생성 쿼터와 멱등 상태 원장을 원자적으로 함께 변경한다.
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:TransactWriteItems
+              Resource: !GetAtt CacheTable.Arn
         - DynamoDBCrudPolicy:
             TableName: !Ref UsersTable
         - Statement:
@@ -82,7 +88,7 @@ Resources:
                 - cognito-idp:AdminDeleteUser
               Resource: !GetAtt UserPool.Arn
       # API Gateway 대신 Function URL 사용 (무료 유지). 네트워크 입구는 NONE이지만
-      # 비용이 드는 /running/routes·/route-options는 앱 계층 Cognito JWT로 보호한다.
+      # 비용이 드는 /running/route-options는 앱 계층 Cognito JWT로 보호한다.
       FunctionUrlConfig:
         AuthType: NONE
 

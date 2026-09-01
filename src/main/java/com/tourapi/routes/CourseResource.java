@@ -7,6 +7,7 @@ import com.tourapi.model.ApiError;
 import com.tourapi.model.CourseNearbyResponse;
 import com.tourapi.model.NearbyPlace;
 import com.tourapi.services.CourseCatalog;
+import com.tourapi.services.CourseGpxService;
 import com.tourapi.services.NearbyPlaceService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -45,6 +46,9 @@ public class CourseResource {
     CourseCatalog catalog;
 
     @Inject
+    CourseGpxService courseGpxService;
+
+    @Inject
     NearbyPlaceService nearbyPlaceService;
 
     @Inject
@@ -79,6 +83,38 @@ public class CourseResource {
                     .entity(new ApiError("not_found", "코스 없음: " + id)).build();
         }
         return Response.ok(c).build();
+    }
+
+    @GET
+    @Path("/{id}/gpx")
+    @Produces("application/gpx+xml")
+    @Operation(summary = "Garmin 호환 GPX 코스 파일",
+            description = "코스 polyline을 GPX 1.1 Track(trk/trkseg/trkpt)으로 내보낸다. "
+                    + "Garmin Connect의 코스 가져오기에서 사용하며 poi는 표준 waypoint로 함께 넣는다.")
+    @APIResponses({
+            @APIResponse(responseCode = "200", description = "GPX 1.1 파일"),
+            @APIResponse(responseCode = "404", description = "없는 id"),
+            @APIResponse(responseCode = "409", description = "내보낼 경로 없음")
+    })
+    public Response gpx(
+            @Parameter(description = "코스 id", required = true, example = "seoul-banpo-10k")
+            @PathParam("id") String id) {
+        JsonNode course = catalog.byId(id);
+        if (course == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .type(MediaType.APPLICATION_JSON_TYPE)
+                    .entity(new ApiError("not_found", "코스 없음: " + id)).build();
+        }
+        try {
+            return Response.ok(courseGpxService.create(course))
+                    .type("application/gpx+xml; charset=UTF-8")
+                    .header("Content-Disposition", "attachment; filename=\"" + id + ".gpx\"")
+                    .build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.CONFLICT)
+                    .type(MediaType.APPLICATION_JSON_TYPE)
+                    .entity(new ApiError("route_unavailable", e.getMessage())).build();
+        }
     }
 
     @GET
