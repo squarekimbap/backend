@@ -13,6 +13,7 @@ import org.jboss.logging.Logger;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -110,6 +111,34 @@ public class NearbyPlaceService {
         }
 
         return topBalanced(out, max);
+    }
+
+    /**
+     * 요청 반경에서 장소가 부족하면 2.5km, 5km 순으로 넓혀 최대 개수를 채운다.
+     * 더 넓은 검색이 일시적으로 더 적은 결과를 주면 앞 단계의 더 풍부한 결과를 보존한다.
+     */
+    public NearbySearchResult aroundExpanded(
+            double lat, double lng, int initialRadiusM, String hint, int max) {
+        LinkedHashSet<Integer> radii = new LinkedHashSet<>();
+        radii.add(Math.max(100, Math.min(5000, initialRadiusM)));
+        if (initialRadiusM < 2500) {
+            radii.add(2500);
+        }
+        if (initialRadiusM < 5000) {
+            radii.add(5000);
+        }
+
+        NearbySearchResult best = new NearbySearchResult(radii.iterator().next(), List.of());
+        for (int radiusM : radii) {
+            List<NearbyPlace> items = around(lat, lng, radiusM, hint, max);
+            if (items.size() > best.items().size()) {
+                best = new NearbySearchResult(radiusM, items);
+            }
+            if (items.size() >= max) {
+                return new NearbySearchResult(radiusM, items);
+            }
+        }
+        return best;
     }
 
     private List<Place> tourPlaces(double lat, double lng, int radiusM) {
@@ -257,5 +286,8 @@ public class NearbyPlaceService {
     private static String safeMessage(UpstreamException e) {
         Throwable cause = e.getCause() != null ? e.getCause() : e;
         return cause.getMessage() == null ? cause.getClass().getSimpleName() : cause.getMessage();
+    }
+
+    public record NearbySearchResult(int radiusM, List<NearbyPlace> items) {
     }
 }

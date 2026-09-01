@@ -33,6 +33,7 @@ class CourseSummaryServiceTest {
 
         CourseSummaryResponse response = service.summary(option(), 500);
 
+        assertEquals(500, response.nearbyRadiusM());
         assertEquals(2, response.nearbyCount());
         assertEquals("restaurant", response.afterRunPlaces().get(0).kind());
         assertEquals("cafe", response.afterRunPlaces().get(1).kind());

@@ -132,8 +132,9 @@ public class CourseResource {
     @Path("/{id}/nearby")
     @Operation(summary = "코스 주변 맛집·카페",
             description = "코스 경로(polyline)의 마지막 좌표, 즉 완주 지점을 기준으로 1차 TourAPI + "
-                    + "2차 네이버 지역검색을 교차검증해 최대 8곳을 반환한다. 코스 상세 화면에서 본문과 "
-                    + "병렬로 호출하면 된다(느려도 상세는 먼저 뜬다). 하루 단위 캐시.")
+                    + "2차 네이버 지역검색을 교차검증해 최대 8곳을 반환한다. 부족하면 요청 반경에서 "
+                    + "2.5km, 5km까지 자동 확장한다. 코스 상세 화면에서 본문과 병렬로 호출하면 된다"
+                    + "(느려도 상세는 먼저 뜬다). 하루 단위 캐시.")
     @APIResponses({
             @APIResponse(responseCode = "200", description = "맛집/카페 목록(교차검증 순)"),
             @APIResponse(responseCode = "404", description = "없는 id")
@@ -161,8 +162,8 @@ public class CourseResource {
         double lng = anchor.lng();
         String basedOn = anchor.basedOn();
 
-        // v2는 대표점 기준이던 v1 캐시와 섞지 않는다.
-        String cacheKey = "nearby-v2#" + canonicalId + "#" + radiusM + "#"
+        // v3는 단일 반경만 검색하던 v2 캐시와 섞지 않는다.
+        String cacheKey = "nearby-v3#" + canonicalId + "#" + radiusM + "#"
                 + LocalDate.now(KST).format(DateTimeFormatter.BASIC_ISO_DATE);
 
         CourseNearbyResponse cached = cache.get(cacheKey, CourseNearbyResponse.class);
@@ -172,9 +173,11 @@ public class CourseResource {
 
         // 경유지 이름은 '동을 못 찾았을 때'의 폴백으로만 쓰인다 — 랜드마크명은
         // "잠수교 맛집"이 성수동 결과를 주는 식으로 네이버가 엉뚱하게 해석할 때가 있다.
-        List<NearbyPlace> items = nearbyPlaceService.around(lat, lng, radiusM, basedOn, 8);
+        NearbyPlaceService.NearbySearchResult search =
+                nearbyPlaceService.aroundExpanded(lat, lng, radiusM, basedOn, 8);
+        List<NearbyPlace> items = search.items();
         CourseNearbyResponse body =
-                new CourseNearbyResponse(canonicalId, basedOn, lat, lng, radiusM, items.size(), items);
+                new CourseNearbyResponse(canonicalId, basedOn, lat, lng, search.radiusM(), items.size(), items);
         if (!items.isEmpty()) { // 실패로 빈 응답이 하루 동안 굳는 것을 막는다
             cache.put(cacheKey, body, Duration.ofHours(26));
         }

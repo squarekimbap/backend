@@ -201,7 +201,8 @@ public class RunningResource {
     @POST
     @Path("/summary")
     @Operation(summary = "화면 4 코스 총정리",
-            description = "선택한 코스에 도착지 주변 맛집·카페를 붙여 반환한다.")
+            description = "선택한 코스에 도착지 주변 맛집·카페를 최대 8곳 붙인다. "
+                    + "부족하면 요청 반경에서 2.5km, 5km까지 자동 확장한다.")
     @APIResponses({
             @APIResponse(responseCode = "200", description = "최종 코스 총정리",
                     content = @Content(schema = @Schema(implementation = CourseSummaryResponse.class))),

@@ -12,7 +12,7 @@ public record CourseNearbyResponse(
         String basedOn,
         @Schema(description = "기준 위도, 없으면 null") Double lat,
         @Schema(description = "기준 경도, 없으면 null") Double lng,
-        @Schema(description = "검색 반경(m)", example = "1500") int radiusM,
+        @Schema(description = "장소를 채우기 위해 실제로 사용한 검색 반경(m)", example = "2500") int radiusM,
         int count,
         List<NearbyPlace> items
 ) {

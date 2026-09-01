@@ -5,6 +5,7 @@ import com.tourapi.model.NearbyPlace;
 import com.tourapi.model.Place;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +59,30 @@ class NearbyPlaceServiceTest {
 
         assertEquals(8, out.size());
         assertEquals(1, out.stream().filter(place -> "cafe".equals(place.kind())).count());
+    }
+
+    @Test
+    void 장소가부족하면_반경을_2점5km까지넓히고_8개에서멈춘다() {
+        List<Integer> searchedRadii = new ArrayList<>();
+        NearbyPlaceService service = new NearbyPlaceService() {
+            @Override
+            public List<NearbyPlace> around(double lat, double lng, int radiusM, String hint, int max) {
+                searchedRadii.add(radiusM);
+                int count = radiusM < 2500 ? 3 : 8;
+                List<NearbyPlace> items = new ArrayList<>();
+                for (int i = 0; i < count; i++) {
+                    items.add(place("장소" + i, i % 2 == 0 ? "restaurant" : "cafe", "tour", 100 + i));
+                }
+                return items;
+            }
+        };
+
+        NearbyPlaceService.NearbySearchResult result =
+                service.aroundExpanded(37.0, 127.0, 1500, null, 8);
+
+        assertEquals(List.of(1500, 2500), searchedRadii);
+        assertEquals(2500, result.radiusM());
+        assertEquals(8, result.items().size());
     }
 
     @Test

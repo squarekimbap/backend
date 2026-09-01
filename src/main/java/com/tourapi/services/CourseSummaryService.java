@@ -19,11 +19,13 @@ public class CourseSummaryService {
     public CourseSummaryResponse summary(RouteOption option, int radiusM) {
         Course course = option.course();
         if (course.path() == null || course.path().isEmpty()) {
-            return new CourseSummaryResponse(option, 0, List.of());
+            return new CourseSummaryResponse(option, radiusM, 0, List.of());
         }
         double[] finish = course.path().get(course.path().size() - 1);
         // 검색어 힌트는 넘기지 않는다 — 도착지 주변 주소에서 시군구를 뽑는 편이 위치에 더 정확하다
-        List<NearbyPlace> selected = nearbyPlaceService.around(finish[0], finish[1], radiusM, null, 8);
-        return new CourseSummaryResponse(option, selected.size(), selected);
+        NearbyPlaceService.NearbySearchResult search =
+                nearbyPlaceService.aroundExpanded(finish[0], finish[1], radiusM, null, 8);
+        List<NearbyPlace> selected = search.items();
+        return new CourseSummaryResponse(option, search.radiusM(), selected.size(), selected);
     }
 }
