@@ -1,5 +1,6 @@
 package com.tourapi;
 
+import com.tourapi.lib.Geo;
 import com.tourapi.services.CourseCatalog;
 import com.tourapi.routes.CourseResource;
 import io.quarkus.test.junit.QuarkusTest;
@@ -213,5 +214,53 @@ public class CourseResourceTest {
                 .then().statusCode(404)
                 .contentType(ContentType.JSON)
                 .body("error", equalTo("not_found"));
+    }
+
+    @Test
+    public void 한코스에_좌표가같은_경유지가없다() {
+        // '한남대교'가 동명 술집으로, '진밭골자연휴양림'이 '진밭골'과 같은 점으로 박혔던 회귀를 막는다.
+        // 지오코더는 같은 검색어에 서로 다른 지점을 주므로 마커가 겹치면 둘 중 하나는 틀린 것이다.
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            var seen = new java.util.HashSet<String>();
+            for (var poi : catalog.byId(id).path("poi")) {
+                String key = String.format("%.6f,%.6f", poi.path("lat").asDouble(), poi.path("lng").asDouble());
+                Assertions.assertTrue(seen.add(key),
+                        "경유지 좌표 중복: " + id + " / " + poi.path("n").asText());
+            }
+        }
+    }
+
+    @Test
+    public void 모든_경유지가_코스경로_1km안에있다() {
+        // 경유지가 동명 업소로 박히면 코스에서 수 km 떨어진다(한남대교 8.6km·청담대교 6.0km).
+        // 100m가 아니라 1km인 이유: 100m를 넘는 지점은 checkpoints에서 빠질 뿐 '지나는 곳'으로는 유효하다.
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            var course = catalog.byId(id);
+            var path = new java.util.ArrayList<double[]>();
+            for (var point : course.path("polyline")) {
+                path.add(new double[]{point.get(0).asDouble(), point.get(1).asDouble()});
+            }
+            for (var poi : course.path("poi")) {
+                double d = Geo.distanceToPathMeters(poi.path("lat").asDouble(), poi.path("lng").asDouble(), path);
+                Assertions.assertTrue(d <= 1000,
+                        String.format("경유지가 경로에서 %.0fm 떨어짐: %s / %s", d, id, poi.path("n").asText()));
+            }
+        }
+    }
+
+    @Test
+    public void 표기거리가_실제경로길이와_같다() {
+        // 앱은 km를 보여주고 사용자는 distanceM 경로를 뛴다. 둘이 어긋나면 10km인 줄 알고 8.4km를 뛰게 된다.
+        // 허용치 50m = km를 0.1 단위로 표기하면서 생기는 반올림 폭.
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            var course = catalog.byId(id);
+            double gap = Math.abs(course.path("distanceM").asDouble() - course.path("km").asDouble() * 1000);
+            Assertions.assertTrue(gap <= 50,
+                    String.format("표기 거리와 경로 길이가 %.0fm 다름: %s (km=%s, distanceM=%s)",
+                            gap, id, course.path("km").asText(), course.path("distanceM").asText()));
+        }
     }
 }
