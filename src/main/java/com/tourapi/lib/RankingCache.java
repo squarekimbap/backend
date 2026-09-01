@@ -50,6 +50,9 @@ public class RankingCache {
     @ConfigProperty(name = "cache.table")
     Optional<String> tableOpt;
 
+    @ConfigProperty(name = "route.cache.table")
+    Optional<String> routeTableOpt = Optional.empty();
+
     @Inject
     ObjectMapper mapper;
 
@@ -64,6 +67,14 @@ public class RankingCache {
 
     private String table() {
         return tableOpt.orElseThrow();
+    }
+
+    private boolean routeCacheEnabled() {
+        return routeTableOpt.filter(t -> !t.isBlank()).isPresent();
+    }
+
+    private String routeTable() {
+        return routeTableOpt.orElseThrow();
     }
 
     private DynamoDbClient client() {
@@ -87,12 +98,35 @@ public class RankingCache {
 
     /** 캐시 조회. 미스/비활성/오류 모두 null(호출측은 업스트림으로 폴백). */
     public <T> T get(String key, Class<T> type) {
+        return get(key, type, false);
+    }
+
+    /** 임대 인계 직후 방금 저장된 값을 놓치지 않기 위한 강한 일관성 조회. */
+    public <T> T getConsistent(String key, Class<T> type) {
+        return get(key, type, true);
+    }
+
+    private <T> T get(String key, Class<T> type, boolean consistentRead) {
         if (!enabled()) {
             return null;
         }
+        return getFromTable(table(), key, type, consistentRead);
+    }
+
+    /** TMAP 전용 테이블 캐시 조회. */
+    public <T> T getRoute(String key, Class<T> type, boolean consistentRead) {
+        if (!routeCacheEnabled()) {
+            return null;
+        }
+        return getFromTable(routeTable(), key, type, consistentRead);
+    }
+
+    private <T> T getFromTable(String tableName, String key, Class<T> type,
+                               boolean consistentRead) {
         try {
-            GetItemResponse res = client().getItem(b -> b.tableName(table())
-                    .key(Map.of("pk", AttributeValue.fromS(key))));
+            GetItemResponse res = client().getItem(b -> b.tableName(tableName)
+                    .key(Map.of("pk", AttributeValue.fromS(key)))
+                    .consistentRead(consistentRead));
             if (!res.hasItem()) {
                 return null;
             }
@@ -101,11 +135,11 @@ public class RankingCache {
             if (ttl == null || ttl.n() == null || Long.parseLong(ttl.n()) <= now) {
                 return null;
             }
-            AttributeValue payload = res.item().get("payload");
-            if (payload == null || payload.s() == null) {
+            String payload = payloadValue(res.item());
+            if (payload == null) {
                 return null;
             }
-            return mapper.readValue(payload.s(), type);
+            return mapper.readValue(payload, type);
         } catch (Exception e) {
             LOG.warnf("캐시 조회 실패(무시하고 업스트림 폴백): %s", e.toString());
             return null;
@@ -117,15 +151,90 @@ public class RankingCache {
         if (!enabled()) {
             return;
         }
+        putToTable(table(), key, value, ttl);
+    }
+
+    /** TMAP 전용 테이블 저장. 성공 여부로 임대를 유지할지 결정한다. */
+    public boolean putRoute(String key, Object value, Duration ttl) {
+        if (!routeCacheEnabled()) {
+            return false;
+        }
+        return putToTable(routeTable(), key, value, ttl);
+    }
+
+    private boolean putToTable(String tableName, String key, Object value, Duration ttl) {
         try {
             long expireAt = System.currentTimeMillis() / 1000 + ttl.toSeconds();
-            String json = mapper.writeValueAsString(value);
-            client().putItem(b -> b.tableName(table()).item(Map.of(
+            byte[] payload = gzip(mapper.writeValueAsString(value));
+            if (payload.length > 350_000) {
+                LOG.warnf("캐시 저장 생략(압축 후 크기 초과): key=%s, bytes=%d", key, payload.length);
+                return false;
+            }
+            client().putItem(b -> b.tableName(tableName).item(Map.of(
                     "pk", AttributeValue.fromS(key),
-                    "payload", AttributeValue.fromS(json),
+                    "payload", AttributeValue.fromB(SdkBytes.fromByteArray(payload)),
                     "ttl", AttributeValue.fromN(Long.toString(expireAt)))));
+            return true;
         } catch (Exception e) {
             LOG.warnf("캐시 저장 실패(무시): %s", e.toString());
+            return false;
+        }
+    }
+
+    /**
+     * 여러 Lambda 실행 환경에서 같은 외부 API 캐시 미스를 동시에 계산하지 않도록 짧은 임대를 잡는다.
+     * 캐시가 비활성화됐거나 DynamoDB가 불안정하면 호출측이 정상 계산으로 폴백할 수 있게 UNAVAILABLE을 반환한다.
+     */
+    public CacheLeaseStatus tryAcquireCacheLease(String key, String ownerId, Duration leaseDuration) {
+        if (key == null || key.isBlank() || ownerId == null || ownerId.isBlank()
+                || leaseDuration == null || leaseDuration.isZero() || leaseDuration.isNegative()) {
+            throw new IllegalArgumentException("올바르지 않은 캐시 임대 설정");
+        }
+        if (!routeCacheEnabled()) {
+            return CacheLeaseStatus.UNAVAILABLE;
+        }
+        long now = System.currentTimeMillis() / 1000;
+        long expiresAt = now + Math.max(1, leaseDuration.toSeconds());
+        try {
+            client().updateItem(b -> b.tableName(routeTable())
+                    .key(Map.of("pk", AttributeValue.fromS(key)))
+                    .updateExpression("SET #owner = :owner, #ttl = :expires, #kind = :kind")
+                    .conditionExpression("attribute_not_exists(pk) OR #ttl <= :now OR #owner = :owner")
+                    .expressionAttributeNames(Map.of(
+                            "#owner", "owner",
+                            "#ttl", "ttl",
+                            "#kind", "kind"))
+                    .expressionAttributeValues(Map.of(
+                            ":owner", AttributeValue.fromS(ownerId),
+                            ":expires", AttributeValue.fromN(Long.toString(expiresAt)),
+                            ":now", AttributeValue.fromN(Long.toString(now)),
+                            ":kind", AttributeValue.fromS("cache-lease"))));
+            return CacheLeaseStatus.ACQUIRED;
+        } catch (ConditionalCheckFailedException e) {
+            return CacheLeaseStatus.HELD;
+        } catch (Exception e) {
+            LOG.warnf("캐시 임대 획득 실패(중복 계산 허용): %s", e.toString());
+            return CacheLeaseStatus.UNAVAILABLE;
+        }
+    }
+
+    /** 현재 실행이 소유한 외부 API 캐시 임대만 해제한다. */
+    public void releaseCacheLease(String key, String ownerId) {
+        if (!routeCacheEnabled() || key == null || key.isBlank()
+                || ownerId == null || ownerId.isBlank()) {
+            return;
+        }
+        try {
+            client().deleteItem(b -> b.tableName(routeTable())
+                    .key(Map.of("pk", AttributeValue.fromS(key)))
+                    .conditionExpression("#owner = :owner")
+                    .expressionAttributeNames(Map.of("#owner", "owner"))
+                    .expressionAttributeValues(Map.of(
+                            ":owner", AttributeValue.fromS(ownerId))));
+        } catch (ConditionalCheckFailedException ignored) {
+            // 임대가 만료돼 다른 실행이 인계한 경우 이전 소유자는 지우지 않는다.
+        } catch (Exception e) {
+            LOG.warnf("캐시 임대 해제 실패(만료 시 자동 정리): %s", e.toString());
         }
     }
 
@@ -776,6 +885,10 @@ public class RankingCache {
 
     public enum CounterStatus {
         ALLOWED, LIMITED, UNAVAILABLE
+    }
+
+    public enum CacheLeaseStatus {
+        ACQUIRED, HELD, UNAVAILABLE
     }
 
     public record CounterReservation(CounterStatus status, int used) {

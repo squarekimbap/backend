@@ -58,6 +58,7 @@ Resources:
           NAVER_CLIENT_SECRET: !Ref NaverClientSecret
           TOUR_AUDIO_ENABLED: !Ref TourAudioEnabled
           CACHE_TABLE: !Ref CacheTable
+          ROUTE_CACHE_TABLE: !Ref RouteCacheTable
           USER_POOL_ID: !Ref UserPool
           USER_POOL_CLIENT_ID: !Ref UserPoolClient
           USERS_TABLE: !Ref UsersTable
@@ -72,6 +73,8 @@ Resources:
               Action:
                 - dynamodb:TransactWriteItems
               Resource: !GetAtt CacheTable.Arn
+        - DynamoDBCrudPolicy:
+            TableName: !Ref RouteCacheTable
         - DynamoDBCrudPolicy:
             TableName: !Ref UsersTable
         - Statement:
@@ -107,6 +110,25 @@ Resources:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
       # ttl(epoch초) 지나면 자동 삭제 — 날짜 지난 캐시 청소
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+
+  # TMAP 경로 payload·single-flight 임대 전용. 쿼터/멱등 원장 테이블과 처리량을 격리한다.
+  # 기존 Cache 5/5 + Users 5/5 + RouteCache 15/15 = 계정 provisioned 합계 25/25.
+  RouteCacheTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: tour-api-route-cache
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 15
+        WriteCapacityUnits: 15
       TimeToLiveSpecification:
         AttributeName: ttl
         Enabled: true

@@ -7,6 +7,8 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.ConditionalCheckFailedException;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
+import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.TransactWriteItemsRequest;
 import software.amazon.awssdk.services.dynamodb.model.TransactWriteItemsResponse;
 import software.amazon.awssdk.services.dynamodb.model.TransactionCanceledException;
@@ -23,6 +25,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -466,9 +469,75 @@ class RankingCacheTest {
         assertEquals("fresh", cache.get("key", CachedValue.class).value());
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    void 일반캐시도Gzip으로압축저장하고다시읽는다() {
+        RankingCache cache = dynamoCache();
+        AtomicReference<PutItemRequest> captured = new AtomicReference<>();
+        when(cache.client.putItem(any(Consumer.class))).thenAnswer(invocation -> {
+            Consumer<PutItemRequest.Builder> consumer = invocation.getArgument(0);
+            PutItemRequest.Builder builder = PutItemRequest.builder();
+            consumer.accept(builder);
+            captured.set(builder.build());
+            return PutItemResponse.builder().build();
+        });
+
+        cache.put("compressed", new CachedValue("fresh"), Duration.ofHours(24));
+
+        AttributeValue payload = captured.get().item().get("payload");
+        assertNotNull(payload.b());
+        when(cache.client.getItem(any(Consumer.class))).thenReturn(GetItemResponse.builder()
+                .item(captured.get().item()).build());
+        assertEquals("fresh", cache.get("compressed", CachedValue.class).value());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void Tmap캐시는쿼터와분리된전용테이블에저장한다() {
+        RankingCache cache = dynamoCache();
+        AtomicReference<PutItemRequest> captured = new AtomicReference<>();
+        when(cache.client.putItem(any(Consumer.class))).thenAnswer(invocation -> {
+            Consumer<PutItemRequest.Builder> consumer = invocation.getArgument(0);
+            PutItemRequest.Builder builder = PutItemRequest.builder();
+            consumer.accept(builder);
+            captured.set(builder.build());
+            return PutItemResponse.builder().build();
+        });
+
+        assertTrue(cache.putRoute("route", new CachedValue("path"), Duration.ofHours(24)));
+        assertEquals("route-cache-table", captured.get().tableName());
+        assertNotNull(captured.get().item().get("payload").b());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void 외부Api캐시임대는만료되거나없는키만획득한다() {
+        RankingCache cache = dynamoCache();
+        AtomicReference<UpdateItemRequest> captured = new AtomicReference<>();
+        when(cache.client.updateItem(any(Consumer.class))).thenAnswer(invocation -> {
+            Consumer<UpdateItemRequest.Builder> consumer = invocation.getArgument(0);
+            UpdateItemRequest.Builder builder = UpdateItemRequest.builder();
+            consumer.accept(builder);
+            captured.set(builder.build());
+            return UpdateItemResponse.builder().build();
+        });
+
+        assertEquals(RankingCache.CacheLeaseStatus.ACQUIRED,
+                cache.tryAcquireCacheLease("lease", "owner", Duration.ofSeconds(10)));
+        assertEquals("route-cache-table", captured.get().tableName());
+        assertTrue(captured.get().conditionExpression().contains("attribute_not_exists"));
+        assertTrue(captured.get().conditionExpression().contains("#ttl <= :now"));
+
+        when(cache.client.updateItem(any(Consumer.class)))
+                .thenThrow(ConditionalCheckFailedException.builder().message("held").build());
+        assertEquals(RankingCache.CacheLeaseStatus.HELD,
+                cache.tryAcquireCacheLease("lease", "other", Duration.ofSeconds(10)));
+    }
+
     private static RankingCache dynamoCache() {
         RankingCache cache = new RankingCache();
         cache.tableOpt = Optional.of("cache-table");
+        cache.routeTableOpt = Optional.of("route-cache-table");
         cache.mapper = new ObjectMapper();
         cache.client = mock(DynamoDbClient.class);
         return cache;

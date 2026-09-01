@@ -26,6 +26,12 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class TmapClient {
 
+    static final int MAX_CACHED_PATH_POINTS = 400;
+    // TMAP 약관은 저장 데이터를 24시간 이상 사용할 수 없으므로 5분의 안전 여유를 둔다.
+    static final Duration ROUTE_CACHE_TTL = Duration.ofHours(23).plusMinutes(55);
+    // 전체 생성 예산(22초)+DynamoDB 저장 여유보다 길게 잡아 정상 실행 중 takeover를 막는다.
+    static final Duration ROUTE_CACHE_LEASE = Duration.ofSeconds(30);
+
     @ConfigProperty(name = "tmap.app-key")
     Optional<String> appKey;
 
@@ -35,6 +41,9 @@ public class TmapClient {
 
     @Inject
     ObjectMapper mapper;
+
+    @Inject
+    ExternalApiCache externalApiCache;
 
     @ConfigProperty(name = "tmap.request-timeout-seconds", defaultValue = "8")
     int requestTimeoutSeconds;
@@ -56,6 +65,16 @@ public class TmapClient {
 
     /** 상위 코스 생성 deadline의 남은 시간을 개별 HTTP timeout에도 적용한다. */
     public TmapRoute pedestrian(double[] start, List<double[]> via, double[] end, Duration remaining) {
+        String cacheKey = routeCacheKey(start, via, end);
+        return externalApiCache.getOrLoad(cacheKey, TmapRoute.class,
+                ROUTE_CACHE_TTL, ROUTE_CACHE_LEASE, remaining,
+                budget -> requestPedestrian(start, via, end, budget));
+    }
+
+    private TmapRoute requestPedestrian(double[] start,
+                                        List<double[]> via,
+                                        double[] end,
+                                        Duration remaining) {
         String key = appKey.filter(k -> !k.isBlank())
                 .orElseThrow(() -> new UpstreamException("TMAP_APP_KEY 미설정"));
 
@@ -120,7 +139,30 @@ public class TmapClient {
         if (dist == null || path.isEmpty()) {
             throw new UpstreamException("TMAP 경로 없음");
         }
-        return new TmapRoute(path, dist, time == null ? 0 : time);
+        // route-options 응답은 최종 200점이고 구간 매칭에도 400점이면 충분하다.
+        // raw TMAP 수천 점을 그대로 DynamoDB에 쓰지 않아 cold miss WCU 폭주를 제한한다.
+        List<double[]> compactPath = List.copyOf(Geo.downsample(path, MAX_CACHED_PATH_POINTS));
+        return new TmapRoute(compactPath, dist, time == null ? 0 : time);
+    }
+
+    /** 약 10m 안의 GPS 흔들림은 같은 키로 보되 실제 TMAP 요청에는 원본 좌표를 쓴다. */
+    static String routeCacheKey(double[] start, List<double[]> via, double[] end) {
+        StringBuilder raw = new StringBuilder("tmap-pedestrian-v1|");
+        appendCachePoint(raw, start);
+        raw.append('|');
+        if (via != null) {
+            for (double[] point : via) {
+                appendCachePoint(raw, point);
+                raw.append(';');
+            }
+        }
+        raw.append('|');
+        appendCachePoint(raw, end);
+        return CacheKey.sha256("tmap-route-v1", raw.toString());
+    }
+
+    private static void appendCachePoint(StringBuilder out, double[] point) {
+        out.append(String.format(Locale.ROOT, "%.4f,%.4f", point[0], point[1]));
     }
 
     private static String fmt(double v) {

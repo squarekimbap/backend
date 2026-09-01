@@ -76,7 +76,7 @@ struct RunRecord {
 | TourAPI `locationBasedList2` | 주변 관광지 조회 | `mapX`, `mapY`, 거리·형태별 동적 반경(500m~20km), `contentTypeId=12·14·28` |
 | TourAPI 분류코드 | 무드 자동 결정 | `cat1`, `cat2`, `cat3` 분포 |
 | TourAPI 오디오 가이드 | 이야기 콘텐츠 | 재생 가능 여부 검증 필요 (P0) |
-| TMAP 보행 경로 | 경로 계산 | 후보별 `passList` 단일 호출 · route-options 최대 5회 · 동일 입력 5분 캐시 |
+| TMAP 보행 경로 | 경로 계산 | 후보별 `passList` 단일 호출 · route-options 최대 5회 · 경로 결과 23시간 55분 캐시 |
 
 ### 생성 로직
 
@@ -91,6 +91,12 @@ struct RunRecord {
 ⑧ `/v1/running/summary` → 도착지 주변 음식점·카페 결합
 ⑨ 코스 총정리 화면
 ```
+
+- 동일 생성 입력의 완성 응답은 5분, TMAP 경로는 약 24시간(23시간 55분) 캐시한다
+- TMAP 캐시 키는 약 10m 단위로 정규화하지만 외부 API 호출에는 원본 좌표를 사용한다
+- 동일 TMAP 키 동시 계산은 한 실행으로 합치며, 캐시 버전 변경으로 이전 생성 규칙의 값을 무효화한다
+- Google Elevation 결과는 공식 정책상 별도 장기 캐시하지 않는다
+- 캐시 적중 여부와 무관하게 사용자가 새 생성을 누르면 KST 일 3회 중 1회를 사용한다
 
 실패 분기:
 

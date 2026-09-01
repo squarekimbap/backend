@@ -55,7 +55,7 @@ flowchart LR
 | 프레임워크 | **Quarkus** + `quarkus-amazon-lambda-http` | 빠른 콜드스타트(native 가능), Function URL 지원 |
 | REST | **RESTEasy (JAX-RS)** | `@Path`/`@GET` |
 | 인증/로그인 | **Amazon Cognito** | 관리형 사용자 풀, 토큰 |
-| DB / 캐시 | **DynamoDB** (캐시·사용자 테이블 ✅ provisioned 합계 10/10 + TTL) | always-free |
+| DB / 캐시 | **DynamoDB** (일반 캐시 5/5 + 사용자 5/5 + TMAP 캐시 15/15 = provisioned 합계 25/25, TTL) | always-free 한도 내 |
 | 시크릿 *(예정)* | **SSM Parameter Store** (standard) | 무료 |
 | 빌드 / 배포 | **Maven** / **AWS SAM** (`template.yaml`) | Java 1급 지원 |
 | 리전 | **ap-northeast-2** (서울) | 한국 지연 최소 |
@@ -101,7 +101,7 @@ flowchart LR
 | GET | `/v1/tour/popular` | 좌표→시군구 인기 관광지 순위(집중률 30일 평균) | ✅ 배포됨 |
 | GET | `/v1/walking/courses` · `/v1/audio/search` | 걷기·오디오 | 🚧 |
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
-| POST | `/v1/running/route-options` | JWT 필수 · 화면용 2안 + 도슨트·구간 거리(TMAP 5콜 상한·22초·공통 KST 일 3회·분당 6회·5분 캐시) | ✅ 구현 |
+| POST | `/v1/running/route-options` | JWT 필수 · 화면용 2안 + 도슨트·구간 거리(TMAP 5콜 상한·22초·공통 KST 일 3회·분당 6회·완성 응답 5분/TMAP 경로 약 24시간 캐시) | ✅ 구현 |
 | POST | `/v1/running/summary` | 선택 코스 + 도착지 주변 음식점·카페 총정리 | ✅ 구현 |
 | GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그(수집본+러닝갤 64코스·32도시, 홈 피드/상세). 목록에 홈 표시용 `waypoints` 포함 | ✅ |
 | GET | `/v1/courses/{id}/gpx` | Garmin Connect 코스 가져오기용 GPX 1.1 Track 파일 | ✅ 구현 |
@@ -110,7 +110,7 @@ flowchart LR
 | GET | `/v1/users/me` | 내 프로필 (**JWT 필수**) | ✅ 배포됨 |
 
 > 📱 **앱 연동은 [docs/app-api-flow.md](docs/app-api-flow.md)** — 생성은 candidates → route-options → summary 순서다.
-> `route-options`에는 Bearer access token이 필요하다. 생성 요청마다 UUID `Idempotency-Key`를 보내고 재시도에는 같은 값을 쓴다. 401은 refresh 후 1회 재시도하고, 409·410·429·503은 `X-RateLimit-Scope`와 오류 코드를 따른다. 완료된 같은 요청은 5분 동안 저장된 200 응답을 재생하고 이후에는 410으로 종료한다. 원장은 KST 자정과 무관하게 같은 요청을 찾는다. 409 재조회는 `Retry-After: 8`을 지켜야 하며 모든 HTTP 시도는 분당 보호 횟수에 포함된다. 앱 timeout은 30초다.
+> `route-options`에는 Bearer access token이 필요하다. 생성 요청마다 UUID `Idempotency-Key`를 보내고 재시도에는 같은 값을 쓴다. 401은 refresh 후 1회 재시도하고, 409·410·429·503은 `X-RateLimit-Scope`와 오류 코드를 따른다. 완료된 같은 요청은 5분 동안 저장된 200 응답을 재생하고 이후에는 410으로 종료한다. 원장은 KST 자정과 무관하게 같은 요청을 찾는다. 별개로 TMAP 경로는 약 10m 단위 버전 키로 23시간 55분 캐시한다. 캐시 적중도 새 생성이면 일일 횟수 1회를 사용하고, 같은 멱등 키 재시도만 추가 차감하지 않는다. Google Elevation 결과는 공식 정책상 별도 장기 캐시하지 않는다. 409 재조회는 `Retry-After: 8`을 지켜야 하며 모든 HTTP 시도는 분당 보호 횟수에 포함된다. 앱 timeout은 30초다.
 
 ### 러닝 추천 흐름 (앱 4단계)
 ```mermaid
