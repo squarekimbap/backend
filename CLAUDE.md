@@ -48,8 +48,10 @@
 - 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
 - 남은 실검증: 카카오 로그인(`/v1/auth/kakao`)은 실제 앱 토큰이 필요해 아직 미확인 — 특히 `AdminCreateUser`로 이메일 없이 kakao_* 사용자를 만드는 경로.
 
-## 계정 수명주기 (2026-08-23 구현, **배포 대기**)
-로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정. 테스트 65개 그린, 라이브 미검증.
+## 계정 수명주기 (2026-08-23 구현, **배포됨**)
+로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정 + Apple 토큰 폐기(2026-09-02 배포).
+Apple 폐기만 **라이브 미검증** — 실제 Apple 로그인이 `authorizationCode`를 실어 보내고 그 계정을 탈퇴시켜야 확인된다.
+**실패해도 조용하다**(경고 로그만) → CloudWatch에서 `Apple code 교환 실패` / `Apple 토큰 폐기 실패`를 봐야 한다.
 - **로그아웃** `POST /v1/auth/logout` — RevokeToken으로 refresh 토큰 폐기(발급된 access 토큰도 무효화). 이미 폐기된 토큰도 204. `EnableTokenRevocation`이 꺼지면 로그아웃이 조용히 무력화되므로 `UnsupportedTokenType`은 502로 드러낸다.
 - **자동로그인** — 기존 `/v1/auth/refresh`가 그대로 쓰인다. 서버 쪽은 ① `RefreshTokenValidity` 30일(기본)→**365일**, ② refresh 때도 프로필 `putIfAbsent` 호출(로그인 시 저장 실패를 자가복구). provider는 요청만 봐선 몰라서 username 접두사로 되짚는다(`CognitoAuth.providerOfUsername`).
 - **탈퇴** `DELETE /v1/users/me` — **Apple 토큰 폐기 → 프로필 행 → Cognito 계정 순서.** 행 삭제가 멱등이라 Cognito 삭제 실패 시 같은 요청 재시도가 통한다. 역순이면 재시도가 UserNotFound로 끊겨 남은 행을 치울 길이 없다. 발급된 access 토큰은 만료(1h)까지 유효 — 앱도 로컬 토큰을 지울 것.
