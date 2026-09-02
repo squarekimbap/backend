@@ -103,7 +103,7 @@ flowchart LR
 | POST | `/v1/running/candidates` (Phase A) | 경유지 후보(주변 관광지 + 집중률 순위 매칭) | ✅ 배포됨 |
 | POST | `/v1/running/route-options` | JWT 필수 · 화면용 2안 + 도슨트·구간 거리(TMAP 5콜 상한·22초·공통 KST 일 3회·분당 6회·완성 응답 5분/TMAP 경로 약 24시간 캐시) | ✅ 구현 |
 | POST | `/v1/running/summary` | 선택 코스 + 도착지 주변 음식점·카페 총정리 | ✅ 구현 |
-| GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그(수집본+러닝갤 64코스·32도시, 홈 피드/상세). 목록에 홈 표시용 `waypoints` 포함 | ✅ |
+| GET | `/v1/courses` · `/v1/courses/{id}` | 편집 코스 카탈로그 64개. 상세에 `shape`·실경유 `poi`·`landmarks`·검증된 경로/안내 포함 | ✅ |
 | GET | `/v1/courses/{id}/gpx` | Garmin Connect 코스 가져오기용 실제 경로 좌표 GPX 1.1 Track 파일 | ✅ 구현 |
 | POST | `/v1/auth/signup` · `/confirm` · `/login` · `/refresh` | 이메일 인증(Cognito 프록시) | ✅ 배포됨 |
 | POST | `/v1/auth/kakao` | 카카오 로그인(토큰 검증→Cognito 브릿지, 첫 로그인=자동 가입) | ✅ 배포됨 |

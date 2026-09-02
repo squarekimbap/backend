@@ -93,17 +93,20 @@ def audit():
     reports = []
     for path, raw in load().items():
         for reg, c in courses_of(raw):
-            pois = [p for p in c.get('poi', []) if p.get('lat')]
-            if not pois:
+            places = [p for p in c.get('poi', []) + c.get('landmarks', []) if p.get('lat')]
+            if not places:
                 continue
-            pts = [(p['lat'], p['lng']) for p in pois]
-            for p in pois:
-                here = (p['lat'], p['lng'])
+            # 경로 트리거가 도로 위로 스냅된 경우에도 실제 장소 중심을 점검한다.
+            pts = [(p.get('placeLat', p['lat']), p.get('placeLng', p['lng'])) for p in places]
+            for p in places:
+                here = (p.get('placeLat', p['lat']), p.get('placeLng', p['lng']))
                 # 같은 코스의 다른 경유지까지 최단 거리 — 무리에서 떨어졌는가
                 others = [q for q in pts if q != here]
                 near = min((hav(here, q) for q in others), default=0.0)
                 cands = naver(p['n']) + naver(f"{reg['city']} {p['n']}")
-                exact = [x for x in cands if norm(x[0]) == norm(p['n'])]
+                wanted = norm(p['n'])
+                exact = [x for x in cands
+                         if wanted == norm(x[0]) or wanted in norm(x[0]) or norm(x[0]) in wanted]
                 # 저장된 좌표가 어떤 후보인지 (150m 안이면 그 후보로 본다)
                 mine = next((x for x in cands if hav(here, (x[3], x[4])) < 150), None)
                 mycat = mine[1] if mine else ''
@@ -119,7 +122,7 @@ def audit():
                 if biz_hit or (best and moved > 400) or near > 4000:
                     reports.append(dict(
                         course=c['id'], city=reg['city'], km=c.get('km'), name=p['n'],
-                        cur=(p['lat'], p['lng']), cur_cat=mycat, cur_addr=p.get('addr'),
+                        cur=here, cur_cat=mycat, cur_addr=p.get('addr'),
                         near_m=round(near), biz=biz_hit,
                         best=(best[0], best[1], best[2], best[3], best[4]) if best else None,
                         moved_m=round(moved)))

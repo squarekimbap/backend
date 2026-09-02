@@ -286,6 +286,7 @@ X-RateLimit-Reset: 1788274800
 
 ```json
 {
+  "shape": "roundTrip",
   "routeShape": "loop",
   "distanceM": 5266,
   "walkDurationS": 4370,
@@ -305,13 +306,20 @@ X-RateLimit-Reset: 1788274800
       "audioSeconds": 15,
       "description": "최치원이 시를 남긴 자리. 지금은 산책로가 섬을 한 바퀴 돈다."
     }
+  ],
+  "landmarks": [
+    {"n": "광안대교", "lat": 35.14548, "lng": 129.1282041,
+     "d": "코스 내내 시야에 들어오는 기준점"}
   ]
 }
 ```
 
+- `shape`은 코스의 권위 있는 형태다. `roundTrip`은 출발점으로 돌아오고 `oneWay`는 도착점이 다르다. `routeShape`는 내부 TMAP 값(`loop`/`oneway`)을 함께 제공하는 호환 필드이므로 앱의 코스 형태 표시는 `shape`을 사용한다.
 - `polyline`은 `[[위도, 경도], ...]`이며 2~200점이다. 앱은 이 배열이 2점 이상이면 시작 버튼을 열고 TMAP 보강을 호출하지 않는다.
-- `guide`는 TMAP 보행 안내 지점이다. 다음 안내 지점에 접근할 때 `text`를 읽어 주는 데 쓴다.
-- `checkpoints`는 실제 경로 100m 안의 지점이다. `description`은 응답에는 포함되지만 100m 트리거 전에는 화면에 노출하지 않는다.
+- `guide`는 TMAP 보행 안내 지점이며 모든 좌표가 `polyline` 위에 보존된다. `oneWay`의 마지막 안내는 실제 도착점과 같다.
+- `poi`는 실제 경로 100m 안을 지나는 경유지만 담는다. 목록 `waypoints[]`와 이름·순서가 같다.
+- `landmarks`는 달리면서 보거나 러닝 뒤에 들르는 관광 지점이다. 경로 통과나 100m 도슨트 트리거 대상으로 사용하지 않는다.
+- `checkpoints`는 모든 `poi`와 이름·순서가 같은 100m 도슨트 지점이다. `description`은 응답에는 포함되지만 트리거 전에는 화면에 노출하지 않는다.
 - `audioSeconds`는 현재 원고 길이로 계산한 예상 낭독 시간이다. 음원 URL은 없으므로 앱의 TTS/기존 이야기 재생기를 사용한다.
 - `walkDurationS`는 TMAP 도보 기준이다. 러닝 예상 시간에는 기존 `min` 또는 사용자 페이스 환산값을 쓴다.
 
@@ -322,8 +330,9 @@ X-RateLimit-Reset: 1788274800
 ```json
 { "n": "노들섬", "d": "코인라커 있음. 500원 동전 필요",
   "photo": "https://tong.visitkorea.or.kr/...",   // null 가능 → 1/2 2/2 페이저 재료
-  "addr": "서울특별시 용산구 양녕로 445",           // null 가능
-  "lat": 37.5177, "lng": 126.9595,                 // null 가능 (지도 마커)
+  "addr": "서울특별시 용산구 양녕로 445",           // 실제 장소 주소(항상 있음)
+  "lat": 37.5177, "lng": 126.9595,                 // 경로 트리거 좌표(항상 있음)
+  "placeLat": 37.5178, "placeLng": 126.9597,       // 시설 중심점과 산책로가 다를 때만 있음
   "naver": "https://map.naver.com/p/search/노들섬", // 항상 있음 — 이름 아래 네이버지도 연결
   "nextM": 4719 }                                   // 다음 경유지까지 도보 m. null 가능(마지막/미확보)
 ```
@@ -371,7 +380,7 @@ X-RateLimit-Reset: 1788274800
 - 하루 단위 캐시라 두 번째 호출부터는 즉시 응답
 - 좌표를 확보하지 못한 코스는 `count: 0`, `basedOn: null`로 내려간다(에러 아님) — 이 영역을 숨기면 된다
 - `url`: 코스 공유 기능에 그대로 사용(목록 요약에도 포함). 웹 상세 페이지가 생기면 서버 설정만 바꿔 교체
-- `nextM`·`addr`은 **null 가능** — null이면 해당 UI(거리 뱃지·주소 줄)를 숨길 것. 현재 64개 코스는 좌표가 있는 POI를 최소 2곳씩 갖는다
+- `nextM`은 **null 가능** — null이면 거리 뱃지를 숨긴다. 현재 64개 코스의 `poi`는 주소와 경로 트리거 좌표를 모두 가지며 최소 2곳이다
 - id 예: `seoul-banpo-10k`, `busan-haeundae`. 없는 id → `404 {error:"not_found"}`
 - 정적 번들 데이터라 응답이 빠르고(수십 ms + 콜드스타트) 업스트림 실패(502)가 없다
 - 한글 city 파라미터는 **URL 인코딩** 필수 (iOS URLComponents 사용 시 자동)

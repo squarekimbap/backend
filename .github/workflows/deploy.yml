@@ -44,6 +44,9 @@ jobs:
           java-version: '21'
           cache: maven
 
+      - name: 편집 코스 64개 계약·경로 검증
+        run: python3 running-courses/validate_courses.py
+
       # 테스트는 실제 키가 필요 없다(외부 호출은 전부 모킹). 값이 비어 있으면 기동이 실패해서 더미를 넣는다.
       - name: 테스트 + 패키지
         env:

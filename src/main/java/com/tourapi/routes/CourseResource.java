@@ -38,7 +38,8 @@ import java.util.List;
  * 응답은 수집본 스키마 그대로 — 상세: id·n·km·min·lv·mood·tags·headline·subhead·
  * body[]·deep[]·ops[]·unsure[]·sources[{title,url,type,checkedAt}]·
  * poi[{n,d,photo}]·photo·photoTitle·photoLicense·city·region과
- * polyline[[lat,lng]]·guide[{lat,lng,text}]·checkpoints[{id,name,lat,lng,audioSeconds,description}].
+ * shape(roundTrip|oneWay)·polyline[[lat,lng]]·guide[{lat,lng,text}]·
+ * checkpoints[{id,name,lat,lng,audioSeconds,description}]·landmarks[].
  */
 @Path("/v1/courses")
 @Produces(MediaType.APPLICATION_JSON)
@@ -76,8 +77,9 @@ public class CourseResource {
     @GET
     @Path("/{id}")
     @Operation(summary = "코스 상세",
-            description = "id로 코스 전체 원고와 정적 보행 경로(polyline), 안내(guide), "
-                    + "100m 진입 도슨트(checkpoints)를 조회한다. 상세 경유지는 poi 객체 배열이며 "
+            description = "id로 코스 형태(shape: roundTrip|oneWay), 전체 원고와 정적 보행 경로(polyline), "
+                    + "경로 위 안내(guide), 100m 진입 도슨트(checkpoints)를 조회한다. "
+                    + "상세 poi는 실제 경로 100m 안의 경유지이며 멀리서 보는 장소는 landmarks로 분리한다. "
                     + "목록의 waypoints 문자열 배열과 구분한다. 지원하는 구 ID는 같은 코스의 신 ID로 정규화해 반환한다. "
                     + "예: seoul-banpo-10k")
     @APIResponses({

@@ -41,6 +41,14 @@ public class CourseResourceTest {
         Assertions.assertTrue(catalog.list(null).get(0).path("waypoints").isArray());
         Assertions.assertFalse(catalog.list(null).get(0).path("waypoints").isEmpty());
         for (var summary : catalog.list(null)) {
+            var detailPoi = catalog.byId(summary.path("id").asText()).path("poi");
+            Assertions.assertEquals(detailPoi.size(), summary.path("waypoints").size(),
+                    "목록 waypoints와 상세 poi 개수 불일치: " + summary.path("id").asText());
+            for (int i = 0; i < detailPoi.size(); i++) {
+                Assertions.assertEquals(detailPoi.get(i).path("n").asText(),
+                        summary.path("waypoints").get(i).asText(),
+                        "목록 waypoints와 상세 poi 이름·순서 불일치: " + summary.path("id").asText());
+            }
             for (var waypoint : summary.path("waypoints")) {
                 Assertions.assertTrue(waypoint.isTextual(),
                         "목록 waypoints는 이름 문자열이어야 함: " + summary.path("id").asText());
@@ -213,11 +221,19 @@ public class CourseResourceTest {
             var guide = course.path("guide");
             var checkpoints = course.path("checkpoints");
 
+            String shape = course.path("shape").asText();
+            Assertions.assertTrue(shape.equals("roundTrip") || shape.equals("oneWay"),
+                    "shape 누락/오류: " + id);
+            Assertions.assertEquals(shape.equals("roundTrip") ? "loop" : "oneway",
+                    course.path("routeShape").asText(), "shape과 routeShape 불일치: " + id);
+
             Assertions.assertTrue(polyline.isArray() && polyline.size() >= 2 && polyline.size() <= 200,
                     "polyline 누락/크기 오류: " + id);
             Assertions.assertTrue(guide.isArray() && !guide.isEmpty(), "guide 누락: " + id);
             Assertions.assertTrue(checkpoints.isArray() && !checkpoints.isEmpty(),
                     "checkpoints 누락: " + id);
+            Assertions.assertEquals(course.path("poi").size(), checkpoints.size(),
+                    "모든 실제 경유지는 checkpoint여야 함: " + id);
 
             for (var point : polyline) {
                 Assertions.assertEquals(2, point.size(), "polyline 좌표 형식 오류: " + id);
@@ -320,9 +336,8 @@ public class CourseResourceTest {
     }
 
     @Test
-    public void 모든_경유지가_코스경로_1km안에있다() {
-        // 경유지가 동명 업소로 박히면 코스에서 수 km 떨어진다(한남대교 8.6km·청담대교 6.0km).
-        // 100m가 아니라 1km인 이유: 100m를 넘는 지점은 checkpoints에서 빠질 뿐 '지나는 곳'으로는 유효하다.
+    public void 모든_경유지가_코스경로_100m안에있다() {
+        // poi는 실제로 지나는 곳만 둔다. 멀리서 보는 장소는 landmarks로 분리한다.
         for (var summary : catalog.list(null)) {
             String id = summary.path("id").asText();
             var course = catalog.byId(id);
@@ -332,7 +347,7 @@ public class CourseResourceTest {
             }
             for (var poi : course.path("poi")) {
                 double d = Geo.distanceToPathMeters(poi.path("lat").asDouble(), poi.path("lng").asDouble(), path);
-                Assertions.assertTrue(d <= 1000,
+                Assertions.assertTrue(d <= 100,
                         String.format("경유지가 경로에서 %.0fm 떨어짐: %s / %s", d, id, poi.path("n").asText()));
             }
         }
@@ -349,6 +364,100 @@ public class CourseResourceTest {
             Assertions.assertTrue(gap <= 50,
                     String.format("표기 거리와 경로 길이가 %.0fm 다름: %s (km=%s, distanceM=%s)",
                             gap, id, course.path("km").asText(), course.path("distanceM").asText()));
+        }
+    }
+
+    @Test
+    public void 코스형태_거리_안내좌표가_경로와일치한다() {
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            var course = catalog.byId(id);
+            var polyline = course.path("polyline");
+            var path = new java.util.ArrayList<double[]>();
+            double geometryM = 0;
+            for (var point : polyline) {
+                path.add(new double[]{point.get(0).asDouble(), point.get(1).asDouble()});
+                if (path.size() > 1) {
+                    double[] before = path.get(path.size() - 2);
+                    double[] current = path.get(path.size() - 1);
+                    geometryM += Geo.haversineMeters(before[0], before[1], current[0], current[1]);
+                }
+            }
+
+            double displayM = course.path("km").asDouble() * 1000;
+            Assertions.assertTrue(Math.abs(geometryM - displayM) / displayM <= 0.10,
+                    String.format("polyline 기하길이와 km 오차 10%% 초과: %s (%.0fm/%.0fm)",
+                            id, geometryM, displayM));
+
+            String shape = course.path("shape").asText();
+            double[] first = path.get(0);
+            double[] last = path.get(path.size() - 1);
+            double startEndM = Geo.haversineMeters(first[0], first[1], last[0], last[1]);
+            if (shape.equals("roundTrip")) {
+                Assertions.assertTrue(startEndM <= 100,
+                        String.format("roundTrip이 닫히지 않음: %s (%.0fm)", id, startEndM));
+            }
+
+            for (var guide : course.path("guide")) {
+                double distance = Geo.distanceToPathMeters(
+                        guide.path("lat").asDouble(), guide.path("lng").asDouble(), path);
+                Assertions.assertTrue(distance <= 1,
+                        String.format("guide가 polyline 위에 없음: %s (%.1fm)", id, distance));
+            }
+            if (shape.equals("oneWay")) {
+                var arrival = course.path("guide").get(course.path("guide").size() - 1);
+                double finishM = Geo.haversineMeters(last[0], last[1],
+                        arrival.path("lat").asDouble(), arrival.path("lng").asDouble());
+                Assertions.assertTrue(finishM <= 1,
+                        String.format("oneWay 종점과 마지막 guide 불일치: %s (%.1fm)", id, finishM));
+            }
+        }
+    }
+
+    @Test
+    public void 경유지와랜드마크가분리되고_경유지주소가검증돼있다() {
+        var suspiciousAddress = java.util.regex.Pattern.compile("(?:\\d+층|\\d+호(?:\\D|$)|상가|오피스텔|빌딩)");
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            var course = catalog.byId(id);
+            var poiNames = new java.util.HashSet<String>();
+            for (var poi : course.path("poi")) {
+                String name = poi.path("n").asText();
+                poiNames.add(name);
+                String address = poi.path("addr").asText("").trim();
+                Assertions.assertFalse(address.isBlank(), "POI 주소 누락: " + id + " / " + name);
+                Assertions.assertFalse(suspiciousAddress.matcher(address).find(),
+                        "동명 업소로 의심되는 POI 주소: " + id + " / " + name + " / " + address);
+            }
+            for (var landmark : course.path("landmarks")) {
+                Assertions.assertFalse(poiNames.contains(landmark.path("n").asText()),
+                        "POI와 landmark 중복: " + id + " / " + landmark.path("n").asText());
+            }
+        }
+    }
+
+    @Test
+    public void 전체64개_GPX트랙이_polyline과정확히같다() throws Exception {
+        String namespace = "http://www.topografix.com/GPX/1/1";
+        for (var summary : catalog.list(null)) {
+            String id = summary.path("id").asText();
+            Response response = courseResource.gpx(id);
+            Assertions.assertEquals(200, response.getStatus(), "GPX 생성 실패: " + id);
+            String gpx = (String) response.getEntity();
+            var factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            var document = factory.newDocumentBuilder().parse(
+                    new ByteArrayInputStream(gpx.getBytes(StandardCharsets.UTF_8)));
+            var trackPoints = document.getElementsByTagNameNS(namespace, "trkpt");
+            var sourcePath = catalog.byId(id).path("polyline");
+            Assertions.assertEquals(sourcePath.size(), trackPoints.getLength(), "GPX 점 개수 불일치: " + id);
+            for (int index = 0; index < sourcePath.size(); index++) {
+                var point = (org.w3c.dom.Element) trackPoints.item(index);
+                Assertions.assertEquals(sourcePath.get(index).get(0).asText(), point.getAttribute("lat"),
+                        "GPX 위도 불일치: " + id + " / " + index);
+                Assertions.assertEquals(sourcePath.get(index).get(1).asText(), point.getAttribute("lon"),
+                        "GPX 경도 불일치: " + id + " / " + index);
+            }
         }
     }
 }

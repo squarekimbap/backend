@@ -9,20 +9,18 @@
     python3 enrich_routes.py
     python3 enrich_routes.py --course busan-haeundae --dry-run
 
-TMAP 후보는 코스의 첫 POI를 출발점으로 삼아, 나머지 POI 조합과
-loop/oneway 형태 중 편집 거리와 가장 가까운 결과를 고른다. 결과 경로는 최대
-200점으로 줄이고, TMAP Point feature의 description을 guide로 보존한다.
+코스 원본의 ``shape``(``roundTrip``/``oneWay``)를 권위 있는 형태로 사용한다.
+첫 POI를 출발점으로 삼고 나머지 POI를 저장 순서대로 모두 통과시킨다. 결과
+경로는 guide 좌표를 보존하면서 최대 200점으로 줄인다.
 """
 
 from __future__ import annotations
 
 import argparse
-import itertools
 import json
 import math
 import pathlib
 import subprocess
-import time
 import urllib.parse
 
 
@@ -35,8 +33,7 @@ CACHE_PATH = pathlib.Path("/tmp/tour-api-tmap-route-cache.json")
 TMAP_URL = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json"
 ELEVATION_URL = "https://maps.googleapis.com/maps/api/elevation/json"
 
-ONEWAY_WORDS = ("편도", "종주", "업힐", "옛 기찻길")
-LOOP_WORDS = ("왕복", "한 바퀴", "순환", "회복런", "첫 5K", "두 호수", "큰 바퀴")
+API_TO_TMAP_SHAPE = {"roundTrip": "loop", "oneWay": "oneway"}
 
 
 def args() -> argparse.Namespace:
@@ -77,7 +74,8 @@ def curl_json(url: str, *, headers: dict[str, str] | None = None,
         message = result.stderr.decode("utf-8", "replace").strip()
         raise RuntimeError(f"외부 API 호출 실패: {message or 'curl exit ' + str(result.returncode)}")
     try:
-        return json.loads(result.stdout or b"{}")
+        # 일부 TMAP 안내 문구에 이스케이프되지 않은 제어문자가 섞여 올 수 있다.
+        return json.loads(result.stdout or b"{}", strict=False)
     except json.JSONDecodeError as error:
         raise RuntimeError("외부 API JSON 파싱 실패") from error
 
@@ -109,13 +107,12 @@ def route_points(course: dict) -> list[dict]:
     return points[:6]
 
 
-def allowed_shapes(course: dict) -> list[str]:
-    text = f"{course.get('n', '')} {course.get('headline', '')}"
-    if any(word in text for word in ONEWAY_WORDS):
-        return ["oneway", "loop"]
-    if any(word in text for word in LOOP_WORDS) or course.get("scene") in {"lake", "city"}:
-        return ["loop", "oneway"]
-    return ["loop", "oneway"]
+def required_shape(course: dict) -> str:
+    api_shape = course.get("shape")
+    if api_shape not in API_TO_TMAP_SHAPE:
+        raise RuntimeError(
+            f"{course['id']}: shape은 roundTrip 또는 oneWay여야 함 (현재={api_shape!r})")
+    return API_TO_TMAP_SHAPE[api_shape]
 
 
 def haversine(a: dict | tuple[float, float], b: dict | tuple[float, float]) -> float:
@@ -131,69 +128,6 @@ def point_tuple(point: dict | tuple[float, float] | list[float]) -> tuple[float,
     if isinstance(point, dict):
         return float(point["lat"]), float(point["lng"])
     return float(point[0]), float(point[1])
-
-
-def estimated_distance(start: dict, order: tuple[dict, ...], shape: str) -> float:
-    total = 0.0
-    current = start
-    for point in order:
-        total += haversine(current, point)
-        current = point
-    if shape == "loop":
-        total += haversine(current, start)
-    return total
-
-
-def candidates(course: dict, points: list[dict], limit: int = 6) -> list[tuple[str, tuple[dict, ...]]]:
-    start, rest = points[0], points[1:]
-    target = float(course["km"]) * 1000
-    ranked_by_shape: dict[str, dict[tuple, tuple[float, str, tuple[dict, ...]]]] = {}
-    shapes = allowed_shapes(course)
-    for shape_index, shape in enumerate(shapes):
-        ranked: dict[tuple, tuple[float, str, tuple[dict, ...]]] = {}
-        for size in range(1, len(rest) + 1):
-            for subset in itertools.combinations(rest, size):
-                orders = [subset, tuple(reversed(subset))]
-                for order in orders:
-                    signature = (shape,) + tuple((p["lat"], p["lng"]) for p in order)
-                    estimate = estimated_distance(start, order, shape)
-                    if shape == "loop" and estimate > 0:
-                        estimate *= max(1, min(10, round(target / estimate)))
-                    missing_penalty = (len(rest) - len(order)) * min(250.0, target * 0.025)
-                    rank = abs(estimate - target) + missing_penalty
-                    rank += shape_index * target * 0.02
-                    previous = ranked.get(signature)
-                    if previous is None or rank < previous[0]:
-                        ranked[signature] = (rank, shape, order)
-        # 기존 nextM은 실제 TMAP 구간거리다. 원본 순서의 prefix는 직선거리보다
-        # 이 값이 훨씬 정확하므로 후보 상한 밖으로 밀려나지 않게 별도 랭크한다.
-        running_distance = 0.0
-        for size in range(1, len(rest) + 1):
-            segment = points[size - 1].get("nextM")
-            if segment is None:
-                break
-            running_distance += float(segment)
-            order = tuple(rest[:size])
-            effective = running_distance if shape == "oneway" else running_distance * 2
-            if shape == "loop" and effective > 0:
-                effective *= max(1, min(10, round(target / effective)))
-            signature = (shape,) + tuple((p["lat"], p["lng"]) for p in order)
-            missing_penalty = (len(rest) - len(order)) * min(250.0, target * 0.025)
-            rank = abs(effective - target) + missing_penalty + shape_index * target * 0.02
-            previous = ranked.get(signature)
-            if previous is None or rank < previous[0]:
-                ranked[signature] = (rank, shape, order)
-        ranked_by_shape[shape] = ranked
-
-    # 한 형태의 부분집합 후보가 상한을 독점하지 않게 양쪽 형태를 반드시 포함한다.
-    picked = []
-    per_shape = max(1, limit // len(shapes))
-    for shape in shapes:
-        picked.extend(sorted(ranked_by_shape[shape].values(), key=lambda item: item[0])[:per_shape])
-    remain = [item for shape in shapes for item in ranked_by_shape[shape].values()
-              if item not in picked]
-    picked.extend(sorted(remain, key=lambda item: item[0])[:max(0, limit - len(picked))])
-    return [(shape, order) for _, shape, order in sorted(picked, key=lambda item: item[0])[:limit]]
 
 
 def tmap_route(key: str, start: dict, order: tuple[dict, ...], shape: str) -> dict:
@@ -250,13 +184,18 @@ def tmap_route(key: str, start: dict, order: tuple[dict, ...], shape: str) -> di
                 })
     if distance is None or len(path) < 2:
         raise RuntimeError("TMAP 경로 없음")
+    guide = dedupe_guide(guide)
+    # TMAP의 "도착" Point가 종점에서 수십 m 앞에 찍히거나 뒤에 다른 Point가
+    # 붙는 응답이 있다. 도착 안내는 하나만 남기고 실제 완주점으로 정규화한다.
+    guide = [item for item in guide if item["text"].strip() != "도착"]
+    guide.append({"lat": path[-1][0], "lng": path[-1][1], "text": "도착"})
     return {
         "shape": shape,
         "distanceM": distance,
         "walkDurationS": duration or 0,
         "pathRaw": path,
-        "polyline": downsample(path, 200),
-        "guide": dedupe_guide(guide),
+        "polyline": downsample_preserving_guides(path, guide, 200),
+        "guide": guide,
         "used": order,
     }
 
@@ -271,6 +210,57 @@ def downsample(items: list, maximum: int) -> list:
         return items
     indices = [round(i * (len(items) - 1) / (maximum - 1)) for i in range(maximum)]
     return [items[index] for index in indices]
+
+
+def downsample_preserving_guides(path: list[list[float]], guide: list[dict], maximum: int,
+                                 required_points: list[list[float]] | None = None) -> list[list[float]]:
+    """안내·경유 좌표를 경로 꼭짓점으로 보존하고 나머지 점만 줄인다."""
+    if len(path) < 2:
+        return path
+    positioned: list[tuple[float, list[float], bool]] = [
+        (float(index), point, index in {0, len(path) - 1})
+        for index, point in enumerate(path)
+    ]
+    for item in guide:
+        point = [float(item["lat"]), float(item["lng"])]
+        positioned.append((closest_path_position(point, path), point, True))
+    for point in required_points or []:
+        positioned.append((closest_path_position(point, path), point, True))
+    positioned.sort(key=lambda item: item[0])
+
+    merged: list[tuple[float, list[float], bool]] = []
+    for position, point, mandatory in positioned:
+        if merged and merged[-1][1] == point:
+            previous = merged[-1]
+            merged[-1] = (previous[0], previous[1], previous[2] or mandatory)
+        else:
+            merged.append((position, point, mandatory))
+
+    mandatory_indices = {index for index, item in enumerate(merged) if item[2]}
+    if len(mandatory_indices) > maximum:
+        raise RuntimeError(f"guide 필수점 {len(mandatory_indices)}개가 polyline 상한 {maximum} 초과")
+    if len(merged) <= maximum:
+        return [item[1] for item in merged]
+
+    selected = set(mandatory_indices)
+    available = [index for index in range(len(merged)) if index not in selected]
+    need = maximum - len(selected)
+    if need > 0:
+        for slot in range(need):
+            picked = round(slot * (len(available) - 1) / max(1, need - 1))
+            selected.add(available[picked])
+    return [merged[index][1] for index in sorted(selected)]
+
+
+def closest_path_position(point: list[float], path: list[list[float]]) -> float:
+    best_distance = math.inf
+    best_position = 0.0
+    for index in range(len(path) - 1):
+        distance, fraction = point_to_segment_with_fraction(point, path[index], path[index + 1])
+        if distance < best_distance:
+            best_distance = distance
+            best_position = index + fraction
+    return best_position
 
 
 def dedupe_guide(items: list[dict]) -> list[dict]:
@@ -300,81 +290,12 @@ def load_route_cache() -> dict[str, dict]:
 
 def choose_route(course: dict, points: list[dict], tmap_key: str) -> dict:
     target = float(course["km"]) * 1000
-    preferred_shape = allowed_shapes(course)[0]
-    results = []
-    errors = []
-    for shape, order in candidates(course, points):
-        try:
-            route = tmap_route(tmap_key, points[0], order, shape)
-            missing = len(points) - 1 - len(order)
-            route["score"] = (abs(route["distanceM"] - target)
-                              + missing * min(250.0, target * 0.025)
-                              + (0 if shape == preferred_shape else target * 0.02))
-            results.append(route)
-            repeated = repeated_loop(route, target)
-            if repeated is not None:
-                repeated["score"] = (abs(repeated["distanceM"] - target)
-                                     + missing * min(250.0, target * 0.025)
-                                     + (0 if shape == preferred_shape else target * 0.02))
-                results.append(repeated)
-            # 거리 오차 8% 이내면 앱 경로로 충분하다. 후보를 더 호출하지 않아
-            # 고정 카탈로그 일괄 생성 시 TMAP 일일 쿼터를 아낀다.
-            if min(abs(item["distanceM"] - target) / target for item in results) <= 0.08:
-                break
-        except Exception as error:
-            errors.append(str(error))
-        time.sleep(0.05)
-    if not results:
-        detail = errors[0] if errors else "후보 없음"
-        raise RuntimeError(f"{course['id']}: TMAP 후보 전체 실패 ({detail})")
-    best = min(results, key=lambda item: item["score"])
-    if abs(best["distanceM"] - target) / target > 0.12:
-        for route in synthetic_routes(course, points, tmap_key, target):
-            route["score"] = (abs(route["distanceM"] - target)
-                              + (0 if route["shape"] == preferred_shape else target * 0.02))
-            results.append(route)
-    return min(results, key=lambda item: item["score"])
-
-
-def synthetic_routes(course: dict, points: list[dict], tmap_key: str,
-                     target: float) -> list[dict]:
-    """POI 간격만으로 편집 거리를 만들 수 없을 때 같은 진행 방향으로 반환점을 보정한다.
-
-    하천·해안처럼 표시 POI는 가깝지만 실제 코스는 더 길게 이어지는 경우가 많다.
-    첫 POI에서 다음 POI 방향을 유지한 채 목표 거리의 절반(loop) 또는 전체(oneway)
-    지점으로 반환점을 옮기고, 실제 TMAP 거리 비율로 한 번 더 보정한다.
-    """
-    start = points[0]
-    direction = next((point for point in points[1:] if haversine(start, point) >= 100), None)
-    if direction is None:
-        return []
-    start_lat, start_lng = point_tuple(start)
-    end_lat, end_lng = point_tuple(direction)
-    base_distance = haversine(start, direction)
-    out = []
-    for shape in allowed_shapes(course):
-        desired_radial = target / (2 if shape == "loop" else 1)
-        factor = max(0.2, min(12.0, desired_radial / base_distance))
-        for attempt in range(2):
-            synthetic = {
-                "n": "거리 보정 반환점",
-                "lat": start_lat + (end_lat - start_lat) * factor,
-                "lng": start_lng + (end_lng - start_lng) * factor,
-            }
-            try:
-                route = tmap_route(tmap_key, start, (synthetic,), shape)
-                out.append(route)
-                if route["distanceM"] <= 0:
-                    break
-                next_factor = max(0.2, min(12.0, factor * target / route["distanceM"]))
-                if abs(next_factor - factor) < 0.03:
-                    break
-                factor = next_factor
-            except Exception:
-                break
-            finally:
-                time.sleep(0.05)
-    return out
+    route = tmap_route(tmap_key, points[0], tuple(points[1:]), required_shape(course))
+    choices = [route]
+    repeated = repeated_loop(route, target)
+    if repeated is not None:
+        choices.append(repeated)
+    return min(choices, key=lambda item: abs(item["distanceM"] - target))
 
 
 def repeated_loop(route: dict, target: float) -> dict | None:
@@ -391,7 +312,7 @@ def repeated_loop(route: dict, target: float) -> dict | None:
     repeated["distanceM"] = route["distanceM"] * laps
     repeated["walkDurationS"] = route["walkDurationS"] * laps
     repeated["pathRaw"] = raw
-    repeated["polyline"] = downsample(raw, 200)
+    repeated["polyline"] = downsample_preserving_guides(raw, repeated["guide"], 200)
     return repeated
 
 
@@ -420,7 +341,11 @@ def distance_to_path(point: dict, path: list[list[float]]) -> float:
     return best
 
 
-def point_to_segment(point: dict, a: list[float], b: list[float]) -> float:
+def point_to_segment(point: dict | list[float], a: list[float], b: list[float]) -> float:
+    return point_to_segment_with_fraction(point, a, b)[0]
+
+
+def point_to_segment_with_fraction(point: dict | list[float], a: list[float], b: list[float]) -> tuple[float, float]:
     lat, lng = point_tuple(point)
     ref = math.radians(lat)
     scale_x = 111320 * math.cos(ref)
@@ -432,7 +357,7 @@ def point_to_segment(point: dict, a: list[float], b: list[float]) -> float:
     denominator = dx * dx + dy * dy
     t = 0.0 if denominator == 0 else max(0.0, min(1.0, (-(ax * dx + ay * dy)) / denominator))
     cx, cy = ax + t * dx, ay + t * dy
-    return math.hypot(cx - px, cy - py)
+    return math.hypot(cx - px, cy - py), t
 
 
 def checkpoint(course_id: str, index: int, poi: dict) -> dict:
@@ -457,6 +382,32 @@ def enrich(course: dict, route: dict, elevation_key: str | None) -> dict:
         ascent = float(course.get("ascentM") or 0)
     ascent_per_km = round(ascent / distance_km, 1) if distance_km > 0 else 0.0
     difficulty = "하" if ascent_per_km <= 10 else "중" if ascent_per_km <= 25 else "상"
+    # 시설 중심점이나 교량 중앙 좌표는 TMAP이 접근 가능한 산책로에서 조금
+    # 떨어질 수 있다. 실제 검색 좌표는 placeLat/placeLng에 남기고, 앱의 100m
+    # 트리거 좌표는 경로 위의 가장 가까운 원본 점으로 옮긴다.
+    for poi in course.get("poi", []):
+        if poi.get("lat") is None or poi.get("lng") is None:
+            continue
+        if distance_to_path(poi, route["pathRaw"]) > 95:
+            poi.setdefault("placeLat", poi["lat"])
+            poi.setdefault("placeLng", poi["lng"])
+            nearest = min(route["pathRaw"], key=lambda point: haversine(poi, point))
+            poi["lat"], poi["lng"] = nearest
+
+    if course.get("shape") == "oneWay" and course.get("poi"):
+        finish = course["poi"][-1]
+        finish.setdefault("placeLat", finish["lat"])
+        finish.setdefault("placeLng", finish["lng"])
+        finish["lat"], finish["lng"] = route["pathRaw"][-1]
+
+    required_points = [
+        [float(poi["lat"]), float(poi["lng"])]
+        for poi in course.get("poi", [])
+        if poi.get("lat") is not None and poi.get("lng") is not None
+    ]
+    route["polyline"] = downsample_preserving_guides(
+        route["pathRaw"], route["guide"], 200, required_points)
+
     checkpoints = []
     for index, poi in enumerate(course.get("poi", [])):
         if poi.get("lat") is None or poi.get("lng") is None:
@@ -466,6 +417,7 @@ def enrich(course: dict, route: dict, elevation_key: str | None) -> dict:
     if not checkpoints:
         raise RuntimeError(f"{course['id']}: 경로 100m 안 체크포인트 없음")
     return {
+        "shape": course["shape"],
         "routeShape": route["shape"],
         "distanceM": route["distanceM"],
         "walkDurationS": route["walkDurationS"],
@@ -479,6 +431,7 @@ def enrich(course: dict, route: dict, elevation_key: str | None) -> dict:
 
 
 def validate(course: dict) -> None:
+    expected_route_shape = required_shape(course)
     required = ("polyline", "guide", "checkpoints")
     for field in required:
         if field not in course or not isinstance(course[field], list):
@@ -489,6 +442,8 @@ def validate(course: dict) -> None:
         raise RuntimeError(f"{course['id']}: guide 비어 있음")
     if not course["checkpoints"]:
         raise RuntimeError(f"{course['id']}: checkpoints 비어 있음")
+    if course.get("routeShape") != expected_route_shape:
+        raise RuntimeError(f"{course['id']}: shape과 routeShape 불일치")
     for point in course["polyline"]:
         if len(point) < 2 or not (-90 <= point[0] <= 90 and -180 <= point[1] <= 180):
             raise RuntimeError(f"{course['id']}: polyline 좌표 오류")
@@ -523,12 +478,20 @@ def main() -> None:
             continue
         points = route_points(source_course)
         route = choose_route(source_course, points, tmap_key)
+        original_km = float(source_course["km"])
+        original_min = int(source_course.get("min") or 0)
+        actual_km = round(route["distanceM"] / 1000, 1)
+        source_course["km"] = actual_km
+        if original_min > 0 and original_km > 0:
+            source_course["min"] = max(1, round(original_min * actual_km / original_km))
         fields = enrich(source_course, route, elevation_key)
         source_course.update(fields)
         merged_by_id[course_id].update(fields)
+        merged_by_id[course_id]["km"] = source_course["km"]
+        merged_by_id[course_id]["min"] = source_course["min"]
+        merged_by_id[course_id]["poi"] = source_course["poi"]
         validate(source_course)
-        error_percent = abs(fields["distanceM"] - float(source_course["km"]) * 1000) \
-            / (float(source_course["km"]) * 1000) * 100
+        error_percent = abs(fields["distanceM"] - original_km * 1000) / (original_km * 1000) * 100
         reports.append((course_id, fields["routeShape"], fields["distanceM"], error_percent,
                         len(fields["polyline"]), len(fields["guide"]), len(fields["checkpoints"])))
         print(f"{course_id:30} {fields['routeShape']:6} {fields['distanceM']:5}m "
