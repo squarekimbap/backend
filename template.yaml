@@ -47,6 +47,12 @@ Parameters:
     NoEcho: true
     Default: ""
     Description: Sign in with Apple .p8 키 본문 base64 한 줄 (BEGIN/END 줄·줄바꿈 제거, 내부 전용)
+  # /admin 화면을 쓸 수 있는 이메일(쉼표 구분). 비우면 관리 API가 전부 403 —
+  # 잠금이 기본이라 설정을 깜빡해도 열리지 않는다.
+  AdminEmails:
+    Type: String
+    Default: ""
+    Description: 관리 화면 허용 이메일 (쉼표 구분, 비우면 관리 기능 잠김)
   TourAudioEnabled:
     Type: String
     Default: "false"
@@ -82,6 +88,7 @@ Resources:
           AUTH_APPLE_TEAM_ID: !Ref AppleTeamId
           AUTH_APPLE_KEY_ID: !Ref AppleKeyId
           AUTH_APPLE_PRIVATE_KEY: !Ref ApplePrivateKey
+          ADMIN_EMAILS: !Ref AdminEmails
       # Lambda 기본 실행 역할(로그 권한) + 캐시/사용자 테이블 읽기/쓰기 + Cognito 인증 API
       Policies:
         - AWSLambdaBasicExecutionRole

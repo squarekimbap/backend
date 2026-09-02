@@ -95,6 +95,41 @@ public class UserStore {
         }
     }
 
+    /**
+     * 전 사용자 목록(관리자 조회용). 가입자가 수천 명을 넘으면 scan은 더 이상 맞지 않는다.
+     * ponytail: 지금 규모(수 명)에선 scan이 맞다, 페이지네이션은 느려지면 붙인다.
+     * appleRefreshToken은 내부 전용이라 여기서 걸러낸다 — 화면에 값이 나가면 안 된다.
+     */
+    public java.util.List<Map<String, String>> listAll() {
+        if (!enabled()) {
+            return java.util.List.of();
+        }
+        var out = new java.util.ArrayList<Map<String, String>>();
+        Map<String, AttributeValue> start = null;
+        do {
+            final Map<String, AttributeValue> from = start;
+            var res = client().scan(b -> {
+                b.tableName(tableOpt.orElseThrow());
+                if (from != null) {
+                    b.exclusiveStartKey(from);
+                }
+            });
+            for (var item : res.items()) {
+                var row = new HashMap<String, String>();
+                item.forEach((k, v) -> {
+                    if (!"appleRefreshToken".equals(k) && v.s() != null) {
+                        row.put(k, v.s());
+                    }
+                });
+                row.put("hasAppleToken", String.valueOf(item.containsKey("appleRefreshToken")));
+                out.add(row);
+            }
+            start = res.hasLastEvaluatedKey() ? res.lastEvaluatedKey() : null;
+        } while (start != null);
+        out.sort(java.util.Comparator.comparing(r -> r.getOrDefault("createdAt", "")));
+        return out;
+    }
+
     /** 프로필 삭제(탈퇴). 없는 행을 지워도 성공 — 재시도 안전. 실패는 위로 던진다. */
     public void delete(String userId) {
         if (!enabled()) {

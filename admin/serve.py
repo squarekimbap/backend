@@ -22,6 +22,8 @@ from pathlib import Path
 PORT = 8787
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
+# 화면은 한 벌만 유지한다 — 같은 파일을 Lambda도 정적으로 서빙한다
+PAGE = REPO / "src/main/resources/META-INF/resources/admin/index.html"
 COURSES = REPO / "src/main/resources/data/courses.json"
 REGION = "ap-northeast-2"
 USERS_TABLE = "app-users"
@@ -233,7 +235,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             if self.path == "/":
-                html = (ROOT / "index.html").read_bytes()
+                html = PAGE.read_text(encoding="utf-8").replace(
+                    "<script>", "<script>window.__LOCAL__=true;</script>\n<script>", 1
+                ).encode()
                 return self._send(200, html, "text/html; charset=utf-8")
             if self.path == "/api/courses":
                 return self._send(200, course_summaries())
@@ -274,7 +278,7 @@ def export(dest):
     summaries = course_summaries()
     details = {c["id"]: course_detail(c["id"]) for c in summaries}
     blob = json.dumps({"courses": summaries, "details": details}, ensure_ascii=False)
-    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    html = PAGE.read_text(encoding="utf-8")
     # </script> 가 문자열 안에 들어가면 파서가 스크립트를 일찍 닫는다
     safe = blob.replace("</", "<\\/")
     html = html.replace("<script>", f"<script>window.__EMBED__={safe};</script>\n<script>", 1)

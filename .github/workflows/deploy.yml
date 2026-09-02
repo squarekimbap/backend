@@ -101,6 +101,8 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
           APPLE_PRIVATE_KEY: ${{ secrets.APPLE_PRIVATE_KEY }}
+          # 관리 화면 허용 이메일 — 비어 있으면 /v1/admin/* 이 전부 403 인 채 배포된다
+          ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |
           # 선택 파라미터는 값이 있을 때만 넣는다. 빈 문자열을 그대로 넘기면
           # sam 이 "NaverClientId= is not a valid format" 으로 배포 자체를 거부한다.
@@ -122,6 +124,11 @@ jobs:
                      ApplePrivateKey="$APPLE_KEY_FLAT")
           else
             echo "::warning::APPLE_TEAM_ID/KEY_ID/PRIVATE_KEY 미설정 — 탈퇴 시 Apple 토큰 폐기 안 됨(심사 5.1.1(v))"
+          fi
+          if [ -n "$ADMIN_EMAILS" ]; then
+            PARAMS+=(AdminEmails="$ADMIN_EMAILS")
+          else
+            echo "::warning::ADMIN_EMAILS 미설정 — /admin 화면은 뜨지만 관리 API는 전부 403"
           fi
           sam deploy \
             --template-file template.yaml \
@@ -155,5 +162,13 @@ jobs:
           echo "── /v1/users/me 무토큰 → 401 (JWT 보호 동작 확인)"
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 "$FUNCTION_URL/v1/users/me")
           [ "$code" = "401" ] || fail "무토큰 /v1/users/me 가 401이 아님(HTTP $code) — 인증이 걸려 있지 않음"
+
+          echo "── /admin/ 화면이 서빙되는지 (정적 리소스 확인)"
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 "$FUNCTION_URL/admin/index.html")
+          [ "$code" = "200" ] || fail "/admin/index.html 이 HTTP $code — 관리 화면이 번들되지 않음"
+
+          echo "── /v1/admin/* 무토큰 → 401 (관리 API가 열려 있지 않은지)"
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 60 "$FUNCTION_URL/v1/admin/users")
+          [ "$code" = "401" ] || fail "무토큰 /v1/admin/users 가 401이 아님(HTTP $code) — 관리 API가 노출됨"
 
           echo "✅ 스모크 테스트 통과"

@@ -164,6 +164,16 @@ body{
   border:1px solid var(--ink); border-radius:3px; padding:18px;
 }
 .empty{color:var(--soft); padding:40px 0; text-align:center}
+
+/* ── 로그인 ── */
+.gate-form{max-width:320px; margin:14vh auto 0; padding:0 20px}
+.gate-h{font-size:19px; margin:0 0 6px}
+.gate-note{color:var(--soft); font-size:13px; margin:0 0 22px}
+.gate-label{
+  display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--soft); margin:14px 0 5px;
+}
+.gate-form .go{margin-top:20px; width:100%; padding:10px}
 </style>
 </head>
 <body>
@@ -176,7 +186,20 @@ body{
   </nav>
 </header>
 
-<main id="view-courses">
+<main id="gate" hidden>
+  <form class="gate-form" id="gate-form">
+    <h1 class="gate-h">관리자 로그인</h1>
+    <p class="gate-note">허용된 이메일 계정만 들어올 수 있다. 앱에서 쓰는 계정과 같다.</p>
+    <label class="gate-label" for="gate-email">이메일</label>
+    <input class="field" id="gate-email" type="email" autocomplete="username" required>
+    <label class="gate-label" for="gate-pw">비밀번호</label>
+    <input class="field" id="gate-pw" type="password" autocomplete="current-password" required>
+    <button class="go" id="gate-go" type="submit">들어가기</button>
+    <p class="lic" id="gate-msg" role="status" aria-live="polite"></p>
+  </form>
+</main>
+
+<main id="view-courses" hidden>
   <div class="filters" id="filters"></div>
   <div class="sheet" id="sheet"></div>
 </main>
@@ -196,14 +219,43 @@ const el = (t, a = {}, kids = []) => {
   for (const c of [].concat(kids)) if (c) n.append(c);
   return n;
 };
-/* 내보낸 단일 파일은 서버가 없다 — 데이터가 페이지 안에 들어 있다. */
+/* 이 파일 한 벌이 세 곳에서 돈다.
+   embed — --export 로 뽑은 단일 파일. 데이터가 페이지 안에 있고 서버가 없다.
+   local — admin/serve.py. 맥의 ~/.aws 자격증명을 쓰므로 로그인이 필요 없다.
+   cloud — Lambda가 서빙. Cognito 토큰을 보내고 서버가 이메일 허용목록으로 거른다. */
 const EMBED = window.__EMBED__ || null;
-const get = u => {
-  if (!EMBED) return fetch(u).then(r => r.json());
-  if (u === '/api/courses') return Promise.resolve(EMBED.courses);
-  const m = u.match(/^\/api\/courses\/(.+)$/);
-  if (m) return Promise.resolve(EMBED.details[m[1]]);
-  return Promise.resolve({ error: '내보낸 파일에서는 가입자를 볼 수 없다. admin/serve.py 를 켜라.' });
+const LOCAL = !!window.__LOCAL__;
+const MODE = EMBED ? 'embed' : LOCAL ? 'local' : 'cloud';
+let TOKEN = sessionStorage.getItem('adminToken') || '';
+
+class Unauthorized extends Error {}
+
+/* 로컬은 불리언, 배포본은 DynamoDB 문자열로 온다 */
+const hasToken = u => u.hasAppleToken === true || u.hasAppleToken === 'true';
+
+async function call(url, opts = {}) {
+  const headers = { ...(opts.headers || {}) };
+  if (MODE === 'cloud' && TOKEN) headers.Authorization = 'Bearer ' + TOKEN;
+  const res = await fetch(url, { ...opts, headers });
+  if (res.status === 401 || res.status === 403) {
+    TOKEN = ''; sessionStorage.removeItem('adminToken');
+    throw new Unauthorized(res.status === 403 ? '이 계정에는 관리 권한이 없다' : '다시 로그인해라');
+  }
+  return res.status === 204 ? {} : res.json();
+}
+
+const API = {
+  courses: () => EMBED ? Promise.resolve(EMBED.courses)
+    : call(LOCAL ? '/api/courses' : '/v1/admin/courses/review'),
+  course: id => EMBED ? Promise.resolve(EMBED.details[id])
+    : call(LOCAL ? '/api/courses/' + id : '/v1/admin/courses/' + id),
+  users: () => EMBED
+    ? Promise.resolve({ error: '내보낸 파일에는 가입자가 없다.' })
+    : call(LOCAL ? '/api/users' : '/v1/admin/users'),
+  remove: id => LOCAL
+    ? call('/api/users/delete', { method: 'POST',
+        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: id }) })
+    : call('/v1/admin/users/' + id, { method: 'DELETE' }),
 };
 
 /* 경로를 그리는 투영. 위경도는 위도에 따라 가로 축척이 달라지므로 보정한다. */
@@ -358,7 +410,7 @@ function pointRows(items, label) {
 }
 
 async function openCourse(id) {
-  const d = await get('/api/courses/' + id);
+  const d = await API.course(id);
   const far = d.poi.filter(p => p.place && p.place.offRouteM > 100);
   const pane = el('div', { class: 'pane' }, [
     el('div', { class: 'pane-shot' }, [el('img', { src: d.photo, alt: d.photoTitle || '' })]),
@@ -407,10 +459,15 @@ async function drawUsers() {
   const box = $('#users');
   box.replaceChildren(el('p', { class: 'empty', text: '불러오는 중…' }));
   let data;
-  try { data = await get('/api/users'); } catch { data = { error: '서버에 닿지 못했다' }; }
+  try {
+    data = await API.users();
+  } catch (e) {
+    if (e instanceof Unauthorized) return gate(e.message);
+    data = { error: '서버에 닿지 못했다' };
+  }
   if (data.error) {
     box.replaceChildren(el('p', { class: 'note', text: data.error
-      + ' — aws CLI가 깔려 있고 ~/.aws 자격증명이 있는지 확인해라.' }));
+      + (LOCAL ? ' — aws CLI가 깔려 있고 ~/.aws 자격증명이 있는지 확인해라.' : '') }));
     return;
   }
   $('#n-users').textContent = ' ' + data.users.length;
@@ -422,8 +479,8 @@ async function drawUsers() {
       el('td', { class: 'rows-name', text: u.nickname || '(없음)' }),
       el('td', { text: u.email || '—' }),
       el('td', { text: (u.createdAt || '').slice(0, 16).replace('T', ' ') }),
-      el('td', { class: u.hasAppleToken ? 'ok' : 'num',
-                 text: u.provider === 'apple' ? (u.hasAppleToken ? '폐기 가능' : '토큰 없음') : '—' }),
+      el('td', { class: hasToken(u) ? 'ok' : 'num',
+                 text: u.provider === 'apple' ? (hasToken(u) ? '폐기 가능' : '토큰 없음') : '—' }),
       el('td', { class: 'num', text: (u.userId || '').slice(0, 8) + '…' }),
       el('td', {}, [btn]),
     ]);
@@ -461,11 +518,10 @@ function confirmDelete(u) {
   cancel.onclick = shut; scrim.onclick = shut;
   go.onclick = async () => {
     go.disabled = true; out.textContent = '삭제 중…';
-    const r = await fetch('/api/users/delete', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: u.userId }),
-    }).then(r => r.json());
-    if (r.error) { out.textContent = r.error; go.disabled = false; return; }
+    let r;
+    try { r = await API.remove(u.userId); }
+    catch (e) { out.textContent = e.message; go.disabled = false; return; }
+    if (r && r.error) { out.textContent = r.error; go.disabled = false; return; }
     shut(); drawUsers();
   };
   document.body.append(scrim, modal);
@@ -485,11 +541,55 @@ $('#tab-courses').onclick = () => show('courses');
 $('#tab-users').onclick = () => show('users');
 if (EMBED) $('#tab-users').hidden = true;   // 자격증명이 없으니 아예 감춘다
 
-get('/api/courses').then(cs => {
-  COURSES = cs;
-  $('#n-courses').textContent = ' ' + cs.length;
+/* ── 로그인 (배포본만) ── */
+function gate(message) {
+  document.querySelectorAll('.scrim,.drawer,.modal').forEach(n => n.remove());
+  $('#view-courses').hidden = true;
+  $('#view-users').hidden = true;
+  $('#gate').hidden = false;
+  $('#gate-msg').textContent = message || '';
+  $('#gate-email').focus();
+}
+
+async function signIn(e) {
+  e.preventDefault();
+  const btn = $('#gate-go');
+  btn.disabled = true;
+  $('#gate-msg').textContent = '확인 중…';
+  try {
+    const res = await fetch('/v1/auth/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: $('#gate-email').value, password: $('#gate-pw').value }),
+    });
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.message || '이메일이나 비밀번호가 맞지 않는다');
+    TOKEN = body.idToken;                       // 이메일 클레임은 idToken에만 있다
+    sessionStorage.setItem('adminToken', TOKEN);
+    $('#gate').hidden = true;
+    $('#gate-pw').value = '';
+    await boot();
+  } catch (err) {
+    $('#gate-msg').textContent = err.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+$('#gate-form').addEventListener('submit', signIn);
+
+async function boot() {
+  try {
+    COURSES = await API.courses();
+  } catch (e) {
+    if (e instanceof Unauthorized) return gate(e.message);
+    throw e;
+  }
+  $('#view-courses').hidden = false;
+  $('#n-courses').textContent = ' ' + COURSES.length;
   drawFilters(); drawSheet();
-});
+}
+
+if (MODE === 'cloud' && !TOKEN) gate('');
+else boot();
 </script>
 </body>
 </html>

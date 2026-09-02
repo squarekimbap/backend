@@ -122,6 +122,11 @@ public class CourseCatalog {
         return out;
     }
 
+    /** 전체 코스(원본 노드). 검수 화면이 사진·경로를 한 번에 훑을 때 쓴다. */
+    public java.util.Collection<JsonNode> all() {
+        return byId.values();
+    }
+
     /** 상세(전체 필드). 없으면 null. */
     public JsonNode byId(String id) {
         if (id == null) {
