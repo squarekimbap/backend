@@ -53,12 +53,14 @@
 
 ## 계정 수명주기 (2026-08-23 구현, **배포됨**)
 로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정 + Apple 토큰 폐기(2026-09-02 배포).
-Apple 폐기는 **client_secret까지 실물 검증됨**(2026-09-02): 실제 .p8로 `AppleTokens.clientSecret`을 만들어
-`auth/revoke`에 더미 토큰을 보내니 **HTTP 200**(`invalid_client` 아님) — 팀 ID·키 ID·번들 ID·ES256 서명이 다 맞다는 뜻.
-키는 `R2V626HA7Y`("Dali Sign in with Apple", primary App ID = `com.mega.dali`). 실사용자 없이 이 확인을 다시 하려면
-`AppleTokens.parseP8`+`clientSecret`을 부르는 일회성 main을 만들어 더미 토큰으로 revoke를 쳐 보면 된다.
-**남은 미검증은 `authorizationCode`→refresh 토큰 교환 하나**(진짜 Apple 로그인 필요).
-**실패해도 조용하다**(경고 로그만) → CloudWatch에서 `Apple code 교환 실패` / `Apple 토큰 폐기 실패`를 봐야 한다.
+Apple 폐기는 **실기기 왕복까지 라이브 검증 완료**(2026-09-02 13:33 KST): 실제 앱 로그인 → 탈퇴로
+`Apple refresh 토큰 교환 성공` → 18초 뒤 `Apple 토큰 폐기 완료`가 CloudWatch에 찍혔고, users 행과
+Cognito 계정도 함께 사라졌다. 키는 `R2V626HA7Y`("Dali Sign in with Apple", primary App ID = `com.mega.dali`).
+실사용자 없이 client_secret만 다시 확인하려면 `AppleTokens.parseP8`+`clientSecret`을 부르는 일회성 main으로
+더미 토큰 revoke를 쳐 보면 된다 — `invalid_client`가 아니면(HTTP 200) 팀 ID·키 ID·번들 ID·ES256 서명이 맞는 것이다.
+**진단은 로그로만 된다**(성공·실패 모두 응답에 안 드러남): 성공 `Apple refresh 토큰 교환 성공`/`Apple 토큰 폐기 완료`,
+실패 `Apple code 교환 실패`/`Apple 토큰 폐기 실패`, 앱이 코드를 안 보내면 `authorizationCode 없음`.
+⚠️ 이 기능 배포(2026-09-02) **전에 가입한 Apple 사용자는 저장된 토큰이 없어 탈퇴해도 폐기되지 않는다** — 재로그인하면 채워진다.
 - **로그아웃** `POST /v1/auth/logout` — RevokeToken으로 refresh 토큰 폐기(발급된 access 토큰도 무효화). 이미 폐기된 토큰도 204. `EnableTokenRevocation`이 꺼지면 로그아웃이 조용히 무력화되므로 `UnsupportedTokenType`은 502로 드러낸다.
 - **자동로그인** — 기존 `/v1/auth/refresh`가 그대로 쓰인다. 서버 쪽은 ① `RefreshTokenValidity` 30일(기본)→**365일**, ② refresh 때도 프로필 `putIfAbsent` 호출(로그인 시 저장 실패를 자가복구). provider는 요청만 봐선 몰라서 username 접두사로 되짚는다(`CognitoAuth.providerOfUsername`).
 - **탈퇴** `DELETE /v1/users/me` — **Apple 토큰 폐기 → 프로필 행 → Cognito 계정 순서.** 행 삭제가 멱등이라 Cognito 삭제 실패 시 같은 요청 재시도가 통한다. 역순이면 재시도가 UserNotFound로 끊겨 남은 행을 치울 길이 없다. 발급된 access 토큰은 만료(1h)까지 유효 — 앱도 로컬 토큰을 지울 것.
