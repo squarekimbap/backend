@@ -75,7 +75,14 @@ public class AppleTokens {
      * 탈퇴 대비용 부가 작업이라 로그인 자체를 깨뜨리면 안 된다.
      */
     public String exchangeCode(String authorizationCode) {
-        if (!enabled() || blank(authorizationCode)) {
+        if (blank(authorizationCode)) {
+            return null;
+        }
+        if (!enabled()) {
+            // 코드는 왔는데 설정이 없으면 폐기를 영영 못 한다. 조용히 넘기면 "로그인이 안 온 것"과
+            // 구분이 안 돼 진단이 막히므로, 이 경우만은 드러낸다.
+            LOG.warn("Apple 폐기 설정 없음 — authorizationCode를 받았지만 교환하지 않음"
+                    + "(AUTH_APPLE_TEAM_ID/KEY_ID/PRIVATE_KEY 확인, 심사 5.1.1(v) 미충족)");
             return null;
         }
         try {
