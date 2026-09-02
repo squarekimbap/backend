@@ -10,6 +10,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.Optional;
 
 /**
  * 카카오 사용자 토큰 검증(kapi /v2/user/me). 앱이 보낸 액세스 토큰 자체로 검증하므로
@@ -27,17 +28,55 @@ public class KakaoVerifier {
             defaultValue = "https://kapi.kakao.com/v2/user/me")
     String userMeUrl;
 
+    /** app_id는 /v2/user/me에 없다 — 토큰 정보 조회로만 받을 수 있다. */
+    @ConfigProperty(name = "auth.kakao.token-info-url",
+            defaultValue = "https://kapi.kakao.com/v1/user/access_token_info")
+    String tokenInfoUrl;
+
+    /** 우리 앱의 카카오 앱 ID. 설정하면 다른 앱에서 발급된 토큰을 막는다(미설정이면 검사 안 함). */
+    @ConfigProperty(name = "auth.kakao.app-id")
+    Optional<String> expectedAppId;
+
     private final HttpClient http = HttpClient.newBuilder()
             .connectTimeout(CONNECT_TIMEOUT).build();
 
-    /** 카카오가 확인해 준 사용자. id = 회원번호(서비스 내 고유). */
+    /** 카카오가 확인해 준 사용자. id = 회원번호(앱마다 다르게 발급된다). */
     public record KakaoUser(long id, String nickname) {
     }
 
     /** 토큰 검증 + 사용자 조회. 무효 토큰 401 → InvalidKakaoTokenException, 그 외 실패 → UpstreamException. */
     public KakaoUser verify(String accessToken) {
+        verifyAppId(accessToken);
+        return parse(request(userMeUrl, accessToken));
+    }
+
+    /**
+     * 우리 앱에서 발급된 토큰인지 확인. app-id 미설정이면 그냥 통과한다 —
+     * 검사에 카카오 콜이 하나 더 들기 때문에 켠 경우에만 부담한다.
+     */
+    private void verifyAppId(String accessToken) {
+        String expected = expectedAppId.filter(s -> !s.isBlank()).orElse(null);
+        if (expected != null) {
+            ensureAppId(expected, request(tokenInfoUrl, accessToken));
+        }
+    }
+
+    /** 토큰 정보의 app_id 대조(순수 함수). 다른 앱 토큰은 무효 토큰과 같게 취급한다. */
+    static void ensureAppId(String expected, String tokenInfoJson) {
         try {
-            HttpRequest req = HttpRequest.newBuilder(URI.create(userMeUrl))
+            if (!expected.equals(MAPPER.readTree(tokenInfoJson).path("app_id").asText(""))) {
+                throw new InvalidKakaoTokenException();
+            }
+        } catch (InvalidKakaoTokenException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new UpstreamException("카카오 토큰 정보 파싱 실패");
+        }
+    }
+
+    private String request(String url, String accessToken) {
+        try {
+            HttpRequest req = HttpRequest.newBuilder(URI.create(url))
                     .header("Authorization", "Bearer " + accessToken)
                     .timeout(REQUEST_TIMEOUT).GET().build();
             HttpResponse<String> res = http.send(req, HttpResponse.BodyHandlers.ofString());
@@ -47,7 +86,7 @@ public class KakaoVerifier {
             if (res.statusCode() != 200) {
                 throw new UpstreamException("카카오 API 오류: HTTP " + res.statusCode());
             }
-            return parse(res.body());
+            return res.body();
         } catch (InvalidKakaoTokenException | UpstreamException e) {
             throw e;
         } catch (Exception e) {

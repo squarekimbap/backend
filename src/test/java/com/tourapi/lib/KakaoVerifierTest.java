@@ -27,4 +27,21 @@ public class KakaoVerifierTest {
     public void id_없으면_업스트림_예외() {
         assertThrows(UpstreamException.class, () -> KakaoVerifier.parse("{\"msg\":\"no id\"}"));
     }
+
+    @Test
+    public void 우리_앱_토큰이면_통과() { // app_id는 숫자로 오므로 문자열 비교가 성립해야 한다
+        KakaoVerifier.ensureAppId("123456", "{\"id\":9,\"expires_in\":3600,\"app_id\":123456}");
+    }
+
+    @Test
+    public void 다른_앱_토큰은_무효_토큰_취급() {
+        assertThrows(InvalidKakaoTokenException.class,
+                () -> KakaoVerifier.ensureAppId("123456", "{\"id\":9,\"app_id\":999999}"));
+    }
+
+    @Test
+    public void app_id_없는_응답도_거부() { // 조용히 통과시키면 검사가 무력화된다
+        assertThrows(InvalidKakaoTokenException.class,
+                () -> KakaoVerifier.ensureAppId("123456", "{\"id\":9}"));
+    }
 }

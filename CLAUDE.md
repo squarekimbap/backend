@@ -46,11 +46,18 @@
 - 엔드포인트: `POST /v1/auth/{signup,confirm,resend-code,login,logout,refresh,forgot-password,reset-password,kakao}` (공개) · `GET|PATCH|DELETE /v1/users/me` (`@Authenticated`, Cognito JWT). `/v1/tour/*` 등 기존 API는 계속 공개(단계적 전환 예정).
 - **핵심 트릭**: ① username은 백엔드 생성 — 이메일 `email_<sha256(정규화 이메일) 32자>` / 카카오 `kakao_<회원번호>` (이메일을 username으로 안 쓴 이유: 카카오 공존 + 중복가입이 username 충돌로 차단). ② 카카오는 **연합 IdP 금지**(무료 50 MAU 함정) — 백엔드가 kapi `/v2/user/me`로 토큰 검증 후 일반 사용자로 연결, **AdminSetUserPassword 회전**(랜덤 64자 설정→즉시 로그인→폐기, 경합 시 1회 재시도)으로 토큰 발급 → 10,000 MAU 무료 유지. ③ JWT 검증은 `quarkus-smallrye-jwt`+Cognito JWKS(`mp.jwt.verify.*`, `${USER_POOL_ID:unset}` placeholder — 빈 default 금지 함정 회피).
 - 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
-- 남은 실검증: 카카오 로그인(`/v1/auth/kakao`)은 실제 앱 토큰이 필요해 아직 미확인 — 특히 `AdminCreateUser`로 이메일 없이 kakao_* 사용자를 만드는 경로.
+- **이메일 없는 소셜 사용자 경로 검증됨**(2026-09-02): 실 UserPool에 `AdminCreateUser`(nickname만, SUPPRESS) → `AdminSetUserPassword --permanent` → `ADMIN_USER_PASSWORD_AUTH`까지 돌려 **RefreshToken 포함 토큰 3종**을 받고 테스트 사용자를 지웠다. 카카오 이메일은 선택 동의라 안 와도 되고, 풀 스키마도 email을 필수로 잡지 않는다. `/apple`·`/kakao`가 이 흐름을 그대로 쓰므로 **소셜 로그인 응답에는 refreshToken이 항상 있다**.
+  ⚠️ 단 `/v1/auth/refresh`는 refreshToken이 **null**이다(Cognito가 재발급 안 함) — 앱이 "refreshToken 없으면 실패"로 처리하면 자동로그인이 전부 깨진다. 그 규칙은 로그인 응답에만 적용할 것.
+- **카카오 app_id 검사는 opt-in**: `auth.kakao.app-id`에 앱 ID(숫자, 비밀 아님)를 적으면 다른 앱 토큰을 401로 막는다. 미설정이 기본 — `app_id`는 `/v2/user/me`에 **없고** `/v1/user/access_token_info`에만 있어서 켜면 카카오 콜이 1회 늘기 때문. 회원번호는 앱마다 다르게 발급돼 남의 계정 탈취는 아니지만, 검사 없이는 아무 앱 토큰으로나 가입된다.
+- 남은 실검증: 실제 카카오 앱 토큰으로 `/v1/auth/kakao` 왕복(앱에 네이티브 키가 아직 안 들어감).
 
 ## 계정 수명주기 (2026-08-23 구현, **배포됨**)
 로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정 + Apple 토큰 폐기(2026-09-02 배포).
-Apple 폐기만 **라이브 미검증** — 실제 Apple 로그인이 `authorizationCode`를 실어 보내고 그 계정을 탈퇴시켜야 확인된다.
+Apple 폐기는 **client_secret까지 실물 검증됨**(2026-09-02): 실제 .p8로 `AppleTokens.clientSecret`을 만들어
+`auth/revoke`에 더미 토큰을 보내니 **HTTP 200**(`invalid_client` 아님) — 팀 ID·키 ID·번들 ID·ES256 서명이 다 맞다는 뜻.
+키는 `R2V626HA7Y`("Dali Sign in with Apple", primary App ID = `com.mega.dali`). 실사용자 없이 이 확인을 다시 하려면
+`AppleTokens.parseP8`+`clientSecret`을 부르는 일회성 main을 만들어 더미 토큰으로 revoke를 쳐 보면 된다.
+**남은 미검증은 `authorizationCode`→refresh 토큰 교환 하나**(진짜 Apple 로그인 필요).
 **실패해도 조용하다**(경고 로그만) → CloudWatch에서 `Apple code 교환 실패` / `Apple 토큰 폐기 실패`를 봐야 한다.
 - **로그아웃** `POST /v1/auth/logout` — RevokeToken으로 refresh 토큰 폐기(발급된 access 토큰도 무효화). 이미 폐기된 토큰도 204. `EnableTokenRevocation`이 꺼지면 로그아웃이 조용히 무력화되므로 `UnsupportedTokenType`은 502로 드러낸다.
 - **자동로그인** — 기존 `/v1/auth/refresh`가 그대로 쓰인다. 서버 쪽은 ① `RefreshTokenValidity` 30일(기본)→**365일**, ② refresh 때도 프로필 `putIfAbsent` 호출(로그인 시 저장 실패를 자가복구). provider는 요청만 봐선 몰라서 username 접두사로 되짚는다(`CognitoAuth.providerOfUsername`).
