@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>코스 검수 · tour-api</title>
+<style>
+:root{
+  --paper:#EDEFEA;        /* 지형도 종이 */
+  --card:#F6F7F4;
+  --ink:#16211C;          /* 등고선 잉크 */
+  --soft:#5C6B63;
+  --rule:#CFD6CE;
+  --flag:#E2571F;         /* 신호 주황 — 문제에만 */
+  --route:#2F6F5E;        /* 경로 선 */
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  --kr:-apple-system,"Apple SD Gothic Neo","Pretendard",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--kr); font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:2px solid var(--flag); outline-offset:2px}
+
+/* ── 상단 바 ── */
+.bar{
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; gap:22px;
+  padding:0 20px; height:46px;
+  background:var(--paper); border-bottom:1px solid var(--rule);
+}
+.brand{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--soft)}
+.tabs{display:flex; gap:2px; margin-left:auto}
+.tab{
+  font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  background:none; border:1px solid transparent; border-radius:2px;
+  color:var(--soft); padding:5px 11px; cursor:pointer;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink); border-color:var(--rule); background:var(--card)}
+.count{opacity:.55; margin-left:6px}
+
+/* ── 필터 ── */
+.filters{
+  display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+  padding:14px 20px; border-bottom:1px solid var(--rule);
+}
+.chip{
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+  background:none; border:1px solid var(--rule); border-radius:2px;
+  color:var(--soft); padding:5px 10px; cursor:pointer;
+}
+.chip:hover{border-color:var(--soft); color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+.chip-flag[aria-pressed="true"]{background:var(--flag); border-color:var(--flag)}
+
+/* ── 컨택트시트 ── */
+.sheet{
+  display:grid; gap:16px; padding:20px;
+  grid-template-columns:repeat(auto-fill,minmax(228px,1fr));
+}
+.card{
+  display:block; width:100%; text-align:left; cursor:pointer;
+  background:var(--card); border:1px solid var(--rule); border-left:2px solid var(--rule);
+  border-radius:3px; padding:0; overflow:hidden; color:inherit; font:inherit;
+}
+.card:hover{border-color:var(--soft)}
+.card-flagged{border-left-color:var(--flag)}
+.card-shot{position:relative; aspect-ratio:16/9; background:#DDE1DB}
+.card-shot img{width:100%; height:100%; object-fit:cover; display:block}
+.card-dot{
+  position:absolute; right:8px; top:8px; width:8px; height:8px; border-radius:50%;
+  background:var(--flag); box-shadow:0 0 0 3px rgba(246,247,244,.85);
+}
+.card-body{display:flex; gap:11px; padding:10px 12px 12px}
+.card-sigil{flex:0 0 auto; width:46px; height:34px; margin-top:2px}
+.card-text{min-width:0}
+.card-meta{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.07em;
+  color:var(--soft); text-transform:uppercase; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis;
+}
+.card-title{
+  font-size:13px; line-height:1.35; margin-top:3px;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+
+/* ── 상세 서랍 ── */
+.scrim{position:fixed; inset:0; background:rgba(22,33,28,.34); z-index:30}
+.drawer{
+  position:fixed; top:0; right:0; bottom:0; width:min(620px,100vw); z-index:31;
+  background:var(--paper); border-left:1px solid var(--rule);
+  overflow-y:auto; animation:slide .14s ease-out;
+}
+@keyframes slide{from{transform:translateX(18px); opacity:.4} to{transform:none; opacity:1}}
+@media (prefers-reduced-motion:reduce){ .drawer{animation:none} }
+.drawer-head{
+  position:sticky; top:0; display:flex; align-items:center; gap:12px;
+  padding:12px 18px; background:var(--paper); border-bottom:1px solid var(--rule);
+}
+.drawer-id{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--soft)}
+.close{
+  margin-left:auto; font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+  background:none; border:1px solid var(--rule); border-radius:2px;
+  color:var(--soft); padding:5px 10px; cursor:pointer;
+}
+.close:hover{color:var(--ink); border-color:var(--soft)}
+.pane{padding:18px}
+.pane-shot img{width:100%; border:1px solid var(--rule); border-radius:3px; display:block}
+.h1{font-size:20px; line-height:1.3; margin:16px 0 4px}
+.sub{color:var(--soft); margin:0 0 16px}
+.stats{
+  display:flex; flex-wrap:wrap; gap:0 26px; font-family:var(--mono); font-size:11px;
+  letter-spacing:.06em; color:var(--soft); text-transform:uppercase;
+  border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0;
+}
+.stats b{display:block; color:var(--ink); font-size:15px; letter-spacing:0; font-weight:600}
+.h2{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--soft); margin:22px 0 9px;
+}
+.map{width:100%; border:1px solid var(--rule); border-radius:3px; background:var(--card); display:block}
+.rows{width:100%; border-collapse:collapse; font-family:var(--mono); font-size:11.5px}
+.rows th{
+  text-align:left; font-weight:400; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--soft); font-size:10px; padding:0 8px 6px 0; border-bottom:1px solid var(--rule);
+}
+.rows td{padding:7px 8px 7px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+.rows-name{font-family:var(--kr); font-size:12.5px}
+.num{color:var(--soft)}
+.ok{color:var(--route)}
+.bad{color:var(--flag); font-weight:600}
+.note{
+  border-left:2px solid var(--flag); background:rgba(226,87,31,.06);
+  padding:9px 12px; margin:9px 0; font-size:12.5px;
+}
+.note-quiet{border-left-color:var(--rule); background:rgba(92,107,99,.06)}
+.lic{font-family:var(--mono); font-size:11px; color:var(--soft); word-break:break-all}
+
+/* ── 사용자 ── */
+.users{padding:20px; max-width:960px}
+.danger{
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+  background:none; border:1px solid var(--rule); border-radius:2px;
+  color:var(--soft); padding:4px 9px; cursor:pointer;
+}
+.danger:hover{color:var(--flag); border-color:var(--flag)}
+.field{
+  font-family:var(--mono); font-size:12px; padding:7px 9px; width:100%;
+  border:1px solid var(--rule); border-radius:2px; background:var(--card); color:var(--ink);
+}
+.go{
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  background:var(--flag); border:1px solid var(--flag); border-radius:2px;
+  color:#fff; padding:7px 13px; cursor:pointer;
+}
+.go[disabled]{opacity:.35; cursor:not-allowed}
+.modal{
+  position:fixed; z-index:40; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:min(440px,92vw); background:var(--paper);
+  border:1px solid var(--ink); border-radius:3px; padding:18px;
+}
+.empty{color:var(--soft); padding:40px 0; text-align:center}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <span class="brand">tour-api 검수</span>
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-courses" aria-selected="true">코스<span class="count" id="n-courses"></span></button>
+    <button class="tab" role="tab" id="tab-users" aria-selected="false">사용자<span class="count" id="n-users"></span></button>
+  </nav>
+</header>
+
+<main id="view-courses">
+  <div class="filters" id="filters"></div>
+  <div class="sheet" id="sheet"></div>
+</main>
+
+<main id="view-users" hidden><div class="users" id="users"></div></main>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (t, a = {}, kids = []) => {
+  const n = document.createElement(t);
+  for (const [k, v] of Object.entries(a)) {
+    if (v === null || v === false) continue;
+    if (k === 'text') n.textContent = v;
+    else if (k === 'html') n.innerHTML = v;
+    else n.setAttribute(k, v);
+  }
+  for (const c of [].concat(kids)) if (c) n.append(c);
+  return n;
+};
+/* 내보낸 단일 파일은 서버가 없다 — 데이터가 페이지 안에 들어 있다. */
+const EMBED = window.__EMBED__ || null;
+const get = u => {
+  if (!EMBED) return fetch(u).then(r => r.json());
+  if (u === '/api/courses') return Promise.resolve(EMBED.courses);
+  const m = u.match(/^\/api\/courses\/(.+)$/);
+  if (m) return Promise.resolve(EMBED.details[m[1]]);
+  return Promise.resolve({ error: '내보낸 파일에서는 가입자를 볼 수 없다. admin/serve.py 를 켜라.' });
+};
+
+/* 경로를 그리는 투영. 위경도는 위도에 따라 가로 축척이 달라지므로 보정한다. */
+function project(points, w, h, pad) {
+  const lats = points.map(p => p[0]), lngs = points.map(p => p[1]);
+  const midLat = (Math.min(...lats) + Math.max(...lats)) / 2;
+  const kx = Math.cos(midLat * Math.PI / 180);
+  const xs = lngs.map(v => v * kx), ys = lats.map(v => -v);
+  const [x0, x1] = [Math.min(...xs), Math.max(...xs)];
+  const [y0, y1] = [Math.min(...ys), Math.max(...ys)];
+  const s = Math.min((w - pad * 2) / (x1 - x0 || 1e-9), (h - pad * 2) / (y1 - y0 || 1e-9));
+  const ox = (w - (x1 - x0) * s) / 2, oy = (h - (y1 - y0) * s) / 2;
+  return (lat, lng) => [(lng * kx - x0) * s + ox, (-lat - y0) * s + oy];
+}
+const svgNS = 'http://www.w3.org/2000/svg';
+const svgEl = (t, a) => {
+  const n = document.createElementNS(svgNS, t);
+  for (const [k, v] of Object.entries(a)) n.setAttribute(k, v);
+  return n;
+};
+
+/* 카드의 route sigil — 코스마다 다른 실제 경로 모양 */
+function sigil(points, shape) {
+  const W = 46, H = 34;
+  const g = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, 'aria-hidden': 'true' });
+  if (!points || points.length < 2) return g;
+  const to = project(points, W, H, 4);
+  const d = points.map((p, i) => (i ? 'L' : 'M') + to(p[0], p[1]).map(n => n.toFixed(1)).join(' ')).join('');
+  g.append(svgEl('path', { d, fill: 'none', stroke: 'var(--route)', 'stroke-width': 1.4,
+                           'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+  if (shape !== 'roundTrip') {           // 편도는 종점을 찍어 구분한다
+    const [x, y] = to(...points.at(-1));
+    g.append(svgEl('rect', { x: x - 2, y: y - 2, width: 4, height: 4, fill: 'var(--route)' }));
+  }
+  return g;
+}
+
+/* ── 코스 ── */
+let COURSES = [], FILTER = 'all';
+const FILTERS = [
+  ['all', '전체'],
+  ['flagged', '볼 것'],
+  ['off-route', '경유지 경로 밖'],
+  ['placelat', '원 좌표 어긋남'],
+  ['dup-photo', '사진 중복'],
+  ['license', '제3유형'],
+  ['substitute', '대체 사진'],
+];
+
+function matches(c) {
+  if (FILTER === 'all') return true;
+  if (FILTER === 'flagged') return c.flags.length > 0;
+  return c.flags.some(f => f.kind === FILTER);
+}
+
+function drawFilters() {
+  const box = $('#filters');
+  const chips = FILTERS.map(([kind, label]) => {
+    const n = kind === 'all' ? COURSES.length
+            : kind === 'flagged' ? COURSES.filter(c => c.flags.length).length
+            : COURSES.filter(c => c.flags.some(f => f.kind === kind)).length;
+    if (!n && kind !== 'all') return null;   // 걸리는 게 없는 조건은 띄우지 않는다
+    const b = el('button', {
+      class: 'chip' + (kind !== 'all' && kind !== 'flagged' ? ' chip-flag' : ''),
+      'aria-pressed': String(FILTER === kind), text: `${label} ${n}`,
+    });
+    b.onclick = () => {
+      FILTER = kind; drawFilters(); drawSheet();
+      window.scrollTo(0, 0);   // 목록이 짧아지면 빈 화면에 남는다
+    };
+    return b;
+  }).filter(Boolean);
+  box.replaceChildren(...chips);
+}
+
+function drawSheet() {
+  const list = COURSES.filter(matches);
+  const sheet = $('#sheet');
+  if (!list.length) {
+    sheet.replaceChildren(el('p', { class: 'empty', text: '이 조건에 걸리는 코스가 없다.' }));
+    return;
+  }
+  sheet.replaceChildren(...list.map(c => {
+    const shot = el('div', { class: 'card-shot' }, [
+      el('img', { src: c.photo, alt: c.photoTitle || '', loading: 'lazy' }),
+      c.flags.length ? el('span', { class: 'card-dot' }) : null,
+    ]);
+    const body = el('div', { class: 'card-body' }, [
+      el('span', { class: 'card-sigil' }, [sigil(c.sigil, c.shape)]),
+      el('span', { class: 'card-text' }, [
+        el('span', { class: 'card-meta', text: `${c.city} · ${c.km}km · 경유지 ${c.poiCount}` }),
+        el('span', { class: 'card-title', text: c.headline }),
+      ]),
+    ]);
+    const card = el('button', {
+      class: 'card' + (c.flags.length ? ' card-flagged' : ''),
+      title: c.flags.map(f => f.label).join('\n') || c.id,
+    }, [shot, body]);
+    card.onclick = () => openCourse(c.id);
+    return card;
+  }));
+}
+
+/* 상세 지도 — 경유지 번호를 실제 좌표 위에 찍는다. 원 좌표가 멀면 점선으로 잇는다. */
+function routeMap(d) {
+  const W = 560, H = 380;
+  const s = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, class: 'map', role: 'img',
+                           'aria-label': '경로와 경유지 위치' });
+  if (!d.polyline.length) return s;
+  const pts = d.polyline.concat(
+    d.poi.flatMap(p => p.place ? [[p.place.lat, p.place.lng]] : []));
+  const to = project(pts, W, H, 26);
+  s.append(svgEl('path', {
+    d: d.polyline.map((p, i) => (i ? 'L' : 'M') + to(p[0], p[1]).map(n => n.toFixed(1)).join(' ')).join(''),
+    fill: 'none', stroke: 'var(--route)', 'stroke-width': 2.4,
+    'stroke-linejoin': 'round', 'stroke-linecap': 'round',
+  }));
+  for (const p of d.poi) {
+    const [x, y] = to(p.lat, p.lng);
+    if (p.place && p.place.offRouteM > 100) {
+      const [px, py] = to(p.place.lat, p.place.lng);
+      s.append(svgEl('line', { x1: x, y1: y, x2: px, y2: py, stroke: 'var(--flag)',
+                               'stroke-width': 1, 'stroke-dasharray': '3 3' }));
+      s.append(svgEl('circle', { cx: px, cy: py, r: 5, fill: 'none',
+                                 stroke: 'var(--flag)', 'stroke-width': 1.5 }));
+    }
+    const bad = p.offRouteM > 100;
+    s.append(svgEl('circle', { cx: x, cy: y, r: 10,
+                               fill: bad ? 'var(--flag)' : 'var(--ink)' }));
+    const t = svgEl('text', { x, y: y + 3.6, 'text-anchor': 'middle', fill: 'var(--paper)',
+                              'font-size': 10.5, 'font-family': 'var(--mono)' });
+    t.textContent = p.no;
+    s.append(t);
+  }
+  return s;
+}
+
+function pointRows(items, label) {
+  const body = items.map(p => el('tr', {}, [
+    el('td', { class: 'num', text: p.no }),
+    el('td', { class: 'rows-name', text: p.name || '' }),
+    el('td', { text: `${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}` }),
+    el('td', { class: p.offRouteM > 100 ? 'bad' : 'ok', text: `${p.offRouteM}m` }),
+  ]));
+  return el('table', { class: 'rows' }, [
+    el('thead', {}, [el('tr', {}, [
+      el('th', { text: '#' }), el('th', { text: label }),
+      el('th', { text: '좌표' }), el('th', { text: '경로에서' }),
+    ])]),
+    el('tbody', {}, body),
+  ]);
+}
+
+async function openCourse(id) {
+  const d = await get('/api/courses/' + id);
+  const far = d.poi.filter(p => p.place && p.place.offRouteM > 100);
+  const pane = el('div', { class: 'pane' }, [
+    el('div', { class: 'pane-shot' }, [el('img', { src: d.photo, alt: d.photoTitle || '' })]),
+    el('p', { class: 'lic', text: `${d.photoTitle || '제목 없음'} — ${d.photoLicense || '출처 미기재'}` }),
+    el('h2', { class: 'h1', text: d.headline || d.id }),
+    el('p', { class: 'sub', text: d.subhead || '' }),
+    el('div', { class: 'stats' }, [
+      el('span', { html: `<b>${d.km}km</b>거리` }),
+      el('span', { html: `<b>${d.min}분</b>시간` }),
+      el('span', { html: `<b>${d.shape === 'roundTrip' ? '순환' : '편도'}</b>형태` }),
+      el('span', { html: `<b>${d.difficulty || '-'}</b>난이도` }),
+      el('span', { html: `<b>${d.ascentPerKm ?? '-'}</b>m/km 상승` }),
+    ]),
+    el('h3', { class: 'h2', text: '경로와 경유지' }),
+    routeMap(d),
+    far.length ? el('p', { class: 'note', text:
+      `경유지 ${far.length}곳은 placeLat/placeLng(원 장소 좌표)가 경로에서 최대 `
+      + `${Math.max(...far.map(p => p.place.offRouteM))}m 떨어져 있다. `
+      + `지도 핀은 반드시 lat/lng을 써야 한다 — 점선 끝의 빈 동그라미가 원 좌표다.` }) : null,
+    el('h3', { class: 'h2', text: `경유지 ${d.poi.length}` }),
+    pointRows(d.poi, '이름'),
+    d.checkpoints.length ? el('h3', { class: 'h2', text: `도슨트 ${d.checkpoints.length}` }) : null,
+    d.checkpoints.length ? pointRows(d.checkpoints, '이야기') : null,
+    d.src ? el('p', { class: 'lic', text: `출처 ${d.src}` }) : null,
+  ]);
+
+  const close = el('button', { class: 'close', text: '닫기 ESC' });
+  const drawer = el('aside', { class: 'drawer', role: 'dialog', 'aria-modal': 'true',
+                               'aria-label': d.headline || d.id }, [
+    el('div', { class: 'drawer-head' }, [
+      el('span', { class: 'drawer-id', text: d.id }), close,
+    ]),
+    pane,
+  ]);
+  const scrim = el('div', { class: 'scrim' });
+  const shut = () => { scrim.remove(); drawer.remove(); document.removeEventListener('keydown', esc); };
+  const esc = e => { if (e.key === 'Escape') shut(); };
+  close.onclick = shut; scrim.onclick = shut;
+  document.addEventListener('keydown', esc);
+  document.body.append(scrim, drawer);
+  close.focus();
+}
+
+/* ── 사용자 ── */
+async function drawUsers() {
+  const box = $('#users');
+  box.replaceChildren(el('p', { class: 'empty', text: '불러오는 중…' }));
+  let data;
+  try { data = await get('/api/users'); } catch { data = { error: '서버에 닿지 못했다' }; }
+  if (data.error) {
+    box.replaceChildren(el('p', { class: 'note', text: data.error
+      + ' — aws CLI가 깔려 있고 ~/.aws 자격증명이 있는지 확인해라.' }));
+    return;
+  }
+  $('#n-users').textContent = ' ' + data.users.length;
+  const rows = data.users.map(u => {
+    const btn = el('button', { class: 'danger', text: '삭제' });
+    btn.onclick = () => confirmDelete(u);
+    return el('tr', {}, [
+      el('td', { text: u.provider || '?' }),
+      el('td', { class: 'rows-name', text: u.nickname || '(없음)' }),
+      el('td', { text: u.email || '—' }),
+      el('td', { text: (u.createdAt || '').slice(0, 16).replace('T', ' ') }),
+      el('td', { class: u.hasAppleToken ? 'ok' : 'num',
+                 text: u.provider === 'apple' ? (u.hasAppleToken ? '폐기 가능' : '토큰 없음') : '—' }),
+      el('td', { class: 'num', text: (u.userId || '').slice(0, 8) + '…' }),
+      el('td', {}, [btn]),
+    ]);
+  });
+  box.replaceChildren(
+    el('p', { class: 'note note-quiet', text:
+      'Apple 사용자의 “토큰 없음”은 9/2 배포 전에 가입해서다. 한 번 재로그인하면 채워지고, '
+      + '그전에는 탈퇴해도 Apple 토큰이 폐기되지 않는다.' }),
+    el('table', { class: 'rows' }, [
+      el('thead', {}, [el('tr', {}, ['수단', '닉네임', '이메일', '가입', 'Apple 폐기', 'userId', ''].map(
+        h => el('th', { text: h })))]),
+      el('tbody', {}, rows),
+    ]));
+}
+
+function confirmDelete(u) {
+  const name = u.nickname || u.userId;
+  const input = el('input', { class: 'field', placeholder: name, 'aria-label': '닉네임 입력' });
+  const go = el('button', { class: 'go', text: '삭제', disabled: 'true' });
+  const cancel = el('button', { class: 'chip', text: '취소' });
+  const out = el('p', { class: 'lic' });
+  input.oninput = () => { go.disabled = input.value !== name; };
+  const scrim = el('div', { class: 'scrim' });
+  const modal = el('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true' }, [
+    el('h3', { class: 'h2', text: '가입자 삭제' }),
+    el('p', { text: `${name} 의 프로필 행과 Cognito 계정을 지운다. 되돌릴 수 없다.` }),
+    el('p', { class: 'note', text:
+      'Apple 토큰 폐기는 여기서 하지 않는다. 심사 5.1.1(v)를 지키려면 앱의 탈퇴 화면을 쓸 것.' }),
+    el('p', { class: 'lic', text: `확인하려면 “${name}” 을 그대로 입력해라.` }),
+    input,
+    el('p', {}, [go, ' ', cancel]),
+    out,
+  ]);
+  const shut = () => { scrim.remove(); modal.remove(); };
+  cancel.onclick = shut; scrim.onclick = shut;
+  go.onclick = async () => {
+    go.disabled = true; out.textContent = '삭제 중…';
+    const r = await fetch('/api/users/delete', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: u.userId }),
+    }).then(r => r.json());
+    if (r.error) { out.textContent = r.error; go.disabled = false; return; }
+    shut(); drawUsers();
+  };
+  document.body.append(scrim, modal);
+  input.focus();
+}
+
+/* ── 탭 ── */
+function show(which) {
+  const isCourses = which === 'courses';
+  $('#view-courses').hidden = !isCourses;
+  $('#view-users').hidden = isCourses;
+  $('#tab-courses').setAttribute('aria-selected', String(isCourses));
+  $('#tab-users').setAttribute('aria-selected', String(!isCourses));
+  if (!isCourses) drawUsers();
+}
+$('#tab-courses').onclick = () => show('courses');
+$('#tab-users').onclick = () => show('users');
+if (EMBED) $('#tab-users').hidden = true;   // 자격증명이 없으니 아예 감춘다
+
+get('/api/courses').then(cs => {
+  COURSES = cs;
+  $('#n-courses').textContent = ' ' + cs.length;
+  drawFilters(); drawSheet();
+});
+</script>
+</body>
+</html>

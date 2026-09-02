@@ -27,3 +27,7 @@ packaged.yaml
 .env.local
 *.local
 secrets.properties
+
+# admin/serve.py --export 산출물
+코스검수.html
+*-review.html
