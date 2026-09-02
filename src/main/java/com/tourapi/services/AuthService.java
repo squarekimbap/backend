@@ -11,6 +11,7 @@ import com.tourapi.model.TokenResponse;
 import com.tourapi.model.UserProfile;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.jboss.logging.Logger;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthenticationResultType;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.NotAuthorizedException;
 
@@ -19,6 +20,8 @@ import java.time.Instant;
 /** 인증 오케스트레이션. Cognito 예외는 그대로 위로 — HTTP 매핑은 AuthResource 책임. */
 @ApplicationScoped
 public class AuthService {
+
+    private static final Logger LOG = Logger.getLogger(AuthService.class);
 
     @Inject
     CognitoAuth cognito;
@@ -122,6 +125,12 @@ public class AuthService {
      */
     private void rememberAppleRefreshToken(String userId, String authorizationCode) {
         if (userId.isBlank()) {
+            return;
+        }
+        if (authorizationCode == null || authorizationCode.isBlank()) {
+            // 조용히 넘기면 폐기 성공과 구분되지 않는다. 이 계정은 탈퇴해도 폐기가 안 되므로 드러낸다.
+            LOG.warn("Apple 로그인에 authorizationCode 없음 — 이 계정은 탈퇴해도 "
+                    + "Apple 토큰을 폐기할 수 없다(심사 5.1.1(v))");
             return;
         }
         String refreshToken = appleTokens.exchangeCode(authorizationCode);

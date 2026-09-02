@@ -96,7 +96,13 @@ public class AppleTokens {
                 return null;
             }
             String refresh = MAPPER.readTree(res.body()).path("refresh_token").asText("");
-            return refresh.isBlank() ? null : refresh;
+            if (refresh.isBlank()) {
+                LOG.warn("Apple code 교환 응답에 refresh_token 없음");
+                return null;
+            }
+            // 성공도 남긴다 — 조용하면 "코드를 안 보낸 것"과 구분이 안 돼 검증이 불가능하다.
+            LOG.info("Apple refresh 토큰 교환 성공 — 탈퇴 시 폐기 가능");
+            return refresh;
         } catch (Exception e) {
             LOG.warnf("Apple code 교환 실패: %s", e.getClass().getSimpleName());
             return null;
@@ -119,6 +125,8 @@ public class AppleTokens {
                     "token_type_hint", "refresh_token"));
             if (res.statusCode() != 200) {
                 LOG.warnf("Apple 토큰 폐기 실패: HTTP %d %s", res.statusCode(), errorOf(res.body()));
+            } else {
+                LOG.info("Apple 토큰 폐기 완료 — 심사 5.1.1(v) 충족");
             }
         } catch (Exception e) {
             LOG.warnf("Apple 토큰 폐기 실패: %s", e.getClass().getSimpleName());
