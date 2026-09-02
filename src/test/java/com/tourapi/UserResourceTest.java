@@ -1,5 +1,6 @@
 package com.tourapi;
 
+import com.tourapi.lib.AppleTokens;
 import com.tourapi.lib.CognitoAuth;
 import com.tourapi.lib.UserStore;
 import com.tourapi.model.UserProfile;
@@ -35,6 +36,9 @@ public class UserResourceTest {
 
     @InjectMock
     CognitoAuth cognito;
+
+    @InjectMock
+    AppleTokens appleTokens;
 
     @Test
     public void 토큰없으면_401() {
@@ -138,6 +142,21 @@ public class UserResourceTest {
         InOrder o = inOrder(userStore, cognito);
         o.verify(userStore).delete("u-1");
         o.verify(cognito).deleteUser("email_abc");
+    }
+
+    @Test
+    @TestSecurity(user = "u-9", roles = {})
+    @JwtSecurity(claims = {
+            @Claim(key = "sub", value = "u-9"),
+            @Claim(key = "cognito:username", value = "apple_sub-9")})
+    public void 탈퇴시_Apple_토큰을_행_삭제보다_먼저_폐기() { // 행이 지워지면 토큰을 못 읽는다
+        when(userStore.appleRefreshToken("u-9")).thenReturn("apple-refresh");
+        given().delete("/v1/users/me").then().statusCode(204);
+        InOrder o = inOrder(userStore, appleTokens, cognito);
+        o.verify(userStore).appleRefreshToken("u-9");
+        o.verify(appleTokens).revoke("apple-refresh");
+        o.verify(userStore).delete("u-9");
+        o.verify(cognito).deleteUser("apple_sub-9");
     }
 
     @Test

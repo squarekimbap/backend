@@ -30,6 +30,23 @@ Parameters:
     NoEcho: true
     Default: ""
     Description: 네이버 개발자센터 검색 API Client Secret (내부 전용, 앱 노출 금지)
+  # 탈퇴 시 Apple 토큰 폐기(App Store 심사 5.1.1(v))용. 셋 다 있어야 켜지고,
+  # 비우면 폐기만 꺼진 채 Apple 로그인·탈퇴는 그대로 동작한다.
+  AppleTeamId:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Apple Developer 팀 ID (10자)
+  AppleKeyId:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Sign in with Apple 키 ID (10자)
+  ApplePrivateKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Sign in with Apple .p8 키 본문 base64 한 줄 (BEGIN/END 줄·줄바꿈 제거, 내부 전용)
   TourAudioEnabled:
     Type: String
     Default: "false"
@@ -62,6 +79,9 @@ Resources:
           USER_POOL_ID: !Ref UserPool
           USER_POOL_CLIENT_ID: !Ref UserPoolClient
           USERS_TABLE: !Ref UsersTable
+          AUTH_APPLE_TEAM_ID: !Ref AppleTeamId
+          AUTH_APPLE_KEY_ID: !Ref AppleKeyId
+          AUTH_APPLE_PRIVATE_KEY: !Ref ApplePrivateKey
       # Lambda 기본 실행 역할(로그 권한) + 캐시/사용자 테이블 읽기/쓰기 + Cognito 인증 API
       Policies:
         - AWSLambdaBasicExecutionRole

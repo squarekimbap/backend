@@ -204,7 +204,8 @@ public class AuthResource {
             return bad("identityToken 필수");
         }
         try {
-            return Response.ok(authService.appleLogin(req.identityToken(), req.fullName())).build();
+            return Response.ok(authService.appleLogin(
+                    req.identityToken(), req.fullName(), req.authorizationCode())).build();
         } catch (InvalidAppleTokenException e) {
             return error(401, "invalid_apple_token", "Apple 토큰이 유효하지 않음");
         } catch (UpstreamException e) {

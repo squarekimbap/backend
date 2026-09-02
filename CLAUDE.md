@@ -38,7 +38,7 @@
   - (현) `naverapihub.apigw.ntruss.com/search/v1/local` + `X-NCP-APIGW-API-KEY-ID/KEY` ← 키는 **NCP 콘솔**에서 발급. 개발자센터 등록 폼의 "사용 API" 목록엔 검색이 아예 없다.
   - 검색어 전략(실측): **동 > 장소명 > 시군구** 순. 잠수교 기준 "반포동 맛집"은 상위 5곳이 모두 1.3km 내였지만 "용산구 맛집"은 0곳, "잠수교 맛집"은 5km 밖 성수동이 나왔다. TourAPI 주소 괄호(`(반포동)`)에서 동을 뽑고, 없으면 경유지 이름, 그것도 없으면 시군구.
   - 정렬은 verified만 앞에 세우고 나머지는 거리순(트렌드를 무조건 위에 두면 더 가까운 가게가 밀려남).
-- 키 5개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`, `NaverClientId→NAVER_CLIENT_ID`, `NaverClientSecret→NAVER_CLIENT_SECRET`(네이버는 선택 — 비어도 배포는 진행, CI가 warning만). Odii 활용신청 후 `TourAudioEnabled=true`도 배포 파라미터에 넣는다. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
+- 키 5개는 SAM 파라미터(NoEcho) → Lambda 환경변수로 주입(깃 미포함): `TourApiKey→TOUR_API_KEY`, `TmapAppKey→TMAP_APP_KEY`, `GoogleMapsApiKey→GOOGLE_MAPS_API_KEY`, `NaverClientId→NAVER_CLIENT_ID`, `NaverClientSecret→NAVER_CLIENT_SECRET`(네이버는 선택 — 비어도 배포는 진행, CI가 warning만). Apple 폐기용 3종도 선택: `AppleTeamId→AUTH_APPLE_TEAM_ID`, `AppleKeyId→AUTH_APPLE_KEY_ID`, `ApplePrivateKey→AUTH_APPLE_PRIVATE_KEY`(**.p8은 여러 줄 PEM이라 sam `--parameter-overrides`에 그대로 못 싣는다** — 워크플로가 BEGIN/END 줄과 줄바꿈을 걷어내 base64 한 줄로 넘기고, `AppleTokens.parseP8`은 한 줄·PEM·문자 `\n` 셋 다 받는다). Odii 활용신청 후 `TourAudioEnabled=true`도 배포 파라미터에 넣는다. TMAP·Google 키는 **내부 전용**(응답/로그 노출 금지, `lib/TmapClient`·`lib/ElevationClient`).
 
 ## 배포됨 — 인증/로그인 (2026-07-07 배포, 2026-08-19 라이브 재확인)
 - **이메일+카카오 인증 전체 구현·테스트 완료(34개 그린) 후 배포 완료.** UserPool(`app-users`, `ap-northeast-2_eaLSAOL0A`)·UserPoolClient(backend)·UsersTable(`app-users`, pk `userId`=sub) 모두 2026-07-07 12:48 생성됨.
@@ -52,7 +52,10 @@
 로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정. 테스트 65개 그린, 라이브 미검증.
 - **로그아웃** `POST /v1/auth/logout` — RevokeToken으로 refresh 토큰 폐기(발급된 access 토큰도 무효화). 이미 폐기된 토큰도 204. `EnableTokenRevocation`이 꺼지면 로그아웃이 조용히 무력화되므로 `UnsupportedTokenType`은 502로 드러낸다.
 - **자동로그인** — 기존 `/v1/auth/refresh`가 그대로 쓰인다. 서버 쪽은 ① `RefreshTokenValidity` 30일(기본)→**365일**, ② refresh 때도 프로필 `putIfAbsent` 호출(로그인 시 저장 실패를 자가복구). provider는 요청만 봐선 몰라서 username 접두사로 되짚는다(`CognitoAuth.providerOfUsername`).
-- **탈퇴** `DELETE /v1/users/me` — **프로필 행 → Cognito 계정 순서.** 행 삭제가 멱등이라 Cognito 삭제 실패 시 같은 요청 재시도가 통한다. 역순이면 재시도가 UserNotFound로 끊겨 남은 행을 치울 길이 없다. 발급된 access 토큰은 만료(1h)까지 유효 — 앱도 로컬 토큰을 지울 것.
+- **탈퇴** `DELETE /v1/users/me` — **Apple 토큰 폐기 → 프로필 행 → Cognito 계정 순서.** 행 삭제가 멱등이라 Cognito 삭제 실패 시 같은 요청 재시도가 통한다. 역순이면 재시도가 UserNotFound로 끊겨 남은 행을 치울 길이 없다. 발급된 access 토큰은 만료(1h)까지 유효 — 앱도 로컬 토큰을 지울 것.
+- **Apple 토큰 폐기**(App Store 심사 5.1.1(v)) — 폐기에 필요한 Apple refresh 토큰은 `authorizationCode`로만 얻는데 코드가 **5분·1회용**이라 탈퇴 때까지 못 들고 있는다 → `POST /v1/auth/apple`의 **선택 필드 `authorizationCode`**를 받아 그 자리에서 교환해 users 행 `appleRefreshToken`에 넣어 두고, 탈퇴 때 `auth/revoke`로 폐기한다(`lib/AppleTokens`). **DELETE 요청 바디는 그대로 없음** — 앱은 로그인에만 필드를 추가하면 된다. 폐기가 맨 앞인 이유: 토큰이 프로필 행에 있어 행을 지우면 못 읽고, 뒤에 두면 Cognito 삭제 실패 후 재시도에서 영영 폐기 못 한다. 저장된 토큰이 없으면 no-op이라 username 접두사 분기가 필요 없다. 교환·폐기 실패는 전부 로그만 남기고 로그인/탈퇴를 막지 않는다.
+  ⚠️ 함정: client_secret은 .p8로 서명한 **ES256 JWT**인데 JOSE는 서명을 R‖S 원시 64바이트로 요구한다. 기본 `SHA256withECDSA`는 DER을 뱉어 Apple이 `invalid_client`로 거절한다 → **`SHA256withECDSAinP1363Format`**(JDK 9+)을 쓰면 변환 없이 JOSE 형식이다.
+  ⚠️ `client_id`는 **번들 ID `com.mega.dali`**(네이티브 앱은 Services ID가 아님) — identityToken 검증의 `aud`와 같은 값이라 `auth.apple.audience` 설정 하나를 공유한다.
 - **비밀번호 찾기** `POST /v1/auth/forgot-password` → `/reset-password`. 카카오 사용자는 username이 `kakao_*`라 이메일로 조회되지 않아 자동으로 UserNotFound → 204. **provider 분기 불필요**(예전 메모 정정). 미확인 계정은 403 `user_not_confirmed`.
 - **확인코드 재발송** `POST /v1/auth/resend-code` — 없는 계정 204(누설 금지), 이미 확인된 계정 400 `already_confirmed`, 한도 초과 429.
 - **프로필 수정** `PATCH /v1/users/me` (닉네임, ≤20자) — Cognito 속성 → UsersTable 순서. 행이 없으면 404지만 Cognito는 이미 바뀌어 다음 로그인에 새 닉네임으로 생성됨. `UserStore.updateNickname`은 putIfAbsent와 달리 **실패를 삼키지 않는다**(명시적 변경이 조용히 사라지면 안 됨).
@@ -63,7 +66,7 @@
 ## CI/CD (GitHub Actions)
 - `.github/workflows/deploy.yml` — **main 푸시 → 테스트 → `sam deploy` → 스모크 테스트**. PR은 빌드/테스트만(AWS 미접근), 문서만 바뀌면 아예 안 돎(`paths-ignore`, 비공개 저장소라 Actions 분이 과금 대상 — 무료 2,000분/월).
 - 인증은 **OIDC**(액세스 키 없음). 역할은 `infra/github-oidc.yaml`로 생성 — `github-actions-tour-api-deploy`, 신뢰 조건은 `repo:squarekimbap/backend:ref:refs/heads/main` 하나뿐. 권한은 PowerUserAccess + `tour-api-*` 역할 IAM 쓰기(PowerUser는 IAM을 막아서 SAM의 Lambda 실행 역할 생성이 실패함).
-- GitHub Secrets 4개: `AWS_DEPLOY_ROLE_ARN`, `TOUR_API_KEY`, `TMAP_APP_KEY`, `GOOGLE_MAPS_API_KEY`.
+- GitHub Secrets 4개(필수): `AWS_DEPLOY_ROLE_ARN`, `TOUR_API_KEY`, `TMAP_APP_KEY`, `GOOGLE_MAPS_API_KEY`. 선택: `NAVER_CLIENT_ID`/`NAVER_CLIENT_SECRET`, `APPLE_TEAM_ID`/`APPLE_KEY_ID`/`APPLE_PRIVATE_KEY`(.p8 원문 그대로 붙여넣기 — 워크플로가 한 줄로 정리한다). 없으면 해당 기능만 꺼진 채 배포된다.
 - **함정 방어**: `template.yaml`의 키 파라미터에 `Default: ""`가 있어 `--parameter-overrides` 없이 배포하면 **운영 키가 빈값으로 덮어써진다**. 워크플로가 배포 전 시크릿 공백을 검사하고, 배포 후 `/v1/tour/places` 200 · 무토큰 `/v1/users/me` 401을 실제로 호출해 확인한다.
 - 나중에 GitHub Environment(승인 게이트)를 붙이면 OIDC `sub`가 `repo:...:environment:<이름>`으로 바뀌므로 `infra/github-oidc.yaml`의 신뢰 조건도 같이 고칠 것.
 

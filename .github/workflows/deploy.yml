@@ -97,6 +97,10 @@ jobs:
           # 네이버는 선택 — 비어 있으면 주변 맛집 교차검증만 꺼진 채 배포된다(배포 중단 아님)
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          # Apple 3종도 선택 — 비어 있으면 탈퇴 시 Apple 토큰 폐기만 꺼진다(심사 5.1.1(v) 미충족)
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          APPLE_PRIVATE_KEY: ${{ secrets.APPLE_PRIVATE_KEY }}
         run: |
           # 선택 파라미터는 값이 있을 때만 넣는다. 빈 문자열을 그대로 넘기면
           # sam 이 "NaverClientId= is not a valid format" 으로 배포 자체를 거부한다.
@@ -109,6 +113,15 @@ jobs:
             PARAMS+=(NaverClientId="$NAVER_CLIENT_ID" NaverClientSecret="$NAVER_CLIENT_SECRET")
           else
             echo "::warning::NAVER_CLIENT_ID/SECRET 미설정 — 주변 맛집은 TourAPI 결과만 사용됨"
+          fi
+          if [ -n "$APPLE_TEAM_ID" ] && [ -n "$APPLE_KEY_ID" ] && [ -n "$APPLE_PRIVATE_KEY" ]; then
+            # .p8은 여러 줄 PEM이라 그대로는 --parameter-overrides 에 못 싣는다.
+            # BEGIN/END 줄과 공백을 걷어내 base64 한 줄로 만든다(서버가 그 형태를 그대로 파싱).
+            APPLE_KEY_FLAT=$(printf '%s' "$APPLE_PRIVATE_KEY" | grep -v -- '-----' | tr -d '\n\r ')
+            PARAMS+=(AppleTeamId="$APPLE_TEAM_ID" AppleKeyId="$APPLE_KEY_ID"
+                     ApplePrivateKey="$APPLE_KEY_FLAT")
+          else
+            echo "::warning::APPLE_TEAM_ID/KEY_ID/PRIVATE_KEY 미설정 — 탈퇴 시 Apple 토큰 폐기 안 됨(심사 5.1.1(v))"
           fi
           sam deploy \
             --template-file template.yaml \

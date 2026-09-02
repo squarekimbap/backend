@@ -1,5 +1,6 @@
 package com.tourapi.services;
 
+import com.tourapi.lib.AppleTokens;
 import com.tourapi.lib.CognitoAuth;
 import com.tourapi.lib.UserStore;
 import com.tourapi.model.UserProfile;
@@ -16,17 +17,25 @@ public class UserService {
     @Inject
     CognitoAuth cognito;
 
+    @Inject
+    AppleTokens appleTokens;
+
     /** 프로필 조회. 없으면 null. */
     public UserProfile find(String userId) {
         return userStore.get(userId);
     }
 
     /**
-     * 탈퇴. 프로필 행(개인정보) → Cognito 계정 순서.
+     * 탈퇴. Apple 토큰 폐기 → 프로필 행(개인정보) → Cognito 계정 순서.
      * 행 삭제가 멱등이라 Cognito 삭제가 실패해도 같은 요청을 그대로 재시도할 수 있다.
      * 역순으로 하면 재시도가 UserNotFound로 끊겨 남은 행을 치울 길이 없어진다.
+     *
+     * <p>Apple 폐기(심사 5.1.1(v))가 맨 앞인 이유: 토큰이 프로필 행에 있어서 행을 지우면 못 읽고,
+     * 뒤에 두면 Cognito 삭제가 실패한 재시도에서 이미 행이 없어 영영 폐기하지 못한다.
+     * 저장된 토큰이 없으면(=다른 로그인 수단) no-op이라 username 접두사를 볼 필요가 없다.
      */
     public void delete(String username, String userId) {
+        appleTokens.revoke(userStore.appleRefreshToken(userId));
         userStore.delete(userId);
         cognito.deleteUser(username);
     }

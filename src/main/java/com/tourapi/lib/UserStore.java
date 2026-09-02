@@ -56,6 +56,45 @@ public class UserStore {
         }
     }
 
+    /**
+     * Apple refresh 토큰 보관(탈퇴 시 폐기용 — 심사 5.1.1(v)). 로그인마다 최신 값으로 덮는다.
+     * 내부 전용이라 UserProfile에는 넣지 않는다 — /users/me 응답에 실려 나가면 안 된다.
+     * 저장 실패는 삼킨다: 부가 작업이 로그인을 죽이면 안 되고 다음 로그인이 다시 시도한다.
+     */
+    public void putAppleRefreshToken(String userId, String token) {
+        if (!enabled()) {
+            return;
+        }
+        try {
+            client().updateItem(b -> b.tableName(tableOpt.orElseThrow())
+                    .key(Map.of("userId", AttributeValue.fromS(userId)))
+                    .updateExpression("SET appleRefreshToken = :t")
+                    .expressionAttributeValues(Map.of(":t", AttributeValue.fromS(token)))
+                    .conditionExpression("attribute_exists(userId)"));
+        } catch (ConditionalCheckFailedException e) {
+            // 프로필 행이 아직 없음(putIfAbsent도 실패) — 다음 로그인에 다시 저장된다
+        } catch (Exception e) {
+            LOG.warnf("Apple 토큰 저장 실패(무시): %s", e.toString());
+        }
+    }
+
+    /** 폐기할 Apple refresh 토큰. 없으면 null(다른 로그인 수단이거나 저장 실패 — 둘 다 정상 흐름). */
+    public String appleRefreshToken(String userId) {
+        if (!enabled()) {
+            return null;
+        }
+        try {
+            GetItemResponse res = client().getItem(b -> b.tableName(tableOpt.orElseThrow())
+                    .key(Map.of("userId", AttributeValue.fromS(userId)))
+                    .projectionExpression("appleRefreshToken"));
+            return res.hasItem() && res.item().containsKey("appleRefreshToken")
+                    ? res.item().get("appleRefreshToken").s() : null;
+        } catch (Exception e) {
+            LOG.warnf("Apple 토큰 조회 실패: %s", e.toString());
+            return null;
+        }
+    }
+
     /** 프로필 삭제(탈퇴). 없는 행을 지워도 성공 — 재시도 안전. 실패는 위로 던진다. */
     public void delete(String userId) {
         if (!enabled()) {

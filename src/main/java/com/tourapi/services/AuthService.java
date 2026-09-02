@@ -1,6 +1,7 @@
 package com.tourapi.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.tourapi.lib.AppleTokens;
 import com.tourapi.lib.AppleVerifier;
 import com.tourapi.lib.CognitoAuth;
 import com.tourapi.lib.KakaoVerifier;
@@ -30,6 +31,9 @@ public class AuthService {
 
     @Inject
     AppleVerifier appleVerifier;
+
+    @Inject
+    AppleTokens appleTokens;
 
     public void signup(String email, String password, String nickname) {
         cognito.signUp(email, password, nickname);
@@ -95,7 +99,7 @@ public class AuthService {
      * Apple 브릿지: identityToken 검증 → apple_<sub> 사용자 확보 → 비밀번호 회전 로그인.
      * 이름은 첫 로그인에만 오므로 없으면 기본 닉네임으로 만든다. 카카오와 같은 경합 재시도 1회.
      */
-    public TokenResponse appleLogin(String identityToken, String fullName) {
+    public TokenResponse appleLogin(String identityToken, String fullName, String authorizationCode) {
         AppleVerifier.AppleUser au = appleVerifier.verify(identityToken);
         String nickname = fullName == null || fullName.isBlank() ? "러너" : fullName.trim();
         String username = cognito.ensureAppleUser(au.sub(), nickname, au.email());
@@ -105,8 +109,25 @@ public class AuthService {
         } catch (NotAuthorizedException e) {
             r = cognito.rotatePasswordAndLogin(username);
         }
-        upsertFromIdToken(r, "apple");
+        JsonNode claims = TokenPayload.payload(r.idToken());
+        upsert(claims, "apple");
+        rememberAppleRefreshToken(claims.path("sub").asText(""), authorizationCode);
         return toResponse(r);
+    }
+
+    /**
+     * 탈퇴 때 Apple 토큰을 폐기하려면(심사 5.1.1(v)) Apple refresh 토큰이 필요한데,
+     * authorizationCode는 5분·1회용이라 지금 교환해 둬야 한다. 코드가 없거나 교환이 실패하면
+     * 조용히 넘어간다 — 로그인은 그대로 성공하고 다음 로그인이 다시 시도한다.
+     */
+    private void rememberAppleRefreshToken(String userId, String authorizationCode) {
+        if (userId.isBlank()) {
+            return;
+        }
+        String refreshToken = appleTokens.exchangeCode(authorizationCode);
+        if (refreshToken != null) {
+            userStore.putAppleRefreshToken(userId, refreshToken);
+        }
     }
 
     /**
