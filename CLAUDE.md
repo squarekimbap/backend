@@ -48,8 +48,10 @@
 - 프로필: 로그인 성공 시 idToken 클레임(sub/email/nickname)으로 UsersTable에 **putIfAbsent**(조건식 `attribute_not_exists` — 재로그인이 닉네임 안 덮음). 저장 실패는 로그인에 영향 없음(RankingCache 폴백 철학). env `USERS_TABLE`/`USER_POOL_ID`/`USER_POOL_CLIENT_ID`는 코드에서 `Optional<String>` 주입.
 - **이메일 없는 소셜 사용자 경로 검증됨**(2026-09-02): 실 UserPool에 `AdminCreateUser`(nickname만, SUPPRESS) → `AdminSetUserPassword --permanent` → `ADMIN_USER_PASSWORD_AUTH`까지 돌려 **RefreshToken 포함 토큰 3종**을 받고 테스트 사용자를 지웠다. 카카오 이메일은 선택 동의라 안 와도 되고, 풀 스키마도 email을 필수로 잡지 않는다. `/apple`·`/kakao`가 이 흐름을 그대로 쓰므로 **소셜 로그인 응답에는 refreshToken이 항상 있다**.
   ⚠️ 단 `/v1/auth/refresh`는 refreshToken이 **null**이다(Cognito가 재발급 안 함) — 앱이 "refreshToken 없으면 실패"로 처리하면 자동로그인이 전부 깨진다. 그 규칙은 로그인 응답에만 적용할 것.
-- **카카오 app_id 검사는 opt-in**: `auth.kakao.app-id`에 앱 ID(숫자, 비밀 아님)를 적으면 다른 앱 토큰을 401로 막는다. 미설정이 기본 — `app_id`는 `/v2/user/me`에 **없고** `/v1/user/access_token_info`에만 있어서 켜면 카카오 콜이 1회 늘기 때문. 회원번호는 앱마다 다르게 발급돼 남의 계정 탈취는 아니지만, 검사 없이는 아무 앱 토큰으로나 가입된다.
-- 남은 실검증: 실제 카카오 앱 토큰으로 `/v1/auth/kakao` 왕복(앱에 네이티브 키가 아직 안 들어감).
+- **카카오 app_id 검사 켜짐**(2026-09-02): `auth.kakao.app-id=1436970` — 이 앱에서 발급된 토큰만 로그인되고 나머지는 401. `app_id`는 `/v2/user/me`에 **없고** `/v1/user/access_token_info`에만 있어서 카카오 콜이 1회 는다(그래서 옵션으로 뒀고, 줄을 지우면 검사가 꺼진다). 회원번호는 앱마다 다르게 발급돼 검사 없이도 남의 계정 탈취는 아니지만, 없으면 아무 앱 토큰으로나 가입된다.
+  ⚠️ 네이티브 앱 키·REST API 키는 **서버가 쓰지 않는다** — 앱이 준 액세스 토큰만 검증하므로 저장할 이유가 없다. 앱 ID만 필요하고 그건 비밀이 아니다.
+  ⚠️ 이 검사를 켜기 전에 만들어진 kakao 사용자 2명(8/25, 8/28)이 다른 앱 토큰에서 왔다면 재로그인이 막힌다. 회원번호가 앱마다 달라 어차피 새 계정이 생기던 상태라 실사용자면 확인할 것.
+- 남은 실검증: 실제 카카오 앱 토큰으로 `/v1/auth/kakao` 왕복(앱에 네이티브 키가 아직 안 들어감). app_id 검사가 켜졌으니 첫 시도에서 401이 나면 `auth.kakao.app-id` 값부터 의심할 것.
 
 ## 계정 수명주기 (2026-08-23 구현, **배포됨**)
 로그아웃·자동로그인·탈퇴·비밀번호 찾기·확인코드 재발송·프로필 수정 + Apple 토큰 폐기(2026-09-02 배포).
