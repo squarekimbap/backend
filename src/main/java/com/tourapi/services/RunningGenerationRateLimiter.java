@@ -47,6 +47,15 @@ public class RunningGenerationRateLimiter {
     Clock clock = Clock.systemUTC();
 
     /**
+     * 그 사용자의 KST 오늘치 쿼터 키. 관리 화면이 남은 횟수를 읽거나 초기화할 때 같은 키를
+     * 써야 하므로 여기 한 군데서만 만든다.
+     */
+    public static String dailyQuotaKey(String userId, Instant at) {
+        return "quota#running-generation#" + userId + "#"
+                + DAY_KEY.format(at.atZone(KST).toLocalDate());
+    }
+
+    /**
      * 먼저 짧은 시간의 재시도 폭주를 막고, 통과한 요청만 KST 날짜별 사용권을 예약한다.
      * 정상 응답이면 예약을 확정하고, 외부 API/서버 오류면 {@link #refund(Reservation)}로 돌려준다.
      */
@@ -55,7 +64,7 @@ public class RunningGenerationRateLimiter {
      * 같은 키라도 요청 내용이 다르면 별도 생성으로 계산한다.
      */
     public Reservation acquire(String userId, String idempotencyKey, String requestFingerprint) {
-        int dailyLimit = settings.dailyLimit();
+        int dailyLimit = settings.dailyLimitFor(userId);
         int limitPerMinute = settings.perMinuteLimit();
         Instant now = clock.instant();
         if (userId == null || userId.isBlank()) {
@@ -91,8 +100,7 @@ public class RunningGenerationRateLimiter {
         // 날짜가 키에 포함돼 자정에 즉시 새 카운터로 넘어간다. TTL은 DynamoDB의 지연 삭제를
         // 고려해 하루 더 보관한 뒤 청소하는 용도일 뿐, 초기화 시각을 결정하지 않는다.
         Duration storageTtl = Duration.ofSeconds(retryAfter).plusDays(1);
-        String dailyKey = "quota#running-generation#" + userId + "#"
-                + DAY_KEY.format(kstNow.toLocalDate());
+        String dailyKey = dailyQuotaKey(userId, now);
         // 같은 멱등 요청은 KST 자정을 넘어 재시도해도 같은 원장을 찾아야 한다.
         // 날짜는 사용량 쿼터에만 포함하고 실행 원장은 사용자+요청 지문으로 고정한다.
         String ledgerKey = "generation#" + userId + "#" + reservationId;

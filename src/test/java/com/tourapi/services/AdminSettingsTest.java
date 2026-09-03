@@ -2,6 +2,7 @@ package com.tourapi.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tourapi.lib.AdminStore;
+import com.tourapi.lib.UserStore;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -29,6 +30,9 @@ public class AdminSettingsTest {
     @InjectMock
     AdminStore store;
 
+    @InjectMock
+    UserStore users;
+
     @Inject
     AdminSettings settings;
 
@@ -39,6 +43,22 @@ public class AdminSettingsTest {
     @BeforeEach
     void 기억한_값_비우기() {   // ApplicationScoped 라 테스트끼리 메모가 샌다
         settings.invalidate();
+    }
+
+    @Test
+    public void 사용자별_한도가_있으면_그걸_먼저_쓴다() throws Exception {
+        saved("{\"dailyLimit\":3}");
+        when(users.dailyLimit("vip")).thenReturn(20);
+        when(users.dailyLimit("normal")).thenReturn(null);
+        assertEquals(20, settings.dailyLimitFor("vip"));
+        assertEquals(3, settings.dailyLimitFor("normal"));
+    }
+
+    @Test
+    public void 사용자별_한도가_범위_밖이면_전체값으로_돌아간다() throws Exception {
+        saved(null);
+        when(users.dailyLimit("broken")).thenReturn(0);
+        assertEquals(3, settings.dailyLimitFor("broken"));
     }
 
     @Test

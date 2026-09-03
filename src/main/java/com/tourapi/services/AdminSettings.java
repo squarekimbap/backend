@@ -28,7 +28,7 @@ public class AdminSettings {
     private static final Duration MEMO = Duration.ofSeconds(60);
     static final String KEY = "settings";
     /** 실수로 0이나 터무니없는 값을 넣어 서비스를 막거나 비용이 새지 않게 둔다. */
-    static final int MAX_DAILY = 100;
+    public static final int MAX_DAILY = 100;
     static final int MAX_PER_MINUTE = 60;
 
     @ConfigProperty(name = "running.generation.daily-limit", defaultValue = "3")
@@ -40,11 +40,23 @@ public class AdminSettings {
     @Inject
     AdminStore store;
 
+    @Inject
+    com.tourapi.lib.UserStore userStore;
+
     private volatile JsonNode memo;
     private volatile long memoUntil;
 
     public int dailyLimit() {
         return read("dailyLimit", configuredDaily, MAX_DAILY);
+    }
+
+    /**
+     * 이 사용자에게 적용할 하루 한도. 사용자 행에 따로 정해둔 값이 있으면 그걸 쓰고,
+     * 없으면 전체 기본값. 사용자 조회가 실패해도 기본값으로 돌아가 생성이 막히지 않는다.
+     */
+    public int dailyLimitFor(String userId) {
+        Integer own = userStore.dailyLimit(userId);
+        return own != null && own >= 1 && own <= MAX_DAILY ? own : dailyLimit();
     }
 
     public int perMinuteLimit() {

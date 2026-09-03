@@ -2,11 +2,13 @@ package com.tourapi.routes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.tourapi.lib.CognitoAuth;
+import com.tourapi.lib.RankingCache;
 import com.tourapi.lib.UserStore;
 import com.tourapi.services.AdminSettings;
 import com.tourapi.services.CourseCatalog;
 import com.tourapi.services.CourseOverrides;
 import com.tourapi.services.CourseReview;
+import com.tourapi.services.RunningGenerationRateLimiter;
 import com.tourapi.model.ApiError;
 import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
@@ -28,6 +30,10 @@ import org.jboss.logging.Logger;
 import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UserNotFoundException;
 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -70,6 +76,9 @@ public class AdminResource {
 
     @Inject
     CognitoAuth cognito;
+
+    @Inject
+    RankingCache cache;
 
     // ── 코스 검수 ────────────────────────────────────────────────────
 
@@ -175,15 +184,84 @@ public class AdminResource {
 
     // ── 가입자 ───────────────────────────────────────────────────────
 
+    /**
+     * 가입자 목록. users 테이블에 있는 속성을 그대로 다 내보내고(Apple 폐기 토큰 값만 제외),
+     * 오늘 코스 생성을 몇 번 썼고 몇 번 남았는지 붙인다.
+     *
+     * <p>ponytail: 사용자마다 쿼터 항목을 하나씩 읽는다. 가입자가 수백 명을 넘으면 느려지므로
+     * 그때는 목록에서 빼고 상세에서만 읽으면 된다.
+     */
     @GET
     @Path("/users")
-    @Operation(summary = "가입자 목록 (Apple 폐기 토큰 값은 내보내지 않는다)")
+    @Operation(summary = "가입자 목록 — DB 속성 전체 + 오늘 남은 코스 생성 횟수")
     public Response users() {
         Response denied = denyUnlessAdmin();
         if (denied != null) {
             return denied;
         }
-        return Response.ok(Map.of("users", userStore.listAll())).build();
+        int fallback = adminSettings.dailyLimit();
+        Instant now = Instant.now();
+        List<Map<String, Object>> out = new ArrayList<>();
+        for (Map<String, String> row : userStore.listAll()) {
+            Map<String, Object> u = new LinkedHashMap<>(row);
+            String userId = row.get("userId");
+            String own = row.get("dailyLimit");        // 이 사용자만의 한도(없을 수 있다)
+            int limit = own == null ? fallback : Integer.parseInt(own);
+            int used = cache.generationUsed(
+                    RunningGenerationRateLimiter.dailyQuotaKey(userId, now));
+            u.put("effectiveDailyLimit", limit);
+            u.put("usesToday", used);                  // -1 = 알 수 없음(저장소 장애)
+            u.put("remainingToday", used < 0 ? null : Math.max(0, limit - used));
+            out.add(u);
+        }
+        return Response.ok(Map.of("users", out, "defaultDailyLimit", fallback)).build();
+    }
+
+    @PUT
+    @Path("/users/{userId}/limit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "이 사용자만의 하루 생성 한도. null이면 전체 기본값으로 되돌린다")
+    public Response setUserLimit(@PathParam("userId") String userId, LimitRequest req) {
+        Response denied = denyUnlessAdmin();
+        if (denied != null) {
+            return denied;
+        }
+        Integer limit = req == null ? null : req.dailyLimit();
+        if (limit != null && (limit < 1 || limit > AdminSettings.MAX_DAILY)) {
+            return error(400, "bad_request", "1 이상 " + AdminSettings.MAX_DAILY + " 이하여야 한다");
+        }
+        try {
+            userStore.setDailyLimit(userId, limit);
+        } catch (IllegalArgumentException e) {
+            return error(404, "not_found", e.getMessage());
+        } catch (IllegalStateException e) {
+            LOG.warnf("사용자 한도 저장 실패: %s", e.toString());
+            return error(502, "upstream_error", "저장 실패 — 다시 시도해라");
+        }
+        LOG.infof("사용자 한도 변경: %s → %s (요청자 %s)", userId, limit, email());
+        return users();
+    }
+
+    @DELETE
+    @Path("/users/{userId}/quota")
+    @Operation(summary = "오늘 쓴 횟수를 0으로 되돌린다 (한도는 그대로)")
+    public Response resetQuota(@PathParam("userId") String userId) {
+        Response denied = denyUnlessAdmin();
+        if (denied != null) {
+            return denied;
+        }
+        try {
+            cache.resetGeneration(RunningGenerationRateLimiter.dailyQuotaKey(userId, Instant.now()));
+        } catch (IllegalStateException e) {
+            LOG.warnf("사용량 초기화 실패: %s", e.toString());
+            return error(502, "upstream_error", "초기화 실패 — 다시 시도해라");
+        }
+        LOG.infof("사용량 초기화: %s (요청자 %s)", userId, email());
+        return users();
+    }
+
+    /** null이면 사용자별 한도를 없애 전체 기본값을 따르게 한다. */
+    public record LimitRequest(Integer dailyLimit) {
     }
 
     /**

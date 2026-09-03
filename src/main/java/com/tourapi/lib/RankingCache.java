@@ -647,6 +647,37 @@ public class RankingCache {
         return value == null ? null : value.s();
     }
 
+    /** 사용량을 알 수 없음(저장소 장애). 0과 구분해야 화면이 "0회 썼다"고 거짓말하지 않는다. */
+    public static final int USED_UNKNOWN = -1;
+
+    /** 오늘 이 사용자가 코스 생성을 몇 번 썼는지. 항목이 없으면 0, 조회 실패면 {@link #USED_UNKNOWN}. */
+    public int generationUsed(String quotaKey) {
+        if (!enabled()) {
+            return USED_UNKNOWN;
+        }
+        try {
+            GetItemResponse res = client().getItem(b -> b.tableName(table())
+                    .key(Map.of("pk", AttributeValue.fromS(quotaKey))));
+            return res.hasItem() ? (int) numberValue(res.item(), "hits", 0) : 0;
+        } catch (Exception e) {
+            LOG.warnf("사용량 조회 실패: %s", e.toString());
+            return USED_UNKNOWN;
+        }
+    }
+
+    /** 오늘 사용량을 지워 쿼터를 되돌린다(관리자 조치). 실패는 던진다 — 조용히 넘어가면 안 된다. */
+    public void resetGeneration(String quotaKey) {
+        if (!enabled()) {
+            throw new IllegalStateException("캐시 테이블이 꺼져 있다");
+        }
+        try {
+            client().deleteItem(b -> b.tableName(table())
+                    .key(Map.of("pk", AttributeValue.fromS(quotaKey))));
+        } catch (Exception e) {
+            throw new IllegalStateException("사용량 초기화 실패: " + e, e);
+        }
+    }
+
     private static long numberValue(Map<String, AttributeValue> item, String key, long fallback) {
         AttributeValue value = item.get(key);
         if (value == null || value.n() == null) {

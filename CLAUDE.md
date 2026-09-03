@@ -82,6 +82,9 @@ Cognito 계정도 함께 사라졌다. 키는 `R2V626HA7Y`("Dali Sign in with Ap
   ⚠️ 시크릿만 바꾸면 배포가 안 돈다 — 빈 커밋은 `paths-ignore`에 걸려 스킵된다. `gh workflow run deploy.yml --repo squarekimbap/backend --ref main`으로 수동 실행할 것.
 - **저장소는 캐시 테이블에 얹었다**(`lib/AdminStore`, pk 접두사 `admin#`). **ttl 속성을 안 넣어 만료되지 않는다.** 새 테이블을 만들면 provisioned 합계가 always-free 25/25를 넘어 과금되기 때문. 캐시와 달리 **쓰기 실패는 던진다**(관리자가 누른 저장이 조용히 사라지면 안 됨).
 - **코스 생성 제한을 화면에서 조절**(`services/AdminSettings`): 하루 N회·분당 N회. 저장값이 없으면 배포 설정값, 저장소 장애 시에도 설정값으로 폴백(제한을 못 읽었다고 서비스를 막지 않는다). 1~100/1~60 범위 밖은 거절. `RunningGenerationRateLimiter`가 요청마다 여기서 읽는다(60초 메모).
+- **사용자별 한도와 남은 횟수**: users 행의 `dailyLimit`(숫자)이 있으면 그 사용자만 그 값을 쓰고, 없으면 전체 기본값(`AdminSettings.dailyLimitFor`). 오늘 쓴 횟수는 쿼터 항목의 `hits`를 읽는다 — 키는 `RunningGenerationRateLimiter.dailyQuotaKey()` 한 군데서만 만든다(`quota#running-generation#<userId>#<KST yyyyMMdd>`). 가입자 화면은 users 테이블 속성을 **전부** 내보내고(Apple 폐기 토큰은 값 없이 존재 여부만) 행을 열면 한도 수정·오늘 사용량 초기화가 있다.
+  ⚠️ 한도를 올려도 오늘 이미 쓴 횟수는 그대로다 — 당장 풀어주려면 `DELETE /v1/admin/users/{id}/quota`로 사용량을 지워야 한다.
+  ponytail: 목록이 사용자마다 쿼터 항목을 하나씩 읽는다. 가입자가 수백을 넘으면 목록에서 빼고 상세에서만 읽을 것.
 - **코스 원고를 화면에서 수정**(`services/CourseOverrides`): 번들 JSON은 그대로 두고 **바뀐 필드만** 따로 저장해 읽을 때 덮는 오버레이 방식 — 코스를 DB로 옮기지 않으려고 이렇게 했다. 고칠 수 있는 건 앱이 보여주는 글과 사진뿐(`n·headline·subhead` 문자열, `body·deep·ops` 문단배열, `photo·photoTitle·photoLicense`). **경로·경유지·도슨트 좌표는 거절**한다(배포 게이트가 검증하고 앱의 100m 도슨트 트리거가 걸려 있음). 빈 값으로 저장하면 그 필드는 원본으로 되돌아간다.
   ⚠️ 메모가 60초라 저장 후 다른 Lambda 실행 환경에는 최대 1분 뒤 퍼진다.
 - 화면 파일은 **한 벌**(`src/main/resources/META-INF/resources/admin/index.html`)이고 세 모드로 돈다: 배포본(로그인+편집), `admin/serve.py`(로컬, `~/.aws` 사용, 편집 불가), `--export`(단일 파일, 가입자·편집 없음).

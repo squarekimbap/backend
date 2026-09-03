@@ -117,8 +117,15 @@ public class UserStore {
             for (var item : res.items()) {
                 var row = new HashMap<String, String>();
                 item.forEach((k, v) -> {
-                    if (!"appleRefreshToken".equals(k) && v.s() != null) {
-                        row.put(k, v.s());
+                    if ("appleRefreshToken".equals(k)) {
+                        return;                       // 값은 절대 내보내지 않는다
+                    }
+                    // 화면이 DB에 있는 걸 다 보여주므로 문자열·숫자·불리언을 모두 담는다
+                    String s = v.s() != null ? v.s()
+                            : v.n() != null ? v.n()
+                            : v.bool() != null ? String.valueOf(v.bool()) : null;
+                    if (s != null) {
+                        row.put(k, s);
                     }
                 });
                 row.put("hasAppleToken", String.valueOf(item.containsKey("appleRefreshToken")));
@@ -128,6 +135,51 @@ public class UserStore {
         } while (start != null);
         out.sort(java.util.Comparator.comparing(r -> r.getOrDefault("createdAt", "")));
         return out;
+    }
+
+    /**
+     * 이 사용자만의 하루 코스 생성 한도. 없으면 null(= 전체 기본값을 따른다).
+     * 조회 실패도 null — 한도를 못 읽었다고 생성을 막지 않는다.
+     */
+    public Integer dailyLimit(String userId) {
+        if (!enabled()) {
+            return null;
+        }
+        try {
+            GetItemResponse res = client().getItem(b -> b.tableName(tableOpt.orElseThrow())
+                    .key(Map.of("userId", AttributeValue.fromS(userId)))
+                    .projectionExpression("dailyLimit"));
+            AttributeValue v = res.hasItem() ? res.item().get("dailyLimit") : null;
+            return v == null || v.n() == null ? null : Integer.valueOf(v.n());
+        } catch (Exception e) {
+            LOG.warnf("사용자 한도 조회 실패(기본값 사용): %s", e.toString());
+            return null;
+        }
+    }
+
+    /** 사용자별 한도 설정. null이면 속성을 지워 전체 기본값으로 되돌린다. 실패는 던진다. */
+    public void setDailyLimit(String userId, Integer limit) {
+        if (!enabled()) {
+            throw new IllegalStateException("users 테이블이 꺼져 있다");
+        }
+        try {
+            client().updateItem(b -> {
+                b.tableName(tableOpt.orElseThrow())
+                        .key(Map.of("userId", AttributeValue.fromS(userId)))
+                        .conditionExpression("attribute_exists(userId)");
+                if (limit == null) {
+                    b.updateExpression("REMOVE dailyLimit");
+                } else {
+                    b.updateExpression("SET dailyLimit = :v")
+                            .expressionAttributeValues(
+                                    Map.of(":v", AttributeValue.fromN(limit.toString())));
+                }
+            });
+        } catch (ConditionalCheckFailedException e) {
+            throw new IllegalArgumentException("그런 사용자가 없다");
+        } catch (Exception e) {
+            throw new IllegalStateException("사용자 한도 저장 실패: " + e, e);
+        }
     }
 
     /** 프로필 삭제(탈퇴). 없는 행을 지워도 성공 — 재시도 안전. 실패는 위로 던진다. */
