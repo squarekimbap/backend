@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""배포 전에 편집 코스 64개의 API 계약과 경로 기하를 검증한다."""
+"""배포 전에 편집 코스 69개의 API 계약과 경로 기하를 검증한다."""
 
 from __future__ import annotations
 
@@ -55,8 +55,9 @@ def valid_coordinate(lat: object, lng: object) -> bool:
 
 def validate(courses: list[dict]) -> list[str]:
     errors: list[str] = []
-    if len(courses) != 64:
-        errors.append(f"전체 코스 수가 64가 아님: {len(courses)}")
+    # 코스를 늘리거나 줄일 때 이 숫자도 같이 고친다 — 병합 사고로 조용히 사라지는 걸 막는다
+    if len(courses) != 69:
+        errors.append(f"전체 코스 수가 69가 아님: {len(courses)}")
     ids = [course.get("id") for course in courses]
     if len(ids) != len(set(ids)):
         errors.append("코스 ID 중복")

@@ -3413,7 +3413,6 @@
       "lng": 127.2818,
       "audioSeconds": 178,
       "description": "희귀·특산식물전시온실은 수변 식물이 흐드러진 '청류지원'을 배경으로, 물잔에 띄운 나뭇잎을 형상화한 전시원입니다. 남부 지방에 분포하는 식물을 전시한 온실과 희귀 난이 전시된 온실로 2개의 온실로 구성되어 있습니다.   희귀·특산식물전시온실에서는 이름 그대로 우리나라에만 자생하는 특산식",
-      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21471.mp3",
       "audio": {
        "ko": {
         "name": "희귀·특산식물전시온실",
@@ -3427,7 +3426,8 @@
         "seconds": 97,
         "script": "The Rare and Endemic Plants Exhibition Greenhouse, set against the backdrop of Cheongnyujiwon where waterside plants grow in lush profusion, is designed in the shape of a leaf floating on a bowl of water. It is made up of two greenhouses: one displaying plants native to the southern regions, and one displaying rare orchids.  As its name suggests, the Rare and Endemic Plants Exhibition Greenhouse displays endemic plants that grow only in Korea, along with rare plants that are disappearing from their natural habitats. It is also the themed exhibition space that best fulfills one of an arboretum's core roles, the conservation of plant species. Here you can see plants such as the gulgeori tree and the Japanese holly fern, while the orchid greenhouse is planted with a wide range of orchids, including terrestrial orchids that root in the ground, epiphytic orchids that root on trees, the noble orchid, and the wind orchid.  The Rare and Endemic Plants Garden located in front of the greenhouse presents its collection across five zones, organized according to the growth characteristics of the plants. Korea is home to some 350 endemic plant species and around 570 rare plant species. The Sejong National Arboretum focuses on displaying endemic and rare plants found in the central temperate region and the southern regions, raising awareness of the importance of habitat conservation."
        }
-      }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21471.mp3"
      },
      {
       "id": "sejong-eung-bridge-2",
@@ -4575,7 +4575,6 @@
       "lng": 127.4783967,
       "audioSeconds": 31,
       "description": "‘문화도시 청주’를 이끌어 가고 있는 문화공간으로, 역동성이 넘치는 미술관이라는 평을 받고 있습니다. 최근 '스마트미술관'을 개관해 디지털 실감영상, VR체험, 디지털 아카이브 등을 경험할 수 있도록 했습니다. 문화예술에 대한 청주시민의 열망에 따라 청주시가 옛 KBS청주방송국 건물을 ",
-      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15745.mp3",
       "audio": {
        "ko": {
         "name": "청주시립미술관",
@@ -4595,7 +4594,8 @@
         "seconds": 34,
         "script": "‘文化都市チョンジュ’をリードする文化空間として、ダイナミズムあふれる美術館と評価されています。 最近は‘スマート美術館’がオープンし、デジタル実感映像、VR体験、デジタルアーカイブなどの体験ができるようになりました。 文化芸術に対するチョンジュ市民の熱望により、チョンジュ市が旧KBSチョンジュ放送局の建物をリノベーションし、2016年に開館しました。"
        }
-      }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15745.mp3"
      }
     ],
     "shape": "roundTrip"

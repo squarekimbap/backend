@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * 검수 계산. 실제 번들 64개를 그대로 쓴다 — 여기서 값이 어긋나면 화면이 잘못된 코스를
+ * 검수 계산. 실제 번들 69개를 그대로 쓴다 — 여기서 값이 어긋나면 화면이 잘못된 코스를
  * 짚거나, 반대로 잘못된 코스를 놓친다.
  *
  * <p>HTTP가 아니라 서비스로 부르는 이유: 전체 목록 응답이 커서 테스트 서버가 못 닫는다
@@ -43,9 +43,9 @@ public class CourseReviewTest {
     }
 
     @Test
-    public void 코스_64개에_sigil이_붙는다() {
+    public void 모든_코스에_sigil이_붙는다() {
         List<JsonNode> all = list(review.summaries());
-        assertEquals(64, all.size());
+        assertEquals(69, all.size());
         for (JsonNode c : all) {
             assertFalse(c.path("sigil").isEmpty(), c.path("id").asText() + ": sigil 비어 있음");
             assertTrue(c.path("sigil").size() <= CourseReview.SIGIL_POINTS);

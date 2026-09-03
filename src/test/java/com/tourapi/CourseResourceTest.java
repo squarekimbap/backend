@@ -34,8 +34,8 @@ public class CourseResourceTest {
     CourseResource courseResource;
 
     @Test
-    public void 카탈로그_전체_64개_로드() {
-        Assertions.assertEquals(64, catalog.list(null).size());
+    public void 카탈로그_전체_로드() {
+        Assertions.assertEquals(69, catalog.list(null).size());
         Assertions.assertNotNull(catalog.list(null).get(0).get("id"));
         Assertions.assertNotNull(catalog.list(null).get(0).get("headline"));
         Assertions.assertTrue(catalog.list(null).get(0).path("waypoints").isArray());
@@ -82,9 +82,10 @@ public class CourseResourceTest {
 
     @Test
     public void 확인되지_않은_구코스_id는_다른코스로_추측하지_않는다() {
+        // gyeongju-daereungwon 은 2026-09-03에 실제 코스로 추가돼 여기서 뺐다
         Assertions.assertNull(catalog.byId("seoul-nodeul"));
-        Assertions.assertNull(catalog.byId("gyeongju-daereungwon"));
         Assertions.assertNull(catalog.byId("jeju-seogwipo"));
+        Assertions.assertNull(catalog.byId("busan-gwangan-bridge"));
     }
 
     @Test

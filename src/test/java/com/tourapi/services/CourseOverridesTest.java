@@ -79,7 +79,7 @@ public class CourseOverridesTest {
     public void 수정이_없으면_원본을_그대로_돌려준다() throws Exception {
         stored(null, null);
         assertTrue(overrides.isEmpty());
-        assertEquals(64, catalog.list(null).size());
+        assertEquals(69, catalog.list(null).size());
     }
 
     @Test
@@ -92,6 +92,6 @@ public class CourseOverridesTest {
     @Test
     public void 저장소가_죽으면_번들_원본을_쓴다() { // 원고를 못 읽었다고 앱을 죽이지 않는다
         when(store.getAll(any())).thenThrow(new IllegalStateException("dynamo down"));
-        assertEquals(64, catalog.list(null).size());
+        assertEquals(69, catalog.list(null).size());
     }
 }
