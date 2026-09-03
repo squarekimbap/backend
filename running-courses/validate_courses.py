@@ -53,6 +53,16 @@ def valid_coordinate(lat: object, lng: object) -> bool:
             and -90 <= lat <= 90 and -180 <= lng <= 180)
 
 
+# 앱이 목록 배지와 필터를 이 값으로 만든다. 새 값을 하나 넣으면 그 코스 혼자 있는
+# 필터 칸이 생기므로, 코스를 추가할 때 어휘를 늘리려면 앱과 먼저 맞춘 뒤 여기에 더한다.
+LEVELS = {"쉬움", "보통", "어려움"}
+MOODS = {"평지", "풍경", "야경", "트레일", "일출", "업힐", "호수·강변", "문화유산", "숲길", "바다"}
+SCENES = {"coast", "river", "trail", "lake", "hill", "city"}
+TAGS = {"초보 추천", "바다", "야경", "호수·강변", "숲길", "여행 확장", "업힐", "거리 도전"}
+# 프로젝트 규칙: km당 상승고도 10m 이하=하, 25m 이하=중, 초과=상
+DIFFICULTY_BANDS = ((10.0, "하"), (25.0, "중"))
+
+
 def validate(courses: list[dict]) -> list[str]:
     errors: list[str] = []
     # 코스를 늘리거나 줄일 때 이 숫자도 같이 고친다 — 병합 사고로 조용히 사라지는 걸 막는다
@@ -93,6 +103,22 @@ def validate(courses: list[dict]) -> list[str]:
         distance_m = float(course.get("distanceM") or 0)
         if display_m <= 0 or abs(distance_m - display_m) > 100:
             errors.append(f"{course_id}: distanceM={distance_m:.0f}와 km={course.get('km')} 불일치")
+
+        for field, allowed in (("lv", LEVELS), ("mood", MOODS), ("scene", SCENES)):
+            value = course.get(field)
+            if value not in allowed:
+                errors.append(f"{course_id}: {field}={value!r}는 쓰지 않는 값이다 "
+                              f"(허용: {', '.join(sorted(allowed))})")
+        for tag in course.get("tags") or []:
+            if tag not in TAGS:
+                errors.append(f"{course_id}: tag {tag!r}는 쓰지 않는 값이다")
+
+        # 난이도는 고도에서 나온다. 손으로 적은 값이 실제 경로와 어긋나면 배지가 거짓말을 한다.
+        ascent_per_km = float(course.get("ascentPerKm") or 0)
+        expected = next((label for limit, label in DIFFICULTY_BANDS if ascent_per_km <= limit), "상")
+        if course.get("difficulty") != expected:
+            errors.append(f"{course_id}: ascentPerKm {ascent_per_km}면 difficulty는 "
+                          f"{expected}여야 하는데 {course.get('difficulty')!r}")
 
         poi = course.get("poi")
         if not isinstance(poi, list) or len(poi) < 2:

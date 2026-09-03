@@ -12927,14 +12927,14 @@
    "km": 5.1,
    "min": 31,
    "lv": "어려움",
-   "mood": "언덕",
-   "scene": "mountain",
+   "mood": "업힐",
+   "scene": "hill",
    "shape": "oneWay",
    "routeShape": "oneway",
    "src": "서울 한양도성 순성길 · 러너 후기",
    "tags": [
-    "언덕 훈련",
-    "도심·야경"
+    "업힐",
+    "야경"
    ],
    "headline": "남산 성곽길 5.1km",
    "subhead": "장충체육관에서 성벽을 따라 남산을 넘어 숭례문으로 내려온다.",
