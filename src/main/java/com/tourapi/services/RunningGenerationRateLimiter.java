@@ -34,11 +34,9 @@ public class RunningGenerationRateLimiter {
     @Inject
     ObjectMapper mapper;
 
-    @ConfigProperty(name = "running.generation.rate-limit-per-minute", defaultValue = "6")
-    int limitPerMinute;
-
-    @ConfigProperty(name = "running.generation.daily-limit", defaultValue = "3")
-    int dailyLimit;
+    /** 분·일 제한은 관리 화면에서 바꿀 수 있다. 저장된 값이 없으면 배포 설정값을 쓴다. */
+    @Inject
+    AdminSettings settings;
 
     @ConfigProperty(name = "running.generation.idempotency-lease-seconds", defaultValue = "30")
     long idempotencyLeaseSeconds;
@@ -57,6 +55,8 @@ public class RunningGenerationRateLimiter {
      * 같은 키라도 요청 내용이 다르면 별도 생성으로 계산한다.
      */
     public Reservation acquire(String userId, String idempotencyKey, String requestFingerprint) {
+        int dailyLimit = settings.dailyLimit();
+        int limitPerMinute = settings.perMinuteLimit();
         Instant now = clock.instant();
         if (userId == null || userId.isBlank()) {
             return Reservation.limited(Scope.MINUTE, limitPerMinute, 60,

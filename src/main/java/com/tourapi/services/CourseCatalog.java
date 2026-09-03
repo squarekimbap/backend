@@ -46,6 +46,9 @@ public class CourseCatalog {
     @Inject
     ObjectMapper mapper;
 
+    @Inject
+    CourseOverrides overrides;
+
     /** 공유 기능용 코스 url 베이스(응답의 url = base + /v1/courses/{id}). */
     @ConfigProperty(name = "course.share-base-url", defaultValue = "")
     String shareBaseUrl;
@@ -107,31 +110,42 @@ public class CourseCatalog {
         }
     }
 
-    /** 요약 목록. city(도시명 또는 cityId)로 필터, null이면 전체. */
+    /**
+     * 요약 목록. city(도시명 또는 cityId)로 필터, null이면 전체.
+     * 관리자가 고친 원고가 있으면 덮어서 내려간다 — 수정이 하나도 없으면 원본을 그대로 쓴다.
+     */
     public ArrayNode list(String city) {
-        if (city == null || city.isBlank()) {
+        boolean all = city == null || city.isBlank();
+        if (all && overrides.isEmpty()) {
             return summaries;
         }
-        String q = city.trim();
+        String q = all ? null : city.trim();
         ArrayNode out = mapper.createArrayNode();
         for (JsonNode s : summaries) {
-            if (q.equals(s.path("city").asText()) || q.equalsIgnoreCase(s.path("cityId").asText())) {
-                out.add(s);
+            if (all || q.equals(s.path("city").asText())
+                    || q.equalsIgnoreCase(s.path("cityId").asText())) {
+                out.add(overrides.apply(s));
             }
         }
         return out;
     }
 
-    /** 전체 코스(원본 노드). 검수 화면이 사진·경로를 한 번에 훑을 때 쓴다. */
+    /** 전체 코스(수정 반영). 검수 화면이 사진·경로를 한 번에 훑을 때 쓴다. */
     public java.util.Collection<JsonNode> all() {
-        return byId.values();
+        if (overrides.isEmpty()) {
+            return byId.values();
+        }
+        return byId.values().stream().map(overrides::apply).toList();
     }
 
-    /** 상세(전체 필드). 없으면 null. */
+    /** 번들 원본 그대로(수정 미반영). 편집 화면이 "되돌리면 뭐가 되는지" 보여줄 때 쓴다. */
+    public JsonNode originalById(String id) {
+        return id == null ? null : byId.get(LEGACY_IDS.getOrDefault(id, id));
+    }
+
+    /** 상세(전체 필드, 수정 반영). 없으면 null. */
     public JsonNode byId(String id) {
-        if (id == null) {
-            return null;
-        }
-        return byId.get(LEGACY_IDS.getOrDefault(id, id));
+        JsonNode c = originalById(id);
+        return c == null ? null : overrides.apply(c);
     }
 }

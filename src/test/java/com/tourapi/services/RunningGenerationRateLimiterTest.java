@@ -327,8 +327,11 @@ class RunningGenerationRateLimiterTest {
         RunningGenerationRateLimiter limiter = new RunningGenerationRateLimiter();
         limiter.cache = cache;
         limiter.mapper = new ObjectMapper();
-        limiter.limitPerMinute = 6;
-        limiter.dailyLimit = 3;
+        // 제한값은 이제 관리 화면에서 바뀔 수 있다. 이 테스트는 기존 기본값(3/6)을 고정해서 본다.
+        AdminSettings settings = org.mockito.Mockito.mock(AdminSettings.class);
+        org.mockito.Mockito.when(settings.dailyLimit()).thenReturn(3);
+        org.mockito.Mockito.when(settings.perMinuteLimit()).thenReturn(6);
+        limiter.settings = settings;
         limiter.idempotencyLeaseSeconds = 30;
         limiter.idempotencyResponseTtlMinutes = 5;
         limiter.clock = Clock.fixed(Instant.parse(instant), ZoneOffset.UTC);

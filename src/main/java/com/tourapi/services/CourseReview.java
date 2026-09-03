@@ -39,6 +39,9 @@ public class CourseReview {
     @Inject
     CourseCatalog catalog;
 
+    @Inject
+    CourseOverrides overrides;
+
     /** 검수 목록. 코스마다 flags가 비어 있으면 볼 것이 없다는 뜻이다. */
     public ArrayNode summaries() {
         // 같은 사진을 여러 코스가 쓰면 서로를 가리켜 준다
@@ -76,6 +79,7 @@ public class CourseReview {
             }
         }
         s.put("poiCount", c.path("poi").size());
+        s.put("edited", overrides.forCourse(c.path("id").asText()) != null);
 
         ArrayNode sigil = mapper.createArrayNode();
         for (double[] p : Geo.downsample(path, SIGIL_POINTS)) {

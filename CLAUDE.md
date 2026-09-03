@@ -76,6 +76,17 @@ Cognito 계정도 함께 사라졌다. 키는 `R2V626HA7Y`("Dali Sign in with Ap
 - 관리자 API용 username은 `cognito:username`(ID 토큰) → `username`(access 토큰) → `sub` 순서로 읽는다(`UserResource.cognitoUsername`).
 - 추가된 IAM: `RevokeToken`, `AdminUpdateUserAttributes`, `AdminDeleteUser`.
 
+## 운영 콘솔 (2026-09-03 배포)
+- 화면 `/admin/index.html` — Lambda가 정적 서빙(새 인프라 없음). API는 `/v1/admin/*`.
+- **인증은 앱과 같은 Cognito 계정**을 쓰고, idToken의 `email`이 `admin.emails`(env `ADMIN_EMAILS`, 쉼표 구분) 허용목록에 있어야 통과한다. **비어 있으면 전원 403**(기본 잠김) — 설정을 깜빡한 채 배포해도 열리지 않는다. `email_verified`도 검사한다(미확인 주소는 주인이라는 근거가 없음). 화면 HTML 자체는 공개지만 토큰 없이는 데이터가 안 나온다.
+  ⚠️ 시크릿만 바꾸면 배포가 안 돈다 — 빈 커밋은 `paths-ignore`에 걸려 스킵된다. `gh workflow run deploy.yml --repo squarekimbap/backend --ref main`으로 수동 실행할 것.
+- **저장소는 캐시 테이블에 얹었다**(`lib/AdminStore`, pk 접두사 `admin#`). **ttl 속성을 안 넣어 만료되지 않는다.** 새 테이블을 만들면 provisioned 합계가 always-free 25/25를 넘어 과금되기 때문. 캐시와 달리 **쓰기 실패는 던진다**(관리자가 누른 저장이 조용히 사라지면 안 됨).
+- **코스 생성 제한을 화면에서 조절**(`services/AdminSettings`): 하루 N회·분당 N회. 저장값이 없으면 배포 설정값, 저장소 장애 시에도 설정값으로 폴백(제한을 못 읽었다고 서비스를 막지 않는다). 1~100/1~60 범위 밖은 거절. `RunningGenerationRateLimiter`가 요청마다 여기서 읽는다(60초 메모).
+- **코스 원고를 화면에서 수정**(`services/CourseOverrides`): 번들 JSON은 그대로 두고 **바뀐 필드만** 따로 저장해 읽을 때 덮는 오버레이 방식 — 코스를 DB로 옮기지 않으려고 이렇게 했다. 고칠 수 있는 건 앱이 보여주는 글과 사진뿐(`n·headline·subhead` 문자열, `body·deep·ops` 문단배열, `photo·photoTitle·photoLicense`). **경로·경유지·도슨트 좌표는 거절**한다(배포 게이트가 검증하고 앱의 100m 도슨트 트리거가 걸려 있음). 빈 값으로 저장하면 그 필드는 원본으로 되돌아간다.
+  ⚠️ 메모가 60초라 저장 후 다른 Lambda 실행 환경에는 최대 1분 뒤 퍼진다.
+- 화면 파일은 **한 벌**(`src/main/resources/META-INF/resources/admin/index.html`)이고 세 모드로 돈다: 배포본(로그인+편집), `admin/serve.py`(로컬, `~/.aws` 사용, 편집 불가), `--export`(단일 파일, 가입자·편집 없음).
+  ⚠️ 전체 검수 목록은 응답이 커서 **HTTP 테스트 금지**(코스 목록과 같은 MockEventServer 함정) — 계산은 `CourseReviewTest`가 서비스 레벨로 본다.
+
 ## CI/CD (GitHub Actions)
 - `.github/workflows/deploy.yml` — **main 푸시 → 테스트 → `sam deploy` → 스모크 테스트**. PR은 빌드/테스트만(AWS 미접근), 문서만 바뀌면 아예 안 돎(`paths-ignore`, 비공개 저장소라 Actions 분이 과금 대상 — 무료 2,000분/월).
 - 인증은 **OIDC**(액세스 키 없음). 역할은 `infra/github-oidc.yaml`로 생성 — `github-actions-tour-api-deploy`, 신뢰 조건은 `repo:squarekimbap/backend:ref:refs/heads/main` 하나뿐. 권한은 PowerUserAccess + `tour-api-*` 역할 IAM 쓰기(PowerUser는 IAM을 막아서 SAM의 Lambda 실행 역할 생성이 실패함).

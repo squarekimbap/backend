@@ -3,51 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>코스 검수 · tour-api</title>
+<title>운영 콘솔 · tour-api</title>
 <style>
 :root{
   --paper:#EDEFEA;        /* 지형도 종이 */
   --card:#F6F7F4;
-  --ink:#16211C;          /* 등고선 잉크 */
+  --ink:#16211C;          /* 등고선 잉크 — 좌측 레일 */
+  --ink-2:#1E2C26;
   --soft:#5C6B63;
+  --rail-dim:#8A9990;
   --rule:#CFD6CE;
   --flag:#E2571F;         /* 신호 주황 — 문제에만 */
   --route:#2F6F5E;        /* 경로 선 */
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
   --kr:-apple-system,"Apple SD Gothic Neo","Pretendard",system-ui,sans-serif;
+  --rail:208px;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
+html,body{margin:0;height:100%}
 body{
   background:var(--paper); color:var(--ink);
   font-family:var(--kr); font-size:14px; line-height:1.5;
   -webkit-font-smoothing:antialiased;
 }
 :focus-visible{outline:2px solid var(--flag); outline-offset:2px}
+button{font:inherit}
+/* display를 지정한 클래스가 [hidden]을 이기므로 못 박는다 */
+[hidden]{display:none !important}
+.mono{font-family:var(--mono)}
 
-/* ── 상단 바 ── */
-.bar{
-  position:sticky; top:0; z-index:20;
-  display:flex; align-items:center; gap:22px;
-  padding:0 20px; height:46px;
-  background:var(--paper); border-bottom:1px solid var(--rule);
+/* ── 좌측 레일 ── */
+.rail{
+  position:fixed; inset:0 auto 0 0; width:var(--rail); z-index:10;
+  background:var(--ink); color:var(--paper);
+  display:flex; flex-direction:column; padding:18px 0;
 }
-.brand{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--soft)}
-.tabs{display:flex; gap:2px; margin-left:auto}
-.tab{
-  font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
-  background:none; border:1px solid transparent; border-radius:2px;
-  color:var(--soft); padding:5px 11px; cursor:pointer;
+.rail-brand{
+  font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--rail-dim); padding:0 18px 20px;
 }
-.tab:hover{color:var(--ink)}
-.tab[aria-selected="true"]{color:var(--ink); border-color:var(--rule); background:var(--card)}
-.count{opacity:.55; margin-left:6px}
+.rail-brand b{display:block; color:var(--paper); font-size:14px; letter-spacing:.04em; margin-top:3px}
+.rail-nav{display:flex; flex-direction:column; gap:1px}
+.rail-item{
+  display:flex; align-items:center; gap:9px; width:100%; text-align:left;
+  background:none; border:0; border-left:2px solid transparent; cursor:pointer;
+  color:var(--rail-dim); padding:9px 18px; font-size:13.5px;
+}
+.rail-item:hover{color:var(--paper); background:var(--ink-2)}
+.rail-item[aria-current="page"]{color:var(--paper); background:var(--ink-2); border-left-color:var(--flag)}
+.rail-n{margin-left:auto; font-family:var(--mono); font-size:10.5px; opacity:.6}
+.rail-foot{margin-top:auto; padding:16px 18px 0; border-top:1px solid rgba(237,239,234,.12)}
+.rail-who{font-family:var(--mono); font-size:10.5px; color:var(--rail-dim); word-break:break-all}
+.rail-out{
+  margin-top:9px; background:none; border:1px solid rgba(237,239,234,.22); border-radius:2px;
+  color:var(--rail-dim); font-family:var(--mono); font-size:10.5px; letter-spacing:.08em;
+  padding:5px 9px; cursor:pointer;
+}
+.rail-out:hover{color:var(--paper); border-color:var(--paper)}
+
+/* ── 본문 ── */
+.main{margin-left:var(--rail); min-height:100%}
+.head{
+  position:sticky; top:0; z-index:9; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:16px 24px 14px;
+}
+.head-h{font-size:17px; margin:0}
+.head-p{color:var(--soft); font-size:12.5px; margin:3px 0 0}
+.body-pad{padding:20px 24px 60px}
 
 /* ── 필터 ── */
-.filters{
-  display:flex; flex-wrap:wrap; gap:6px; align-items:center;
-  padding:14px 20px; border-bottom:1px solid var(--rule);
-}
+.filters{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px}
 .chip{
   font-family:var(--mono); font-size:11px; letter-spacing:.06em;
   background:none; border:1px solid var(--rule); border-radius:2px;
@@ -58,62 +83,52 @@ body{
 .chip-flag[aria-pressed="true"]{background:var(--flag); border-color:var(--flag)}
 
 /* ── 컨택트시트 ── */
-.sheet{
-  display:grid; gap:16px; padding:20px;
-  grid-template-columns:repeat(auto-fill,minmax(228px,1fr));
-}
+.sheet{display:grid; gap:15px; grid-template-columns:repeat(auto-fill,minmax(224px,1fr))}
 .card{
-  display:block; width:100%; text-align:left; cursor:pointer;
+  display:block; width:100%; text-align:left; cursor:pointer; color:inherit; font:inherit;
   background:var(--card); border:1px solid var(--rule); border-left:2px solid var(--rule);
-  border-radius:3px; padding:0; overflow:hidden; color:inherit; font:inherit;
+  border-radius:3px; padding:0; overflow:hidden;
 }
 .card:hover{border-color:var(--soft)}
 .card-flagged{border-left-color:var(--flag)}
 .card-shot{position:relative; aspect-ratio:16/9; background:#DDE1DB}
 .card-shot img{width:100%; height:100%; object-fit:cover; display:block}
-.card-dot{
-  position:absolute; right:8px; top:8px; width:8px; height:8px; border-radius:50%;
-  background:var(--flag); box-shadow:0 0 0 3px rgba(246,247,244,.85);
-}
-.card-body{display:flex; gap:11px; padding:10px 12px 12px}
-.card-sigil{flex:0 0 auto; width:46px; height:34px; margin-top:2px}
+.card-pin{position:absolute; right:7px; top:7px; display:flex; gap:4px}
+.dot{width:8px; height:8px; border-radius:50%; box-shadow:0 0 0 3px rgba(246,247,244,.85)}
+.dot-flag{background:var(--flag)}
+.dot-edit{background:var(--route)}
+.card-body{display:flex; gap:10px; padding:9px 11px 11px}
+.card-sigil{flex:0 0 auto; width:44px; height:32px; margin-top:2px}
 .card-text{min-width:0}
 .card-meta{
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.07em;
-  color:var(--soft); text-transform:uppercase; white-space:nowrap;
-  overflow:hidden; text-overflow:ellipsis;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; color:var(--soft);
+  text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 .card-title{
   font-size:13px; line-height:1.35; margin-top:3px;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
 }
 
-/* ── 상세 서랍 ── */
+/* ── 서랍 ── */
 .scrim{position:fixed; inset:0; background:rgba(22,33,28,.34); z-index:30}
 .drawer{
-  position:fixed; top:0; right:0; bottom:0; width:min(620px,100vw); z-index:31;
+  position:fixed; top:0; right:0; bottom:0; width:min(660px,100vw); z-index:31;
   background:var(--paper); border-left:1px solid var(--rule);
   overflow-y:auto; animation:slide .14s ease-out;
 }
 @keyframes slide{from{transform:translateX(18px); opacity:.4} to{transform:none; opacity:1}}
 @media (prefers-reduced-motion:reduce){ .drawer{animation:none} }
 .drawer-head{
-  position:sticky; top:0; display:flex; align-items:center; gap:12px;
+  position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:12px;
   padding:12px 18px; background:var(--paper); border-bottom:1px solid var(--rule);
 }
 .drawer-id{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--soft)}
-.close{
-  margin-left:auto; font-family:var(--mono); font-size:11px; letter-spacing:.1em;
-  background:none; border:1px solid var(--rule); border-radius:2px;
-  color:var(--soft); padding:5px 10px; cursor:pointer;
-}
-.close:hover{color:var(--ink); border-color:var(--soft)}
 .pane{padding:18px}
 .pane-shot img{width:100%; border:1px solid var(--rule); border-radius:3px; display:block}
-.h1{font-size:20px; line-height:1.3; margin:16px 0 4px}
-.sub{color:var(--soft); margin:0 0 16px}
+.h1{font-size:19px; line-height:1.3; margin:15px 0 4px}
+.sub{color:var(--soft); margin:0 0 15px}
 .stats{
-  display:flex; flex-wrap:wrap; gap:0 26px; font-family:var(--mono); font-size:11px;
+  display:flex; flex-wrap:wrap; gap:0 24px; font-family:var(--mono); font-size:10.5px;
   letter-spacing:.06em; color:var(--soft); text-transform:uppercase;
   border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:10px 0;
 }
@@ -133,85 +148,128 @@ body{
 .num{color:var(--soft)}
 .ok{color:var(--route)}
 .bad{color:var(--flag); font-weight:600}
-.note{
-  border-left:2px solid var(--flag); background:rgba(226,87,31,.06);
-  padding:9px 12px; margin:9px 0; font-size:12.5px;
-}
-.note-quiet{border-left-color:var(--rule); background:rgba(92,107,99,.06)}
+.note{border-left:2px solid var(--flag); background:rgba(226,87,31,.06); padding:9px 12px; margin:9px 0; font-size:12.5px}
+.note-quiet{border-left-color:var(--rule); background:rgba(92,107,99,.07)}
+.note-ok{border-left-color:var(--route); background:rgba(47,111,94,.08)}
 .lic{font-family:var(--mono); font-size:11px; color:var(--soft); word-break:break-all}
 
-/* ── 사용자 ── */
-.users{padding:20px; max-width:960px}
-.danger{
-  font-family:var(--mono); font-size:11px; letter-spacing:.06em;
-  background:none; border:1px solid var(--rule); border-radius:2px;
-  color:var(--soft); padding:4px 9px; cursor:pointer;
-}
-.danger:hover{color:var(--flag); border-color:var(--flag)}
+/* ── 폼 ── */
 .field{
-  font-family:var(--mono); font-size:12px; padding:7px 9px; width:100%;
+  font-family:var(--kr); font-size:13.5px; padding:8px 10px; width:100%; display:block;
   border:1px solid var(--rule); border-radius:2px; background:var(--card); color:var(--ink);
 }
-.go{
-  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
-  background:var(--flag); border:1px solid var(--flag); border-radius:2px;
-  color:#fff; padding:7px 13px; cursor:pointer;
+.field:focus{border-color:var(--soft)}
+textarea.field{resize:vertical; line-height:1.65; min-height:70px}
+.field-mono{font-family:var(--mono); font-size:12px}
+.label{
+  display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--soft); margin:16px 0 5px;
 }
-.go[disabled]{opacity:.35; cursor:not-allowed}
+.label small{font-family:var(--kr); letter-spacing:0; text-transform:none; opacity:.85; margin-left:7px}
+.btn{
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  background:none; border:1px solid var(--rule); border-radius:2px;
+  color:var(--soft); padding:7px 12px; cursor:pointer;
+}
+.btn:hover{color:var(--ink); border-color:var(--soft)}
+.btn-go{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+.btn-go:hover{background:var(--ink-2); border-color:var(--ink-2); color:var(--paper)}
+.btn-danger:hover{color:var(--flag); border-color:var(--flag)}
+.btn[disabled]{opacity:.35; cursor:not-allowed}
+.btn-close{margin-left:auto}
+.savebar{
+  position:sticky; bottom:0; display:flex; align-items:center; gap:9px;
+  padding:12px 18px; margin:22px -18px -18px;
+  background:var(--paper); border-top:1px solid var(--rule);
+}
+.savebar-msg{font-family:var(--mono); font-size:11px; color:var(--soft); margin-left:auto}
+
+/* ── 설정 ── */
+.panel{
+  max-width:520px; background:var(--card); border:1px solid var(--rule);
+  border-radius:3px; padding:20px 22px;
+}
+.panel + .panel{margin-top:16px}
+.panel-h{font-size:15px; margin:0 0 4px}
+.panel-p{color:var(--soft); font-size:12.5px; margin:0 0 6px}
+.stepper{display:flex; align-items:center; gap:10px; margin-top:6px}
+.stepper .field{width:88px; text-align:center; font-family:var(--mono); font-size:16px; padding:9px}
+.stepper-unit{font-family:var(--mono); font-size:11px; color:var(--soft); letter-spacing:.06em}
+
+/* ── 로그인 ── */
+.gate-form{max-width:320px; margin:14vh auto 0; padding:0 20px}
+.gate-h{font-size:19px; margin:0 0 6px}
+.gate-p{color:var(--soft); font-size:13px; margin:0 0 20px}
+.gate-form .btn-go{margin-top:20px; width:100%; padding:10px}
+.empty{color:var(--soft); padding:44px 0; text-align:center}
 .modal{
   position:fixed; z-index:40; top:50%; left:50%; transform:translate(-50%,-50%);
   width:min(440px,92vw); background:var(--paper);
   border:1px solid var(--ink); border-radius:3px; padding:18px;
 }
-.empty{color:var(--soft); padding:40px 0; text-align:center}
-
-/* ── 로그인 ── */
-.gate-form{max-width:320px; margin:14vh auto 0; padding:0 20px}
-.gate-h{font-size:19px; margin:0 0 6px}
-.gate-note{color:var(--soft); font-size:13px; margin:0 0 22px}
-.gate-label{
-  display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--soft); margin:14px 0 5px;
+@media (max-width:720px){
+  :root{--rail:0px}
+  .rail{position:static; width:auto; flex-direction:row; align-items:center; padding:10px 14px; gap:14px}
+  .rail-brand{padding:0; display:none}
+  .rail-nav{flex-direction:row}
+  .rail-item{padding:7px 11px; border-left:0; border-bottom:2px solid transparent}
+  .rail-item[aria-current="page"]{border-left:0; border-bottom-color:var(--flag)}
+  .rail-foot{margin:0 0 0 auto; padding:0; border:0}
+  .rail-who{display:none}
 }
-.gate-form .go{margin-top:20px; width:100%; padding:10px}
 </style>
 </head>
 <body>
 
-<header class="bar">
-  <span class="brand">tour-api 검수</span>
-  <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" id="tab-courses" aria-selected="true">코스<span class="count" id="n-courses"></span></button>
-    <button class="tab" role="tab" id="tab-users" aria-selected="false">사용자<span class="count" id="n-users"></span></button>
-  </nav>
-</header>
+<nav class="rail" id="rail" hidden>
+  <div class="rail-brand">tour-api<b>운영 콘솔</b></div>
+  <div class="rail-nav" role="tablist">
+    <button class="rail-item" id="nav-courses" role="tab" aria-current="page">코스<span class="rail-n" id="n-courses"></span></button>
+    <button class="rail-item" id="nav-users" role="tab">가입자<span class="rail-n" id="n-users"></span></button>
+    <button class="rail-item" id="nav-settings" role="tab">설정</button>
+  </div>
+  <div class="rail-foot">
+    <div class="rail-who" id="who"></div>
+    <button class="rail-out" id="signout" hidden>로그아웃</button>
+  </div>
+</nav>
 
-<main id="gate" hidden>
-  <form class="gate-form" id="gate-form">
-    <h1 class="gate-h">관리자 로그인</h1>
-    <p class="gate-note">허용된 이메일 계정만 들어올 수 있다. 앱에서 쓰는 계정과 같다.</p>
-    <label class="gate-label" for="gate-email">이메일</label>
-    <input class="field" id="gate-email" type="email" autocomplete="username" required>
-    <label class="gate-label" for="gate-pw">비밀번호</label>
-    <input class="field" id="gate-pw" type="password" autocomplete="current-password" required>
-    <button class="go" id="gate-go" type="submit">들어가기</button>
-    <p class="lic" id="gate-msg" role="status" aria-live="polite"></p>
-  </form>
+<main class="main" id="main">
+  <div id="gate" hidden>
+    <form class="gate-form" id="gate-form">
+      <h1 class="gate-h">운영 콘솔</h1>
+      <p class="gate-p">허용된 이메일 계정만 들어올 수 있다. 앱에서 쓰는 계정과 같다.</p>
+      <label class="label" for="gate-email">이메일</label>
+      <input class="field" id="gate-email" type="email" autocomplete="username" required>
+      <label class="label" for="gate-pw">비밀번호</label>
+      <input class="field" id="gate-pw" type="password" autocomplete="current-password" required>
+      <button class="btn btn-go" id="gate-go" type="submit">들어가기</button>
+      <p class="lic" id="gate-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <div id="page" hidden>
+    <header class="head">
+      <h1 class="head-h" id="head-h"></h1>
+      <p class="head-p" id="head-p"></p>
+    </header>
+    <div class="body-pad">
+      <section id="view-courses">
+        <div class="filters" id="filters"></div>
+        <div class="sheet" id="sheet"></div>
+      </section>
+      <section id="view-users" hidden></section>
+      <section id="view-settings" hidden></section>
+    </div>
+  </div>
 </main>
-
-<main id="view-courses" hidden>
-  <div class="filters" id="filters"></div>
-  <div class="sheet" id="sheet"></div>
-</main>
-
-<main id="view-users" hidden><div class="users" id="users"></div></main>
 
 <script>
 const $ = s => document.querySelector(s);
 const el = (t, a = {}, kids = []) => {
   const n = document.createElement(t);
   for (const [k, v] of Object.entries(a)) {
-    if (v === null || v === false) continue;
+    if (v === null || v === false || v === undefined) continue;
     if (k === 'text') n.textContent = v;
     else if (k === 'html') n.innerHTML = v;
     else n.setAttribute(k, v);
@@ -219,29 +277,33 @@ const el = (t, a = {}, kids = []) => {
   for (const c of [].concat(kids)) if (c) n.append(c);
   return n;
 };
+
 /* 이 파일 한 벌이 세 곳에서 돈다.
    embed — --export 로 뽑은 단일 파일. 데이터가 페이지 안에 있고 서버가 없다.
    local — admin/serve.py. 맥의 ~/.aws 자격증명을 쓰므로 로그인이 필요 없다.
-   cloud — Lambda가 서빙. Cognito 토큰을 보내고 서버가 이메일 허용목록으로 거른다. */
+   cloud — Lambda가 서빙. Cognito 토큰을 보내고 서버가 이메일 허용목록으로 거른다.
+   원고 편집과 설정은 저장이 필요해 cloud 에서만 열린다. */
 const EMBED = window.__EMBED__ || null;
 const LOCAL = !!window.__LOCAL__;
 const MODE = EMBED ? 'embed' : LOCAL ? 'local' : 'cloud';
+const CAN_EDIT = MODE === 'cloud';
 let TOKEN = sessionStorage.getItem('adminToken') || '';
 
 class Unauthorized extends Error {}
-
-/* 로컬은 불리언, 배포본은 DynamoDB 문자열로 온다 */
 const hasToken = u => u.hasAppleToken === true || u.hasAppleToken === 'true';
 
 async function call(url, opts = {}) {
   const headers = { ...(opts.headers || {}) };
   if (MODE === 'cloud' && TOKEN) headers.Authorization = 'Bearer ' + TOKEN;
+  if (opts.body) headers['Content-Type'] = 'application/json';
   const res = await fetch(url, { ...opts, headers });
   if (res.status === 401 || res.status === 403) {
     TOKEN = ''; sessionStorage.removeItem('adminToken');
     throw new Unauthorized(res.status === 403 ? '이 계정에는 관리 권한이 없다' : '다시 로그인해라');
   }
-  return res.status === 204 ? {} : res.json();
+  const body = res.status === 204 ? {} : await res.json();
+  if (!res.ok) throw new Error(body.message || '요청이 실패했다');
+  return body;
 }
 
 const API = {
@@ -249,16 +311,19 @@ const API = {
     : call(LOCAL ? '/api/courses' : '/v1/admin/courses/review'),
   course: id => EMBED ? Promise.resolve(EMBED.details[id])
     : call(LOCAL ? '/api/courses/' + id : '/v1/admin/courses/' + id),
-  users: () => EMBED
-    ? Promise.resolve({ error: '내보낸 파일에는 가입자가 없다.' })
+  saveCourse: (id, patch) => call('/v1/admin/courses/' + id,
+    { method: 'PUT', body: JSON.stringify(patch) }),
+  resetCourse: id => call('/v1/admin/courses/' + id + '/edits', { method: 'DELETE' }),
+  users: () => EMBED ? Promise.resolve({ error: '내보낸 파일에는 가입자가 없다.' })
     : call(LOCAL ? '/api/users' : '/v1/admin/users'),
-  remove: id => LOCAL
-    ? call('/api/users/delete', { method: 'POST',
-        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: id }) })
+  removeUser: id => LOCAL
+    ? call('/api/users/delete', { method: 'POST', body: JSON.stringify({ userId: id }) })
     : call('/v1/admin/users/' + id, { method: 'DELETE' }),
+  settings: () => call('/v1/admin/settings'),
+  saveSettings: p => call('/v1/admin/settings', { method: 'PUT', body: JSON.stringify(p) }),
 };
 
-/* 경로를 그리는 투영. 위경도는 위도에 따라 가로 축척이 달라지므로 보정한다. */
+/* ── 경로 그리기 ── */
 function project(points, w, h, pad) {
   const lats = points.map(p => p[0]), lngs = points.map(p => p[1]);
   const midLat = (Math.min(...lats) + Math.max(...lats)) / 2;
@@ -270,123 +335,111 @@ function project(points, w, h, pad) {
   const ox = (w - (x1 - x0) * s) / 2, oy = (h - (y1 - y0) * s) / 2;
   return (lat, lng) => [(lng * kx - x0) * s + ox, (-lat - y0) * s + oy];
 }
-const svgNS = 'http://www.w3.org/2000/svg';
-const svgEl = (t, a) => {
-  const n = document.createElementNS(svgNS, t);
-  for (const [k, v] of Object.entries(a)) n.setAttribute(k, v);
-  return n;
-};
+const NS = 'http://www.w3.org/2000/svg';
+const sv = (t, a) => { const n = document.createElementNS(NS, t);
+  for (const [k, v] of Object.entries(a)) n.setAttribute(k, v); return n; };
+const dOf = (pts, to) => pts.map((p, i) =>
+  (i ? 'L' : 'M') + to(p[0], p[1]).map(n => n.toFixed(1)).join(' ')).join('');
 
-/* 카드의 route sigil — 코스마다 다른 실제 경로 모양 */
+/* 카드마다 붙는 그 코스의 실제 경로 모양 */
 function sigil(points, shape) {
-  const W = 46, H = 34;
-  const g = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, 'aria-hidden': 'true' });
+  const W = 44, H = 32;
+  const g = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, 'aria-hidden': 'true' });
   if (!points || points.length < 2) return g;
   const to = project(points, W, H, 4);
-  const d = points.map((p, i) => (i ? 'L' : 'M') + to(p[0], p[1]).map(n => n.toFixed(1)).join(' ')).join('');
-  g.append(svgEl('path', { d, fill: 'none', stroke: 'var(--route)', 'stroke-width': 1.4,
-                           'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
-  if (shape !== 'roundTrip') {           // 편도는 종점을 찍어 구분한다
+  g.append(sv('path', { d: dOf(points, to), fill: 'none', stroke: 'var(--route)',
+    'stroke-width': 1.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+  if (shape !== 'roundTrip') {              // 편도는 종점을 찍어 구분한다
     const [x, y] = to(...points.at(-1));
-    g.append(svgEl('rect', { x: x - 2, y: y - 2, width: 4, height: 4, fill: 'var(--route)' }));
+    g.append(sv('rect', { x: x - 2, y: y - 2, width: 4, height: 4, fill: 'var(--route)' }));
   }
   return g;
 }
 
-/* ── 코스 ── */
+/* ── 코스 목록 ── */
 let COURSES = [], FILTER = 'all';
 const FILTERS = [
-  ['all', '전체'],
-  ['flagged', '볼 것'],
-  ['off-route', '경유지 경로 밖'],
-  ['placelat', '원 좌표 어긋남'],
-  ['dup-photo', '사진 중복'],
-  ['license', '제3유형'],
-  ['substitute', '대체 사진'],
+  ['all', '전체'], ['flagged', '볼 것'], ['edited', '수정됨'],
+  ['off-route', '경유지 경로 밖'], ['placelat', '원 좌표 어긋남'],
+  ['dup-photo', '사진 중복'], ['license', '제3유형'], ['substitute', '대체 사진'],
 ];
-
-function matches(c) {
-  if (FILTER === 'all') return true;
-  if (FILTER === 'flagged') return c.flags.length > 0;
-  return c.flags.some(f => f.kind === FILTER);
-}
+const countFor = kind =>
+  kind === 'all' ? COURSES.length
+  : kind === 'flagged' ? COURSES.filter(c => c.flags.length).length
+  : kind === 'edited' ? COURSES.filter(c => c.edited).length
+  : COURSES.filter(c => c.flags.some(f => f.kind === kind)).length;
+const matches = c =>
+  FILTER === 'all' ? true
+  : FILTER === 'flagged' ? c.flags.length > 0
+  : FILTER === 'edited' ? !!c.edited
+  : c.flags.some(f => f.kind === FILTER);
 
 function drawFilters() {
-  const box = $('#filters');
-  const chips = FILTERS.map(([kind, label]) => {
-    const n = kind === 'all' ? COURSES.length
-            : kind === 'flagged' ? COURSES.filter(c => c.flags.length).length
-            : COURSES.filter(c => c.flags.some(f => f.kind === kind)).length;
+  $('#filters').replaceChildren(...FILTERS.map(([kind, label]) => {
+    const n = countFor(kind);
     if (!n && kind !== 'all') return null;   // 걸리는 게 없는 조건은 띄우지 않는다
     const b = el('button', {
-      class: 'chip' + (kind !== 'all' && kind !== 'flagged' ? ' chip-flag' : ''),
+      class: 'chip' + (['all', 'flagged', 'edited'].includes(kind) ? '' : ' chip-flag'),
       'aria-pressed': String(FILTER === kind), text: `${label} ${n}`,
     });
-    b.onclick = () => {
-      FILTER = kind; drawFilters(); drawSheet();
-      window.scrollTo(0, 0);   // 목록이 짧아지면 빈 화면에 남는다
-    };
+    b.onclick = () => { FILTER = kind; drawFilters(); drawSheet(); window.scrollTo(0, 0); };
     return b;
-  }).filter(Boolean);
-  box.replaceChildren(...chips);
+  }).filter(Boolean));
 }
 
 function drawSheet() {
   const list = COURSES.filter(matches);
-  const sheet = $('#sheet');
   if (!list.length) {
-    sheet.replaceChildren(el('p', { class: 'empty', text: '이 조건에 걸리는 코스가 없다.' }));
+    $('#sheet').replaceChildren(el('p', { class: 'empty', text: '이 조건에 걸리는 코스가 없다.' }));
     return;
   }
-  sheet.replaceChildren(...list.map(c => {
-    const shot = el('div', { class: 'card-shot' }, [
-      el('img', { src: c.photo, alt: c.photoTitle || '', loading: 'lazy' }),
-      c.flags.length ? el('span', { class: 'card-dot' }) : null,
-    ]);
-    const body = el('div', { class: 'card-body' }, [
-      el('span', { class: 'card-sigil' }, [sigil(c.sigil, c.shape)]),
-      el('span', { class: 'card-text' }, [
-        el('span', { class: 'card-meta', text: `${c.city} · ${c.km}km · 경유지 ${c.poiCount}` }),
-        el('span', { class: 'card-title', text: c.headline }),
-      ]),
+  $('#sheet').replaceChildren(...list.map(c => {
+    const pins = el('span', { class: 'card-pin' }, [
+      c.edited ? el('span', { class: 'dot dot-edit', title: '원고 수정됨' }) : null,
+      c.flags.length ? el('span', { class: 'dot dot-flag' }) : null,
     ]);
     const card = el('button', {
       class: 'card' + (c.flags.length ? ' card-flagged' : ''),
       title: c.flags.map(f => f.label).join('\n') || c.id,
-    }, [shot, body]);
+    }, [
+      el('div', { class: 'card-shot' }, [
+        el('img', { src: c.photo, alt: c.photoTitle || '', loading: 'lazy' }), pins]),
+      el('div', { class: 'card-body' }, [
+        el('span', { class: 'card-sigil' }, [sigil(c.sigil, c.shape)]),
+        el('span', { class: 'card-text' }, [
+          el('span', { class: 'card-meta', text: `${c.city} · ${c.km}km · 경유지 ${c.poiCount}` }),
+          el('span', { class: 'card-title', text: c.headline }),
+        ]),
+      ]),
+    ]);
     card.onclick = () => openCourse(c.id);
     return card;
   }));
 }
 
-/* 상세 지도 — 경유지 번호를 실제 좌표 위에 찍는다. 원 좌표가 멀면 점선으로 잇는다. */
+/* 상세 지도 — 경유지 번호를 실제 좌표 위에 찍고, 원 좌표가 멀면 점선으로 잇는다 */
 function routeMap(d) {
-  const W = 560, H = 380;
-  const s = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, class: 'map', role: 'img',
-                           'aria-label': '경로와 경유지 위치' });
-  if (!d.polyline.length) return s;
-  const pts = d.polyline.concat(
-    d.poi.flatMap(p => p.place ? [[p.place.lat, p.place.lng]] : []));
+  const W = 600, H = 380;
+  const s = sv('svg', { viewBox: `0 0 ${W} ${H}`, class: 'map', role: 'img',
+    'aria-label': '경로와 경유지 위치' });
+  if (!d.polyline || !d.polyline.length) return s;
+  const pts = d.polyline.concat(d.poi.flatMap(p => p.place ? [[p.place.lat, p.place.lng]] : []));
   const to = project(pts, W, H, 26);
-  s.append(svgEl('path', {
-    d: d.polyline.map((p, i) => (i ? 'L' : 'M') + to(p[0], p[1]).map(n => n.toFixed(1)).join(' ')).join(''),
-    fill: 'none', stroke: 'var(--route)', 'stroke-width': 2.4,
-    'stroke-linejoin': 'round', 'stroke-linecap': 'round',
-  }));
+  s.append(sv('path', { d: dOf(d.polyline, to), fill: 'none', stroke: 'var(--route)',
+    'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
   for (const p of d.poi) {
     const [x, y] = to(p.lat, p.lng);
     if (p.place && p.place.offRouteM > 100) {
       const [px, py] = to(p.place.lat, p.place.lng);
-      s.append(svgEl('line', { x1: x, y1: y, x2: px, y2: py, stroke: 'var(--flag)',
-                               'stroke-width': 1, 'stroke-dasharray': '3 3' }));
-      s.append(svgEl('circle', { cx: px, cy: py, r: 5, fill: 'none',
-                                 stroke: 'var(--flag)', 'stroke-width': 1.5 }));
+      s.append(sv('line', { x1: x, y1: y, x2: px, y2: py, stroke: 'var(--flag)',
+        'stroke-width': 1, 'stroke-dasharray': '3 3' }));
+      s.append(sv('circle', { cx: px, cy: py, r: 5, fill: 'none',
+        stroke: 'var(--flag)', 'stroke-width': 1.5 }));
     }
-    const bad = p.offRouteM > 100;
-    s.append(svgEl('circle', { cx: x, cy: y, r: 10,
-                               fill: bad ? 'var(--flag)' : 'var(--ink)' }));
-    const t = svgEl('text', { x, y: y + 3.6, 'text-anchor': 'middle', fill: 'var(--paper)',
-                              'font-size': 10.5, 'font-family': 'var(--mono)' });
+    s.append(sv('circle', { cx: x, cy: y, r: 10,
+      fill: p.offRouteM > 100 ? 'var(--flag)' : 'var(--ink)' }));
+    const t = sv('text', { x, y: y + 3.6, 'text-anchor': 'middle', fill: 'var(--paper)',
+      'font-size': 10.5, 'font-family': 'var(--mono)' });
     t.textContent = p.no;
     s.append(t);
   }
@@ -394,24 +447,109 @@ function routeMap(d) {
 }
 
 function pointRows(items, label) {
-  const body = items.map(p => el('tr', {}, [
-    el('td', { class: 'num', text: p.no }),
-    el('td', { class: 'rows-name', text: p.name || '' }),
-    el('td', { text: `${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}` }),
-    el('td', { class: p.offRouteM > 100 ? 'bad' : 'ok', text: `${p.offRouteM}m` }),
-  ]));
   return el('table', { class: 'rows' }, [
-    el('thead', {}, [el('tr', {}, [
-      el('th', { text: '#' }), el('th', { text: label }),
-      el('th', { text: '좌표' }), el('th', { text: '경로에서' }),
-    ])]),
-    el('tbody', {}, body),
+    el('thead', {}, [el('tr', {}, ['#', label, '좌표', '경로에서'].map(h => el('th', { text: h })))]),
+    el('tbody', {}, items.map(p => el('tr', {}, [
+      el('td', { class: 'num', text: p.no }),
+      el('td', { class: 'rows-name', text: p.name || '' }),
+      el('td', { text: `${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}` }),
+      el('td', { class: p.offRouteM > 100 ? 'bad' : 'ok', text: `${p.offRouteM}m` }),
+    ]))),
+  ]);
+}
+
+/* ── 원고 편집 ── */
+const TEXT_FIELDS = [
+  ['n', '코스 이름', '목록·공유에 쓰는 짧은 이름'],
+  ['headline', '큰 제목', '앱 상세 맨 위에 크게 나오는 문장'],
+  ['subhead', '한 줄 소개', '제목 바로 아래 회색 문장'],
+];
+const PARA_FIELDS = [
+  ['body', '본문', '“어떤 길인지” 아래 문단들'],
+  ['deep', '더 읽을거리', '배경·유래 문단들'],
+  ['ops', '운영 정보', '주차·시간·주의사항 문단들'],
+];
+const PHOTO_FIELDS = [
+  ['photo', '사진 URL', ''],
+  ['photoTitle', '사진 제목', '사진 위에 겹쳐 나오는 이름'],
+  ['photoLicense', '저작권 표기', ''],
+];
+const toText = v => Array.isArray(v) ? v.join('\n') : (v ?? '');
+const toPara = s => s.split('\n').map(x => x.trim()).filter(Boolean);
+
+function editor(d, refresh) {
+  const inputs = new Map();
+  const field = ([key, label, hint], multiline) => {
+    const id = 'f-' + key;
+    const node = el(multiline ? 'textarea' : 'input', {
+      class: 'field' + (key === 'photo' || key === 'photoLicense' ? ' field-mono' : ''),
+      id, rows: multiline ? Math.min(12, Math.max(3, toText(d[key]).split('\n').length + 1)) : null,
+    });
+    node.value = toText(d[key]);
+    inputs.set(key, node);
+    return el('div', {}, [
+      el('label', { class: 'label', for: id }, [
+        document.createTextNode(label),
+        hint ? el('small', { text: hint }) : null]),
+      node,
+    ]);
+  };
+
+  const msg = el('span', { class: 'savebar-msg', role: 'status', 'aria-live': 'polite' });
+  const save = el('button', { class: 'btn btn-go', text: '저장' });
+  const reset = el('button', { class: 'btn btn-danger', text: '원본으로 되돌리기' });
+
+  save.onclick = async () => {
+    const patch = {};
+    for (const [key, node] of inputs) {
+      const isPara = PARA_FIELDS.some(([k]) => k === key);
+      patch[key] = isPara ? toPara(node.value) : node.value.trim();
+    }
+    save.disabled = reset.disabled = true;
+    msg.textContent = '저장 중…';
+    try {
+      await API.saveCourse(d.id, patch);
+      msg.textContent = '저장했다. 앱에는 최대 1분 뒤 반영된다.';
+      refresh();
+    } catch (e) {
+      msg.textContent = e.message;
+    } finally {
+      save.disabled = reset.disabled = false;
+    }
+  };
+  reset.onclick = async () => {
+    reset.disabled = save.disabled = true;
+    msg.textContent = '되돌리는 중…';
+    try {
+      await API.resetCourse(d.id);
+      msg.textContent = '번들 원본으로 되돌렸다.';
+      refresh();
+    } catch (e) {
+      msg.textContent = e.message;
+    } finally {
+      reset.disabled = save.disabled = false;
+    }
+  };
+
+  return el('div', {}, [
+    el('h3', { class: 'h2', text: '앱에 보이는 글' }),
+    el('p', { class: 'note note-quiet', text:
+      '여기서 고친 글이 앱 상세 화면에 그대로 나간다. 문단은 한 줄에 하나씩 쓴다. '
+      + '경로·경유지·도슨트 좌표는 배포 게이트가 검증하는 값이라 여기서 못 고친다.' }),
+    ...TEXT_FIELDS.map(f => field(f, false)),
+    ...PARA_FIELDS.map(f => field(f, true)),
+    el('h3', { class: 'h2', text: '대표 사진' }),
+    ...PHOTO_FIELDS.map(f => field(f, false)),
+    el('div', { class: 'savebar' }, [save, reset, msg]),
   ]);
 }
 
 async function openCourse(id) {
-  const d = await API.course(id);
-  const far = d.poi.filter(p => p.place && p.place.offRouteM > 100);
+  let d;
+  try { d = await API.course(id); }
+  catch (e) { return e instanceof Unauthorized ? gate(e.message) : alert(e.message); }
+
+  const far = (d.poi || []).filter(p => p.place && p.place.offRouteM > 100);
   const pane = el('div', { class: 'pane' }, [
     el('div', { class: 'pane-shot' }, [el('img', { src: d.photo, alt: d.photoTitle || '' })]),
     el('p', { class: 'lic', text: `${d.photoTitle || '제목 없음'} — ${d.photoLicense || '출처 미기재'}` }),
@@ -427,22 +565,22 @@ async function openCourse(id) {
     el('h3', { class: 'h2', text: '경로와 경유지' }),
     routeMap(d),
     far.length ? el('p', { class: 'note', text:
-      `경유지 ${far.length}곳은 placeLat/placeLng(원 장소 좌표)가 경로에서 최대 `
-      + `${Math.max(...far.map(p => p.place.offRouteM))}m 떨어져 있다. `
-      + `지도 핀은 반드시 lat/lng을 써야 한다 — 점선 끝의 빈 동그라미가 원 좌표다.` }) : null,
-    el('h3', { class: 'h2', text: `경유지 ${d.poi.length}` }),
-    pointRows(d.poi, '이름'),
-    d.checkpoints.length ? el('h3', { class: 'h2', text: `도슨트 ${d.checkpoints.length}` }) : null,
-    d.checkpoints.length ? pointRows(d.checkpoints, '이야기') : null,
-    d.src ? el('p', { class: 'lic', text: `출처 ${d.src}` }) : null,
+      `경유지 ${far.length}곳은 원 장소 좌표가 경로에서 최대 `
+      + `${Math.max(...far.map(p => p.place.offRouteM))}m 떨어져 있다. 지도 핀은 lat/lng을 써야 한다 `
+      + `— 점선 끝의 빈 동그라미가 원 좌표다.` }) : null,
+    el('h3', { class: 'h2', text: `경유지 ${(d.poi || []).length}` }),
+    pointRows(d.poi || [], '이름'),
+    (d.checkpoints || []).length ? el('h3', { class: 'h2', text: `도슨트 ${d.checkpoints.length}` }) : null,
+    (d.checkpoints || []).length ? pointRows(d.checkpoints, '이야기') : null,
+    CAN_EDIT ? editor(d, async () => { COURSES = await API.courses(); drawFilters(); drawSheet(); })
+      : el('p', { class: 'note note-quiet', text:
+          '원고 편집은 배포된 콘솔에서만 된다 — 저장할 곳이 필요해서다.' }),
   ]);
 
-  const close = el('button', { class: 'close', text: '닫기 ESC' });
+  const close = el('button', { class: 'btn btn-close', text: '닫기 ESC' });
   const drawer = el('aside', { class: 'drawer', role: 'dialog', 'aria-modal': 'true',
-                               'aria-label': d.headline || d.id }, [
-    el('div', { class: 'drawer-head' }, [
-      el('span', { class: 'drawer-id', text: d.id }), close,
-    ]),
+    'aria-label': d.headline || d.id }, [
+    el('div', { class: 'drawer-head' }, [el('span', { class: 'drawer-id', text: d.id }), close]),
     pane,
   ]);
   const scrim = el('div', { class: 'scrim' });
@@ -454,14 +592,13 @@ async function openCourse(id) {
   close.focus();
 }
 
-/* ── 사용자 ── */
+/* ── 가입자 ── */
 async function drawUsers() {
-  const box = $('#users');
+  const box = $('#view-users');
   box.replaceChildren(el('p', { class: 'empty', text: '불러오는 중…' }));
   let data;
-  try {
-    data = await API.users();
-  } catch (e) {
+  try { data = await API.users(); }
+  catch (e) {
     if (e instanceof Unauthorized) return gate(e.message);
     data = { error: '서버에 닿지 못했다' };
   }
@@ -470,37 +607,36 @@ async function drawUsers() {
       + (LOCAL ? ' — aws CLI가 깔려 있고 ~/.aws 자격증명이 있는지 확인해라.' : '') }));
     return;
   }
-  $('#n-users').textContent = ' ' + data.users.length;
-  const rows = data.users.map(u => {
-    const btn = el('button', { class: 'danger', text: '삭제' });
-    btn.onclick = () => confirmDelete(u);
-    return el('tr', {}, [
-      el('td', { text: u.provider || '?' }),
-      el('td', { class: 'rows-name', text: u.nickname || '(없음)' }),
-      el('td', { text: u.email || '—' }),
-      el('td', { text: (u.createdAt || '').slice(0, 16).replace('T', ' ') }),
-      el('td', { class: hasToken(u) ? 'ok' : 'num',
-                 text: u.provider === 'apple' ? (hasToken(u) ? '폐기 가능' : '토큰 없음') : '—' }),
-      el('td', { class: 'num', text: (u.userId || '').slice(0, 8) + '…' }),
-      el('td', {}, [btn]),
-    ]);
-  });
+  $('#n-users').textContent = data.users.length;
   box.replaceChildren(
     el('p', { class: 'note note-quiet', text:
       'Apple 사용자의 “토큰 없음”은 9/2 배포 전에 가입해서다. 한 번 재로그인하면 채워지고, '
       + '그전에는 탈퇴해도 Apple 토큰이 폐기되지 않는다.' }),
     el('table', { class: 'rows' }, [
-      el('thead', {}, [el('tr', {}, ['수단', '닉네임', '이메일', '가입', 'Apple 폐기', 'userId', ''].map(
-        h => el('th', { text: h })))]),
-      el('tbody', {}, rows),
+      el('thead', {}, [el('tr', {},
+        ['수단', '닉네임', '이메일', '가입', 'Apple 폐기', 'userId', ''].map(h => el('th', { text: h })))]),
+      el('tbody', {}, data.users.map(u => {
+        const btn = el('button', { class: 'btn btn-danger', text: '삭제' });
+        btn.onclick = () => confirmDelete(u);
+        return el('tr', {}, [
+          el('td', { text: u.provider || '?' }),
+          el('td', { class: 'rows-name', text: u.nickname || '(없음)' }),
+          el('td', { text: u.email || '—' }),
+          el('td', { text: (u.createdAt || '').slice(0, 16).replace('T', ' ') }),
+          el('td', { class: hasToken(u) ? 'ok' : 'num',
+            text: u.provider === 'apple' ? (hasToken(u) ? '폐기 가능' : '토큰 없음') : '—' }),
+          el('td', { class: 'num', text: (u.userId || '').slice(0, 8) + '…' }),
+          el('td', {}, [btn]),
+        ]);
+      })),
     ]));
 }
 
 function confirmDelete(u) {
   const name = u.nickname || u.userId;
-  const input = el('input', { class: 'field', placeholder: name, 'aria-label': '닉네임 입력' });
-  const go = el('button', { class: 'go', text: '삭제', disabled: 'true' });
-  const cancel = el('button', { class: 'chip', text: '취소' });
+  const input = el('input', { class: 'field field-mono', placeholder: name, 'aria-label': '닉네임 입력' });
+  const go = el('button', { class: 'btn btn-go', text: '삭제', disabled: 'true' });
+  const cancel = el('button', { class: 'btn', text: '취소' });
   const out = el('p', { class: 'lic' });
   input.oninput = () => { go.disabled = input.value !== name; };
   const scrim = el('div', { class: 'scrim' });
@@ -510,48 +646,103 @@ function confirmDelete(u) {
     el('p', { class: 'note', text:
       'Apple 토큰 폐기는 여기서 하지 않는다. 심사 5.1.1(v)를 지키려면 앱의 탈퇴 화면을 쓸 것.' }),
     el('p', { class: 'lic', text: `확인하려면 “${name}” 을 그대로 입력해라.` }),
-    input,
-    el('p', {}, [go, ' ', cancel]),
-    out,
+    input, el('p', {}, [go, ' ', cancel]), out,
   ]);
   const shut = () => { scrim.remove(); modal.remove(); };
   cancel.onclick = shut; scrim.onclick = shut;
   go.onclick = async () => {
     go.disabled = true; out.textContent = '삭제 중…';
-    let r;
-    try { r = await API.remove(u.userId); }
+    try { await API.removeUser(u.userId); }
     catch (e) { out.textContent = e.message; go.disabled = false; return; }
-    if (r && r.error) { out.textContent = r.error; go.disabled = false; return; }
     shut(); drawUsers();
   };
   document.body.append(scrim, modal);
   input.focus();
 }
 
-/* ── 탭 ── */
-function show(which) {
-  const isCourses = which === 'courses';
-  $('#view-courses').hidden = !isCourses;
-  $('#view-users').hidden = isCourses;
-  $('#tab-courses').setAttribute('aria-selected', String(isCourses));
-  $('#tab-users').setAttribute('aria-selected', String(!isCourses));
-  if (!isCourses) drawUsers();
-}
-$('#tab-courses').onclick = () => show('courses');
-$('#tab-users').onclick = () => show('users');
-if (EMBED) $('#tab-users').hidden = true;   // 자격증명이 없으니 아예 감춘다
+/* ── 설정 ── */
+async function drawSettings() {
+  const box = $('#view-settings');
+  if (!CAN_EDIT) {
+    box.replaceChildren(el('p', { class: 'note note-quiet',
+      text: '운영값 변경은 배포된 콘솔에서만 된다.' }));
+    return;
+  }
+  box.replaceChildren(el('p', { class: 'empty', text: '불러오는 중…' }));
+  let s;
+  try { s = await API.settings(); }
+  catch (e) { return e instanceof Unauthorized ? gate(e.message) : box.replaceChildren(
+    el('p', { class: 'note', text: e.message })); }
 
-/* ── 로그인 (배포본만) ── */
+  const msg = el('span', { class: 'savebar-msg', role: 'status', 'aria-live': 'polite' });
+  const daily = el('input', { class: 'field', type: 'number', min: 1, max: s.maxDailyLimit,
+    id: 'set-daily', 'aria-label': '하루 생성 횟수' });
+  const perMin = el('input', { class: 'field', type: 'number', min: 1, max: s.maxPerMinuteLimit,
+    id: 'set-min', 'aria-label': '분당 호출' });
+  daily.value = s.dailyLimit;
+  perMin.value = s.perMinuteLimit;
+
+  const save = el('button', { class: 'btn btn-go', text: '적용' });
+  save.onclick = async () => {
+    save.disabled = true; msg.textContent = '적용 중…';
+    try {
+      const next = await API.saveSettings({
+        dailyLimit: Number(daily.value), perMinuteLimit: Number(perMin.value) });
+      daily.value = next.dailyLimit; perMin.value = next.perMinuteLimit;
+      msg.textContent = '적용했다. 서버 전체에 최대 1분 뒤 퍼진다.';
+    } catch (e) { msg.textContent = e.message; }
+    finally { save.disabled = false; }
+  };
+
+  const row = (label, hint, input, unit, dflt) => el('div', {}, [
+    el('label', { class: 'label', for: input.id }, [
+      document.createTextNode(label), el('small', { text: hint })]),
+    el('div', { class: 'stepper' }, [input,
+      el('span', { class: 'stepper-unit', text: unit }),
+      el('span', { class: 'stepper-unit', text: `배포 기본값 ${dflt}` })]),
+  ]);
+
+  box.replaceChildren(el('div', { class: 'panel' }, [
+    el('h2', { class: 'panel-h', text: '코스 생성 제한' }),
+    el('p', { class: 'panel-p', text:
+      '사용자 한 명이 실시간 코스를 몇 번이나 만들 수 있는지. TMAP·Google 을 호출하는 '
+      + '유료 구간이라 이 숫자가 곧 비용 상한이다.' }),
+    row('하루 생성 횟수', 'KST 자정에 초기화', daily, '회 / 사용자 / 일', s.defaultDailyLimit),
+    row('분당 호출', '재시도 폭주 차단용', perMin, '회 / 사용자 / 분', s.defaultPerMinuteLimit),
+    el('div', { class: 'savebar' }, [save, msg]),
+  ]));
+}
+
+/* ── 화면 전환 ── */
+const PAGES = {
+  courses: { title: '코스 검수', desc: '사진·경로·저작권에서 사람이 봐야 할 것만 표시한다. 카드를 열면 원고를 고칠 수 있다.' },
+  users:   { title: '가입자',   desc: '앱에 가입한 계정. 삭제는 되돌릴 수 없다.' },
+  settings:{ title: '설정',     desc: '배포 없이 바꿀 수 있는 운영값.' },
+};
+function show(which) {
+  for (const k of Object.keys(PAGES)) {
+    $('#view-' + k).hidden = k !== which;
+    $('#nav-' + k).setAttribute('aria-current', k === which ? 'page' : 'false');
+  }
+  $('#head-h').textContent = PAGES[which].title;
+  $('#head-p').textContent = PAGES[which].desc;
+  window.scrollTo(0, 0);
+  if (which === 'users') drawUsers();
+  if (which === 'settings') drawSettings();
+}
+for (const k of Object.keys(PAGES)) $('#nav-' + k).onclick = () => show(k);
+
+/* ── 로그인 ── */
 function gate(message) {
   document.querySelectorAll('.scrim,.drawer,.modal').forEach(n => n.remove());
-  $('#view-courses').hidden = true;
-  $('#view-users').hidden = true;
+  $('#page').hidden = true;
+  $('#rail').hidden = true;
   $('#gate').hidden = false;
   $('#gate-msg').textContent = message || '';
   $('#gate-email').focus();
 }
 
-async function signIn(e) {
+$('#gate-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = $('#gate-go');
   btn.disabled = true;
@@ -563,18 +754,28 @@ async function signIn(e) {
     });
     const body = await res.json();
     if (!res.ok) throw new Error(body.message || '이메일이나 비밀번호가 맞지 않는다');
-    TOKEN = body.idToken;                       // 이메일 클레임은 idToken에만 있다
+    TOKEN = body.idToken;                       // 이메일 클레임은 idToken 에만 있다
     sessionStorage.setItem('adminToken', TOKEN);
-    $('#gate').hidden = true;
     $('#gate-pw').value = '';
+    $('#gate').hidden = true;
     await boot();
   } catch (err) {
     $('#gate-msg').textContent = err.message;
   } finally {
     btn.disabled = false;
   }
+});
+
+$('#signout').onclick = () => {
+  TOKEN = ''; sessionStorage.removeItem('adminToken');
+  gate('로그아웃했다.');
+};
+
+function whoAmI() {
+  if (MODE !== 'cloud' || !TOKEN) return MODE === 'local' ? '로컬 · aws 자격증명' : '';
+  try { return JSON.parse(atob(TOKEN.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).email || ''; }
+  catch { return ''; }
 }
-$('#gate-form').addEventListener('submit', signIn);
 
 async function boot() {
   try {
@@ -583,9 +784,14 @@ async function boot() {
     if (e instanceof Unauthorized) return gate(e.message);
     throw e;
   }
-  $('#view-courses').hidden = false;
-  $('#n-courses').textContent = ' ' + COURSES.length;
-  drawFilters(); drawSheet();
+  $('#rail').hidden = false;
+  $('#page').hidden = false;
+  $('#n-courses').textContent = COURSES.length;
+  $('#who').textContent = whoAmI();
+  $('#signout').hidden = MODE !== 'cloud';
+  if (!CAN_EDIT) $('#nav-settings').hidden = true;
+  if (EMBED) $('#nav-users').hidden = true;
+  drawFilters(); drawSheet(); show('courses');
 }
 
 if (MODE === 'cloud' && !TOKEN) gate('');

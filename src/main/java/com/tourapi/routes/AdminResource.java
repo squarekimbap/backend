@@ -3,15 +3,20 @@ package com.tourapi.routes;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.tourapi.lib.CognitoAuth;
 import com.tourapi.lib.UserStore;
+import com.tourapi.services.AdminSettings;
+import com.tourapi.services.CourseCatalog;
+import com.tourapi.services.CourseOverrides;
 import com.tourapi.services.CourseReview;
 import com.tourapi.model.ApiError;
 import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.json.JsonString;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -52,6 +57,15 @@ public class AdminResource {
     CourseReview courseReview;
 
     @Inject
+    CourseCatalog catalog;
+
+    @Inject
+    CourseOverrides overrides;
+
+    @Inject
+    AdminSettings adminSettings;
+
+    @Inject
     UserStore userStore;
 
     @Inject
@@ -77,6 +91,86 @@ public class AdminResource {
         }
         JsonNode d = courseReview.detail(id);
         return d == null ? error(404, "not_found", "그런 코스가 없다") : Response.ok(d).build();
+    }
+
+    @PUT
+    @Path("/courses/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "코스 원고 수정 — 앱에 보이는 글과 사진만. 경로·좌표는 못 고친다")
+    public Response saveCourse(@PathParam("id") String id, JsonNode patch) {
+        Response denied = denyUnlessAdmin();
+        if (denied != null) {
+            return denied;
+        }
+        if (catalog.originalById(id) == null) {
+            return error(404, "not_found", "그런 코스가 없다");
+        }
+        if (patch == null || !patch.isObject()) {
+            return error(400, "bad_request", "고칠 필드를 담은 객체가 필요하다");
+        }
+        try {
+            overrides.save(id, patch);
+        } catch (IllegalArgumentException e) {
+            return error(400, "bad_request", e.getMessage());
+        } catch (IllegalStateException e) {
+            LOG.warnf("코스 수정 저장 실패: %s", e.toString());
+            return error(502, "upstream_error", "저장 실패 — 다시 시도해라");
+        }
+        LOG.infof("코스 원고 수정: %s (요청자 %s)", id, email());
+        return Response.ok(courseReview.detail(id)).build();
+    }
+
+    @DELETE
+    @Path("/courses/{id}/edits")
+    @Operation(summary = "코스 원고를 번들 원본으로 되돌린다")
+    public Response resetCourse(@PathParam("id") String id) {
+        Response denied = denyUnlessAdmin();
+        if (denied != null) {
+            return denied;
+        }
+        try {
+            overrides.reset(id);
+        } catch (IllegalStateException e) {
+            return error(502, "upstream_error", "되돌리기 실패 — 다시 시도해라");
+        }
+        LOG.infof("코스 원고 되돌림: %s (요청자 %s)", id, email());
+        return Response.ok(courseReview.detail(id)).build();
+    }
+
+    // ── 운영값 ───────────────────────────────────────────────────────
+
+    @GET
+    @Path("/settings")
+    @Operation(summary = "현재 운영값과 배포 기본값")
+    public Response settings() {
+        Response denied = denyUnlessAdmin();
+        return denied != null ? denied : Response.ok(adminSettings.snapshot()).build();
+    }
+
+    @PUT
+    @Path("/settings")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "사용자별 일일 코스 생성 횟수와 분당 호출 상한을 바꾼다")
+    public Response updateSettings(SettingsRequest req) {
+        Response denied = denyUnlessAdmin();
+        if (denied != null) {
+            return denied;
+        }
+        try {
+            adminSettings.update(req == null ? null : req.dailyLimit(),
+                    req == null ? null : req.perMinuteLimit());
+        } catch (IllegalArgumentException e) {
+            return error(400, "bad_request", e.getMessage());
+        } catch (IllegalStateException e) {
+            LOG.warnf("운영값 저장 실패: %s", e.toString());
+            return error(502, "upstream_error", "저장 실패 — 다시 시도해라");
+        }
+        LOG.infof("운영값 변경 (요청자 %s)", email());
+        return Response.ok(adminSettings.snapshot()).build();
+    }
+
+    /** 바꾸지 않을 항목은 null로 둔다. */
+    public record SettingsRequest(Integer dailyLimit, Integer perMinuteLimit) {
     }
 
     // ── 가입자 ───────────────────────────────────────────────────────
