@@ -1195,8 +1195,23 @@
      "name": "반포한강공원",
      "lat": 37.5100172,
      "lng": 126.995032,
-     "audioSeconds": 15,
-     "description": "출발과 반환의 기준점. 안내센터 앞 광장이 넓어 몸풀기에 좋고 편의점과 화장실이 붙어 있다."
+     "audioSeconds": 135,
+     "description": "출발과 반환의 기준점. 안내센터 앞 광장이 넓어 몸풀기에 좋고 편의점과 화장실이 붙어 있다.",
+     "audio": {
+      "ko": {
+       "name": "반포한강공원",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19329.mp3",
+       "seconds": 135,
+       "script": "반포한강공원  서울 서초구의 반포한강공원은, 반포대교를 중심으로 한남대교와 동작대교 사이 한강을 따라 자리하고 있어요. 이곳은 한강르네상스 사업으로 새롭게 태어난 서울의 대표 수변공원인데요, 반포한강공원 하면 가장 먼저 떠오르는 아름다운 교량 분수인 달빛무지개분수부터, 각종 놀이터와 체육시설을 고루 갖추고 있습니다. 반포한강공원에 대해 더 자세히 알아볼까요?  반포한강공원의 달빛무지개분수는 세계에서 가장 긴 교량 분수입니다. 반포대교 양쪽에 설치된 이 분수는 총길이가 1,140m나 되어 2008년 세계에서 가장 긴 교량 분수로 기네스북에 오르기도 했는데요, 특히 밤에는 200여 개의 조명이 반짝이며 일곱 빛깔 무지개처럼 환상적인 광경을 선사합니다. 공원 중심에 있는 달빛 광장에서는 아름다운 분수와 한강의 야경을 한눈에 즐길 수 있답니다.  반포한강공원 주위에 있는 인공섬인 세빛섬과 서래섬도 놓칠 수 없는 볼거리랍니다. 우선 세빛섬은 세계 최초로 물 위에 떠 있을 수 있도록 건축된 세 개의 인공섬이에요. 야외무대도 있는 복합문화공간으로 쓰이고 있지요. 다음으로 반포한강공원과 연결된 서래섬은 계절마다 유채꽃, 메밀꽃이 피어나 환상적인 광경을 자아낼 뿐만 아니라, 봄과 가을이면 유채꽃 축제와 메밀꽃 축제도 열린답니다.  반포한강공원의 다채로움은 정말 끝이 없는데요, 이 밖에도 잘 정비된 자전거 도로와 산책로, 각종 편의시설과 축구장, 농구장 등의 체육시설도 자리하고 있답니다. 달빛무지개분수의 황홀한 야경, 아름다운 서래섬의 풍경, 그리고 시원한 강바람과 함께하는 다채로운 활동들까지, 한강의 매력을 온전히 느끼고 싶다면 반포한강공원을 찾아보는 건 어떨까요?"
+      },
+      "en": {
+       "name": "Banpo Hangang Park",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19395.mp3",
+       "seconds": 161,
+       "script": "Banpo Hangang Park, located in Seocho-gu, Seoul, stretches along the Hangang River between Banpo Bridge, Hannam Bridge, and Dongjak Bridge. The park is one of the iconic waterfront parks in Seoul, newly revitalized through the Hangang River Renaissance Project. Banpo Hangang River Park is known for its beautiful landmarks, including the famous Moonlight Rainbow Fountain, along with a variety of playgrounds and sports facilities. Let’s explore more about Banpo Hangang River Park!   The Moonlight Rainbow Fountain at Banpo Hangang River Park is the longest bridge fountain in the world. It is installed on both sides of Banpo Bridge which stretches a total length of 1,140 meters, and was even listed in the Guinness World Records in 2008 as the longest bridge fountain globally. Especially at night, over 200 lights illuminate the fountain, creating a fantastic spectacle with a rainbow of colors. From the Moonlight Plaza at the center of the park, visitors can enjoy both the beautiful fountain and the night views of the Hangang River.   Another must-see in the area is the artificial islands surrounding the park: Some Sevit and Seoraeseom Island. Some Sevit is the world’s first set of floating artificial islands which designed to stay afloat on the water. It serves as a complex cultural space with an outdoor stage and other facilities. Seoraeseom Island, connected to Banpo Hangang River Park, is particularly scenic in every season, with fields of canola flowers and buckwheat flowers creating a breathtaking view. In spring and fall, the island hosts the Canola Flower Festival and Buckwheat Flower Festival, attracting many visitors.   The diversity of attractions at Banpo Hangang River Park is endless. In addition to its well-maintained bike paths and walking trails, the park offers various sports facilities, including football fields and basketball courts. Whether it’s enjoying the enchanting night view of the Moonlight Rainbow Fountain, the beautiful scenery of Seoraeseom Island, or taking part in various activities with the cool river breeze, Banpo Hangang River Park offers a perfect opportunity to fully experience the charm of the Han River."
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19329.mp3"
     },
     {
      "id": "seoul-banpo-10k-2",
@@ -2125,8 +2140,29 @@
      "name": "여의도한강공원",
      "lat": 37.5263232,
      "lng": 126.9348268,
-     "audioSeconds": 15,
-     "description": "출발점이자 두 서울 마라톤의 출발선. 안내센터 앞이 넓어 집합과 몸풀기에 쓰기 좋다."
+     "audioSeconds": 171,
+     "description": "출발점이자 두 서울 마라톤의 출발선. 안내센터 앞이 넓어 집합과 몸풀기에 쓰기 좋다.",
+     "audio": {
+      "ko": {
+       "name": "로컬을 여행하는 새로운 방식, 데일리케이션",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21735.mp3",
+       "seconds": 171,
+       "script": "\"서울 사람에게는 평범한 토요일이 누군가에게는 특별한 여행 일정이 되기도 합니다.  강변에 앉아 치킨을 시키고, 동네 시장에서 떡볶이를 사 먹습니다. 편의점에서는 새로 나온 과자를 고르고, 인생네컷 사진 부스에 들어가 친구와 사진을 찍습니다.  이런 여행을 ‘데일리케이션’이라고 합니다. ‘일상’과 ‘휴가’를 합친 말인데요. 현지인의 일상생활을 경험하는 여행을 즐긴다는 의미입니다. 어디로 가서 무엇을 주문할지만 알면 돼요.   서울의 한강공원에는 배달 구역이 있습니다. 강변에 자리를 잡고 휴대폰으로 치킨을 주문하면 지정된 장소로 가져다줍니다. 치킨과 맥주를 함께 즐기는 ‘한강치맥’을 즐겨보세요. 외국인 여행자도 한 번쯤 경험해 보고 가는 짜릿한 일상 문화입니다.  한강공원은 서울 곳곳에 있으며 장소마다 성격이 다릅니다. 반포한강공원에서는 밤이 되면 대교에서 펼쳐지는 무지개분수를 볼 수 있어요. 망원한강공원을 찾는 사람들은 근처 시장에서 먹을거리를 사 들고 강변으로 향하곤 합니다.  그곳이 바로 망원시장입니다. 40년이 넘는 역사를 지닌 시장으로, 지금은 서울의 젊은 세대에게도 인기 있는 장소로 꼽혀요. 줄 서서 사는 매운 떡볶이와 초대형 고추튀김, 두툼한 떡갈비, 수제 크림막걸리까지. 시장을 둘러보며 하나씩 맛보는 재미가 있습니다.  한강까지 나가기가 여의치 않다면 편의점으로 향합니다. 한국의 편의점은 소셜미디어에서 막 유행하기 시작한 간식을 가장 빠르게 만나볼 수 있는 곳이기도 합니다. 안에 무엇이 들어 있을지 모르는 랜덤 상품부터 유명 베이커리와 협업한 디저트, 먹방 도전용 초대형 라면까지. 출시되자마자 품절되는 제품도 많습니다.  조금 더 특별한 경험을 원한다면 퍼스널 컬러 진단을 받아보세요. 얼굴 앞에 여러 색의 천을 대보며 자신에게 어울리는 색을 찾아주는 상담입니다. 정확한 진단을 위해 화장하지 않은 상태로 방문하는 것이 좋고, 한 사람당 40분에서 한 시간 정도 소요됩니다.  하루 동안만 문을 여는 특별한 카페도 있습니다. 팬들이 카페를 통째로 빌려 아이돌의 생일을 축하하는 ‘생일 카페’입니다. 카페 안은 아이돌의 사진과 소품으로 꾸며지고, 특별 메뉴와 굿즈도 마련됩니다. 주로 홍대와 성수, 강남 일대에서 열리며, 일정과 장소는 소셜미디어에서 찾아볼 수 있습니다.  한국에서는 네컷 사진 부스에서 특별한 추억을 남길 수 있습니다. 작은 셀프 스튜디오에 가까운 이곳에서는 모자와 선글라스, 스카프 같은 소품들을 자유롭게 사용할 수 있고, 아이돌이나 배우와 협업한 특별 프레임을 적용한 사진도 찍어볼 수 있습니다.  서울 사람들이 주말에 실제로 즐기는 일상을 그대로 따라 해보세요. 특별한 관광지를 찾아가지 않아도, 평범한 하루 속에서 서울다운 여행을 만나볼 수 있습니다. \""
+      },
+      "en": {
+       "name": "Dailycation: A New Way to Travel Like a Local",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21744.mp3",
+       "seconds": 205,
+       "script": "\"An ordinary Saturday for someone who lives in Seoul can be a special day on someone else’s travel itinerary.  You sit by the river and order fried chicken, then buy tteokbokki at the neighborhood market. At a convenience store, you pick out a snack that has just come out, and you step into a Life Four Cuts photo booth with a friend.  This kind of trip is called “Dailycation,” a blend of daily and vacation. It means traveling by living the way locals live day to day. All you need to know is where to go and what to order.  Hangang Park in Seoul has designated delivery zones. Settle in by the water, order chicken on your phone, and it will be brought to the appointed spot. Try chimaek by the Hangang River, chicken and beer together. It is one of those everyday thrills that visitors from abroad make a point of trying once.  Hangang Park stretches across Seoul, and each stretch has its own character. At Banpo Hangang Park you can watch the Moonlight Rainbow Fountain play from the bridge after dark. People heading for Mangwon Hangang Park tend to pick up food at the nearby market first and carry it down to the water.  That market is Mangwon Market. It has more than 40 years of history behind it and now counts as a favorite with Seoul’s younger generation too — spicy tteokbokki worth queuing for, oversized fried stuffed peppers, thick tteokgalbi, handmade cream makgeolli. Walking the market and tasting your way through it is the whole pleasure.  If getting out to the Hangang isn’t practical, head to a convenience store instead. Korean convenience stores are the fastest place to find whatever snack has just started trending on social media. Random products that give no hint of what’s inside, desserts made with famous bakeries, giant instant noodles built for a mukbang challenge. Plenty of them sell out the moment they launch.  For something a little more particular, try a personal color analysis. A consultant holds up fabrics in different colors to your face to determine which ones suit you. Come without makeup for an accurate reading; each session runs 40 minutes to an hour.  There are also cafes that open for a single day only. These are idol birthday cafes, where fans rent out a whole cafe to celebrate an idol’s birthday. The interior is dressed with photos and props, and there are special menu items and merchandise. Most happen around Hongdae, Seongsu, and Gangnam, and you can find dates and venues on social media.  Four-cut photo booths are where you leave Korea with a memory in hand. They work more like small self-service studios: hats, sunglasses, scarves, and other props are free to use, and you can shoot with special frames made in collaboration with idols and actors.  Copy what people in Seoul actually do with their weekends. You don’t need a special destination; an ordinary day holds a trip that could only be Seoul. \""
+      },
+      "jp": {
+       "name": "ローカルを旅する新しいスタイル、「デイリーケーション(Dailycation)」",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21754.mp3",
+       "seconds": 228,
+       "script": "\"ソウルに住む人にとってはごく普通の土曜日が、誰かにとっては特別な旅のスケジュールになることもあります。  川辺に座ってチキンをデリバリーし、地元の市場でトッポッキを買って食べます。コンビニでは新発売のお菓子を選び、人生4カット(プリクラ)のブースに入って友達と写真を撮ります。  こうした旅を「デイリーケーション」と呼びます。「日常(Daily)」と「休暇(Vacation)」を掛け合わせた言葉で、地元の人々の日常を体験して楽しむ旅という意味です。どこへ行って何を注文するかさえ分かれば、すぐに楽しめます。   ソウルのハンガン(漢江)公園には、デリバリー専用の受け取りエリアがあります。川辺にシートを広げてスマホでチキンを注文すると、指定の場所まで届けてくれます。チキンとビールを一緒に楽しむ「ハンガン(漢江)チメク」を体験してみてください。外国人旅行客も一度は体験していく、エキサイティングな日常の文化です。  ハンガン(漢江)公園はソウルの各地にあり、場所ごとに雰囲気が異なります。パンポ(盤浦)ハンガン(漢江)公園では、夜になると橋から水が噴き出るレインボー噴水を見ることができます。マンウォン(望遠)ハンガン(漢江)公園を訪れる人たちは、近くの市場で食べ物を買って川辺へ向かいます。  その市場がマンウォン(望遠)市場です。40年以上の歴史を持つ市場で、今ではソウルの若者世代にも人気のスポットとなりました。行列ができる辛いトッポッキやビッグサイズのコチュティギム(唐辛子天ぷら)、厚いトッカルビ(粗挽きカルビ焼き)、手作りクリームマッコリまで。市場を巡りながら食べ歩く楽しみがあります。  ハンガン(漢江)まで出かけるのが難しい場合は、コンビニへ向かいましょう。韓国のコンビニは、SNSで話題になり始めたお菓子やスイーツがいち早く手に入る場所でもあります。何が入っているか分からないランダム商品から、有名ベーカリーとコラボしたスイーツ、大食い挑戦用の超大型ラーメンまで。発売と同時に売り切れる商品も少なくありません。  もう少し特別な体験をしてみたいなら、パーソナルカラー診断を受けてみるのもおすすめです。顔の前にさまざまな色の布をあて、自分に似合う色を見つけてくれるカウンセリングです。正確な診断のためにノーメイクで訪問するのが望ましく、1人あたり40分から1時間ほどかかります。  1日だけオープンする特別なカフェもあります。ファンがカフェを丸ごと借りて、アイドルの誕生日をお祝いする「センイル(誕生日)カフェ」です。店内はアイドルの写真やグッズで飾られ、特別メニューやグッズも用意されます。主にホンデ(弘大)やソンス(聖水)、カンナム(江南)エリアで開催され、日程や場所はSNSで確認できます。  韓国では、人生4カット(プリクラ)のブースで特別な思い出を残すことができます。小さなセルフ撮影スタジオのようなこの場所では、帽子やサングラス、スカーフなどの小道具を自由に使うことができ、アイドルや俳優とコラボした限定フレームで撮影することもできます。  ソウルの人々が週末に実際に楽しんでいる日常を、そのまま真似してみてください。特別な観光地に行かなくても、平凡な日常の中でソウルらしい旅を楽しむことができます。 \""
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21735.mp3"
     },
     {
      "id": "seoul-yeouido-5k-2",
@@ -2137,12 +2173,46 @@
      "description": "코스 초반에 지나는 첫 다리. 다리 밑이 그늘이라 여름에는 잠깐 숨을 고르는 지점이 된다."
     },
     {
+     "id": "seoul-yeouido-5k-story-5978",
+     "name": "채그로",
+     "lat": 37.5355868,
+     "lng": 126.9441787,
+     "audioSeconds": 110,
+     "description": "서울시 마포구에 위치한 채그로는 책과 사람이 만나는 공간으로 책과 커피, 맛있는 음식과 한강뷰를 모두 즐길 수 있는 복합 문화공간입니다. 채그로는 책과 소통하며 책을 통해 일상을 변화시킬 수 있는 곳이에요. 독서를 어려워하는 사람부터 책을 좋아하는 사람까지 하나의 채널에서 만나게 되는 ",
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16799.mp3",
+     "audio": {
+      "ko": {
+       "name": "채그로",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16799.mp3",
+       "seconds": 110,
+       "script": "서울시 마포구에 위치한 채그로는 책과 사람이 만나는 공간으로 책과 커피, 맛있는 음식과 한강뷰를 모두 즐길 수 있는 복합 문화공간입니다. 채그로는 책과 소통하며 책을 통해 일상을 변화시킬 수 있는 곳이에요. 독서를 어려워하는 사람부터 책을 좋아하는 사람까지 하나의 채널에서 만나게 되는 공간이지요. 좋은 책들을 볼 수 있는 아늑한 공간이 마련되어 있는 채그로는 서울 한강의 석양을 볼 수 있는 최고의 명소라고 해요. 밤에는 서울의 멋진 야경도 즐길 수 있습니다.    채그로는 아름다운 한강의 풍경을 감상하며 책을 읽기 좋은 공간이에요. 음료를 주문하면 6층, 8층, 9층 공간을 자유롭게 이용할 수 있어요. 각 층에는 나온 지 얼마 되지 않은 책부터 유명한 책까지 카페 내부를 아름답게 채우고 있는 많은 책을 볼 수 있지요. 이곳에서 원하는 책을 자유롭게 읽을 수 있답니다. 마음에 드는 책을 구매해서 소장할 수도 있다고 해요. 6층에는 채그로 가든이 있는데요. 식물과 책이 함께하는 이곳은 푸른 정원에서 독서를 하는 기분을 느낄 수 있는 곳입니다. 마음에 드는 공간을 찾아 책을 읽는 여유를 즐겨 보세요.   채그로는 넓은 유리창을 통해 한강을 바라보면서 책을 읽거나 사색에 잠기는 등 자기만의 시간을 보내기 좋은 곳이에요. 가족이나 친구들과 이야기를 나누며 추억을 만들 수도 있지요. 건물의 2층에는 스터디 카페가 있어서 분위기 좋은 곳에서 공부를 할 수도 있어요. 1층과 5층에는 레스토랑이 있어서 식사도 가능하답니다. 채그로에서는 멀리 이동할 필요 없이 한 곳에서 독서와 공부, 아름다운 한강뷰와 맛있는 음식까지 모두 즐길 수 있어요. 책과 사람이 만나는 곳 채그로에서 아름다운 한강의 풍경을 즐기며 독서의 즐거움을 느껴 보시기 바랍니다."
+      }
+     }
+    },
+    {
      "id": "seoul-yeouido-5k-3",
      "name": "마포대교",
      "lat": 37.5340684,
      "lng": 126.9375033,
      "audioSeconds": 15,
      "description": "반환점. 여기서 돌아서면 남은 거리가 1.2km 남짓이라 마지막 페이스를 올리기 좋다."
+    },
+    {
+     "id": "seoul-yeouido-5k-story-7007",
+     "name": "LG트윈타워",
+     "lat": 37.527896,
+     "lng": 126.929174,
+     "audioSeconds": 60,
+     "description": "금융복합도시 여의도를 대표하는 건축물로 LG트윈타워를 빼놓을 수 없어요.  번쩍거리는 초고층 빌딩 숲에서 살짝 낡아 보이긴 해도, 1987년 이후로 쭉 여의도의 터줏대감으로 자리해 왔답니다.  우리나라 최초의 고층 쌍둥이 빌딩인 만큼, 건축 당시 많은 업적을 남긴 미국의 SOM사가 설계",
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20579.mp3",
+     "audio": {
+      "ko": {
+       "name": "LG트윈타워",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20579.mp3",
+       "seconds": 60,
+       "script": "금융복합도시 여의도를 대표하는 건축물로 LG트윈타워를 빼놓을 수 없어요.  번쩍거리는 초고층 빌딩 숲에서 살짝 낡아 보이긴 해도, 1987년 이후로 쭉 여의도의 터줏대감으로 자리해 왔답니다.  우리나라 최초의 고층 쌍둥이 빌딩인 만큼, 건축 당시 많은 업적을 남긴 미국의 SOM사가 설계를 맡아 비상 인터폰, CCTV용 카메라, 자동 조명 및 냉난방 장치, 메일 컨베이어 시스템, 윈도 워싱머신, 퍼즐 파킹 시스템 등 최첨단 시설을 갖추고 있습니다. 쌍둥이 빌딩의 서관은 LG전자가, 동관은 LG그룹이 사용하고 있죠.   다음으로 찾아볼 곳은 글로벌 비즈니스의 중심지, IFC서울입니다."
+      }
+     }
     },
     {
      "id": "seoul-yeouido-5k-4",
@@ -3268,8 +3338,17 @@
      "name": "N서울타워",
      "lat": 37.5512168,
      "lng": 126.9882475,
-     "audioSeconds": 15,
-     "description": "정상부 조망 지점. 도심 빌딩과 한강이 함께 내려다보이고, 사실상 이 길의 반환점 역할을 한다."
+     "audioSeconds": 114,
+     "description": "정상부 조망 지점. 도심 빌딩과 한강이 함께 내려다보이고, 사실상 이 길의 반환점 역할을 한다.",
+     "audio": {
+      "ko": {
+       "name": "N서울타워",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/895.mp3",
+       "seconds": 114,
+       "script": "서울의 랜드마크  남산 정상에 1975년에 완공된 N서울타워는 한국의 수도 서울의 상징 입니다. N서울타워는 원래 TV와 라디오 전파를 송출하기 위해 세운 전파탑이었습니다. 이곳이 시민들에게 개방된 것은 1980년인데요, 개방되자마자 서울의 관광명소로 떠올라서 지금까지도 많은 시민들의 사랑을 받고 있습니다.  N서울타워의 높이는 236m이고, 남산 높이까지 더하면 479.7m 입니다. 초고속 엘리베이터를 타면 30초 만에 355m 높이의 전망홀에 이르게 되는데, 엘리베이터 천장에서 펼쳐지는 현란한 미디어아트 덕분에 다른 세계로 들어선 것 같은 느낌이 들게 됩니다. 전면이 유리로 되어있는 전망홀에서는 서울을 360도 방향으로 둘러 볼 수 있습니다. 날씨가 좋은 날에는 동쪽으로는 양평 용문산, 서쪽으로는 한강과 인천 앞바다, 남쪽으로는 남한산성, 북쪽으로는 멀리 북한의 송악산까지 관측이 가능합니다. 전망홀 위의 레스토랑은 실내가 90분마다 한 바퀴 돌기 때문에, 식사를 하는 동안 서울을 한 바퀴 구경할 수 있는 데이트명소입니다.  드라마와 쇼 프로그램에서 자주 나오는 야외 전망대에는 수많은 자물쇠가 달려있습니다. 이 자물쇠들은 소원이 이루어지길 원하는 많은 사람들이 하나씩 달기 시작한 것인데요, 여러분의 소원을 담은 자물쇠도 꼭 달아 보세요!"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/895.mp3"
     }
    ],
    "sources": [
@@ -4263,32 +4342,103 @@
      "name": "올림픽공원",
      "lat": 37.5209339,
      "lng": 127.122959,
-     "audioSeconds": 15,
-     "description": "올림픽공원역 3번 출구에서 세계평화의 문으로 들어서면 바로 출발점. 광장이 넓어 집합과 몸풀기에 쓰기 좋다."
+     "audioSeconds": 101,
+     "description": "올림픽공원역 3번 출구에서 세계평화의 문으로 들어서면 바로 출발점. 광장이 넓어 집합과 몸풀기에 쓰기 좋다.",
+     "audio": {
+      "ko": {
+       "name": "몽촌토성(산책로_02)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8142.mp3",
+       "seconds": 101,
+       "script": "풍납동 토성에서 백제의 건국과 성장에 대해 말씀드렸는데요. 여기서 잠시 백제가 전성기 이후 어떤 위기를 맞게 되는지 말씀드리겠습니다.  근초고왕 사후 왕비족인 진씨 세력이 크게 성장하게 됩니다. 진사왕과 아신왕의 경우 왕위 즉위 과정에서 진씨 세력과 갈등하게 되지요. 이후 진씨 세력은 더 크게 성장하였고 왕권은 약화됩니다. 왕을 중심으로 한 강력한 지도력이 상실되어 버린 것이지요. 그런데 엎친 데 덮친 격으로 광개토대왕이 이끄는 고구려가 크게 성장하여 백제를 위협하게 됩니다. 고구려의 남하정책은 더욱 심해졌고 급기야 한강을 사이에 두고 왕성이 바로 내려다보이는 아차산에 고구려의 군대가 주둔하는 사태가 벌어졌지요. 하지만 백제의 왕권은 점차 약해지고 있었어요. 백제의 지배층에는 8개 성씨의 귀족이 있었습니다. 사씨, 연씨, 협씨, 해씨, 국씨, 목씨, 백씨, 진씨였어요. 아신왕이 죽은 후에는 진씨 세력이 물러나게 되고 해씨와 목씨가 정권을 잡지요. 둔 귀족 세력 간의 다툼과 왕권의 약화는 곧 나라를 혼란하게 만듭니다. 고이왕부터 근초고왕까지 성장과 발전을 해온 백제에게 아주 큰 위기가 온 것이지요. 그 뒷이야기는 앞으로 이어질 장소에서 이어가겠습니다.   이제 몽촌토성을 내려가 한성백제박물관으로 이동하겠습니다. 박물관까지 15분 정도 걸립니다. 박물관 도착하면 잠시 휴식을 취할 예정입니다."
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8142.mp3"
+    },
+    {
+     "id": "seoul-olympic-loop-story-3454",
+     "name": "몽촌역사관(로비)",
+     "lat": 37.523946,
+     "lng": 127.124395,
+     "audioSeconds": 31,
+     "description": "몽촌역사관은 한성백제 문화의 대표적인 유물과 유적을 한눈에 볼 수 있는 곳입니다.   몽촌토성에서는 여러 집 자리터와 저장구덩이, 토기 등 어마어마한 유물들이 발굴됩니다. 이때 모습을 드러낸 조상들의 흔적이 고스란히 담겨 있는 곳이 바로 이곳 몽촌역사관이지요. 시작하기에 앞서 화장실에 ",
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8144.mp3",
+     "audio": {
+      "ko": {
+       "name": "몽촌역사관(로비)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8144.mp3",
+       "seconds": 31,
+       "script": "몽촌역사관은 한성백제 문화의 대표적인 유물과 유적을 한눈에 볼 수 있는 곳입니다.   몽촌토성에서는 여러 집 자리터와 저장구덩이, 토기 등 어마어마한 유물들이 발굴됩니다. 이때 모습을 드러낸 조상들의 흔적이 고스란히 담겨 있는 곳이 바로 이곳 몽촌역사관이지요. 시작하기에 앞서 화장실에 다녀오고 싶으신 분들이 계실 것 같아 잠시 쉬는 시간을 갖겠습니다.   화장실을 다녀오신 후 10분 후에 뵙겠습니다."
+      }
+     }
     },
     {
      "id": "seoul-olympic-loop-2",
      "name": "몽촌토성",
      "lat": 37.5227975,
      "lng": 127.1188664,
-     "audioSeconds": 15,
-     "description": "백제가 한성에 도읍하던 시기의 흙성. 성벽 위를 달리는 동안 완만한 오르내림이 생긴다."
+     "audioSeconds": 90,
+     "description": "백제가 한성에 도읍하던 시기의 흙성. 성벽 위를 달리는 동안 완만한 오르내림이 생긴다.",
+     "audio": {
+      "ko": {
+       "name": "몽촌토성(성벽)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8140.mp3",
+       "seconds": 90,
+       "script": "여러분 잠시 성벽을 봐주시기 바랍니다. 앞에서 보셨던 풍납동 토성은 평지에 흙을 쌓아 만든 성입니다. 그렇다면 몽촌토성은 어떻게 쌓은 성일까요?  몽촌토성의 길이는 2.7km 정도이고 3~4세기에 만들어진 것으로 추정됩니다. 몽촌토성은 20~40m 정도의 작은 언덕이 여러 개 모여 성을 이루고 있습니다. 자연 구릉을 이용하여 성을 쌓은 것이지요. 이렇게 자연 구릉을 이용해 성을 만들 경우 지형을 최대한 활용할 수 있으며 그만큼 재정이나 노동력이 감소된다는 장점이 있습니다. 반면 몇 가지 보완할 부분이 있지요. 구릉의 높이가 일정하지 않다는 점, 구릉과 구릉이 연결되어 있지 않다는 점 그리고 구릉의 기울기가 완만하다는 점입니다. 몽촌토성은 이러한 단점을 보완하기 위해 여러 가지 축성 기술을 사용했습니다.  먼저 구릉이 높이가 일정하지 않은 부분은 흙을 쌓는 성토법을 활용했습니다. 그리고 구릉의 연결이 끊긴 곳은 흙을 다져 쌓는 판축 기법으로 보완하였지요. 마지막으로 구릉의 바깥쪽 즉 외 성벽 부분은 흙을 깎아 내어 경사를 만들었습니다. 이것을 삭토법이라고 합니다. 이렇게 자연 구릉을 여러 건축법으로 연결하고 깎아 만들 성이 바로 몽촌토성이지요.  그럼, 산책로를 따라 조금 더 이동하겠습니다."
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8140.mp3"
     },
     {
      "id": "seoul-olympic-loop-3",
      "name": "몽촌호",
      "lat": 37.5196939,
      "lng": 127.1176967,
-     "audioSeconds": 15,
-     "description": "공원 한가운데 수변 구간. 물을 끼고 도는 평탄한 길이라 페이스를 회복하기 좋다."
+     "audioSeconds": 143,
+     "description": "공원 한가운데 수변 구간. 물을 끼고 도는 평탄한 길이라 페이스를 회복하기 좋다.",
+     "audio": {
+      "ko": {
+       "name": "몽촌토성 소개",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/1403.mp3",
+       "seconds": 143,
+       "script": "한성백제의 왕성, 몽촌토성  야트막한 언덕 위로 이어지는 길, 이곳은 몽촌토성입니다. 고층 아파트로 둘러싸인 서울의 도심에 고대의 유적이 남아있다는 것이 흥미로운데요. 서울 송파구와 강동구 일대가 백제 건국 당시의 도읍지인 한성이었기 때문입니다.  백제의 중심 지역 하면 어디가 떠오르세요? 흔히 공주와 부여를 꼽게 되죠. 하지만 그 이전에 이곳 서울, 즉 당시의 한성에서 백제는 약 500년 간 역사와 문화를 다져갔어요. 한강은 훌륭한 교역로였고, 강을 끼고 지어진 몽촌토성은 한성백제의 궁궐을 든든히 지키는 왕성이었죠.  성벽의 전체 길이는 약 2.3km로, 성 내부의 면적은 서울월드컵경기장의 4배 정도가 되지요. 이 토성은 남한산성에서 뻗어 내린 구릉을 따라, 있는 그대로의 지형을 활용하여 지어졌어요. 경사가 완만한 지점은 흙을 깎아 경사를 급하게 만들었고, 언덕의 낮은 지점에는 점토를 쌓아 성벽을 높게 만들었지요. 둘러보면 아시겠지만, 이 때문에 성벽의 높이가 지점에 따라 조금씩 다르답니다.  그럼 몽촌토성은 언제 만들어진 걸까요?  출토된 유물을 통해 볼 때, 몽촌토성은 약 4세기 전반에 만들어진 것으로 보여집니다. 이 후에 한성을 점령한 고구려가 6세기 중엽까지 이 토성을 사용했죠. 그러고 나선 거의 사용되지 않다가 조선시대에 와서 이 토성 안에 다시 사람들이 살기 시작했던 것으로 보여져요. 이후 잊혀버린 몽촌토성은 1988년 서울 올림픽을 준비하는 가운데 발견되어서, 발굴 조사가 이루어졌답니다.  천천히 걸어보시면서 몽촌토성에서 발견된 한성백제의 흔적을 만나보세요."
+      },
+      "en": {
+       "name": "Mongchontoseong Fortress",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17597.mp3",
+       "seconds": 130,
+       "script": "Mongchontoseong Fortress, the Royal Fortress of Seoul Era  Mongchontoseong Fortress is an ancient heritage located inside Olympic Park, which was built to commemorate the Seoul Olympics in 1988. Although it now serves as a beautiful walkway for residents, it once functioned as a fortress defending an ancient kingdom.  The kingdom that the fortress had defended was Baekje, which ruled the southwest area of the Korean Peninsula from 18 BC to 660 AD. When Baekje was founded, its capital was located in today’s Gangnam area of Seoul. Over 500 years, Baekje developed its unique history and culture.  Mongchontoseong Fortress is surrounded by a branch of Hangang River called Seongnaecheon Stream. The stream was built to defend the capital of Baekje. The entire length of the fortress wall extended approximately 2.3 kilometers, and the area inside the fortress was about 4 times the size of the Seoul World Cup Stadium.  Two construction methods were used to build the wall. The first was “panchuk,” which involved trampling clay and stacking it at certain intervals. The second was “buyeop,” where stacked soil was placed on top of wooden sticks or leaves. While regular earthen wall was vulnerable to water and could collapse easily, the buyeop method enabled natural water absorption to the wall and effective drainage. This is why ancient people used this method when constructing embankments or fortresses.  It is presumed that Mongchontoseong Fortress was built around the 4th century. Later, Goguryeo, the neighboring kingdom, occupied the earthen fortress and used it until the 6th century. After that, Mongchontoseong Fortress was neglected and forgotten for a long time until people once again lived in the fortress during the Joseon Dynasty. The fortress was discovered when Korea was preparing for the 1988 Seoul Olympics, leading to an excavation investigation in this historic site."
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/1403.mp3"
     },
     {
      "id": "seoul-olympic-loop-4",
      "name": "한성백제박물관",
      "lat": 37.5155717,
      "lng": 127.1206146,
-     "audioSeconds": 15,
-     "description": "바깥 둘레로 이어지는 지점. 토성에서 나온 유물을 모아 둔 곳으로, 10km로 늘릴 때 이쪽으로 붙인다."
+     "audioSeconds": 138,
+     "description": "바깥 둘레로 이어지는 지점. 토성에서 나온 유물을 모아 둔 곳으로, 10km로 늘릴 때 이쪽으로 붙인다.",
+     "audio": {
+      "ko": {
+       "name": "한성백제박물관 - 풍납토성 성벽 단면",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/1381.mp3",
+       "seconds": 138,
+       "script": "풍납토성의 건축기법  우리의 역사 속 한성백제를 되새겨놓은 박물관에 오셨습니다. 가장 먼저 만나보실 유물은 풍납토성의 성벽 단면인데요. 약 2천여 년의 시간을 거쳐 우리 곁에 남아 있는 풍납토성은 백제 한성 도읍지의 상징이 되는 유적이죠. 박물관 로비에서 아래를 내려다보면 풍납토성의 성벽 단면이 전시되어 있는 것을 볼 수 있는데요.   너비 43미터, 높이가 10여 미터인 실제 성벽 단면을 얇게 떼어내서 전시하고 있기 때문에, 켜켜이 이어 붙인 흙더미의 층을 뚜렷하게 확인할 수 있습니다.   흙으로 쌓은 성은 홍수나 외부의 충격에 금방 무너질 거 같기도 한데요. 어떤 건축공법이 숨어 있기에 이토록 오랫동안 남아 있을 수 있었던 것일까요? 이 풍납토성이 어떻게 만들어졌는지 살펴보도록 할게요.   먼저 성벽 가장 밑쪽에는 뻘을 깔아 기초를 다지고, 흙을 쌓아갔는데요. 이때 활용된 건축공법이 바로 판축기법이에요. 전시된 성벽 단면 앞에는 일정한 간격으로 기둥이 세워져 있고, 그 사이에 나무판을 대어 놓았는데요. 이 사각의 틀 안에 고운 흙을 넣고 다졌어요.   그다음 잔 나뭇가지와 잎사귀를 깔고 잘 다진 흙을 20센티미터 간격으로 마치 시루떡을 쌓듯이 한 층 한 층 쌓아올렸어요. 이를 부엽공법이라고 하죠.   마지막으로 성벽의 안팎은 강돌로 덮어서 흙이 흘러내리는 것을 막고 성벽에 스민 물이 빠져나갈 수 있도록 했습니다.   이 같은 방식으로 3.5km나 되는 토성을 쌓으려면 적어도 연인원 2백만 명이 동원되었을 것으로 추측하고 있습니다. 풍납토성은 3세기 중엽 이후에 만들어졌을 것으로 보이는데, 이 시기에 한성백제의 왕권이 강력해지고 있었다는 것을 보여준답니다."
+      },
+      "en": {
+       "name": "A Cross Section of Pungnaptoseong Fortress Wall (Seoul Baekje Museum)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17586.mp3",
+       "seconds": 96,
+       "script": "Construction of Pungnaptoseong  Welcome to Seoul Baekje Museum. Baekje was one of the three well-known kingdoms on the Korean peninsula. It lasted 700 years from 18 BC to 660 AD and used to rule the southwest area of the Korean Peninsula. When Baekje was founded, its capital was located in Hanseong, which is today’s Seoul.  As you enter the museum, the first artifact you’ll encounter is the cross section of the Pungnaptoseong fortress wall. Pungnaptoseong stood for 1700 years and symbolized the early Baekje Era, alongside Mongchontoseong.  This giant fortress wall cross section is 43 meters wide and 10 meters high. Remarkably, it presents only a small sample collected from the fortress wall, where you can clearly observe the layers of clay that formed it.  The construction of this earthen fortification employed a brilliant technique, layering different materials to enhance its resilience against floods and other potential damage. The soil was well packed and stacked in certain intervals, enabling it to be sturdy against natural disasters or external impacts.  Tremendous manpower was required to construct the 3.5km-long earthen fortification. It is estimated that Pungnaptoseong was built sometime after the mid-3rd century, indicating the expanding royal authority of Baekje during the Seoul Era."
+      },
+      "jp": {
+       "name": "風納土城(プンナプ・トソン)城壁断面",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17933.mp3",
+       "seconds": 122,
+       "script": "百済初期に土で築かれた城郭、風納土城(プンナプ・トソン)  最初にご覧いただくものは、風納土城(プンナプ・トソン)の城壁の断面です。約1700年前に建てられた風納土城は、近隣に位置する夢村土城(モンチョン・トソン)と共に、漢城百済を象徴する遺跡として広く知られています。  展示されている巨大な城壁の断面は、幅43メートル、高さ10メートル余りの大きさで、実際の城壁の断面を薄く削り取ったものです。幾層にも積み重ねられた土砂の層がくっきりと残されています。  堅固な城を築くことができたのは、洪水や外部からの衝撃に耐えられるよう、一層一層異なった建築資材を積み重ねていく建築工法が用いられたためです。粘り気が出るまで、土砂をよく混ぜ、一定の間隔でこれを積み上げ固めていく技法が用いられました。そのため、風納土城は洪水や外部からの衝撃にもびくともしませんでした。地震にも強いといわれるこのような工法は、日本でも堤防や城壁をつくる際に用いられました。大阪の狭山池(さやまいけ)博物館にも、類似した技法でつくられた堤防の断面が展示されているそうです。  長さ3.5キロメートルの風納土城をこのような技法で建てようとすれば、かなりの人数の人を動員しなければならないことは容易に想像できますね。風納土城は3世紀半ば以降につくられたものと推定されていますが、この時期、漢城百済の王権が以前よりも強化されていたことが分かります。  それでは次に、第一展示室で百済が建国される前のソウルの姿をご覧になった後、第二展示室へと向かって、漢城百済時代の遺物について詳しく見ていくことにしましょう。"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/1381.mp3"
     }
    ],
    "shape": "roundTrip"
@@ -5296,8 +5446,23 @@
      "name": "뚝섬한강공원",
      "lat": 37.5294517,
      "lng": 127.0706769,
-     "audioSeconds": 15,
-     "description": "출발점. 물품보관함이 있고, 강변으로 내려서면 바로 평탄한 산책로가 시작된다."
+     "audioSeconds": 115,
+     "description": "출발점. 물품보관함이 있고, 강변으로 내려서면 바로 평탄한 산책로가 시작된다.",
+     "audio": {
+      "ko": {
+       "name": "뚝섬한강공원",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19326.mp3",
+       "seconds": 115,
+       "script": "뚝섬한강공원  서울 광진구에 위치한 뚝섬한강공원은 서울의 대표적인 휴식 공간 중 하나랍니다. 뚝섬한강공원은 수변광장, 장미정원, 어린이놀이터 등 다양한 공간으로 이루어져 있지만, 역시 공원 입구에서 가장 먼저 눈에 띄는 건 ‘자벌레’라고 불리는 독특한 복합전망문화공간이에요.   길이가 243미터나 되는 이 공간은 자벌레를 모티브로 한 원통형의 공간으로, 지하철 7호선 자양역과 연결되어 있어 누구나 이곳을 통해 편리하게 뚝섬한강공원으로 들어올 수 있답니다. 또한 카페와 기프트숍, 그리고 미디어아트 작가들의 작품이 전시되어 있어 여유롭게 한강을 감상할 수도 있지요.  수변광장에서는 아름다운 한강과 서울의 풍경이 한눈에 들어오는데요, 시원한 강바람을 맞으며 친구, 연인 그리고 가족들과 산책하기에 제격이랍니다. 여름이 되면 이곳에서 윈드서핑과 수상스키 같은 수상스포츠를 즐기는 사람도 많이 볼 수 있어요.  이처럼 뚝섬한강공원은 계절마다 다양한 볼거리와 즐길 거리를 제공하고 있어요. 매년 여름이 되면 야외수영장을 개장하고, 겨울이 되면 눈썰매장을 운영한답니다. 또한 자전거 대여소가 있으니 누구나 한강 변 자전거 도로를 따라 상쾌한 자전거 라이딩을 즐길 수도 있답니다.  이 밖에도 X게임장, 인공암벽장, 유람선 선착장 등 다양한 시설들이 있으니, 계절마다 색다른 매력을 뽐내는 뚝섬한강공원에서 도심 속 특별한 휴식을 경험해 보는 건 어떨까요?"
+      },
+      "en": {
+       "name": "Ttukseom Hangang Park",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19393.mp3",
+       "seconds": 132,
+       "script": "Ttukseom Hangang Park, located in Gwangjin-gu, Seoul, is one of the city's most iconic spots for relaxation. The park offers a variety of spaces, including a riverside plaza, a rose garden, and a children's playground. However, the first thing that catches your eye as you enter the park is Jabeolle, a unique and multifunctional cultural space that resembles a caterpillar.   The “Jabeolle” is a 243-meter-long structure that is cylindrical in shape, inspired by the form of a caterpillar. It is conveniently connected to Jayang Station on Subway Line 7, providing easy access to Ttukseom Hangang Park. Inside the park, you can find a café, a gift shop, and exhibitions showcasing works by media artists, creating a leisurely atmosphere to enjoy the view of the Hangang River.   From the riverside plaza, you can take in stunning views of the Han River and the Seoul cityscape. It's the perfect place for a relaxing walk with friends, family, or loved ones while enjoying the cool breeze from the river. In the summer, the area is also popular for water sports like windsurfing and water skiing.   Ttukseom Hangang Park offers a range of attractions and activities throughout the year. Every summer, it opens an outdoor swimming pool, and in winter, there’s a sledding hill. There is also a bike rental station, allowing visitors to enjoy a refreshing ride along the river’s bike paths.   In addition, the park features various facilities, such as an X-Games park, an artificial rock-climbing wall, and a ferry dock. With its distinct charm throughout the seasons, Ttukseom Hangang Park offers a special urban retreat. Why not experience this wonderful space and take a break from the hustle and bustle of the city?"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19326.mp3"
     },
     {
      "id": "seoul-ttukseom-7k-2",
@@ -6502,8 +6667,29 @@
      "name": "홍대입구역",
      "lat": 37.5570155,
      "lng": 126.9240192,
-     "audioSeconds": 15,
-     "description": "숲길의 중심이자 3번 출구로 바로 진입하는 지점. 사람이 가장 많이 몰리는 구간이기도 하다."
+     "audioSeconds": 142,
+     "description": "숲길의 중심이자 3번 출구로 바로 진입하는 지점. 사람이 가장 많이 몰리는 구간이기도 하다.",
+     "audio": {
+      "ko": {
+       "name": "낮과 밤이 살아 있는 홍대입구",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21646.mp3",
+       "seconds": 142,
+       "script": "\"서울의 젊고 자유로운 분위기를 느껴보고 싶다면, 홍대 입구로 향해보시기 바랍니다. 홍대 입구는 트렌드와 감성이 어우러진 곳으로, 낮에는 개성 있는 거리와 여유로운 산책길이 펼쳐지고, 밤에는 음악과 불빛, 사람들의 활기로 청춘의 에너지가 살아나는 공간입니다. 먼저 낮의 홍대를 걸어봅니다. 홍대거리에는 개성 있는 상점과 카페, 공연장, 다양한 문화공간이 모여 있어 홍대만의 자유로운 분위기를 느끼기에 좋습니다. 특히 매일 뮤지션들의 버스킹 공연이 이어지는 거리, 레드로드 일대에서는 젊은 감각과 활기찬 거리 문화를 가까이에서 만날 수 있습니다. KT&G 상상마당에서는 홍대를 대표하는 문화예술의 감성이 여실히 느껴집니다. 홍대에서 조금 더 여유로운 시간을 보내고 싶다면 경의선숲길, 이른바 연트럴파크로 향해보시기 바랍니다. 한때 기차가 지나던 길을 따라 조성된 이 산책길은 이제 도심 속 쉼터로 사랑받는 공간이 되었습니다. 푸른 나무와 잔디, 아기자기한 카페와 상점이 이어지는 길을 천천히 걷다 보면 분주한 도심 속에서도 한결 편안한 시간을 보낼 수 있습니다. 활기찬 홍대거리와는 또 다른 여유를 느낄 수 있어, 많은 사람이 잠시 쉬어가는 공간으로 사랑받고 있습니다. 해가 지면 홍대의 분위기는 또 한 번 달라집니다. 홍대거리와 레드로드 일대에는 하나둘 조명이 켜지고, 거리에는 음악과 웃음소리가 가득해집니다. 공연장 주변과 거리 곳곳에서는 거리공연이 이어지고, 개성 넘치는 상점과 카페에도 늦은 시간까지 사람들이 모여듭니다. 낮에는 취향과 감성을 따라 걷는 거리였다면, 밤에는 청춘의 열기와 자유로운 에너지가 넘치는 공간으로 변합니다. 트렌드와 자유로운 감성이 어우러진 청춘 문화의 중심, 홍대 입구. 낮에는 개성 있는 거리와 연트럴파크를 걸으며 여유를 즐기고, 밤에는 음악과 불빛이 어우러진 홍대의 생동감을 만날 수 있습니다. 낮과 밤, 서로 다른 매력을 품은 홍대 입구에서 서울의 젊고 활기찬 분위기를 느껴보시기 바랍니다. \""
+      },
+      "en": {
+       "name": "Hongik University Station, Alive by Day and by Night",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21668.mp3",
+       "seconds": 158,
+       "script": "Head for Hongdae if you want to feel the young, free-spirited mood of Seoul. Trend and sensibility feed off each other in this neighborhood: by day, it opens onto streets full of character and unhurried places to walk, and by night, music, lights, and the energy of the crowd bring out everything youthful in it.  Start with Hongdae by daylight. Hongdae Street gathers distinctive shops, cafes, performance venues, and cultural spaces of all kinds, which makes it a good place to soak up the free-and-easy air you only get here. Red Road in particular, where musicians busk every day, puts a young sensibility and a lively street culture right in front of you. KT&G Sangsangmadang brings the arts-and-culture feeling that defines Hongdae into sharp focus.  Make for Gyeongui Line Forest Park, better known as Yeontral Park, if you want a slower hour in Hongdae. The path follows a route trains once ran along, and it has become a much-loved place to rest in the middle of the city. Green trees and grass line the way, with charming little cafes and shops strung along it, and walking it slowly buys you an easier stretch of time in a busy downtown. It offers a different kind of ease from the energy of Hongdae Street, which is why so many people stop here for a while.  Hongdae shifts again once the sun goes down. Lights flick on one after another along Hongdae Street and Red Road, and music and laughter fill the air. Street performances run near the venues and at points throughout the area, while distinctive shops and cafes stay busy well into the night. Streets that by day are for wandering after whatever catches your eye now fill with the heat of youth and an energy that runs free.  Hongdae sits at the center of youth culture, where trend and an unbound sensibility come together. Spend the daytime taking it slow along its distinctive streets and through Yeontral Park, then come back at night for the mix of music and light that gives the neighborhood its charge. Day and night each hold their own appeal here, so come and take in the young, lively spirit of Seoul."
+      },
+      "jp": {
+       "name": "昼と夜が息づく街、弘大入口（ホンデイック）",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21653.mp3",
+       "seconds": 148,
+       "script": "\"ソウルの若くて自由な雰囲気を感じてみたいなら、ホンデイック(弘大入口)へ足を運んでみてください。トレンドと感性が融合したホンデ(弘大)は、昼には個性のある通りとゆったりとした散策路が広がり、夜には音楽と灯り、人々の活気で青春のエネルギーが満ち溢れる空間です。  まずは、昼のホンデ(弘大)を歩いてみましょう。ホンデ(弘大)通りには個性的なショップやカフェ、ライブハウス、多様な文化空間が集まっており、ホンデ(弘大)ならではの自由な雰囲気を感じるのにぴったりです。特に、連日ミュージシャンたちのバスキング(街頭パフォーマンス)が行われる「レッドロード」エリアでは、若い感性と活気あふれるストリート文化を間近で体験することができます。「KT&Gサンサンマダン」では、ホンデ(弘大)を代表する文化芸術の感性がしっかりと伝わってきます。  ホンデ(弘大)で少しゆったりとした時間を過ごしたいなら、キョンイソン(京義線)森の道、通称「ヨントラルパーク」へ向かってみてください。かつて列車が走っていた路線沿いに作られたこの散策路は、今や都市の憩いの場として愛されています。青々とした木々や芝生、かわいらしいカフェやショップが続く道をゆっくりと歩けば、賑やかな都心の中でも心安らぐ時間を過ごすことができます。活気あふれるホンデ(弘大)通りとはまた違った余裕を感じることができるため、多くの人々が一休みするスポットとして親しまれています。  日が暮れると、ホンデ(弘大)の雰囲気は再び一変します。ホンデ(弘大)通りやレッドロードエリアには次々と明かりが灯り、街には音楽と笑い声があふれ出します。ライブハウスの周辺や街のいたるところでパフォーマンスが続き、個性あふれるショップやカフェにも夜遅くまで人々が集まります。昼が「好みや感性に沿って歩く通り」だったとすれば、夜は「青春の熱気と自由なエネルギーに満ちた空間」へと変貌します。  トレンドと自由な感性が織りなす青春文化の中心、ホンデイック(弘大入口)。昼は個性的な通りやヨントラルパークを歩きながらゆったりと過ごし、夜は音楽と灯りが調和したホンデ(弘大)の躍動感に触れることができます。昼と夜、それぞれ異なる魅力を秘めたホンデイック(弘大入口)で、ソウルの若く活気あふれる雰囲気を楽しんでみてはいかがでしょうか。 \""
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21646.mp3"
     },
     {
      "id": "seoul-gyeongui-morning-3",
@@ -7099,6 +7285,23 @@
    ],
    "checkpoints": [
     {
+     "id": "seoul-seokchon-lake-story-6258",
+     "name": "ソウル三田渡碑(サムジョンドビ)",
+     "lat": 37.5105548,
+     "lng": 127.1016428,
+     "audioSeconds": 173,
+     "description": "屈辱の歴史と教訓を残す碑、ソウル三田渡碑(サムジョンドビ)  清の皇帝・清太宗(ホンタイジ)の要求に従い降伏した仁祖(インジョ)ですが、仁祖と朝鮮が感じた屈辱はこれだけではありませんでした。清は、朝鮮が降伏したことを石碑に刻み、建てるよう要求したのです。  そうして、1639年に建てられた三田渡碑(サムジョンドビ)の公",
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/18111.mp3",
+     "audio": {
+      "jp": {
+       "name": "ソウル三田渡碑(サムジョンドビ)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/18111.mp3",
+       "seconds": 173,
+       "script": "屈辱の歴史と教訓を残す碑、ソウル三田渡碑(サムジョンドビ)  清の皇帝・清太宗(ホンタイジ)の要求に従い降伏した仁祖(インジョ)ですが、仁祖と朝鮮が感じた屈辱はこれだけではありませんでした。清は、朝鮮が降伏したことを石碑に刻み、建てるよう要求したのです。  そうして、1639年に建てられた三田渡碑(サムジョンドビ)の公式名称は「大清皇帝功徳碑(だいしんこうていこうとくひ)」です。朝鮮にとっての最大の屈辱の瞬間が、清の皇帝にとっては功徳(こうとく)であり、業績になるのです。  三田渡碑に刻まれた碑文を作成したのは、当時の文官、李景奭(イ・ギョンソク)です。仁祖の命によって碑文を作成した李景奭ですが、その後大変な非難を受けたといいます。また、碑に刻まれた三つの文字、すなわちモンゴルの文字、満州の文字、そして漢字を刻んだのは、当時の名筆、呉竣(オ・ジュン)です。呉竣については、屈辱的な字を書いた自分の手を石で叩き、二度と筆を握れないようにしたという逸話が伝わっています。  当時から論争の的となっていたこの碑は、その後も数奇な運命を辿ることになります。まず朝鮮時代後期には、日本により地中に埋められました。当時半島を巡って清と争っていた日本は、朝鮮の地に刻まれた清の痕跡を消したかったのです。その後一度は復元されたものの、1956年、今度は国の屈辱の歴史だということで、再び埋設されました。その後、再び掘り起こされ、史跡に指定されたこの碑は、現在蚕室(チャムシル)地域にある湖、石村湖(ソクチョン・ホス)のほとりに立っています。  三田渡碑が韓国の悲しい歴史を刻んだ碑であることに間違いはありませんが、これを忘れることなく、教訓を得ることが大切ではないでしょうか。丙子の乱以降、歴代の王たちはこの記憶を忘れないよう、南漢山城(ナムハン・サンドン)の随所に様々な痕跡を残しています。先人たちが屈辱の歴史を忘れることなく、むしろしっかりと記憶しようとしたその心を、私たちも学ばなければならないのかもしれません。"
+      }
+     }
+    },
+    {
      "id": "seoul-seokchon-lake-1",
      "name": "석촌호수 동호",
      "lat": 37.5098236,
@@ -7690,24 +7893,116 @@
      "name": "광화문",
      "lat": 37.57603,
      "lng": 126.97684,
-     "audioSeconds": 15,
-     "description": "출발점. 광장 쪽이 넓어 스트레칭하기 좋고, 여기서 담장을 끼고 돌면 순환이 시작된다."
+     "audioSeconds": 158,
+     "description": "출발점. 광장 쪽이 넓어 스트레칭하기 좋고, 여기서 담장을 끼고 돌면 순환이 시작된다.",
+     "audio": {
+      "ko": {
+       "name": "광화문",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7074.mp3",
+       "seconds": 158,
+       "script": "[김내관] 왕의 큰 덕이 온 나라를 비추는 광화문(光化門)에 오신 것을 환영합니다. 경복궁 남쪽의 정문인 광화문은 조선왕실의 상징적인 역할을 하는 문입니다. 조선시대에는 문을 기준으로 안 쪽은 경복궁, 바깥쪽은 ‘육조거리’라 불리는 한성부(지금의 서울시청 역할을 하는 부서)의 영역과 백성들이 생활하는 종로거리가 있었습니다. 모두가 지나다니는 중심에 있는 광화문은 다락위에 종과 북을 달아서 시간과 소식을 알려주는 역할도 했습니다.  [김상궁] “문 앞에 해치(해태) 한 쌍이 마치 ‘나는 정의를 수호한다!’라고 눈빛으로 말하는 것 같아요.”  [김내관] “그렇지요? 아마 이 해치가 육조거리에 있는 관리들과 임금님이 바른 정치를 하도록 지켜보고 있다-- 는 의미로 세운 거라 그런 느낌이 들 거에요.”  [김상궁] “해치가 양 옆에 있으니 든든하네요.! 와- 김내관! 나 이 문 처음 지나봐요! 천장에 봉황이 그려져 있네요!”  [김내관] “정말 멋지네요! 원래 광화문은 중국에서 온 사신이나 왕실가족이 공식적으로 행차할 때 이용하는 문이지요. 저도 옆 문으로는 많이 다녔는데, 가운데 문으로 들어와 본 건 처음이라 신기하네요!. 참고로, 왼쪽 문은 낙귀부서(洛龜負書)로 거북이가 그려져있고, 오른쪽 문은 하마부서(河馬負書)로 말이 그려져 있어요  [김상궁]  “광화문이 2010년에 여기로 돌아오기 까지 얼마나 고생이 많았는데, 당연히 멋지게 단장해야지요.! 광화문은 일제강점기 때 조선총독부 건물에 밀려서 건춘문 근처로 갔다가, 한국 전쟁 때 폭격을 맞아 없어졌지요. 1968년에야 다시 복원을 했지만, 1990년대에 중앙청으로 불리던 조선총독부 건물이 없어지고 나서야 원래 자리로 오게 된 거잖아요.  [김내관] “그래서 복원할 때 추녀마루에 잡상(어처구니)도 7개 딱! 올리고, 뒤로 보이는 북악산의 능선과 어우러지는 미적 요소도 딱! 살려놨지요! 예나 지금이나, 이 광화문이 여기에 있다는 것만으로 얼마나 마음이 벅차 오르는지, 다들 알고 있을거에요!”  [김상궁] “어머, 웬일로 나랑 통했네요! 그러면, 이제 안에 가서 입장권 끊고 본격적으로 입궐해보자구요!”"
+      },
+      "en": {
+       "name": "Gwanghwamun Gate",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7515.mp3",
+       "seconds": 196,
+       "script": "Gwanghwamun Gate  [Eunuch Officer Kim] Welcome to Gwanghwamun Gate, where the king's great virtue shines across the country. Gwanghwamun Gate, the main gate to the south of Gyeongbokgung Palace, serves as a symbolic gate for the royal family of the Joseon Dynasty. During the Joseon Dynasty, there was Gyeongbokgung Palace on the inside of the gate, while the area of Hanseong City Administration (the department that now serves as Seoul City Hall), commonly referred to the 'Street of Six Ministries' as well as Jongno Street where the people lead their lives, were on the outside. Gwanghwamun Gate, which is in the center of everyone's passage, also served as a reminder of the time and the news by hanging a bell and a drum in the upper section.  [Lady Officer Kim] It's like the pair of Haechi (Haetae or mythical lion) at the gate are saying 'I defend justice!' with their stern stare.   [Eunuch Officer Kim] It is, isn't it? You may feel that because they were erected to denote that these Haechi are watching over the officials in the Street of Six Ministries and the king to conduct administrative affairs in a righteous manner.  [Lady Officer Kim] It's reassuring to have Haechi at both sides! Wow, Lord Kim! It's my first time to pass through this gate! There's a phoenix drawn on the ceiling!  [Eunuch Officer Kim] How wonderful! Originally, Gwanghwamun Gate was used by envoys from China and the royal families for their official visits. I have passed through the side gates many times before, but this is also my first time to enter through the central gate. It feels amazing! For your reference, the left gate has Nakguibuseo, or the painting of a tortoise, and the right door has Hamabuseo, or the painting of a horse.   [Lady Officer Kim] We had to go to a lot of trouble to move Gwanghwamun Gate back here in 2010, so of course we have to dress it up nicely! Gwanghwamun Gate was pushed back on the priority list by the Japanese Government-General of Korea during the Japanese occupation, and having moved near the Geonchunmun Gate, it was bombed out during the Korean War. It was restored in 1968, but it wasn't until the Joseon Governor-General's building, called the Capitol building, was removed in the 1990s that it was returned to its original location.  [Eunuch Officer Kim] So during the restoration, 7 roof tiles with symbols (ten objects symbolizing immortality) were correctly placed on the hip! And the aesthetic elements that blend with the ridges of Bugaksan Mountain in the back were revived just right! Whether long ago or today, everyone probably knows how overwhelming it feels to have Gwanghwamun Gate here!  [Lady Officer Kim] Wow, we finally agree on something! Well then, let's buy a ticket and begin our journey towards the Royal Court!"
+      },
+      "jp": {
+       "name": "光化門(クァンファムン)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7543.mp3",
+       "seconds": 189,
+       "script": "光化門(クァンファムン)   [金内官(キムネグァン)] 王の大きな徳が国を光らせる光化門(クァンファムン)へようこそ。景福宮(キョンボックン)の南の正門である光化門(クァンファムン)は、朝鮮時代の王室を象徴する役割を果たす門です。朝鮮時代には門を境に内側は景福宮(キョンボックン)、外側は｢六曹(ユクジョ)通り｣と呼ばれる漢城府(ハンソンブ、現在のソウル市庁の役割をしていた部署)のエリアと国民が生活する鐘路(チョンノ)通りがありました。大勢の人々が往来する光化門(クァンファムン)は、楼閣の上に鐘と太鼓を吊り下げて、時刻を知らせたり通信の役割も果たしました。   [金尚宮(キムサングン)] ｢門の前にある一対のへチ(ヘテ)はまるで、その精悍な目つきで『私は正義を護る！』と語っているようですね｣   [金内官(キムネグァン)] ｢そうでしょう？たぶんこのへチには、六曹(ユクジョ)通りの役人や王が正しい政治を行うように見守っている…という意味が込められているので、そんな感じを受けるのでしょう｣  [金尚宮(キムサングン)] ｢ヘチが両脇に立ってるなんて、心強いですね！わあ、金内官(キムネグァン)！私、この門は初めて通りますよ！天井に鳳凰が描かれているんですね！｣   [金内官(キムネグァン)] ｢本当に素晴らしいですね！本来光化門(クァンファムン)は、中国から来た使臣や王族の公的なお出ましの時に利用する門なのです。私も横の門はよく通りましたが、真ん中の門から入るのは初めてで、何だか不思議な気分です。参考までに、左の門は『洛亀負書(ナックィブソ)』と言って亀が描かれているし、右の門は『河馬負書(ハマブソ)』と言って馬が描かれています」   [金尚宮(キムサングン)] ｢光化門(クァンファムン)が、2010年にここに戻ってくるまで、どんなに苦労したことか。立派に装うのが当然です！光化門(クァンファムン)は、日本による植民地時代に日本が朝鮮総督府の建物を建設したため、東門である建春門(コンチュンムン)の北側に移されてしまいました。その後、韓国戦争の時に爆撃で破壊され、1968年に復元されました。そして1990年代に中央庁と呼ばれていた朝鮮総督府の建物が取り壊された後、やっと本来あった場所に戻って来たのです」   [金内官(キムネグァン)] ｢それで復元する際にそれぞれの隅棟に7つの雑像を置き、背後の北岳山(プガクサン)の尾根と調和をなすよう美的要素も十分に高めました！昔も今も、光化門(クァンファムン)がここにあるというだけで胸がいっぱいになるのは、韓国人なら誰でも感じると思います！｣   [金尚宮(キムサングン)] ｢あら、珍しく同感です。それではさっそく入場券を買って、本格的に宮中に入りましょう！｣"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7074.mp3"
+    },
+    {
+     "id": "seoul-gyeongbokgung-wall-story-3024",
+     "name": "무궁화동산",
+     "lat": 37.584153,
+     "lng": 126.972148,
+     "audioSeconds": 181,
+     "description": "이 가이드는 김영하님의 목소리로 녹음 되었습니다.  광복을 맞이한 한반도의 남쪽에는 민주주의를 지향하는 대한민국 정부가 수립되었습니다. 그리고, 대한민국 정부요인과 대통령이 선출되었습니다. 국가의 대표인 대통령이 머무를 공간이 필요해 진 상황에서, 경복궁 뒤에 있던 ‘경무대’가 선택되었",
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7070.mp3",
+     "audio": {
+      "ko": {
+       "name": "무궁화동산",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7070.mp3",
+       "seconds": 181,
+       "script": "이 가이드는 김영하님의 목소리로 녹음 되었습니다.  광복을 맞이한 한반도의 남쪽에는 민주주의를 지향하는 대한민국 정부가 수립되었습니다. 그리고, 대한민국 정부요인과 대통령이 선출되었습니다. 국가의 대표인 대통령이 머무를 공간이 필요해 진 상황에서, 경복궁 뒤에 있던 ‘경무대’가 선택되었습니다.   경복궁의 북쪽은 조선 태조가 경복궁을 창건한 이후, 시대에 따라 여러 건물이 들어섰습니다. 일제 강점기에는 이 곳을 총독 관저로 사용했고, 광복 이후 미군정시대에는 미군 사령관이 사용하는 관사가 되었습니다. 대한민국정부가 수립된 이 후, 이승만대통령이 이곳을 대통령 집무실 겸 관저로 사용하면서, 경복궁의 ‘경’자와 신무문의 ‘무’자를 따와 ‘경무대’라 부르게 된 것 입니다. 그렇지만, 이승만대통령의 독재가 길어지면서, 경무대는 독재의 기관이라는 이미지가 생깁니다. 2대 대통령이 된 윤보선 대통령은 독재의 이미지를 없앤 새로운 이름을 생각하는데, 건물의 기와가 푸른색인 것에서 착안해 이름을 ‘청와대’로 바꿉니다. 이 후 청와대를 유지하기 위한 여러 건물들이 주변으로 들어섭니다.   무궁화동산은 청와대의 바로 옆에 있어서 오랜 시간 동안 일반인의 출입이 금지되어 있었습니다. 특히 이곳에는 ‘안가’라 불리는 안전가옥이 있었는데, 군사독재정권 시절, 대통령을 보호한다는 의미의 시설이 있었던 곳입니다. 1993년 2월, 민주적인 투표를 통해 14대 대통령이 된 김영삼 대통령이 안가를 없애고, 공원을 조성하여 개방합니다.   무궁화동산의 입구 표지석에는 ‘새로운 국민시대의 개막과 함께 열린 이 공원이 청와대를 찾는 여러분의 쉼터로, 그리고 어려웠던 민주화의 길을 되돌아 보는 역사의 배움터로 사랑 받기를 바랍니다’ 라는 문구가 있습니다. 대한민국 정부 수립 이후 개방되지 않았던 공간이, 대한민국의 주인인 국민들에게 돌아온 상징적인 공간이 된 것 입니다.   무궁화동산은 여름에 가면 활짝 핀 무궁화를 볼 수 있습니다. 만개한 무궁화동산은 대한민국 국민이라면 누구든지, 언제든지 갈 수 있는 공간이 되었습니다. 공원 중앙에 가면, 다양한 무궁화의 종류를 설명한 안내판이 있는데, 흰색, 분홍색, 다홍색 등 색상이 다양하지만, 암술의 머리가 5개이고, 새로 자란 잎에서만 꽃이 핀다는 공통적인 특징을 갖고 있습니다. 한반도 어디에서나 잘 피어나는 꽃, 무궁화동산에는 대한민국 국민의 돌려받은 자부심도 함께 피어있습니다."
+      },
+      "en": {
+       "name": "Mugunghwa Hill",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/10954.mp3",
+       "seconds": 194,
+       "script": "Mugunghwa Hill  This guide is recorded by the voice of Mr. Kim Young-ha.  In the southern half of the Korean Peninsula that was celebrating the Liberation, the democratic government of the Republic of Korea was established, and key government positions, most notably the president, were elected. Now, the president, one who represents our country, needed a place to stay so Gyeongmudae” located behind Gyeongbokgung Palace was chosen.  Since Taejo of Joseon built Gyeongbokgung, the area north of the palace housed different buildings over time. It was used as a governmental residence during the Japanese colonial period. After Liberation, the commander of the U.S. Forces used it as his official residence during the U.S. military government period. Once the Republic of Korea government was established, President Rhee Syngman began to use the building as both the presidential office and his official residence and named it Gyeongmudae”, which is a combination of Gyeong” from Gyeongbokgung and “Mu” from Sinmumun Gate. But, as Rhee's dictatorship dragged on, Gyeongmudae came to stand for dictatorship. Mr. Yun Posun, the second president of Korea, thought of a new name that does away with the image of dictatorship and, considering that the roof tiles of the building are blue, changed the name to “Cheongwadae”. Since then, a variety of structures were built near Cheongwadae for its management.  Because it is located right next to Cheongwadae, public access to Mugunghwa Hill was prohibited for a long period of time. There was also a safe house called “Anga” here, to which the president could evacuate to  in case of emergency during the military dictatorship. Then, in February 1993, Mr. Kim Young-sam who had just become the 14th president through a democratic vote for the first in the country’s history ordered the safe house to be torn down and a park open to the public to be built in its place.   The stone sign standing at the entrance of Mugunghwa Hill says, “We hope that this park, which is opened with the advent of a new age of the people, will be loved as a resting place for those who visit Cheongwadae and as a classroom of history to reflect on the long and arduous road we have endured to democracy.” A space that had been kept hidden at the heart of where the Korean government stood has been returned to the hands of the people, the owners of this country, as a symbol of the changed times.  When you visit Mugunghwa Hill during the summer, you will be able to see beautiful Roses of Sharon in full bloom. Today, Mugunghwa Hill in full bloom is a place that anyone can visit any time. In the center of the park, there is a signboard that explains various types of Roses of Sharon; Though the colors vary from white to pink to crimson, they all commonly have 5 pointy edges to the calyx, and flowers only bloom from newly grown leaves. The flower blooms well anywhere on the Korean Peninsula, and it often seen as a symbol of pride that we the people of Republic of Korea have over having overcomed difficult times."
+      },
+      "jp": {
+       "name": "ムクゲ園",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/11300.mp3",
+       "seconds": 224,
+       "script": "ムクゲ園  このガイドは、キム・ヨンハ(金英夏)さんの声で録音されました。  植民地支配から解放された韓半島の南側は、民主主義を志向する大韓民国政府が樹立されました。そして、大韓民国政府要人と大統領が選出されました。国の代表である大統領が過ごす空間が必要となったとき、景福宮の裏にあった「景武台」が選ばれました。  景福宮の北側は、朝鮮時代に太祖が景福宮を創建した後、時代の移り変わりによっていくつもの建物が建てられました。日本による植民地時代には総督官邸として使われ、植民地支配からの解放後の米軍政時代には、米軍司令官が使用する官舎になりました。大韓民国政府が樹立した後、イ・スンマン(李承晩)大統領がここを大統領の執務室兼官邸として使用したことから、景福宮の「景」の字と神武門の「武」の字を取って「景武台」と呼ばれるようになります。しかし、イ・スンマン(李承晩)大統領の独裁が長びき、景武台は独裁の機関というイメージが生まれます。第2代ユン・ボソン(尹潽善)大統領は、独裁のイメージを払拭すべく、新しい名前を考えましたが、建物の瓦が青いということに着目し、「青瓦台」と改称します。その後、青瓦台の附属建物として多くの建物が周辺に建てられます。  ムクゲ園は、青瓦台のすぐ隣にあり、長い年月の間、一般の人の立ち入りが禁止されていました。特にここは、「安家」と呼ばれた安全家屋がありましたが、軍事独裁政権のとき、大統領を保護するための施設があった場所です。1993年2月、民主的な投票により第14代大統領になったキム・ヨンサム(金泳三)大統領は安全家屋を取り壊し、公園を造成し、一般公開します。  ムクゲ園の入り口の標石には「新たな国民時代の幕開けとともに開かれたこの公園は、青瓦台を訪れる憩いの場として、険しかった民主化への道を振り返る歴史の学びの場として愛されることを願います」という内容が書かれています。大韓民国政府樹立以後、長い間公開されてなかった空間は、国の主である国民の手に帰ってくることで、主権が国民にあることを象徴する空間になりました。  ムクゲ園は、夏では満開のムクゲを見ることができます。満開のムクゲ園は、誰にでも開かれた空間になりました。公園の中央には、様々なムクゲの種類を説明した案内板があり、白、ピンク、紅など多様な色がありますが、雌しべの先が5つで、新しく育った葉でのみ開花するという共通の特徴があります。韓半島のどこででも丈夫に育ち咲く花、ムクゲ。ムクゲ園では、国民の手に返してもらったという誇りも、ムクゲと一緒に咲いています。"
+      }
+     }
     },
     {
      "id": "seoul-gyeongbokgung-wall-2",
      "name": "영추문",
      "lat": 37.5787738,
      "lng": 126.9740754,
-     "audioSeconds": 15,
-     "description": "궁의 서쪽 문. 가을을 맞는다는 뜻의 이름으로, 이 구간부터 관광객이 줄어 페이스를 잡기 쉬워진다."
+     "audioSeconds": 181,
+     "description": "궁의 서쪽 문. 가을을 맞는다는 뜻의 이름으로, 이 구간부터 관광객이 줄어 페이스를 잡기 쉬워진다.",
+     "audio": {
+      "ko": {
+       "name": "경복궁 소주방",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7098.mp3",
+       "seconds": 181,
+       "script": "[김상궁] 사극에서 많이 나오는 임금님의 수라상, 잔칫상은 다 어디서 만드는 걸까요? 바로 궁궐 안에 있는 소주방과 수라간입니다. 경복궁에도 역시 소주방과 수라간이 있었는데 일제강점기에 사라졌고, 지금은 2015년에 복원한 소주방 건물이 있습니다. 원래 소주방은 한 군데에 있는 것이 아니고, 대전(大殿)의 음식을 만드는 소주방을 ‘내소주방(內燒廚房)’, 대전 밖의 잔치나 행사용 음식을 만드는 곳을 ‘외소주방(外燒廚房)’ 혹은 ‘밭소주방’이라고 했습니다. 주방에서는 보통 잔치와 수라에 사용되는 모든 음식을 만들었습니다.  [김내관] 흔히 드라마만 보고 소주방이나 수라간에서는 여자만 일했다고 생각하지만, 내관중에도 음식을 담당하는 내관이 따로 있었습니다. 종2품의 ‘상선(尙膳)’이 총 책임자였고, 그 아래에 임금님의 술을 빚는 정3품 ‘상온(尙醞)’과 다과를 준비하는 정3품 ‘상다(尙茶)’가 있었습니다.  [김상궁] 여자 궁인 중에 총 책임자는 정5품의 ‘상궁(尙宮)’이었고, 그 아래로 종5품의 ‘상식(尙食)’이 반찬을 만드는 총 책임자였습니다. 가장 아래등급은 종9품의 ‘장식(掌食)’으로 음식을 만드는 기본준비인 땔감, 등촉(등불)을 확인하고 기본재료를 손질하는 일을 했습니다.  [김내관] 원래 수라간과 소주방을 관리하는 부서는 ‘사옹원(司饔院)’이었는데, 이 사옹원의 관리들이 모두 남자였습니다. 소주방이나 수라간에서 직접 일하는 관리를 통틀어 ‘식관(食管)’이라고 하는데, 총 주방장 역할을 하는 종6품의 ‘재부(宰夫)’가 있었습니다. 음식물을 삶는 일을 담당하는 식관은 종9품의 ‘팽부(烹夫)’였고, 불을 이용해서 조리하는 식관은 정9품의 ‘임부(飪夫)’였습니다.  [김상궁] 그 외에도 소주방에 소속된 노비, 무수리, 나인 등 여러 사람들이 함께 일하고 있었답니다. 소주방에서는 다양한 음식을 차렸는데, 외국사신이 먹는 잔치음식, 태원전에 올리는 제사 음식, 임금님이 관리들에게 하사하는 음식 등 종류도 다양했고, 먹는 때가 다 달랐기 때문에, 거의 24시간 내내 불이 켜져 있었답니다.  [김내관] 궁인들은 왕실 가족이 직접 먹는 음식을 만드는 것을 정말 큰 영광으로 생각했습니다. 힘들어도 열심히 만들면, 임금님이나 왕실가족이 칭찬을 하거나, 선물을 내려주는 경우도 있었습니다.  [김상궁] “이걸 다 말하고 나니 슬슬 배가 고프네요. 소주방에 가서 꿀떡이랑 차 한잔이라도 먹어야겠어요”"
+      },
+      "en": {
+       "name": "Sojubang (Gyeongbokgung Palace)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16579.mp3",
+       "seconds": 115,
+       "script": "Where were the foods for the king and court banquets cooked? It was Sojubang and Suragan. The main royal kitchen, or Sojubang, is where the food was cooked, while Suragan is where it was placed before being served to the king, as required by law. Thus, Sojubang in the Joseon Dynasty was an important place that directly related to the health of the king.  Sojubang in Gyeongbokgung Palace disappeared during the Japanese colonial period. It was built during the maintenance of various facilities in the palace and was demolished along with several temples. It has regained its original appearance after about 100 years since it was restored in 2011 and completed after four years.  Sojubang was located in the center of Gyeongbokgung Palace. Considering the royal family rarely dined together, there were many Sojubangs in the palace to prepare their meals separately in different Sojubangs. It consists of Oesojubang, Naesojubang, and Saengmulbang. The three sections were responsible for managing the food for the king, the food for banquets and ancestral rites, and snacks and drinks, respectively.   The courtiers of Sojubang worked almost the whole day, as they were supposed to prepare five different meals for the king and queen in a day, including the early breakfast, breakfast, lunch, dinner, and a late-night snack. Although the workload in Sojubang was heavy, the courtiers still felt worthy and proud to work here. The reason was cooking and preparing the food for the royal families were considered great honors in the Joseon Dynasty."
+      },
+      "jp": {
+       "name": "焼厨房(ソジュバン)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16869.mp3",
+       "seconds": 108,
+       "script": "「オ～ナ～ラ オ～ナラ ア～ジュ オ～ナ～」という歌、一度は聞いたことがあるのではないでしょうか。ドラマ、宮廷女官チャングムの誓いの主題歌です。このチャングムの誓いの舞台のメインとなったのが、ここ焼厨房(ソジュバン)です。王宮の中に設置された厨房のようなもので、王の食事や祭祀の際の料理を作る役割を担っていました。  朝鮮時代の宮廷にはそれぞれに厨房の役割を果たした場所がありましたが、現存しているのは景福宮と昌徳宮(チャンドックン)のみです。その上、昌徳宮にあるものは後に西洋式にかわったため、現存している伝統的な宮廷の厨房は、ここ焼厨房でのみ見ることができます。  焼厨房は外(ウェ)焼厨房と内(ネ)焼厨房、そして生果房(セングァバン)の3つからなっており、それぞれの場所で王のための食事、祭祀の際の料理、そして茶菓子や飲み物が作られました。  焼厨房は文禄の役により焼失してしまいましたが、後に第26代王・高宗(コジョン)により再建されます。しかし、日本植民地時代である1915年に景福宮内で開かれた博覧会のために撤去され、その姿を100年近く見ることができませんでした。その後、2011年になり復元工事が開始され、2015年に本来の姿を取り戻しました。"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7098.mp3"
     },
     {
      "id": "seoul-gyeongbokgung-wall-3",
      "name": "신무문",
      "lat": 37.5835591,
      "lng": 126.9755257,
-     "audioSeconds": 15,
-     "description": "북쪽 문. 문 앞이 바로 청와대 앞길과 만나고, 배경으로 북악산 능선이 올려다보인다."
+     "audioSeconds": 158,
+     "description": "북쪽 문. 문 앞이 바로 청와대 앞길과 만나고, 배경으로 북악산 능선이 올려다보인다.",
+     "audio": {
+      "ko": {
+       "name": "경복궁 태원전",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7093.mp3",
+       "seconds": 158,
+       "script": "[김상궁] 경회루에서 북쪽으로 쭉 걸어오면 긴 담장과 건물이 나옵니다. 이 곳은 태원전(泰元殿)이라 불리는 조선왕실의 빈전으로, 고종대에 경복궁을 중건하면서 새롭게 건설한 곳입니다(1867년). ’빈전(殯殿)’이라는 것은 조선왕실의 장례문화와 관련이 있는데, 왕실가족이 죽으면, 풍수지리적으로 무덤을 만들기 좋은 위치를 정하고, 그 곳으로 가기 전에 시신을 관과 상여에 넣는 작업을 진행합니다. 그때, 시신을 보관하는 장소를 빈전이라고 합니다.   [김내관] 조선시대의 중심사상인 유교에서는 사람이 살아있을 때는 육신을 거느리는 백(魄)과 정신을 다스리는 혼(魂)이 한 몸 안에 있다고 생각했습니다. 그래서 사람이 죽으면 ‘혼백(魂魄)이 나갔다’고 합니다. 이 때, 혼은 하늘로 가고, 백은 땅으로 돌아간다고 생각해서, 육신이 사라져도 혼백은 영원히 사라지지 않는다고 믿었습니다. 그래서 백(육신)이 머무르는 빈전과 혼(정신)이 머무르는 따로 만들어 정성스럽게 모셔 둔 것입니다. 우리가 너무 힘들어서 정신이 없을 때, ‘혼이 빠졌다.’, ‘혼이 나갔다’ 등의 표현을 쓰는 것이 바로 이 혼전과 빈전을 나누는 혼백이라는 개념에서 생긴 말이랍니다.  [김상궁] 태원전이 있는 공간은 경복궁 안에서 서북쪽에 있는데, 죽은 사람들을 위한 공간이라, 의도적으로 배치한 자리입니다. 태원전에서 교태전으로 가는 길에는 ‘문경전(文慶殿)’이라는 전각이 있었는데, 이 곳이 왕실의 신위를 모셔두는 혼전(魂殿)의 역할을 했습니다. 태원전이 빈전의 역할을 하기 전에는, 이 곳에 왕실의 어진들을 모셔두었다는 기록도 있습니다. 이 곳을 처음 빈전으로 사용한 왕실가족은 자경전에 살던 대왕대비, 신정왕후 조씨입니다.   [김내관] 신정왕후 이후에 이곳에 모셔진 분은 명성황후 민씨로, 대한제국이 선포되고, 덕수궁에 있는 경소전으로 가기 전까지, 이곳을 빈전으로 사용했습니다. 이 후에는 태원전 전각이 다 헐려서 몇 개의 건물만 남았었는데, 이 자리에 청와대 경호부대가 주둔했었습니다. 2006년부터 태원전 일대에 복원공사를 진행해서, 신무문, 집옥재와 함께 일반 관람이 가능합니다."
+      },
+      "en": {
+       "name": "Taewonjeon Hall (Gyeongbokgung Palace)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16574.mp3",
+       "seconds": 143,
+       "script": "Taewonjeon Hall is to the north of Gyeonghoeru Pavilion. It was a place to keep portraits of the king and the caskets of the king and queen. Before moving the casket to the royal cemetery, it had to be kept in the hall for five months.  Taewonjeon Hall was built in 1867 during the reconstruction of Gyeongbokgung Palace under the reign of Emperor Gojong. After Queen Sinjeong, Empress Myeongseong was also enshrined here. Since the proclamation of the Korean Empire, the hall has continued to be used as a mortuary before moving the tablets to Gyeongsojeon Hall of Deoksugung Palace. After that, it was demolished, and its restoration work has been performed since 2006.  In the Joseon Dynasty, Confucianism was the main idea. It is believed that when a person is alive, the spirit and body are managed by hun and po, respectively, whereas hun refers to yang energy and po refers to yin energy. Thus, when a person dies, it is said that the hun and po have dispersed into heaven, and po returns to the earth. This brought home the idea that while the physical body may perish, the soul lives on. Because of this, both a physical burial place and an ethereal shrine were constructed. Furthermore, on the way from Taewonjeon Hall to Gyotaejeon Hall, there was a pavilion called Mungyeongjeon Hall. It served as a memorial hall where the ancestral tablets of the royal family were enshrined. Before Taewonjeon Hall served as a mortuary, the historical record showed that it was also used to keep portraits of the king. The first royal family to use this place as a mortuary was Grand Royal Queen Dowager Sinjeong.  Currently, visitors are allowed to take a tour of Taewonjeon Hall, along with Sinmumun Gate and Jibokjae Hall. Let’s explore more mysterious historical stories from the Joseon Dynasty!"
+      },
+      "jp": {
+       "name": "泰元殿(テウォンジョン)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16859.mp3",
+       "seconds": 123,
+       "script": "ここ泰元殿(テウォンジョン)は、 朝鮮を建国した太祖(テジョ)李成桂(イ・ソンゲ)の御真影を安置していた場所です。ほかにも、第7代王・世祖(セジョ)、第19代王・粛宗(スクチョン)、第21代王・英祖(ヨンジョ)、第23代王・純祖(スンジョ)などの御真影も安置されていたと言います。  また、泰元殿(テウォンジョン)は御真影を安置するだけでなく、王が亡くなった際、出棺までの間ご安置する「殯殿(ピンジョン)」としての役割、さらには先祖たちに祈りをささげる祭祀などを行う際に使用された「魂殿(ホンジョン)」として、その役割を果たしてきました。  朝鮮の中心思想であった儒教では、人間には精神の主である「魂(こん)」と、肉体の主である「魄(はく)」があり、生きている間はこの2つが一致している状態であると教えます。人が死ぬと、魂と魄は体から離れ、魂は天に昇り、魄は地に降りると考えられ、肉体は消えてなくなっても魂と魄は永遠に消えないと信じられていました。そのため、王族が亡くなった後にも、精神の主・魂がとどまる場所である魂殿と、肉体の主・魄がとどまる場所である殯殿にて真心こめて管理をしたのです。現在、韓国語と日本語でも、とても疲れていたり気力がない時には「魂が抜ける」などという表現を使います。実はこれは、人間を精神の「魂」と肉体の「魄」に分けて考える、儒教思想に由来した表現なのです。  景福宮の端にひっそりとたたずむここ泰元殿は、亡くなった王族を弔った場所として、厳粛な雰囲気を漂わせています。"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7093.mp3"
     }
    ],
    "sources": [
@@ -9681,6 +9976,29 @@
      "description": "서쪽 순환 구간. 강 너머로 해가 떨어지는 방향이라 코스 이름값을 하는 자리다."
     },
     {
+     "id": "seoul-haneul-park-story-6802",
+     "name": "난지한강공원",
+     "lat": 37.566801,
+     "lng": 126.87801,
+     "audioSeconds": 108,
+     "description": "난지한강공원  서울 마포구 상암동에 위치한 난지한강공원은 한강르네상스 사업을 통해 새롭게 태어난 매력적인 수변공원이랍니다. 특히 노을공원, 하늘공원과 이어주는 중앙연결브릿지와 평화의 공원 연결브릿지, 복합연결통로 덕분에 시민들이 더욱 편리하게 이용할 수 있게 되었답니다.   난지한강공원",
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19328.mp3",
+     "audio": {
+      "ko": {
+       "name": "난지한강공원",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19328.mp3",
+       "seconds": 108,
+       "script": "난지한강공원  서울 마포구 상암동에 위치한 난지한강공원은 한강르네상스 사업을 통해 새롭게 태어난 매력적인 수변공원이랍니다. 특히 노을공원, 하늘공원과 이어주는 중앙연결브릿지와 평화의 공원 연결브릿지, 복합연결통로 덕분에 시민들이 더욱 편리하게 이용할 수 있게 되었답니다.   난지한강공원에서는 자연과 레저가 어우러져 다양한 경험을 즐길 수 있는데요, 먼저 공원의 랜드마크인 거울분수는 평화의 공원 연결브릿지 앞에 자리 잡고 있어요. 물줄기가 하늘로 뿜어질 때마다 마치 일곱 빛깔 무지개처럼 아름다운 풍경을 연출하며, 공원을 찾는 이들에게 특별한 볼거리를 선사한답니다.  자연의 숨결을 느끼고 싶다면 생태습지원으로 가보세요. 생태습지원에서는 보행연결브릿지를 따라 걸으며 자연 그대로의 초지와 식물군락, 수변에 서식하는 다양한 동물들을 만날 수 있어요.   여기서 끝이 아니라 여름이면 수심 80cm의 안전한 강변물놀이장이 열려 가족들이 함께 시원한 추억을 만들 수 있답니다. 캠핑을 좋아하신다면 난지캠핑장도 추천해 드려요. 이곳에서는 바비큐를 즐기며 야영을 할 수 있어 많은 시민들의 사랑을 받고 있지요.   자전거를 타고 싶다면 공원의 자전거도로를 이용해 보세요. 동쪽으로는 뚝섬공원까지, 서쪽으로는 고양시 행주대교 남단까지 이어져 있어 자전거를 타며 한강의 풍경을 즐기기에도 좋답니다."
+      },
+      "en": {
+       "name": "Nanji Hangang Park",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19394.mp3",
+       "seconds": 120,
+       "script": "Nanji Han River Park is located in Mapo-gu, Seoul. It is a newly revitalized and attractive waterfront park that created through the Hangang River Renaissance Project. The park has become even more accessible and convenient for visitors, thanks to the central connecting bridge and the Peace Park bridge, which link it to Noeul Park and Sky Park.   At Nanji Hangang River Park, visitors can enjoy a harmonious blend of nature and leisure, with a variety of experiences to explore. One of the park’s most notable features is the Mirror Fountain, located in the front of the Peace Park bridge. When the water jets shoot into the sky, they create a beautiful scene like a rainbow with seven colors, offering a special sight to those who visit the park.  If you want to feel the breath of nature, head to the Wetland Eco-Park. At the Wetland Eco-Park, you can walk along the pedestrian bridge and encounter natural meadows, plant colonies, and a variety of animals living near the water's edge. In the summer, a safe riverfront water play area with a depth of 80cm opens up, allowing families to create unforgettable and refreshing memories together. If you enjoy camping, be sure to visit the Nanji Campground. You can enjoy a barbecue while camping, which is why it is loved by many locals.   If you want to ride a bike, try using the park's bicycle paths. To the east, the path leads all the way to Ttukseom Park, and to the west, it stretches to the southern end of Haengju Bridge in Goyang City, making it a great route to enjoy the scenic views of the Hangang River while cycling."
+      }
+     }
+    },
+    {
      "id": "seoul-haneul-park-3",
      "name": "난지한강공원",
      "lat": 37.5630252,
@@ -10245,8 +10563,17 @@
      "name": "어린이대공원 정문",
      "lat": 37.5493903,
      "lng": 127.0762861,
-     "audioSeconds": 15,
-     "description": "출발점이자 바퀴 수를 세는 기준. 능동 쪽 정문 앞이 넓어 집합과 몸풀기에 쓰기 좋다."
+     "audioSeconds": 97,
+     "description": "출발점이자 바퀴 수를 세는 기준. 능동 쪽 정문 앞이 넓어 집합과 몸풀기에 쓰기 좋다.",
+     "audio": {
+      "ko": {
+       "name": "광나루 안전체험관",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16798.mp3",
+       "seconds": 97,
+       "script": "서울어린이대공원 정문 옆에 위치한 광나루 안전체험관은 각종 재난 상황을 가상으로 설정하여 시민들이 직접 체험하면서 안전 교육을 받을 수 있는 국내 최초의 재난 체험관입니다. 재난이 발생했을 때 안전의식이 부족한 경우 더 많은 희생자가 발생할 수 있어서 매우 위험하지요. 그래서 평상시 가상 재난 체험을 통해 각종 사고의 위험성을 사전에 예방하고 대처할 수 있도록 연습하는 것이 필요합니다. 광나루 안전체험관에서는 각종 재난 상황의 체험과 안전의 생활화 교육을 통하여 안전의식을 높이고 재난 대처 능력을 향상시킬 수 있어요.    광나루 안전체험관에는 재난안전체험, 응급처치체험, 소방관 진로체험, 새싹어린이안전체험 등 다양한 체험 프로그램이 준비되어 있습니다. 응급처치 체험에서는 심폐소생술을 배울 수 있어요. 새싹어린이안전체험은 어린이들이 다양한 재난 상황을 직접 체험해 볼 수 있는 프로그램이지요. 재난안전체험 프로그램에서는 지진체험, 승강기 안전체험, 화재대피 체험, 실내건물탈출체험 등 일상에서 발생할 수 있는 다양한 재난 상황을 체험하고 대피해 볼 수 있어요.   광나루 안전체험관은 다양한 재난 상황 체험을 통해 안전의식을 높이고 실제 재난 상황이 발생했을 때 어떻게 대처해야 하는지 배울 수 있는 곳입니다. 각종 안전사고를 사전에 예방할 수도 있지요. 프로그램별로 체험 가능한 시간대와 인원이 정해져 있어서 사전 예약은 필수라고 하니 사전에 홈페이지를 통해 예약하고 방문하시면 좋겠습니다."
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16798.mp3"
     },
     {
      "id": "seoul-childrens-park-2",
@@ -11131,16 +11458,46 @@
      "name": "창의문",
      "lat": 37.5926566,
      "lng": 126.9665103,
-     "audioSeconds": 15,
-     "description": "출발점. 부암동 쪽 진입. 한양도성이 인왕산에서 북악산으로 넘어가는 자리이기도 하다."
+     "audioSeconds": 103,
+     "description": "출발점. 부암동 쪽 진입. 한양도성이 인왕산에서 북악산으로 넘어가는 자리이기도 하다.",
+     "audio": {
+      "ko": {
+       "name": "창의문",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/10196.mp3",
+       "seconds": 103,
+       "script": "창의문\t ‘자하문’으로도 불리는 창의문은 태조 5년(1396) 한양도성을 쌓을 때 사대문 사이에 만들어진 사소문 중 하나입니다. 이후 태종 16년(1416)부터 문이 닫혀 왕명이 있을 때만 일시적으로 통행을 허가했습니다. 그 이유는 창의문이 경복궁을 내리누르는 위치에 있다는 풍수지리학적 해석 때문이었습니다. 반듯한 자태로 백악에 앉은 창의문은 서대문과 북대문 사이의 북소문으로, 사소문 중 유일하게 제 모습을 간직하고 있습니다.   문화관광해설사들은 “1623년 인조반정을 도모한 이괄과 이귀가 세검정에서 칼을 씻고 이곳 창의문을 거쳐 궁궐로 들어갔다.”며 “무지개 모양 월단 맨 위에 봉황 한 쌍이 새겨졌는데, 창의문 밖에 지네가 많아 천적인 닭을 그린 것”이라고 설명합니다. 현재의 문루는 영조 17년(1741)에 세운 것으로 석축은 숭례문이나 흥인지문과 같은 양식이고, 그 위에 단층으로 세웠습니다. 겹처마를 인 창의문은 가파르지 않은 물매가 유려합니다.   겸재 정선은 백악, 솔숲, 골짜기, 부침바위와 함께 창의문을 그려 산수의 일부로 표현 했습니다. 그 옛날 창의문은 북한산성과 양주로 통하는 교통로였지만, 풍수지리설에 따라 수백년간 문이 닫혔으며 중종 원년(1506)에 다시 문이 열려 왕래가 시작됐습니다. 지금은 문 서쪽으로 난 도로가 통행로로 이용되어 여전히 닫힌 문이나 다름없습니다. 인적이 끊긴 문은 ‘창의’란 이름 그대로 의롭게 서울을 굽어보고 있습니다."
+      },
+      "en": {
+       "name": "Changuimun Gate",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/18050.mp3",
+       "seconds": 141,
+       "script": "Changuimun Gate, also known as Jahamun Gate, is one of the Four Small Gates built amid the Four Great Gates during the construction of the City Wall in 1396 (the 5th year of King Taejo's reign). Later, in 1416 (the 16th year of King Taejong's reign), the gate was temporarily closed, allowing entry only upon the king's command. This action was due to the pungsujiri (geomancy) interpretation suggesting that Changuimun Gate was exerting pressure on Gyeongbokgung Palace. Located in Baegaksan Mountain between the Seodaemun and Bukdaemun gates, Changuimun Gate is the only gate among the Four Small Gates to retain its original structure.  During the Injobanjeong or the Coup of 1623, Yi Gwal and Yi Gwi washed their swords at Segeomjeong and entered the palace through Changuimun Gate. Additionally, an image of a pair of phoenixes was carved atop the rainbow shape to ward off numerous centipedes that gathered in front of the gate, as they were believed to fear hens and roosters.  The gate tower, which stands to this day, was constructed in 1741 (the 17th year of King Yeongjo's reign). Notably, its stonework is identical to that of the Sungnyemun and Heunginjimun gates. The gate's roof, characterized by double eaves and a gentle slope, exudes an elegant appearance. Gyeomjae Jeong Seon, a renowned Korean landscape painter from the Joseon Dynasty, depicted the gate within the natural setting of Baegaksan Mountain, surrounded by pine groves, a valley, and Buchimbawi Rock.  Originally serving as a route leading to both Yangju and Bukhansanseong Fortress), Changuimun Gate had been closed for centuries due to pungsujiri analysis (geomantic principles) until its reopening in 1506 (the 1st year of King Jungjong's reign). Presently, the gate, which overlooks Seoul, is closed to traffic, as its original function has been supplanted by the western road."
+      },
+      "jp": {
+       "name": "彰義門(チャンイムン)",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19277.mp3",
+       "seconds": 126,
+       "script": "朝鮮時代の姿をそのままに残す、彰義門(チャンイムン)  宝物にも指定されている彰義門は、1396年、朝鮮の初代王・太祖(テジョ)の時代の漢陽都城築城の際につくられた門です。漢陽都城には、四大門と呼ばれる東西南北を守る大きな城門と、四小門と呼ばれる小さな城門がありますが、彰義門は都の北西側を守る四小門の一つです。  彰義門は、都から北側に行ったところにある町、高陽(コヤン)や楊州(ヤンジュ)を結ぶ役割を果たしていましたが、築城から20年が経たずした1416年からは、門が閉ざされていました。これは風水地理学の解釈によるもので、その後約90年間、王による命が下された時にだけ使用されました。その後、第11代王・中宗(チュンジョン)の時代である1506年に再び門が開かれ、人々の通行が可能になりました。  彰義門は、四小門の中でも唯一、朝鮮時代当時の門楼をそのままに残しています。この門は、1592年に日本との間に勃発した文禄・慶長の役により焼失してしまいましたが、その後第21代王・英祖(ヨンジョ)の時代である1741年になって再建されました。  また、この時に門にかけられたある扁額が、現在までそのまま残されています。1623年、仁祖反正(インジョバンジョン)と呼ばれるクーデターを起こした第16代王・仁祖(インジョ)の臣下たちは、クーデターの際にここ彰義門を通って都に入り込みました。後の王はこれを記念し、臣下たちの名前を刻んだ扁額をこの門にかけたのです。  ここ彰義門は、このように朝鮮時代の姿をそのままに残していることから、学術的な面でも評価されています。"
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/10196.mp3"
     },
     {
      "id": "seoul-bugak-skyway-2",
      "name": "북악 팔각정",
      "lat": 37.6014479,
      "lng": 126.9807171,
-     "audioSeconds": 15,
-     "description": "반환점. 서울 시내가 한눈에 내려다보이고, 여기까지가 약 3km 오르막의 끝이다."
+     "audioSeconds": 83,
+     "description": "반환점. 서울 시내가 한눈에 내려다보이고, 여기까지가 약 3km 오르막의 끝이다.",
+     "audio": {
+      "ko": {
+       "name": "북악 스카이웨이",
+       "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17054.mp3",
+       "seconds": 83,
+       "script": "북악 스카이웨이는 서울 종로구 부안동 창의문에서 성북구 종암동까지 이어지는 7.1km의 2차선 도로로, 본래 이름은 북안산길이지만 서울의 어느 길보다 하늘과 가깝다고 해서 ‘스카이웨이’라는 명칭이 붙게 되었습니다. 본래는 청와대 경비 강화를 비롯한 군사적 목적이 강했으나 점차 관광용 도로로 홍보를 하며 출입시간을 정해 드라이브 코스로 개방되었습니다. 1988년 완전히 국민들에게 개방되고 종로구와 성북구의 경계지점에 산책로가 조성되면서 보행 또한 가능해졌습니다.   스카이웨이는 차로 30분만에 완주할 수 있는 코스로 나선형의 도로이며 잘 정비된 가로수와 계절마다 피고 지는 다양한 꽃의 향연이 펼쳐집니다. 특히 도로 정상부에 있는 팔각정에 오르면 산등성이를 휘감는 듯한 성벽과 빌딩숲을 볼 수 있고 서울이 한 눈에 내려다보여 많은 관광객들이 찾는 명소이기도 합니다.    밤이면 2층 전망대에서 남산과 남산서울타워, 광화문 사거리의 화려한 조명 등 서울 중심부의 야경을 감상할 수 있습니다. 600여 년 동안 서울을 지켜온 성곽에 불이 훤히 밝혀진 모습도 볼 수 있습니다. 숲 사이로 탁 트인 하늘 아래, 편안한 오솔길을 걸으며 자연의 아름다움을 감상해봅시다."
+      }
+     },
+     "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17054.mp3"
     }
    ],
    "sources": [

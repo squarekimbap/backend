@@ -1033,24 +1033,92 @@
       "name": "공지천유원지",
       "lat": 37.8751231,
       "lng": 127.7097441,
-      "audioSeconds": 15,
-      "description": "출발점. 주차와 화장실이 있는 유원지로, 물가에 앉을 자리가 많아 러닝 전후의 거점으로 삼기 좋다."
+      "audioSeconds": 110,
+      "description": "출발점. 주차와 화장실이 있는 유원지로, 물가에 앉을 자리가 많아 러닝 전후의 거점으로 삼기 좋다.",
+      "audio": {
+       "ko": {
+        "name": "공지천권역_공지천",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8374.mp3",
+        "seconds": 110,
+        "script": "춘천시민들뿐 아니라 여행자들도 즐겨 찾는 명소가 바로 공지천입니다. 서울에 한강이 있다면 춘천에는 공지천이 있다는 말이 있을 정도죠.   공지천에는 퇴계 이황과 관련된 이야기가 전해져 옵니다. 퇴계 이황이 외가인 춘천, 지금의 퇴계동에 머물 때의 일입니다. 아이들과 함께 강아지 한 마리를 가르치게 되는데, 강아지는 용왕의 아들이었습니다. 이를 계기로 퇴계선생은 용궁에 초대받아 갔다가 짚 한단을 얻어오게 됩니다. 이 짚은 잘라서 물에 넣으면 생선이 되는 신비한 물건이었습니다. 퇴계선생은 이 짚을  공지천의 옛 이름인 곰지내에 풀어 물고기로 만들었습니다. 이 물고기를 공지어라 불렀고, 그 후로 곰지내를 공지어가 산다고 하여 공지천이라고 불렀다는군요.  공지천 주변에는 공지천 유원지, 풍물시장, 에티오피아참전기념관, KT&G상상마당 춘천 등 많은 관광지가 모여 있습니다. 우선 공지천 유원지에는 산책로, 조각공원, 야외공연장 등을 갖췄는데요, 특히 공지천 유원지 보트장에선 오리배를 타고 공지천의 물길을 즐길 수 있습니다.  이 밖에도 공지천 주변에는 하중도 생태공원, 의암스카이워크, 의암호 등 다양한 관광지가 있습니다."
+       },
+       "en": {
+        "name": "Gongjicheon Stream_The Origin of Gongjicheon Stream and Tourist Attractions",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8459.mp3",
+        "seconds": 125,
+        "script": "Gongjicheon Stream is a celebrated site popular among not only citizens of Chuncheon, but also tourists. They say Gongjicheon Stream is like the Hangang River in Seoul.   Gongjicheon Stream is associated with a story about Toegye Yi Hwang, a scholar in the 1500s whose portrait appears on the KRW 1,000 bill. This story takes place while Toegye Yi Hwang was staying at his mother’s parents’ home in a location that is equivalent to Toegye-dong in the present time. He trained a puppy that was in fact the son of the Dragon King. As a teacher for the Dragon King’s son, Toegye was invited to the underwater palace of the Dragon King and was given a sheaf of straw as a gift. It was a sheaf of magical straws that turned into fish when put into water. Toegye made fish by putting this sheaf of straw into the water of Gomjinae, which is the old name of Gongjicheon Stream. The fish was named Gongjieo. After the name of the fish, Gomjinae was renamed Gongjicheon, which means a stream where Gongjieo lives.   Around Gongjicheon Stream, you will find a number of tourist attractions including the Gongjicheon Recreation Area, Memorial Hall for Ethiopian Veterans in the Korean War, folk flea market, and KT&G Sangsangmadang Chuncheon. The Gongjicheon Recreation Area is equipped with a walking trail, a sculpture park, and an outdoor performance area. In particular, you can enjoy the water of Gongjicheon Stream on a pedal boat."
+       },
+       "jp": {
+        "name": "孔之川_孔之川の由来と観光スポット",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8569.mp3",
+        "seconds": 116,
+        "script": "春川市民だけでなく旅行者もよく訪れる名所が孔之(コンジ)川です。ソウルに漢江(ハンガン)があるように、春川には孔之川があると言われるほどです。   孔之川には、1500年代の学者で韓国の千ウォン札に印刷されている退渓(テゲ)李滉(イ・ファン)にまつわる話が伝わっています。彼が母方の実家、現在の春川退渓洞にいた時のことです。子供たちを教えているところに1匹の子犬が来て聞き耳を立てるのですが、子犬は竜王の息子でした。それがきっかけで李滉は竜宮に招待され、藁1束をお土産にもらいます。切って水に入れると魚に変わる不思議な藁でした。彼はその藁を当時コムジネと呼ばれていた孔之川に入れて魚に変えました。その魚は孔之魚と呼ばれ、孔之魚がいる川という意味でコムジネは孔之川という名前に改められたそうです。  孔之川の周辺には孔之川遊園地、エチオピア韓国戦争参戦記念館、風物市場、KT&Gサンサンマダン春川など多くの観光地が集まっています。孔之川遊園地には散策路、彫刻公園、野外ステージのほかボート場もあり、スワンボートに乗って孔之川を周遊できます。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8374.mp3"
      },
      {
       "id": "chuncheon-uiamho-2",
       "name": "의암호",
       "lat": 37.8645693,
       "lng": 127.6913594,
-      "audioSeconds": 15,
-      "description": "출발에서 약 3.2km, 스포츠타운 앞 수변 데크 구간. 호수 폭이 넓어지고 건너편 능선이 시야에 들어온다."
+      "audioSeconds": 99,
+      "description": "출발에서 약 3.2km, 스포츠타운 앞 수변 데크 구간. 호수 폭이 넓어지고 건너편 능선이 시야에 들어온다.",
+      "audio": {
+       "ko": {
+        "name": "춘천 삼악산 호수케이블카",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16772.mp3",
+        "seconds": 99,
+        "script": "케이블카는 단순한 이동수단이 아닙니다. 아름다운 풍경을 한눈에 담을 수 있는 여행의 또 하나의 즐거움이지요. 그렇다면 우리나라에서 가장 긴 케이블카는 무엇일까요? 바로 춘천 삼악산 호수케이블카입니다. 삼천동에서 시작해서 의암호를 가로질러 삼악산을 연결하는 춘천 삼악산 케이블카의 길이는 무려 3.61km나 되는데요. 케이블카를 타고 내려다보는 의암호와 삼악산의 풍경이 아름다워서 많은 관광객들의 사랑을 받고 있습니다.    의암호 정차장에서 출발한 케이블카는 춘천 시내에서 의암호를 가로질러 삼악산 정차장에 도착합니다. 케이블카에서 내리면 눈앞에 아름다운 풍경이 펼쳐지지요. 삼악산 정차장에서 바라보는 춘천의 풍경도 무척 아름답지만, 산책길을 따라서 삼악산 전망대로 올라갈 수도 있는데요. 삼악산 정차장에서 전망대까지는 1km가 되지 않기 때문에 주변을 구경하면서 여유롭게 올라갈 수 있지요. 삼악산 전망대에서는 의암호와 춘천 시내의 아름다운 풍경을 한눈에 내려다볼 수 있답니다. 삼악산 전망대에 있는 스카이워크는 바닥이 투명한 유리로 되어 있어서 마치 하늘을 걷는 듯한 기분을 느낄 수 있어요.   청운봉, 등선봉, 용화봉 3개의 봉우리로 이루어진 아름다운 삼악산은 노을이 지는 해 질 녘이 아름다운 관광지로 유명합니다. 푸른 산과 함께 펼쳐진 넓고 아름다운 호수의 풍경도 빼놓을 수 없지요. 우리나라에서 가장 긴 케이블카인 춘천 삼악산 케이블카를 타고 아름다운 산과 호수의 풍경을 즐겨 보시기 바랍니다."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16772.mp3"
      },
      {
       "id": "chuncheon-uiamho-3",
       "name": "의암호스카이워크",
       "lat": 37.8467906,
       "lng": 127.680221,
-      "audioSeconds": 15,
-      "description": "호수 위로 나간 데크 조망 지점. 코스 후반의 기준점이라 여기서 끊고 돌아가는 변형도 자연스럽다."
+      "audioSeconds": 118,
+      "description": "호수 위로 나간 데크 조망 지점. 코스 후반의 기준점이라 여기서 끊고 돌아가는 변형도 자연스럽다.",
+      "audio": {
+       "ko": {
+        "name": "공지천권역_의암스카이워크",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8380.mp3",
+        "seconds": 118,
+        "script": "춘천 의암호는 산과 호수가 어우러진 풍경만으로도 매력적이라서 많은 사람이 찾는 곳인데, 의암스카이워크가 생긴 이후부터는 더 많은 사람의 발길이 모이고 있습니다.  스카이워크란 고지대나 물 위에 투명한 강화유리를 설치한 시설입니다. 2014년에 개장한 의암스카이워크는 전체 길이가 190m로 한국에서 가장 길지요. 참고로 2016년에 문을 연 소양강스카이워크는 전체 길이가 174m로, 투명 강화유리 구간이 한국에서 가장 긴 156m입니다.  스카이워크가 무섭다고요? 안전에 대한 걱정은 하지 않으셔도 좋습니다. 의암스카이워크 바닥에는 두께 1㎝의 강화유리 3장을 겹쳐 설치했고, 유리 사이에 특수필름을 넣었습니다. 유리 1장이 깨져도 추가 파손을 막을 수 있죠. 의암스카이워크 바닥은 1㎡당 13,000t의 하중을 견딜 수 있게 설계했기 때문에 누구나 안심하고 즐길 수 있습니다.  의암스카이워크는 김유정 문인비와 송암스포츠타운을 잇는 1.5㎞ 길이의 ‘하늘 자전거길’ 코스 중간에 자리 잡고 있는데요, 하늘 자전거길은 의암호 물길을 따라 형성된 길로, 걸어서 산책할 수도 있습니다.   의암스카이워크에 가서 11m 발아래 풍경에 아찔함도 느끼고, 의암호와 산세가 어우러진 모습을 배경으로 기념사진을 남겨보는 것도 좋겠죠."
+       },
+       "en": {
+        "name": "Uiamho Lake Skywalk",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8465.mp3",
+        "seconds": 92,
+        "script": "With its beautiful landscape, Uiamho Lake attracts many visitors. The visitor count has increased all the more since the opening of Uiamho Lake Skywalk.   A skywalk is a facility made of transparent tempered glass installed over water or on a hillside. Opened in 2014, Uiamho Lake Skywalk spans 190m in length. It is the longest skywalk in Korea.   You can be reassured about the safety of Uiamho Lake Skywalk. On the floor, three sheets of tempered glass, each measuring 1cm in thickness, are installed. The glass floor is designed to withstand a load of 13,000 tons per 1㎡.  Uiamho Lake Skywalk is located in the middle of “Haneul Bike Path,” a 1.5km bike course connecting the Monument to Kim Youjeong and Songam Sports Town. Haneul Bike Path, which has been established along the waterway of Uiamho Lake, doubles as a walking trail.  Enjoy the thrill of looking at the waves of Uiamho Lake 11m under your feet and take souvenir photos against the beautiful landscape of Uiamho Lake."
+       },
+       "jp": {
+        "name": "衣岩湖スカイウォーク",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8575.mp3",
+        "seconds": 101,
+        "script": "春川の衣岩湖は、山と湖の調和した風景が素敵なので訪問者がもともと多かったのですが、衣岩湖スカイウォークができてからはさらに多くの人が押し寄せています。   スカイウォークは高地帯や水の上に透明な強化ガラスを設けて歩けるようにした施設です。2014年に開通した衣岩湖スカイウォークは、全体の長さが190mで韓国最長です。   安全性の面でも心配ありません。床は厚さ1㎝の強化ガラスを3枚重ねて作られ、1㎡あたり13,000トンの荷重に耐えられるように設計されていますので安心して楽しめます。  衣岩湖スカイウォークは、金裕貞(キム・ユジョン)文人碑と松岩(ソンアム)スポーツタウンをつなぐ長さ1.5㎞の「ハヌル自転車道」の途中にあります。ハヌル自転車道は衣岩湖に沿って整備された道で、歩いて行くこともできます。   11mの高さから衣岩湖を見下ろすと思わずクラッとしそうですが、衣岩湖と山の調和した風景をバックに記念写真を撮ってもいいでしょう。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8380.mp3"
+     },
+     {
+      "id": "chuncheon-uiamho-story-959",
+      "name": "물레길",
+      "lat": 37.854945,
+      "lng": 127.685801,
+      "audioSeconds": 111,
+      "description": "의암호와 클래식 우든 카누의 만남  물레길은 제주도 올레길이나 지리산 둘레길처럼 정해진 길을 일컫는 이름이 아닙니다. ‘물길을 따라 여행하는 길’이라는 뜻을 담고 있는데요, 클래식 우든 카누를 타고 수려한 풍광을 자랑하는 의암호를 여행하는 것은 이색적인 경험입니다. 카누는 무동력이라 시",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/2189.mp3",
+      "audio": {
+       "ko": {
+        "name": "물레길",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/2189.mp3",
+        "seconds": 111,
+        "script": "의암호와 클래식 우든 카누의 만남  물레길은 제주도 올레길이나 지리산 둘레길처럼 정해진 길을 일컫는 이름이 아닙니다. ‘물길을 따라 여행하는 길’이라는 뜻을 담고 있는데요, 클래식 우든 카누를 타고 수려한 풍광을 자랑하는 의암호를 여행하는 것은 이색적인 경험입니다. 카누는 무동력이라 시끄러운 소음이나 매캐한 매연이 없어 자연의 소리와 청정한 공기를 온전히 느끼면서 고요히 물 위를 미끄러져 갈 수 있죠.   의암호에 클래식 우든 카누를 띄운 사람은 장목순 물레길 이사장입니다. 그는 캐나다에서 카누의 매력에 빠져 장인에게서 직접 카누 만드는 법을 배웠고, 그것이 물레길 탄생의 결정적 역할을 하게 됐습니다. 그럼 카누를 타고 물 위를 달려볼까요? 송암스포츠타운 내 물레길 운영사무국에서 출발하는 의암댐 코스는 초급자도 쉽게 완주가 가능합니다. 노를 저으면서 카누를 타고 흘러가다 보면 의암호를 따라 조성된 자전거도로와 스카이워크 전망대를 볼 수 있는데요, 특히 수면 위 12m 높이에 강화유리로 제작된 투명한 스카이워크 전망대를 올려다보는 기분은 매우 색다릅니다. 자연을 거스르지 않고 물길을 따라 흘러가는 물레길 카누 여행을 즐겨보는 건 어떨까요?"
+       }
+      }
      }
     ],
     "shape": "roundTrip",
@@ -1989,24 +2057,75 @@
       "name": "공지천유원지",
       "lat": 37.8751231,
       "lng": 127.7097441,
-      "audioSeconds": 15,
-      "description": "출발점. 오리배 선착장이 있는 물가 유원지로, 러닝 전후에 앉아 쉬어 가기 좋다."
+      "audioSeconds": 110,
+      "description": "출발점. 오리배 선착장이 있는 물가 유원지로, 러닝 전후에 앉아 쉬어 가기 좋다.",
+      "audio": {
+       "ko": {
+        "name": "공지천권역_공지천",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8374.mp3",
+        "seconds": 110,
+        "script": "춘천시민들뿐 아니라 여행자들도 즐겨 찾는 명소가 바로 공지천입니다. 서울에 한강이 있다면 춘천에는 공지천이 있다는 말이 있을 정도죠.   공지천에는 퇴계 이황과 관련된 이야기가 전해져 옵니다. 퇴계 이황이 외가인 춘천, 지금의 퇴계동에 머물 때의 일입니다. 아이들과 함께 강아지 한 마리를 가르치게 되는데, 강아지는 용왕의 아들이었습니다. 이를 계기로 퇴계선생은 용궁에 초대받아 갔다가 짚 한단을 얻어오게 됩니다. 이 짚은 잘라서 물에 넣으면 생선이 되는 신비한 물건이었습니다. 퇴계선생은 이 짚을  공지천의 옛 이름인 곰지내에 풀어 물고기로 만들었습니다. 이 물고기를 공지어라 불렀고, 그 후로 곰지내를 공지어가 산다고 하여 공지천이라고 불렀다는군요.  공지천 주변에는 공지천 유원지, 풍물시장, 에티오피아참전기념관, KT&G상상마당 춘천 등 많은 관광지가 모여 있습니다. 우선 공지천 유원지에는 산책로, 조각공원, 야외공연장 등을 갖췄는데요, 특히 공지천 유원지 보트장에선 오리배를 타고 공지천의 물길을 즐길 수 있습니다.  이 밖에도 공지천 주변에는 하중도 생태공원, 의암스카이워크, 의암호 등 다양한 관광지가 있습니다."
+       },
+       "en": {
+        "name": "Gongjicheon Stream_The Origin of Gongjicheon Stream and Tourist Attractions",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8459.mp3",
+        "seconds": 125,
+        "script": "Gongjicheon Stream is a celebrated site popular among not only citizens of Chuncheon, but also tourists. They say Gongjicheon Stream is like the Hangang River in Seoul.   Gongjicheon Stream is associated with a story about Toegye Yi Hwang, a scholar in the 1500s whose portrait appears on the KRW 1,000 bill. This story takes place while Toegye Yi Hwang was staying at his mother’s parents’ home in a location that is equivalent to Toegye-dong in the present time. He trained a puppy that was in fact the son of the Dragon King. As a teacher for the Dragon King’s son, Toegye was invited to the underwater palace of the Dragon King and was given a sheaf of straw as a gift. It was a sheaf of magical straws that turned into fish when put into water. Toegye made fish by putting this sheaf of straw into the water of Gomjinae, which is the old name of Gongjicheon Stream. The fish was named Gongjieo. After the name of the fish, Gomjinae was renamed Gongjicheon, which means a stream where Gongjieo lives.   Around Gongjicheon Stream, you will find a number of tourist attractions including the Gongjicheon Recreation Area, Memorial Hall for Ethiopian Veterans in the Korean War, folk flea market, and KT&G Sangsangmadang Chuncheon. The Gongjicheon Recreation Area is equipped with a walking trail, a sculpture park, and an outdoor performance area. In particular, you can enjoy the water of Gongjicheon Stream on a pedal boat."
+       },
+       "jp": {
+        "name": "孔之川_孔之川の由来と観光スポット",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8569.mp3",
+        "seconds": 116,
+        "script": "春川市民だけでなく旅行者もよく訪れる名所が孔之(コンジ)川です。ソウルに漢江(ハンガン)があるように、春川には孔之川があると言われるほどです。   孔之川には、1500年代の学者で韓国の千ウォン札に印刷されている退渓(テゲ)李滉(イ・ファン)にまつわる話が伝わっています。彼が母方の実家、現在の春川退渓洞にいた時のことです。子供たちを教えているところに1匹の子犬が来て聞き耳を立てるのですが、子犬は竜王の息子でした。それがきっかけで李滉は竜宮に招待され、藁1束をお土産にもらいます。切って水に入れると魚に変わる不思議な藁でした。彼はその藁を当時コムジネと呼ばれていた孔之川に入れて魚に変えました。その魚は孔之魚と呼ばれ、孔之魚がいる川という意味でコムジネは孔之川という名前に改められたそうです。  孔之川の周辺には孔之川遊園地、エチオピア韓国戦争参戦記念館、風物市場、KT&Gサンサンマダン春川など多くの観光地が集まっています。孔之川遊園地には散策路、彫刻公園、野外ステージのほかボート場もあり、スワンボートに乗って孔之川を周遊できます。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8374.mp3"
      },
      {
       "id": "chuncheon-gongjicheon-2",
       "name": "공지천 조각공원",
       "lat": 37.8728419,
       "lng": 127.7132363,
-      "audioSeconds": 15,
-      "description": "출발 약 500m 지점의 수변 공원. 물가를 따라 조각 작품이 서 있어 워밍업 구간의 볼거리가 된다."
+      "audioSeconds": 118,
+      "description": "출발 약 500m 지점의 수변 공원. 물가를 따라 조각 작품이 서 있어 워밍업 구간의 볼거리가 된다.",
+      "audio": {
+       "ko": {
+        "name": "공지천권역_에티오피아참전기념관",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8376.mp3",
+        "seconds": 118,
+        "script": "1950년 6월 25일 한반도에서는 한국전쟁이 발발했습니다. 당시 유엔군으로 참전한 나라는 십 육(16) 개국으로, 아프리카에서는 지상군으로는 유일하게 에티오피아가 ‘강뉴’(Kangnew) 부대를 파병했죠.  강뉴는 ‘상대에게 결정적 타격을 주거나 상대를 궤멸한다.’는 뜻의 에티오피아 말입니다. 강뉴 부대 구성원은 에티오피아 황제의 근위병 육 천 서른 일곱(6,037)명이었습니다. 당시 에티오피아가 보낸 병력은 미국, 영국, 캐나다에 이어 네 번째로 많았습니다.  에티오피아가 한국전쟁에 참전하게 된 데에는 남다른 사연이 있습니다. 1935년 이탈리아의 침략을 받은 에티오피아는 세계 각국에 도움을 요청했지만, 외면을 당하고 맙니다. 이후 에티오피아는 10년 동안 이십칠만(27만)명을 희생시키며, 나라를 지켜냈습니다. 아픔이 있었던 에티오피아는, 도움의 손길을 청한 우리나라가 에티오피아와 같은 고통을 받지 않길 바라는 마음에 한국전쟁에 파병을 했던 것입니다.   춘천시에서는 에티오피아 참전군의 전공을 알리고, 전쟁의 교훈을 되새기고자 2007년 3월 에티오피아참전기념관을 세웠습니다. 에티오피아 전통가옥 양식인 돔 모양으로 지어진 기념관은, 1층 참전기념전시실에서는 당시 강뉴 부대의 활약상을 살펴볼 수 있고, 2층 교류전시실과 풍물전시실에서는 에티오피아의 문화도 엿볼 수 있습니다."
+       },
+       "en": {
+        "name": "Memorial Hall for Ethiopian Veterans in the Korean War",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8461.mp3",
+        "seconds": 120,
+        "script": "The Korean War broke out on June 25, 1950. 16 countries entered the war as dispatched UN forces. From Africa, Ethiopia sent Kangnew Battalions, which were the only ground forces.  In the Ethiopian language, Kangnew means to give a decisive blow or to wipe out the enemy. Kangnew Battalions were a number of military units from the Imperial Ethiopian Army with 6,037 soldiers. The troops sent by Ethiopia were the fourth largest following those of the U.S., the U.K. and Canada.  There is a story behind Ethiopia’s participation in the Korean War. Invaded by Italy in 1935, Ethiopia asked for help to countries around the world. But, the request was turned down. Over the next ten years, Ethiopia defended itself at the sacrifice of 270,000 people. Having suffered tragedy, Ethiopia sent troops to Korea when it asked for help, hoping that Korea would not have to go through the pain it had.  The Chuncheon- City Government opened the Memorial Hall for Ethiopian Veterans in the Korean War in March 2007 in order to commemorate the distinguished military service of the Ethiopian troops and reflect on the lessons of war. Built in the shape of a dome, the traditional housing style of Ethiopia, this memorial hall consists of two stories. The Memorial Exhibition Room on the first floor focuses on the performance of the Kangnew Battalions at the time and the Exchange Exhibition Room and Folk Culture Exhibition Room on the second floor introduce the culture of Ethiopia."
+       },
+       "jp": {
+        "name": "エチオピア韓国戦争参戦記念館",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8571.mp3",
+        "seconds": 137,
+        "script": "1950年6月25日に朝鮮半島で韓国戦争が勃発しました。当時国連軍として参戦した国は16カ国で、アフリカからの地上軍としては唯一エチオピアが「カンニュー」(Kangnew)部隊を派遣しました。  カンニューは「相手に決定的な打撃を与える、相手を壊滅させる」という意味のエチオピア語です。カンニュー部隊のメンバーはエチオピア皇帝の近衛兵6,037人でした。当時エチオピアが派遣した兵士の数はアメリカ、イギリス、カナダに次いで4番目に多かったといいます。  エチオピアが韓国戦争に参加することになったのは、特別ないきさつからでした。1935年にイタリアの侵攻を受けたエチオピアは世界に助けを求めましたが、誰も助けてくれませんでした。その後、エチオピアは10年間で27万人の犠牲を出しながら国を守りました。そんな辛い過去のあったエチオピアは、助けを求めてきた韓国に自分たちのような苦しみを味わってほしくないという思いで韓国戦争に派兵したのです。  春川市ではエチオピア参戦軍の戦功を広く知ってもらい、戦争の教訓を忘れないように2007年3月にエチオピア韓国戦争参戦記念館を設立しました。記念館はドーム型のエチオピア伝統家屋風に建てられました。1階の参戦記念展示室では当時のカンニュー部隊の活躍ぶりを紹介し、2階の交流展示室と風物展示室ではエチオピアの文化にも触れられます。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8376.mp3"
      },
      {
       "id": "chuncheon-gongjicheon-3",
       "name": "에티오피아한국전참전기념관",
       "lat": 37.8738195,
       "lng": 127.7117809,
-      "audioSeconds": 15,
-      "description": "한국전쟁에 참전한 에티오피아를 기리는 기념관. 앞길 이름도 이디오피아길이다. 코스 중간의 표지가 된다."
+      "audioSeconds": 126,
+      "description": "한국전쟁에 참전한 에티오피아를 기리는 기념관. 앞길 이름도 이디오피아길이다. 코스 중간의 표지가 된다.",
+      "audio": {
+       "ko": {
+        "name": "공지천유원지",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/2159.mp3",
+        "seconds": 126,
+        "script": "영원한 춘천여행 일번지  공지천유원지는 춘천 시민들의 쉼터로, 명실상부한 춘천의 대표 명소입니다. 돗자리를 펴고 휴식을 취하거나 인라인스케이트를 즐기는 이들까지, 남녀노소 모두에게 인기가 많죠.   그럼 공지천유원지를 둘러볼까요? 우선 공지천교 양쪽으로 자전거대여점을 발견할 수 있는데, 이른바 명품길로 알려진 자전거 코스는 자전거 타는 맛의 진수를 느끼게 합니다. 그리고 예나 지금이나 공지천 위를 떠다니는 오리배는 놓쳐서는 안 될 필수 코스인데요, 에티오피아한국전참전기념관 옆 보트장에서 이용할 수 있습니다.   오리배선착장에서 공지천교를 건너면 ‘황금비늘 테마거리’와 연결되는데요, 춘천 출신 이외수 작가의 소설 《황금비늘》이 이곳을 배경으로 쓰였다는군요. 이외수 작가의 작품세계를 엿보며 잔잔한 호수를 따라 걷다 보면 어느새 춘천MBC에 닿습니다. 여기서 잠깐, 춘천MBC 전망데크로 올라가 춘천을 내려다볼까요? 한 폭의 멋진 풍경화를 눈에 담을 수 있을 겁니다.   만약 여유가 있다면, 산책로를 따라 KT&G상상마당 춘천도 방문해보길 권합니다. 의암호를 마주한 운치 있는 붉은색 벽돌 건물로, 우리나라 건축계의 거장인 고 김수근 선생의 작품입니다. 이처럼 공지천유원지는 문화와 예술을 즐기며 자연 속에서 힐링할 수 있는 영원한 춘천여행 일번지입니다."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/2159.mp3"
      },
      {
       "id": "chuncheon-gongjicheon-4",
@@ -3137,24 +3256,121 @@
       "name": "경포호",
       "lat": 37.7976418,
       "lng": 128.9077449,
-      "audioSeconds": 15,
-      "description": "호수 둘레 자체는 약 4.3km. 이 코스는 경포대와 초당 솔숲까지 연결해 6.8km로 돈다."
+      "audioSeconds": 148,
+      "description": "호수 둘레 자체는 약 4.3km. 이 코스는 경포대와 초당 솔숲까지 연결해 6.8km로 돈다.",
+      "audio": {
+       "ko": {
+        "name": "강릉 강문해변",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20597.mp3",
+        "seconds": 148,
+        "script": "밤이 더 아름다운 야간관광 명소를 찾아 떠나는 대한민국 밤밤곡곡. 오늘 함께할 여행지는, 일상의 소음을 모두 씻겨내는 여유와 위로의 바다, 강릉 강문해변입니다.  '강이 흐르는 입구'라는 뜻을 가진 강문해변은 부드러운 백사장과 푸른 동해 바다가 어우러져 자연이 빚어낸 고유한 아름다움을 고스란히 품고 있는 명소입니다. 경포해변보다 한적하고 여유로운 이곳은 철썩이는 파도 소리와 시원한 바닷바람 속에서 깊은 사색과 차분한 산책을 즐기기에 제격이죠.  해가 저물기 시작하면 강문해변은 또 다른 얼굴을 드러냅니다. 해안선을 따라 이어진 산책로에는 조명이 켜지고, 바닷가 풍경은 서서히 따뜻한 빛으로 물들어갑니다. 이곳 강문해변과 이웃한 경포해변을 잇는 ‘솟대다리’에는 무지개빛 LED 아치 조명이 환상적으로 펼쳐지며, 밤바다의 정취와 어우러집니다.  솟대다리는 마을의 안녕과 풍요를 기원하던 전통, ‘솟대’를 현대적으로 재해석한 문화적 공간입니다. 다리 아래 '진또배기 소원성취 조형물'에서는 방문객들이 직접 소원을 빌며 우리 전통 문화를 체험할 수 있습니다. 다리 위에 올라서면 두 해변이 하나로 이어지는 파노라마 야경이 펼쳐지고, 다리를 멀리서 바라보면 마치 바다 위에 떠 있는 거대한 빛의 무지개 같은 장관을 감상할 수 있습니다.  강문해변은 밤이 깊어질수록 솟대다리의 LED 조명과 바다의 물결이 어우러져 환상적인 빛의 무대가 됩니다. 이 빛의 다리를 바라보거나 직접 걸어보는 순간, 일상의 무게가 잠시 잊혀지고, 감성적인 평온함이 찾아옵니다.  소란스러운 일상에서 벗어나, 강문해변의 고요한 밤과 전통을 품은 빛의 다리에서 진정한 쉼과 위로를 경험해보세요."
+       },
+       "en": {
+        "name": "Gangmun Beach, Gangneung",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20601.mp3",
+        "seconds": 123,
+        "script": "Nightscapes of Korea takes you to places where the night shines even brighter. Today, we journey to Gangmun Beach in Gangneung, where the sea washes away the noise of everyday life, offering a moment of quiet comfort and peace.  Gangmun Beach, which means the mouth where the river flows, is a beautiful place where soft white sand meets the blue East Sea. It's much quieter and more peaceful than nearby Gyeongpo Beach. Here, you can enjoy a calm walk and deep thoughts, with the sound of the crashing waves and the cool sea breeze by your side.  When the sun starts to set, Gangmun Beach shows a different, more beautiful side. The walking path along the coast lights up, and the beach glows with a warm light. The Sotdae Bridge, which connects Gangmun Beach to nearby Gyeongpo Beach, lights up with a spectacular rainbow of LED arches. This creates a magical scene that blends perfectly with the charm of the night sea.  Sotdae Bridge is a modern cultural space that was inspired by the traditional sotdae, a totem pole once used to pray for a village's peace and good fortune. Below the bridge, you'll find the Jjinttaebaegi Wish Sculpture where you can make your own wish and experience a part of Korean folk culture. When you stand on the bridge, you'll get a beautiful, panoramic night view that connects the two beaches. From a distance, the bridge looks like a giant rainbow of light floating over the sea.  As night gets deeper, Gangmun Beach turns into a stunning stage of light. The glowing LED lights of Sotdae Bridge blend beautifully with the ocean waves. Whether you're looking at the bridge or walking on it, you can feel the stress of daily life disappear, replaced by a gentle sense of peace.  Step away from your noisy daily life and find true rest and comfort at Gangmun Beach. Here, the quiet night and the bridge of light come together to offer a moment of peaceful calm."
+       },
+       "jp": {
+        "name": "江陵・江門（カンヌン・カンムン）ビーチ",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20606.mp3",
+        "seconds": 140,
+        "script": "夜がより美しいナイトツアースポットを紹介する韓国の夜のあちこち。 今日のスポットは、日常の雑音をすべて洗い流す余裕と癒しの海、江陵（カンヌン）の「江門（カンムン）ビーチ」です。  江門ビーチは、「川が流れる入口」という意味を持ち、柔らかな白砂浜と青い東海が作り出した独特の美しさをそのままたたえたきれいな海辺です。鏡浦（キョンポ）ビーチよりも閑静でゆったりとしたここは、波の打ち寄せる音と爽やかな海風の中でゆっくり散歩しながら深い思索を楽しむのに最適です。  日が沈み始めると、江門ビーチはまた別の顔を見せます。海岸に沿って続く遊歩道には照明が灯り、次第に温かな光に染まっていきます。その中でもここ江門ビーチと鏡浦ビーチを結ぶ「ソッテ橋」には虹色のLEDアーチ照明が灯り、夜の海の風趣をより深めます。  ソッテ橋は、村の平安と豊穣を祈る意味を込めた「ソッテ」をモダンな感覚で再現した文化空間です。橋の下にある「チントベギ願いを叶える造形物」では、お客様がそれぞれの願いをかける光景がよく見られます。橋の上に立つと、二つのビーチが一つにつながるパノラマ夜景が広がり、遠くから見ると、まるで海の上に浮かぶ巨大な虹ような壮観をなします。  江門ビーチは夜が深まるにつれ、ソッテ橋のLED照明と海の波がすばらしい光の夜景を醸し出します。この光の橋を眺めながら歩いていると、日常の疲れが一時忘れられ、穏やかでゆったちとした気分になります。  しばらく騒がしい日常から離れ、江門ビーチの静かな夜と伝統を抱いた光の橋で、真の休息と癒しを体験してみてください。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20597.mp3"
+     },
+     {
+      "id": "gangneung-gyeongpo-story-3768",
+      "name": "열린관광지 - 강릉 경포해변",
+      "lat": 37.80582,
+      "lng": 128.90744,
+      "audioSeconds": 194,
+      "description": "솔향과 바닷바람, 명사오리를 노래하다  성우/\t휠체어 타고 여행하는 크리에이터, 박위 씨와 함께! \t\t동해안 최대 해수욕장이죠, \t\t<강릉 경포해변>에 도착했습니다!  \t\t(효과음 ins. 파도 소리)  \t박위/\t와~! 파도 소리 들리세요? 시원한 바다 냄새에  \t\t답답했던 제 가슴이 ",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9070.mp3",
+      "audio": {
+       "ko": {
+        "name": "열린관광지 - 강릉 경포해변",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9070.mp3",
+        "seconds": 194,
+        "script": "솔향과 바닷바람, 명사오리를 노래하다  성우/\t휠체어 타고 여행하는 크리에이터, 박위 씨와 함께! \t\t동해안 최대 해수욕장이죠, \t\t<강릉 경포해변>에 도착했습니다!  \t\t(효과음 ins. 파도 소리)  \t박위/\t와~! 파도 소리 들리세요? 시원한 바다 냄새에  \t\t답답했던 제 가슴이 뻥 뚫리는 것 같아요!  \t성우/\t혹시, 강릉 경포해변을 ‘명.사.오.리’ 라고 부른다는 거 아세요? \t\t고운 모래가 십리 절반에 펼쳐진다 해서 명사오리라고 한대요. \t\t발가락 사이로 모래가 미끄러지는 간질간질한 느낌이 진짜 좋네요!  \t박위/\t인상적인 게 모래밭 뒤로 소나무 숲이 병풍처럼 서 있어요! \t\t바다 향에, 진한 솔향까지 어우러지니까, 더 시원한 것 같아요!  \t성우/\t소나무 숲이 괜히 병풍처럼 서 있는 게 아니에요.  \t\t바닷바람으로부터 마을을 보호하기 위해 조성된 방풍림인데,  \t\t해안을 따라 길게 이어지니까 정말 장관이죠?  \t박위/\t경포해변에서 빠질 수 없는 상징인가 봐요! \t\t중앙광장 앞 모래밭에도 소나무 조형물이 있네요?  \t성우/\t태양 위로 해송이 자란 모양의 조형물 말이죠? \t\t경포해변의 소나무 숲은 강릉의 자랑이죠! \t\t \t박위/\t어~ 저기 보이는 바위 두 개가 오리바위와 십리바위인가요? \t\t \t성우/\t네. 박위 씨, 왜 바위 이름이 오리와 십리인지 아시나요?   \t박위/\t아~ 그 정도는 알아요. 해변에서 각각 오리와 십리씩 떨어져 있다고 해서 \t\t붙은 이름이잖아요.   \t성우/\t잘 알고 계시네요. 강릉 경포해변의 명물들이죠!  \t\t저 바위들 뒤로 떠오르는 일출이 장관이라고 하니까  \t\t다음엔 해뜨기 전에 와요! \t\t여기서 잠깐! 해변 산책로가 두 갈래로 갈라지는데요! \t\t어느 길로 가나 해변과 소나무 숲을 따라 걸을 수 있는 데크 길이지만 \t\t박위 씨와 함께니까, 오른쪽 바다 데크 길로 가죠!  \t박위/\t바다 데크 길은 보행이 힘든 분들을 위한 무장애 동선이네요! \t\t폭이 충분해서 이동하기 편한데요? \t\t그런데, 저게 뭐죠? 아, 포토존이구나! 저기서 사진 한 장 어때요?  \t성우/\t눈썰미가 참 좋네요! 여기가 바로, 배우 김우빈과 수지가  \t\t드라마 <함부로 애틋하게>를 찍은 곳입니다. \t\t포토존 앞까지 휠체어로 다가갈 수 있게 데크를 넓게 깔아놨으니까 \t\t박위 씨 좀 더 가까이 가 보죠~ (효과음 ins. 카메라 셔터 소리)  \t박위/\t왼쪽 데크 길로 해변을 보며 걷다 보니 벌써 다 왔네요? \t\t길 끝에 보이는 소나무 아래 쉼터에서 좀 쉬었다 돌아가요.  \t성우/\t좋아요~ 이 쉼터가 마치, 강릉 경포해변 전망대 같네요! \t\t모래사장도 보이고, 그 너머 바다도 보이고, 낚시꾼들도 보이고!  \t박위/\t그렇네요! 쉼터 난간 자체를 투명 강화유리로 만들어놔서 \t\t저처럼 휠체어를 이용하는 분들도 시야를 가리는 것 없이 \t\t시원하게 바다를 볼 수 있어서 너무 좋아요!  \t성우/\t보는 것 말고 직접 바다에 들어가 보고 싶지는 않아요? \t\t해수욕장 개장하면 수상 휠체어도 대여할 수 있어요!  \t박위/\t와! 강릉 경포해변! 저의 최애 바닷가가 되겠는데요! \t\t(BGM 나오면서 마무리)"
+       }
+      }
+     },
+     {
+      "id": "gangneung-gyeongpo-story-6472",
+      "name": "참소리 축음기·에디슨 과학박물관(초등 교과연계)",
+      "lat": 37.7977943,
+      "lng": 128.8974151,
+      "audioSeconds": 127,
+      "description": "참소리 축음기·에디슨 과학박물관   소리와 영상을 감상할 수 있는 스마트폰은 우리의 일상에 필수품이 되었어. 영상 매체가 없는 일상은 상상할 수 없게 되었지. 그렇다면 우리는 언제부터 소리와 영상을 기록하고 재생할 수 있게 되었을까?   에디슨이 최초로 발명한 축음기는 소리를 기록하고 ",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/18651.mp3",
+      "audio": {
+       "ko": {
+        "name": "참소리 축음기·에디슨 과학박물관(초등 교과연계)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/18651.mp3",
+        "seconds": 127,
+        "script": "참소리 축음기·에디슨 과학박물관   소리와 영상을 감상할 수 있는 스마트폰은 우리의 일상에 필수품이 되었어. 영상 매체가 없는 일상은 상상할 수 없게 되었지. 그렇다면 우리는 언제부터 소리와 영상을 기록하고 재생할 수 있게 되었을까?   에디슨이 최초로 발명한 축음기는 소리를 기록하고 재생할 수 있는 장치야. 우리가 알고 있는 MP3의 시작이라고 할 수 있는 축음기는 지금으로부터 아주 오래전인 1877년에 발명되었어. 강원도 강릉시에 위치한 참소리 축음기박물관은 축음기부터 MP3, 라디오, TV 등 소리와 영상을 기록하고 재생하는 장치가 발달해 온 역사를 생생하게 볼 수 있는 곳이야.   1982년 ‘참소리방’으로 설립된 참소리 축음기박물관에서는 손성목 관장님이 수십 년 동안 전 세계를 돌아다니며 수집한 전시품을 만날 수 있어. 전 세계 60여 개의 나라에서 수집한 명품 축음기, 라디오, TV, 뮤직박스 등 2,500여 점이 전시되어 있어. 우리에게 익숙한 영상 재생 장치인 스마트폰이 생기기 전에는 어떻게 소리를 감상하고 영상을 재생했는지 알 수 있지.   에디슨 과학박물관에는 전구, 축음기, 영사기 등 에디슨의 발명품과 유품을 전시하고 있어. 우리가 일상에서 사용하는 장치들이 어떻게 발명되었고 발전되어 왔는지 볼 수 있지. 이곳에서는 과학 기술 발전의 역사를 느낄 수 있어.   참소리 축음기·에디슨 과학박물관은 손성목 관장님의 노력이 담긴 세계 최대이자 유일한 개인 박물관이라고 해. 축음기의 발명과 발달 과정을 관람하면서 수십 년 동안 전 세계를 다니며 장치들을 수집하신 손성목 관장님의 노력을 떠올려보면 좋겠어. 수많은 전시품을 통해 소리와 영상 장치의 역사를 알 수 있게 해 주신 것에 대한 감사한 마음을 담아서 말이야."
+       }
+      }
      },
      {
       "id": "gangneung-gyeongpo-2",
       "name": "경포대",
       "lat": 37.7950602,
       "lng": 128.8966038,
-      "audioSeconds": 15,
-      "description": "출발에서 약 800m 지점, 호수 북쪽의 정자. 예부터 관동팔경으로 꼽혀 온 경포 조망의 기준점이다."
+      "audioSeconds": 185,
+      "description": "출발에서 약 800m 지점, 호수 북쪽의 정자. 예부터 관동팔경으로 꼽혀 온 경포 조망의 기준점이다.",
+      "audio": {
+       "ko": {
+        "name": "강릉 경포호",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20593.mp3",
+        "seconds": 185,
+        "script": "밤이 더 아름다운 야간관광 명소를 찾아 떠나는 대한민국 밤밤곡곡. 오늘 함께할 여행지는, 잔잔한 달빛과 고요한 물결이 마음을 물들이는 강릉 경포호입니다.  강릉시 저동에 위치한 경포호는 동해 바다와 이어지는 자연호수로, 호숫물이 거울처럼 맑다 하여 ‘경호(鏡湖)’라고도 불립니다. 햇빛을 받아 반짝이는 경포호는 계절마다 모습을 달리하며, 특별한 풍경을 선사하는데요. 봄이면 연분홍 벚꽃길이 호수를 감싸고, 여름에는 짙푸른 녹음이 초록 그늘을 드리우죠. 가을에는 황금빛의 갈대숲이 부드럽게 펼쳐지고, 겨울이면 물안개와 설경이 어우러져 몽환적인 분위기를 자아냅니다.  이러한 경관 덕분에 경포호는 강릉 시민뿐만 아니라, 강릉을 찾는 관광객들이 꼭 들르는 명소가 되었는데요. 시원하게 펼쳐진 호수를 따라 조성된 산책로를 걷다 보면, 자연의 숨결이 고스란히 느껴지고, 눈앞에 펼쳐지는 풍경에 감탄이 절로 나오죠. 특히 이곳은 자연보호 지구로 지정되어 있어, 붕어, 잉어, 숭어와 같은 다양한 물고기는 물론이고, 겨울이면 청둥오리와 원앙 같은 철새들이 찾아와 머무는 쉼터이기도 합니다. 해가 내려앉은 밤, 경포호에는 다섯 개의 달이 뜬다고 전해지는데요. 하늘의 달, 호수에 비친 달, 바다에 비친 달, 술잔에 비친 달, 그리고 님의 눈에 비친 달까지. 사랑하는 사람과 이 다섯 개의 달을 찾아 걷는 시간은, 그 자체로 낭만적인 순간입니다.   그리고 그 달을 가장 생생하게 담아내는 곳–바로 ‘경포대’가 있습니다. 경포호 북쪽 언덕에 자리한 이 누각은, 관동팔경 중에서도 손꼽히는 장소인데요. 옛 선인들은 현재 북한 땅인 통천 ‘총석정’에서 평해 ‘월송정’까지, 해안을 따라 늘어선 절경을 즐기며 관동팔경이라 불렀습니다. 그중 제1경인 이곳에서 바라보는 밤의 호수와 달빛은, 마치 시간이 멈춘 듯한 평화와 함께 깊은 울림을 전해주죠.  한 줄의 시처럼 조용히 마음에 스며드는 경포호의 밤. 그저 바라보는 것만으로, 말없이 위로받는 기분입니다. 오늘 밤, 경포호의 달빛 아래 물든 야경 속으로, 조심스레 발걸음을 내디뎌 보세요."
+       },
+       "en": {
+        "name": "Gyeongpo Lake, Gangneung",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20598.mp3",
+        "seconds": 153,
+        "script": "Nightscapes of Korea takes you to places where the night shines even brighter. Today, we journey to Gyeongpo Lake in Gangneung. Here, the soft moonlight and the calm water create a peaceful and beautiful scene.  Located in Jeo-dong, Gangneung, Gyeongpo Lake is a natural lake that connects to the East Sea. Its water is so clear and still, it's also called Gyeongho, which means mirror lake. The lake shines with a special beauty in every season. In spring, soft pink cherry blossoms surround the water. In summer, deep green trees cast a cool, shady canopy. Autumn brings a gentle golden field of reeds. And in winter, a magical mix of fog and snow creates a truly dreamlike atmosphere.  Thanks to its stunning scenery, Gyeongpo Lake is a must-visit spot for both locals and travelers. As you walk along the peaceful trail, you can feel the pure breath of nature and just be amazed by the views. The lake is also a special nature reserve. It's home to various fish like carp and mullet, and in winter, it becomes a resting place for migratory birds, including mallards and mandarin ducks. It's a true sanctuary for wildlife. When the sun goes down, people say five moons appear over Gyeongpo Lake. There's one in the sky, one on the lake's surface, one reflected in the sea, one in a cup of wine, and one shining in the eyes of your loved one. Searching for these five moons with someone you care about is a truly romantic moment.  And the best place to experience all those moons is Gyeongpodae Pavilion. This famous spot sits on a hill north of the lake and is considered one of the Eight Scenic Views of the Gwandong region. Long ago, scholars called the most beautiful places along the eastern coast the Eight Scenic Views. They would admire the breathtaking scenery stretching from Chongseokjeong in what is now North Korea all the way down to Wolsongjeong in Pyeonghae. Gyeongpodae was always the first on the list. When you stand here at night, the view of the lake and the moonlight feels so peaceful, it's like time has stopped.  The night at Gyeongpo Lake is like a quiet poem that gently touches your heart. Just looking at the view brings a sense of comfort without saying a word. Tonight, we hope you'll take a quiet step into the moonlit nightscape of Gyeongpo Lake and let its beauty embrace you."
+       },
+       "jp": {
+        "name": "江陵・鏡浦（カンヌン・キョンポ）湖",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20603.mp3",
+        "seconds": 191,
+        "script": "夜がより美しいナイトツアースポットを紹介する韓国の夜のあちこち。 今日のスポットは、穏やかな月光と静かな波が心を染める江陵・鏡浦（カンヌン・キョンポ）湖です。  江陵市苧洞にある鏡浦湖は、東海とつながる自然湖で、湖水が鏡のように澄んでいることから「鏡湖」とも呼ばれます。陽光にきらめく鏡浦湖は、季節ごとに姿を変えながら美しい風景を見せてくれます。春には淡いピンク色の桜並木が湖を囲み、夏には濃い緑の樹木が緑の影を落とします。秋には黄金色の葦原が柔らかく広がり、冬には水霧と雪景色が絶妙に融和します。  このすばらしい景色のおかげで、鏡浦湖は江陵市民だけでなく、江陵を訪れる観光客が必ず立ち寄る名所となりました。清々しく広がっている湖沿いの遊歩道を歩いていると、自然の息吹がそのまま感じられ、目の前に広がる風景に感嘆の声が自然に漏れます。特に、ここは自然保護地区に指定されておりますので、フナ、コイ、ボラなどの様々な魚はもちろん、冬にはマガモやオシドリなどの渡り鳥が訪れて休む憩いの場でもあります。 日が沈んだ夜、鏡浦湖には５つの月が浮かぶと言われます。５つの月とは、空の月、湖に映る月、海に映る月、酒杯に映る月、そして愛する人の瞳に映る月がそれです。愛する人と手をつないでその５つの月を探しに散歩道を歩いてみてください。これ以上ロマンチックな時間が他にあるのでしょうか。  また、その月を最も鮮やかに映し出す場所といえば、この「鏡浦台（キョンポデ）」です。鏡浦台は、鏡浦湖の北側の丘にあるこの楼閣ですが、関東八景の中でも指折りの絶景スポットです。関東八景とは、昔の賢人たちが今は北朝鮮である通川（トンチョン）の「総石亭（チョンソクジョン）」から平海（ピョンヘ）の「月松亭（ウォルソンジョン）」まで、海岸に沿って連なる最も美しい絶景を誉める８個所を指す言葉です。そのうち、第一景であるここから眺める夜の湖と月光は、まるで時間が止まったかのように平穏で穏やかな雰囲気で深い感動を伝えてくれます。  一編の詩のように静かに心に染み入る鏡浦湖の夜。ただ眺めるだけで慰められる気分になります。今夜、鏡浦湖の月光に染まる夜景にそっと足を踏み入れてみてはいかがでしょうか。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20593.mp3"
      },
      {
       "id": "gangneung-gyeongpo-3",
       "name": "허난설헌생가터",
       "lat": 37.7918973,
       "lng": 128.9096442,
-      "audioSeconds": 15,
-      "description": "초당 솔숲의 허난설헌·허균 남매 생가터. 소나무 그늘 아래를 지나는, 코스에서 가장 차분한 구간이다."
+      "audioSeconds": 159,
+      "description": "초당 솔숲의 허난설헌·허균 남매 생가터. 소나무 그늘 아래를 지나는, 코스에서 가장 차분한 구간이다.",
+      "audio": {
+       "ko": {
+        "name": "열린관광지 - 강릉 허균·허난설헌기념공원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/11995.mp3",
+        "seconds": 159,
+        "script": "조선 최고의 여류 문학가가 태어난 곳  조선시대 강릉을 대표하는 문인으로 손꼽히는 허균, 허난설헌 남매에 대해 아시나요? 허균은 우리나라 최초의 한글 소설인 <홍길동전>의 작가이고, 허난설헌은 허균의 누나로 조선 최고의 여류 작가인데요, 허균·허난설헌기념공원은 뛰어난 문장가였던 남매를 기념하는 문학공원입니다. 기념관과 단아한 고택, 솔숲이 어우러진 공간으로 관광약자를 돕기 위해 출입구에는 장애인 전동휠체어 충전기가 설치돼 있고, 기념관에서는 휠체어와 유아차를 무료로 대여하고 있죠.  가장 먼저 들를 곳은 출입구에서 나무 데크로 자연스럽게 연결된 허균·허난설헌기념관입니다. 두 작가에 대한 소개도 하고, 수집한 문학작품 전시도 하고 있죠. 기념관을 나와 허난설헌의 동상을 지나면 ‘허씨5문장’이라는 커다란 비석 5기를 만나게 되는데요, 비석에는 남매의 아버지인 초당 허엽을 비롯해 자녀인 허성, 허봉, 허난설헌, 허균의 시가 적혀 있습니다. 빼어난 문장가였던 이들을 ‘허씨5문장’이라고 부르죠.  허씨5문장의 시비를 지나 허난설헌 생가터로 가면 강릉 초당동 고택이 기다리고 있습니다. 허난설헌이 태어난 집은 이미 허물어져 없고 이곳은 다시 지은 집이에요. 솟을대문을 들어서면 잘 가꿔진 정원과 사랑채, 그 뒤로 안채와 이어지죠. 고택 뒤로 보이는 소나무 숲은 허난설헌이 태어나기 전부터 있었다고도 하고, 허난설헌이 태어났을 때 아버지 허엽이 심었다고도 합니다.  산책길을 따라 소나무 숲으로 들어가면 ‘호서장서각터’라는 안내판을 볼 수 있는데요, ‘호서장서각’은 허균이 명나라에서 사들인 서책을 향교의 교생과 유림이 빌려볼 수 있도록 한 도서관으로 현재는 터만 남아 있죠.  이제 마지막으로 기념관 맞은편 초희 전통차 체험관으로 가실까요? 휠체어 이용자는 건물 뒤편에 마련된 경사로를 통해 입장하면 편합니다. 따뜻한 전통차 한 잔을 마시며 허균·허난설헌기념공원 관람을 차분히 마무리하는 것도 좋을 것 같네요."
+       },
+       "en": {
+        "name": "Gangneung Heo Gyun and Heo Nanseolheon Memorial Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14937.mp3",
+        "seconds": 177,
+        "script": "The birthplace of the best female poet of Joseon Have you ever heard of Heo Nanseolheon and Heo Gyun, representative poets and writers of Gangneung in the Joseon Dynasty? Heo Gyun is the writer of the novel Hong Gil-dong jeon (The Tale of Hong Gil-dong), which is the first novel written in Korean, and Heo Nanseolheon is his older sister and a representative poet of the time. This place is established to commemorate them. The memorial park is harmonized with a graceful traditional Korea house and a pine forest. To support the travel disadvantaged persons, chargers for electric wheelchairs are placed by the entrance, and the wheelchair and stroller can be rented for free.  It is recommended to start your tour at the Heo Gyun and Heo Nanseolheon Memorial Hall, which is naturally connected with a wooden deck from the entrance. This is where detailed introductions about two authors and their literary works are on display. The five members of Heo’s family, including her father Heo Yeop, the eldest brother Heo Sung, second oldest brother Heo Bong, Heo Nanseolheon herself and her younger brother Heo Gyun, were known to be talented literary writers. Outside the Memorial Hall, you can see five memorial stones to praise them, each of which contains a poem wrote by each one of them.  Passing through the stone monuments, a historic house in Chodang-dong awaits you at the site of Heo Nanseolheon's birth home. The real birthplace of Heo Nanseolheon was demolished in the past. The one here is newly built. Upon entering through a tall gate, you can see a wide yard, sarangchae (men’s quarter) and main building behind it. The pine forest behind the house is said to have existed way before the birth of Heo Nanseolheon. Some say that it was planted by her father to celebrate her birth.  If you go into the pine forest along the trail, you can see a sign saying the “Site of Hoseojangseogak,” which was the library created by Heo Gyun for Confucian scholars and students. Only its site remains today.  Shall we go to the last spot, the Traditional Tea Experience Center across the Memorial Hall? Wheelchair users can enter the center easily by using the ramp behind the building. It is also recommended to take a cup of hot tea and walk into the pine tree forest to wrap up the tour of the Heo Gyun and Heo Nanseolheon Memorial Park."
+       },
+       "jp": {
+        "name": "江陵(カンヌン)許筠(ホ・ギュン)・許蘭雪軒(ホ・ナンソルホン)記念公園",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14957.mp3",
+        "seconds": 194,
+        "script": "朝鮮時代最高の女流作家が生まれた場所 朝鮮時代、江陵(カンヌン)を代表する文人として知られる許筠(ホ・ギュン)・許蘭雪軒(ホ・ナンソルホン)姉弟について、ご存知ですか？許筠は、韓国で初めてハングルで書かれた小説『洪吉童(ホン・ギルドン)伝』の作家であり、許蘭雪軒は許筠の姉で、朝鮮時代の最高の女流作家です。許筠・許蘭雪軒記念公園は、優れた文章家だった姉弟を称えるためにつくられた文学公園です。記念館や雅やかな古宅、松林が調和する空間で、観光弱者のために入口には障害者向け車いす充電器が設置されており、記念館では車いすとベビーカーを無料でレンタルしています。  最初に訪れるべき場所は、入口から木製デッキで自然と続く許筠・許蘭雪軒記念館です。2人の作家について紹介しているほか、収集された文学作品も展示されています。記念館を出て許蘭雪軒の銅像を過ぎていくと、「許氏(ホし)5文章」という大きな碑の5基が建っていますが、碑には姉弟の父親である草堂(チョダン)・許曄(ホ・ヨプ)をはじめとし、子の許筬(ホ・ソン)、許篈(ホ・ボン)、許蘭雪軒、許筠の詩が記されています。優れた文章家だった彼らは、「許氏5文章」と呼ばれています。  許氏5文章の詩碑を過ぎて許蘭雪軒生家の方に進むと、江陵草堂洞(チョダンドン)古宅が見られます。許蘭雪軒が生まれた本来の家ではなく、建て直された家です。ソスルデムン(門柱を回廊屋根より高く造った門)から入ると、整えられた庭やサランチェ(男性の住居)、その裏にアンチェ(母屋)が続きます。古宅の裏に見える松林は、許蘭雪軒が生まれる前からあったとも、許蘭雪軒が生まれたとき、父の許曄(ホ・ヨプ)が植えたとも伝えられています。  遊歩道を歩いて松林に入っていくと、「湖墅(ホソ)蔵書閣(ぞうしょかく)址」という案内板が見えます。「湖墅蔵書閣」とは、許筠(ホ・ギュン)が明から買ってきた書籍を郷校の校生や儒者たちが借りて読むことができるようにつくられた図書館ですが、現在は残されていません。  それでは最後に、記念館の向かい側にあるチョヒ伝統茶体験館に行ってみましょう。建物の裏にはスロープが設けられていますので、車いすでも簡単に入ることができます。あたたかい伝統茶を飲みながら、許筠・許蘭雪軒記念公園の観覧をしめくくるのも趣があって良いでしょう。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/11995.mp3"
      }
     ],
     "sources": [
@@ -4225,8 +4441,17 @@
       "name": "안목해변",
       "lat": 37.7720879,
       "lng": 128.9478338,
-      "audioSeconds": 15,
-      "description": "출발점. 백사장 뒤로 커피거리가 붙어 있고, 수평선에서 떠오르는 해를 정면으로 볼 수 있는 자리다."
+      "audioSeconds": 99,
+      "description": "출발점. 백사장 뒤로 커피거리가 붙어 있고, 수평선에서 떠오르는 해를 정면으로 볼 수 있는 자리다.",
+      "audio": {
+       "ko": {
+        "name": "안목해변",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16829.mp3",
+        "seconds": 99,
+        "script": "강릉 안목해변은 아름다운 해변의 풍경과 커피거리로 유명한 곳입니다. 약500m의 길이와 2만 제곱미터 넓이의 백사장이 있는 안목해변은 가족단위 피서객이 즐기기 적합한 곳이라고 해요. 해안선이 쭉 이어져 있어서 긴 해안선을 따라 드라이브를 하며 여러 관광지를 함께 볼 수 있지요. 가을에는 커피 축제가 열려서 커피거리를 더 재밌게 즐길 수 있어요. 안목이라는 이름은 남대천 하구 반대편에 위치한 남항진에서 송정으로 가는 마을 앞에 있는 길목이라는 뜻에서 생긴 말이라고 합니다.    안목해변은 강릉 관광을 시작하기 좋은 곳이에요. 안목해변 위로 올라가다 보면 강문해변, 경포 해변 등 강릉의 아름다운 해변이 차례차례 나오기 때문이지요. 안목해변에서 아름다운 백사장과 푸른 바다를 감상하고 커피 거리를 구경한 뒤 다른 해변을 둘러보며 강릉 해변을 대부분 즐길 수 있어요. 강릉 커피 거리에서 유명한 카페를 방문하면 저마다 독특한 커피의 향과 맛을 느낄 수 있지요. 가게마다 특별한 디저트도 맛볼 수 있어서 즐겁답니다.    강릉의 해변들은 아름다운 자연경관과 함께 맛있는 먹거리도 많은 여행지입니다. 안목해변 주변에도 많은 먹거리가 있어서 여행의 즐거움을 더해주지요. 아름다운 풍경과 볼거리도 많은데요. 해변 바로 옆에는 안목항이 있어서 봄에는 미역, 여름에는 가자미, 오징어와 문어를 볼 수 있습니다. 그리고 가을과 겨울에는 도루묵, 명태, 우럭 등을 잡아서 돌아오는 어선들을 볼 수 있다고 합니다. 안목해변은 바다의 아름다운 풍경과 커피를 모두 즐길 수 있는 해변이랍니다."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16829.mp3"
      },
      {
       "id": "gangneung-anmok-sunrise-2",
@@ -5277,6 +5502,64 @@
     ],
     "checkpoints": [
      {
+      "id": "sokcho-yeongnangho-story-3607",
+      "name": "영랑호권역_화랑도체험장",
+      "lat": 38.2182697,
+      "lng": 128.570509,
+      "audioSeconds": 93,
+      "description": "신라 화랑 영랑의 이름이 붙은 영랑호에는 화랑도체험장이 있습니다. 화랑은 신라시대 청소년 조직이었는데요, 15~18세 정도의 사내아이들을 모아 산 높고 물 맑은 곳을 돌면서 몸과 마음을 바르게 수련했습니다. 그러니까 영랑이 금강산을 다녀오는 길에 영랑호를 발견하게 된 것도 이 같은 수련",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8432.mp3",
+      "audio": {
+       "ko": {
+        "name": "영랑호권역_화랑도체험장",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8432.mp3",
+        "seconds": 93,
+        "script": "신라 화랑 영랑의 이름이 붙은 영랑호에는 화랑도체험장이 있습니다. 화랑은 신라시대 청소년 조직이었는데요, 15~18세 정도의 사내아이들을 모아 산 높고 물 맑은 곳을 돌면서 몸과 마음을 바르게 수련했습니다. 그러니까 영랑이 금강산을 다녀오는 길에 영랑호를 발견하게 된 것도 이 같은 수련의 과정 중의 일이었던 거죠.   영랑호의 아름다움에 매료된 영랑은 범바위 옆에 작은 정자를 짓고 오래도록 머물며 몸과 마음을 가다듬었습니다. 이후 그의 흔적을 따라 후배 화랑들도 영랑호를 찾아와 수련했다고 하는데요, 화랑도체험장은 이 같은 역사를 체험해볼 수 있는 특별한 공간입니다.   승마와 활쏘기, 봉술 대련, 표창 던지기 같은 다양한 활동은 물론이고, 말을 타고 채로 공을 쳐서 상대방 문에 넣는 격구나 마상무예 같은 옛 화랑들의 용맹한 모습을 간접적으로 느껴볼 수 있는 공연도 있습니다. 특히 아이들과 함께라면 역사공부와 체험을 동시에 즐길 수 있는 곳이 화랑도체험장이라 할 수 있겠습니다."
+       },
+       "en": {
+        "name": "Succeeding the Spirit of Hwarang of Silla",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8649.mp3",
+        "seconds": 99,
+        "script": "Hwarangdo Experience Tourism Complex is located by Yeongnangho Lake, a lake named after Silla’s Hwarang, Yeongnang. Hwarang is a youth organization established around the 6th century. This was a group of boys aged between 15 and 18 training their bodies and minds surrounded by nature. So, it was during the training when Yeongnang discovered Yeongnangho Lake on his way back home from Geumgangsan Mountain.   Captivated by the beauty of Yeongnangho Lake, Yeongnang built a small pavilion next to Beombawi Rock and stayed there for a long period of time, refining his body and soul. His junior Hwarangs followed the footsteps of Yeongnang and also trained by Yeongnangho Lake. Hwarangdo Experience Tourism Complex is a special place where you can experience history.   In addition to various activities ranging from horse riding to archery, cudgel play, and dagger throwing, you can enjoy playing gyeokgu, which is a kind of polo, and martial arts performance on horseback that shows the bravery and gallantry of Hwarang. Hwarangdo Experience Tourism Complex is an ideal location for children to learn and experience history at the same time."
+       },
+       "jp": {
+        "name": "\\新羅花郎の精神を受け継ぐ",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8749.mp3",
+        "seconds": 101,
+        "script": "新羅の花郎、永郎の名前が付いた永郎湖には花郎道体験場があります。花郎は6世紀頃に作られた青少年組織で、15～18歳くらいの少年を集めて高い山ときれいな水のある場所を巡りながら心身を鍛錬しました。永郎が金剛山に行って帰る途中で永郎湖を見つけたのも、こうした修練過程でのことでした。   永郎湖の美しさに魅了された永郎は、虎岩の横に小さな東屋を建て、長い間留まりながら心身を整えました。その後、彼の足跡をたどって後輩の花郎たちも永郎湖を訪れ、修練したといいます。花郎道体験場はそのような歴史を体験できる特別な空間です。   乗馬や弓道、棒術、手裏剣投げなど様々な体験ができるのはもちろん、馬に乗って棒で球を打ち相手のゴールに入れる撃毬(キョック)や馬上武芸といった花郎の勇猛な姿に間接的に触れられる公演もあります。特に、お子様連れでしたら、歴史の勉強と体験を同時に楽しむ有意義な時間が過ごせるでしょう。"
+       }
+      }
+     },
+     {
+      "id": "sokcho-yeongnangho-story-3608",
+      "name": "영랑호권역_영랑호설화공원",
+      "lat": 38.2142258,
+      "lng": 128.5697768,
+      "audioSeconds": 120,
+      "description": "범바위를 지나 영랑호 둘레길을 따라 걷다보면 영랑호습지생태공원을 만날 수 있습니다. 가을이면 은빛 억새가 낭만적인 풍광을 자아내는 곳인데요, 그 입구에 영랑호설화공원이 있습니다.   영랑호설화공원은 영랑호에 얽힌 설화를 조각상으로 재현한 공간으로, 제일 먼저 보이는 건, 파도 위로 솟아",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8433.mp3",
+      "audio": {
+       "ko": {
+        "name": "영랑호권역_영랑호설화공원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8433.mp3",
+        "seconds": 120,
+        "script": "범바위를 지나 영랑호 둘레길을 따라 걷다보면 영랑호습지생태공원을 만날 수 있습니다. 가을이면 은빛 억새가 낭만적인 풍광을 자아내는 곳인데요, 그 입구에 영랑호설화공원이 있습니다.   영랑호설화공원은 영랑호에 얽힌 설화를 조각상으로 재현한 공간으로, 제일 먼저 보이는 건, 파도 위로 솟아오른 두 마리 용입니다. 영랑호에는 암컷용이, 청초호에는 수컷용이 살았다고 전해지는데요, 어느 날 어민이 실수로 청초호 주변에 불을 내, 수컷용이 목숨을 잃게 됩니다. 화가 난 암컷용은 이 지역에 가뭄과 흉어의 벌을 내리죠. 주민들은 수컷용의 죽음을 위로하고 암컷용의 마음을 달래는 제사를 지내기로 하고, 한 쌍의 나룻배가 힘을 겨루는 민속놀이를 선보였습니다. 덕분에 용의 저주가 풀리고 평온을 되찾았다네요.   용 주변으로는 네 명의 화랑이 보입니다. 활을 쏘고 피리를 불고, 무예를 연마하고 공부를 하는 각기 다른 화랑의 모습입니다. 이는 호수에 마음을 빼앗겨 오래도록 호수에 머물렀다는 화랑 영랑을 형상화한 것입니다. 영랑은 이곳 호수에서 수련하다가 불교의 관음보살을 직접 만났고, 관음바위로 불리는 이곳에서 마침내 승천했다는 이야기가 전해집니다. 지금도 영랑호를 끼고 있는 보광사 뒤편에 관음바위가 남아 있으니 함께 둘러봐도 좋겠습니다."
+       },
+       "en": {
+        "name": "Learn the History of the Yeongnangho Lake",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8650.mp3",
+        "seconds": 124,
+        "script": "Passing by Beombawi Rock and walking along the Yeongnangho Trail, you will come to Yeongnangho Wetland Eco Park. In autumn, the silver grass creates a romantic scenery. At the entrance to the eco park, you will come across Yeongnangho Seolhwa Park.   Yeongnangho Seolhwa Park houses sculptures created after the tales that are associated with Yeongnangho Lake. The first sculpture you will see is that of two dragons ascending above the waves. Legend has it that a female dragon lived in Yeongnangho Lake and a male dragon lived in Cheongchoho Lake. One day, a fisherman set off a fire by mistake near Cheongchoho Lake and this led to the death of the male dragon. Enraged, the female dragon punished the village with drought and poor catches of fish. Residents held a memorial rite to console the male dragon’s soul and appease the female dragon. They also staged a folk play of a boat fight. The residents’ efforts lifted the dragon’s curse and brought peace back to the village.   Around the dragons, you will find four Hwarangs. The Hwarangs each depict shooting an arrow, playing the pipe, practicing martial arts, and studying. This is a depiction of a Hwarang who stayed by the lake for a long period of time, captivated by the beauty of the lake. According to the legend, while training by this lake, Yeongnang met the Buddhist Goddess of Mercy in person and ascended to heaven from Gwaneum Rock. You can see Gwaneum Rock yourself. It is located at the back of Bogwangsa Temple by Yeongnangho Lake."
+       },
+       "jp": {
+        "name": "永郎湖(ヨンナンホ)湿地生態公園",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8750.mp3",
+        "seconds": 181,
+        "script": "多くの伝説が伝わる束草(ソクチョ)の湖・永郎湖(ヨンナンホ)の歴史が楽しめる、永郎湖湿地生態公園  永郎湖の南西に位置し、束草八景の第2景にも指定されている岩「虎岩」。その神秘的で美しい姿から、古から名を馳せていた岩です。この虎岩を過ぎて、散策路である永郎湖トゥルレ道(キル)をさらに歩いて行くと、永郎湖湿地生態公園が見えてきます。秋になると銀色のススキが波打つロマンチックなこの場所ですが、その入口に位置する永郎湖説話公園も、是非注目したいスポットです。  永郎湖説話公園は、ここ永郎湖の湖にまつわる説話を彫刻で再現した空間です。真っ先に目に入るのが、波に泳ぐ二頭の龍ではないでしょうか。古から、ここ永郎湖の湖には雌の龍が、そして近隣の湖である青草湖(チョンチョホ)には雄の龍が暮らし、地下でつながった湖を2頭の龍が互いに行き来していると信じられてきました。  そんなある日、近くに暮らす漁民が、青草湖周辺で火事を起こしてしまいます。青草湖に暮らす雄の龍は、この炎にのまれて死んでしまいました。これに怒った永郎湖の雌の龍は、この地域にひどい日照りと不漁の罰を下しました。そこで住民たちは、雄の龍の死を悼み、雌の龍の怒りを鎮める祭祀を行うことにします。住民がアイディアを出し合った結果、二隻の渡し船が競い合う祭祀が成功したおかげか、龍の呪いは解け、住民たちは昔の平穏な暮らしを取り戻したと言われています。  さて、そんな伝説の残る龍の周りには、四体の花郎(ファラン)像も設置されています。文字通り「花の郎(おとこ)」と書く新羅時代の青少年の武士組織「花郞徒（ファランド）」の長を指します。弓を射る花郎をはじめ、笛を吹く花郎、武芸を磨く花郎、さらには勉強している花郎像もご覧になれるかと思います。これらの花郎像は、永郎湖の美しさに心を奪われ、長い間ここに留まっていたという花郎をモチーフにしています。この花郎は湖畔での修練中、観音菩薩に出会い、観音岩と呼ばれる岩から天へと昇って行ったという説話も伝えられています。このエピソードに登場する観音岩は、永郎湖に面した寺・普光寺(ポグァンサ)の裏に残されていますので、あわせてご覧になるといいでしょう。  皆さんも、ここ永郎湖説話公園で、美しさを今に残す永郎湖に伝わる伝説に触れ、その美しさをもっと感じてみてはいかがでしょうか。"
+       }
+      }
+     },
+     {
       "id": "sokcho-yeongnangho-1",
       "name": "영랑호",
       "lat": 38.2207502,
@@ -5289,8 +5572,29 @@
       "name": "영랑호수윗길",
       "lat": 38.2158084,
       "lng": 128.5782105,
-      "audioSeconds": 15,
-      "description": "출발 약 3.6km 지점, 호수 위를 곧장 가로지르는 부교. 거리를 줄이고 싶은 날 지름길이 된다."
+      "audioSeconds": 115,
+      "description": "출발 약 3.6km 지점, 호수 위를 곧장 가로지르는 부교. 거리를 줄이고 싶은 날 지름길이 된다.",
+      "audio": {
+       "ko": {
+        "name": "영랑호권역",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8429.mp3",
+        "seconds": 115,
+        "script": "영랑호는 청초호와 함께 속초를 지키는 두 개의 눈동자로 불립니다. 설악산에서 바라보면 마치 눈동자처럼 나란히 붙어 있기 때문이죠. 또 해안 퇴적지형이 발달해 자연적으로 바다와 분리된 석호라는 공통점도 있습니다.   민물과 바닷물이 섞인 석호는 민물고기와 바닷고기가 공존하는 독특한 생태계를 이룹니다. 먹잇감이 풍부해 철새들에겐 번식지로 최적이지요. 지난 2007년 영랑호에서 백로와 왜가리의 번식지가 발견됐고, 운이 좋으면 천연기념물인 원앙과 고니도 볼 수 있습니다. 그야말로 살아있는 자연사박물관인 셈입니다.   영랑호 둘레엔 8km 정도 산책로가 조성되어 있는데, 아름다운 호수를 바라보며 걷는 맛이 해변을 걷는 것과는 또 다릅니다. 한 바퀴를 다 돌려면 한 시간 반에서 두 시간 정도 걸리는데, 곳곳에 포토 포인트가 많고 특히 봄이면 호숫가 주변에 분홍빛 벚꽃이 만발해 심심할 틈이 없습니다.    영랑호에는 또 하나 유명한 것이 있습니다. 속초팔경의 하나인 범바위를 만날 수 있거든요. 특히 저녁노을에 물든 범바위의 실루엣은 신비롭기까지 합니다. 호수를 모두 돌아보는 게 부담스럽다면 ‘영랑호스토리자전거’를 이용해보세요. 문화해설사와 함께 40분 정도 자전거를 타고 돌며 영랑호에 얽힌 이야기를 들을 수 있어 속초여행이 더 풍요로워집니다."
+       },
+       "en": {
+        "name": "A Rest Area for the Citizens of Sokcho and Migratory Birds",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8646.mp3",
+        "seconds": 129,
+        "script": "Yeongnangho Lake and Cheongchoho Lake are called the two eyes that watch over Sokcho. From Seoraksan Mountain, you can see that these lakes are located side by side like two eyes. These lakes share a common feature that they are both lagoons naturally separated from the sea as a result of the sedimentary topography of the coastal area.   A lagoon has both freshwater and salt water. So, it forms a unique ecosystem where freshwater and saltwater fish coexist. These prolific lakes are an optimal breeding ground for migratory birds. In 2007, the breeding grounds for egrets and herons were found on Yeongnangho Lake. If you are lucky, you can spot mandarin ducks and swans, which are both Korea’s Natural Monuments. It indeed is a living museum of natural history.   There is a walking trail measuring approximately 8km established around Yeongnangho Lake. A walk by the lake has a different charm from that along the seaside. It takes one and a half to two hours to walk the entire trail. There are many photo spots along the way. In spring, the trail is surrounded by beautiful cherry blossoms.   Yeongnangho Lake has another famous feature. Beombawi Rock, one of the Eight Sights of Sokcho. The silhouette of Beombawi under the sunset glow is mystically beautiful. If it is too much for you to walk around the entire lake, try using the “Yeongnangho Lake Story Bike” service. During a 40-minute bike ride, a cultural heritage guide will accompany you and tell you stories about Yeongnangho Lake. This experience will further enrich your trip to Sokcho."
+       },
+       "jp": {
+        "name": "束草市民と渡り鳥の憩いの場",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8746.mp3",
+        "seconds": 132,
+        "script": "永郎湖は青草湖と共に「束草を守る2つの瞳」と呼ばれています。雪岳山から眺めると、まるで瞳のように並んでいるからです。また、海岸の堆積地形が発達して自然に海と切り離された潟湖だという共通点もあります。   淡水と海水が混ざった潟湖は、淡水魚と海水魚が共存する独特な生態系を形成しています。餌が豊富なので渡り鳥の繁殖地としても最適です。2007年に永郎湖でシラサギとアオサギの繁殖地が発見され、運が良ければ天然記念物のオシドリやコハクチョウも見られます。まさに生きた自然史博物館といえるでしょう。   永郎湖の周囲には8kmほどの散策路が整備されており、湖を眺めながら歩くのは海辺を歩くのとはまた違った風情があります。一周するのに1時間半から2時間ほどかかりますが、あちこちにフォトスポットがあり、特に春は湖畔周辺にピンク色の桜が見事に咲いて、退屈する暇がありません。  永郎湖にはもう1つ有名なものがあります。束草八景の1つ、虎岩です。夕焼けに染まった虎岩のシルエットは神秘的ですらあります。湖を歩いて一周するのが大変なら、「永郎湖ストーリー自転車」を利用してみましょう。文化解説士と一緒に40分ほど自転車で回りながら永郎湖にまつわる話が聞けるので、内容の濃い旅が楽しめます。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/8429.mp3"
      },
      {
       "id": "sokcho-yeongnangho-3",

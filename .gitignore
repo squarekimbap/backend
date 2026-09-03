@@ -31,3 +31,6 @@ secrets.properties
 # admin/serve.py --export 산출물
 코스검수.html
 *-review.html
+
+# 오디 이야기 캐시 (fetch_odii.py 산출물)
+running-courses/.cache/

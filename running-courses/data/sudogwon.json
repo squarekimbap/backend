@@ -877,16 +877,46 @@
       "name": "송도센트럴파크",
       "lat": 37.3913127,
       "lng": 126.6406007,
-      "audioSeconds": 15,
-      "description": "출발점. 바닷물을 끌어들인 해수 수로를 끼고 도는 잔디광장으로, 몸을 풀기에 넓다."
+      "audioSeconds": 171,
+      "description": "출발점. 바닷물을 끌어들인 해수 수로를 끼고 도는 잔디광장으로, 몸을 풀기에 넓다.",
+      "audio": {
+       "ko": {
+        "name": "도심 속 환상적인 야경, 송도 센트럴파크",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20233.mp3",
+        "seconds": 171,
+        "script": "밤이 더 아름다운 야간관광 명소를 찾아 떠나는 대한민국 밤밤곡곡. 오늘 함께할 여행지는, 도심의 불빛이 수변에 어우러지는 인천 송도 센트럴파크입니다.  고층 빌딩 사이에 조성된 송도 센트럴파크는 국내 최초의 해수 공원이자, 한국의 지형적 특성을 반영한 도시공원입니다. 뉴욕 센트럴파크를 모티브로 한 이곳은 수상 택시, 카누 등 수상 레저 시설은 물론, 공원 곳곳에서 다양한 문화와 예술을 즐길 수 있습니다.  센트럴파크에는 5가지 주제의 정원이 있습니다. 서쪽 끝의 ‘선셋 정원’에는 웨스트보트하우스와 수변무대, 어린이 정원, 큐브 조형물 등이 자리하며, ‘감성 정원’에서는 세계 120개국을 상징하는 탈로 만든 작품 ‘지구촌의 얼굴’과 함께 여유롭게 경관을 감상할 수 있습니다.  ‘초지원’은 오줌싸개 동상, 반딧불이 집 등 조형물과 공공미술작품이 어우러진 공간이며, ‘산책 정원’은 꽃사슴을 만날 수 있는 전통 테마 공간으로, 정원 동쪽에 자리한 송화정은 달빛과 함께 한 폭의 그림 같은 야경을 선사합니다. 끝으로 ‘테라스 정원’에는 UN광장과 이스트보트하우스, 민속놀이마당 등이 마련되어 있으며, 연중 다양한 행사가 이어집니다.  해가 서서히 내려앉으면 센트럴파크를 둘러싼 고층 빌딩들이 하나둘 불을 밝히고, 수면 위에 반사된 빛은 도시의 밤을 더욱 반짝이게 만듭니다. 이스트보트하우스에서 만날 수 있는 문보트는 호수 위를 은은하게 떠다니며, 로맨틱한 분위기를 만끽할 수 있는 이색적인 수상 데이트 장소입니다.   센트럴파크 바로 옆에 위치한 트라이볼은 유려한 곡선이 돋보이는 건축물로, 마치 우주선이 착륙한 듯한 인상을 주는데요. 해가 진 뒤 조명이 켜진 모습은 특히나 아름다워, 야경을 담기 위해 많은 이들이 찾는 사진 명소로도 널리 알려져 있습니다.  연인들에게는 데이트 장소로, 가족들에게는 하루의 피로를 잊는 휴식의 공간으로서 특별한 밤을 선물하는 송도 센트럴파크. 오늘 밤, 이 아름다운 야경 속으로 잠시 떠나보는 건 어떨까요?   ⓒ한국관광공사 포토코리아-황선영 ⓒ한국관광공사 포토코리아-전종훈"
+       },
+       "en": {
+        "name": "Songdo Central Park, A Fantastic Nightscape in the Heart of the City",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20280.mp3",
+        "seconds": 143,
+        "script": "Nightscapes of Korea takes you to places where the night shines even brighter. Today’s journey brings us to Songdo Central Park in Incheon—where city lights reflect softly on the water.  Located between high-rise buildings, Songdo Central Park is Korea’s first seawater park—an urban green space inspired by the country's natural geography. Modeled after New York’s Central Park, it offers water taxis, canoeing, and a variety of cultural and artistic experiences throughout the park.  The park features five themed gardens, each with its own unique charm. At the western end is the Sunset Garden, home to the West Boat House, a waterfront stage, a children’s garden, and striking cube sculptures. In the Sentimental Garden, you can take in the scenery alongside a unique artwork called “Faces of the World,” featuring masks representing 120 countries.  Chojigwon features playful sculptures like the Peeing Boy and a firefly house, blending whimsy with public art. The Strolling Garden is a traditional-themed space where you may spot deer. On its eastern side stands Songhwajeong Pavilion, offering a moonlit view like a scene from a painting. The Terrace Garden features the UN Plaza, the East Boat House, and a traditional game yard—hosting a variety of events throughout the year.  As the sun slowly sets, the surrounding skyscrapers begin to light up, and their reflections shimmer on the water, bringing the city’s night to life. From the East Boat House, you can board a moon boat that gently drifts across the lake—a unique and romantic way to enjoy a night on the water.  Right next to Central Park stands Tri-Bowl—a striking structure with sweeping curves that looks as if a spaceship has landed in the city. Once the lights come on after sunset, it becomes especially beautiful—making it a popular spot for photographers hoping to capture the city’s night view.  For couples, it’s a romantic date spot. For families, it’s a peaceful place to unwind. Songdo Central Park offers a special night to all who visit. So tonight—why not escape into this beautiful nightscape?"
+       },
+       "jp": {
+        "name": "都会の中の幻想的な夜景、松島セントラルパーク",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20285.mp3",
+        "seconds": 180,
+        "script": "夜がより美しいナイトツアースポットを紹介する韓国の夜のあちこち。 今日のスポットは、都会の明かりが水辺に溶け込む仁川松島（インチョン・ソンド）セントラルパークです。  高層ビルの間に位置する松島セントラルパークは、韓国初の海水公園であり、韓国の地形の特性を反映した都市公園です。ニューヨークのセントラルパークをモチーフにしたここは、水上タクシー、カヌーなど、水上レジャー施設はもちろん、公園のあちこちで様々な文化や芸術を楽しむことができます。  セントラルパークには5つのテーマの庭園があります。西端の「サンセットガーデン」には、ウエストボートハウスや水辺ステージ、キッズガーデン、キューブなどがあります。また「感性庭園」には世界120カ国を象徴する仮面で作られた「地球の顔」もあり、ゆったりと景観を楽しむことができます。  「草芝園（チョジウォン）」は、小便小僧像、ホタルの家などの彫刻像や公共美術作品が融和した庭園です。また、「散歩庭園」は、エゾシカに出会える伝統テーマの庭園で、そこから東側にある「松花亭（ソンファジョン）」は夜になると月明かりと融和し、まるで一幅の絵のような夜景が見られます。また、「テラスガーデン」には、国連広場とイーストボートハウス、民俗遊び場などがあり、年間を通じて様々なイベントが行われます。  日が徐々に沈むと、セントラルパークを取り囲んでいる高層ビルが次々と明かりを灯し、水面に反射した光が街の夜をより一層輝かせます。特にイーストボートハウスのムーンボートは、湖の上をゆっくりと進み、ロマンチックな雰囲気を満喫できる異色の水上デートスポットです。   セントラルパークのすぐそばにあるトライボールは、流麗な曲線が特徴の建物で、まるで宇宙船が着陸したかのような印象を与えます。特に、日没後ライトアップした景観はとても美しく、夜景を撮るために多くの人々が訪れる写真スポットとしても大人気です。  カップルにはデートスポットとして、家族には一日の疲れがとれる憩いの場として、あなたに特別な夜を与える松島セントラルパーク。今夜、この美しい夜景の中へ訪ねてみてはいかがでしょうか。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20233.mp3"
      },
      {
       "id": "incheon-songdo-loop-2",
       "name": "송도 보트하우스",
       "lat": 37.3904651,
       "lng": 126.6436044,
-      "audioSeconds": 15,
-      "description": "수로 중간 지점. 수상택시와 보트가 드나드는 선착장이라 첫 페이스를 점검하기 좋다."
+      "audioSeconds": 108,
+      "description": "수로 중간 지점. 수상택시와 보트가 드나드는 선착장이라 첫 페이스를 점검하기 좋다.",
+      "audio": {
+       "en": {
+        "name": "Songdo Central Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16731.mp3",
+        "seconds": 108,
+        "script": "Songdo Central Park is located in the center of the Songdo International Business Complex in Incheon. It is the first seawater park in Korea that uses water withdrawn from the sea. It is also an urban park that takes advantage of Korea's topographical characteristics.   The artificial waterway serves as a landmark and tranquil gathering spot in Songdo, where visitors can take in the park's many displays of cultural artifacts. It is a waterway with a length of 1.8 km and a maximum width of 110 m that flows across Central Park. The combination of lush vegetation and towering skyscrapers gives the area an exotic feel. Exotic sculptures and works of art line the long promenade. Water taxis, canoes, and boats are just some of the water leisure activities available from the boathouses in the east and west.   There is an observatory of the IFEZ Promotion Center located to the northwest. Located on the center's 33rd floor, it provides sweeping views of the surrounding area, including the park, Incheon Bridge, and Songdo International City. The park is even more stunning when illuminated by the city at night. With the moon boat glowing on the lake at night, Central Park is a sight to behold. As its name suggests, it is a boat in the shape of the moon. Passengers can listen to their own music via Bluetooth from their phones while taking in the beautiful nightscape of Songdo."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16731.mp3"
      },
      {
       "id": "incheon-songdo-loop-3",
@@ -2152,6 +2182,35 @@
       "lng": 126.70083,
       "audioSeconds": 15,
       "description": "출발 직후의 조망대 겸 보급 지점. 수로가 한눈에 들어와 남은 거리를 가늠하기 좋다."
+     },
+     {
+      "id": "incheon-arabaetgil-lsd-story-7371",
+      "name": "노을에서 야경까지 빛으로 물드는 청라국제도시",
+      "lat": 37.5564541,
+      "lng": 126.6245925,
+      "audioSeconds": 561,
+      "description": "\"청라국제도시역 주변은 해가 지는 순간의 풍경과 밤이 깊어질수록 또렷해지는 도시의 빛을 함께 만날 수 있는 곳입니다. 서해 쪽으로는 붉은 노을이 물들고, 도심 수변으로 시선을 옮기면 조명이 반짝이는 야경이 이어집니다. 한 장소에서 하루의 분위기가 천천히 바뀌는 모습을 따라가다 보면, 청",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21659.mp3",
+      "audio": {
+       "ko": {
+        "name": "노을에서 야경까지 빛으로 물드는 청라국제도시",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21659.mp3",
+        "seconds": 561,
+        "script": "\"청라국제도시역 주변은 해가 지는 순간의 풍경과 밤이 깊어질수록 또렷해지는 도시의 빛을 함께 만날 수 있는 곳입니다. 서해 쪽으로는 붉은 노을이 물들고, 도심 수변으로 시선을 옮기면 조명이 반짝이는 야경이 이어집니다. 한 장소에서 하루의 분위기가 천천히 바뀌는 모습을 따라가다 보면, 청라국제도시만의 매력을 자연스레 알게 됩니다. 먼저 찾기 좋은 곳은 정서진입니다. 정서진은 서울 광화문을 기준으로 맨 서쪽에 있는 나루터라는 의미를 지닌 곳으로, 서해의 낙조를 바라보기 좋은 명소로 알려져 있습니다. 정서진 광장에는 상징 조형물인 노을종과 표지석이 있어 함께 둘러볼 수 있습니다. 주변에는 산책로와 해넘이 전망대, 쉼터도 마련돼 있어 서해의 풍경을 천천히 감상하며 여유로운 시간을 보내기 좋습니다. 청라 중앙호수공원 일대는 해가 진 뒤 낮과는 다른 모습을 보여줍니다. 저녁이 깊어질수록 호수공원의 여유로운 풍경은 커낼웨이까지 이어지고, 주변은 조금 더 도시적인 모습으로 바뀝니다. 커낼웨이는 수로를 따라 산책로와 카페, 상가가 이어져 있습니다. 해가 질 때는 정서진에서 서해의 붉은 노을을 바라보고, 밤에는 호수공원과 커낼웨이에서 수변 야경을 즐겨보세요. 낮과 밤이 바뀌며 펼쳐지는 대비되는 풍경이 청라국제도시만의 또 다른 매력을 보여줍니다. \""
+       },
+       "en": {
+        "name": "Cheongna International City Station, Where the Light Turns from Sunset to Night",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21707.mp3",
+        "seconds": 101,
+        "script": "\"The area around Cheongna International City Station holds both the moment the sun goes down and the city lights that sharpen as night deepens. Red spreads across the sky toward the West Sea; turn your eyes to the waterfront downtown and a night view of glittering lamps takes over. Watch the mood of the day shift slowly in one place, and the particular appeal of Cheongna International City comes to you on its own.  Jeongseojin is the place to start. The name means the westernmost ferry landing, taking Gwanghwamun in Seoul as the starting point, and it is known as one of the best spots to watch the sun set over the West Sea. Jeongseojin Square features the Sunset Bell, the site's signature sculpture, along with a marker stone; both are worth a look. Walking paths, a sunset observatory, and nearby rest areas make it easy to take in the West Sea slowly and let an hour pass.  Cheongna Central Lake Park shows a different face after dark. As the evening deepens, the park's unhurried scenery extends to Canal Way, and the surroundings take on a more urban character. Canal Way follows the water with walking paths, cafes, and shops strung along it. Watch the red of the West Sea sunset from Jeongseojin, then spend the night hours on the waterfront at the lake park and Canal Way. The contrast that opens up as day turns to night is another kind of appeal unique to Cheongna International City.  \""
+       },
+       "jp": {
+        "name": "夕暮れから夜景まで、光に染まるチョンナ国際都市駅",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21714.mp3",
+        "seconds": 104,
+        "script": "\"チョンナ国際都市駅周辺は、日が沈む瞬間の景色と、夜が深まるにつれてより鮮やかさを増す都市の光をあわせて楽しめる場所です。ソヘ(西海/黄海)側には赤い夕焼けが広がり、都心部の水辺へ視線を移すと、照明がきらめく夜景が続きます。一つの場所で一日の雰囲気がゆっくりと移り変わる様子を追いかけていると、チョンナ(青羅)国際都市ならではの魅力が自然と伝わってきます。  まず、おすすめする場所はチョンソジン(正西津)です。チョンソジン(正西津)はソウルのクァンファムン(光化門)から見て真西に位置する渡し場という意味を持つ場所で、ソヘ(西海/黄海)の夕日を眺める絶好の名所として知られています。チョンソジン(正西津)広場にはシンボルである「夕焼けの鐘」と標識石があり、あわせて見て回ることができます。周辺には散策路や日没展望台、休憩スペースも整備されており、ソヘ(西海/黄海)の風景をゆっくりと鑑賞しながら穏やかな時間を過ごすのに最適です。  チョンナ(青羅)中央湖水公園一帯は、日が暮れた後、昼とは異なる姿を見せてくれます。夜が深まるにつれ湖水公園のゆったりとした風景はカナルウェイへと続き、周囲はより都市的な姿へと変わっていきます。カナルウェイは水路に沿って散策路やカフェ、ショップが立ち並ぶエリアです。夕暮れ時にはチョンソジン(正西津)でソヘ(西海/黄海)の赤い夕焼けを眺め、夜には湖水公園とカナルウェイで水辺の夜景を楽しんでみてはいかがでしょうか。昼と夜が移り変わる中で広がる対照的な風景が、チョンナ(青羅)国際都市ならではのもう一つの魅力を伝えてくれます。 \""
+       }
+      }
      },
      {
       "id": "incheon-arabaetgil-lsd-3",
@@ -5617,40 +5676,102 @@
       "name": "팔달문",
       "lat": 37.2775465,
       "lng": 127.0167507,
-      "audioSeconds": 15,
-      "description": "출발점인 남쪽 성문. 여기서 서쪽으로 방향을 잡으면 곧바로 팔달산 오르막이 시작된다."
+      "audioSeconds": 147,
+      "description": "출발점인 남쪽 성문. 여기서 서쪽으로 방향을 잡으면 곧바로 팔달산 오르막이 시작된다.",
+      "audio": {
+       "en": {
+        "name": "Overview of Suwon Hwaseong Fortress",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16732.mp3",
+        "seconds": 147,
+        "script": "Suwon was one of the four main regional government centers during the Joseon Dynasty. The Hwaseong Fortress was built to protect the city, which was designated as a cultural asset for its historical value.   Suwon Hwaseong Fortress was built in 1796 by King Jeongjo under the general supervision of the former prime minister, the head of central government affairs, and the vice envoy. During the two years of construction, many new machines were specifically designed to move and pile up big stones. Following the completion of the fortress, other minor facilities were smoothly built. However, most of them were destroyed in wars and riots, and part of the fortress was destroyed or lost during the Japanese Occupation Era and the Korean War. Fortunately, the fortress was repaired afterwards.  The fortress is a piled-stone and brick fortress that surrounds the center of Suwon. Its massive walls are 5.74 km in length and remain almost as they were in their original form, constructed 200 years ago. The Suwoncheon Stream, the mainstream of Suwon, flows through the center. The walls include a number of defensive features, most of which are intact, such as floodgates, observation towers, command posts, multiple arrow launcher towers, firearm bastions, angle towers, secret gates, beacon towers, bastions, and bunkers.   There are four main gates at the cardinal points. The Paldalmun Gate in the south and the Janganmun Gate in the north are impressive with their two-story wooden structures on stone bases. Both sides are built with gated platforms and half-moon-shaped ravelins. In addition, the Hwaseomun Gate in the west and Changnyongmun Gate in the east are one-story structures that are protected by ravelins.  King Jeongjo built the fortress to show filial piety towards his father and create a new pioneer city with its own economic power. The fortress had a great influence on the development of Korean architecture, urban planning, and the arts. Not only is it a defensive weapon, but it also shows its uniqueness in combining military, political, and commercial functions."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16732.mp3"
+     },
+     {
+      "id": "suwon-hwaseong-wall-story-1318",
+      "name": "紅箭門(ホンサルムン)と新豊橋(シンプンギョ)",
+      "lat": 37.281827,
+      "lng": 127.014837,
+      "audioSeconds": 106,
+      "description": "紅箭門(ホンサルムン)と新豊橋(シンプンギョ)  水原華城行宮(スウォン・ファソン・ヘングン)の正門、新豊樓(シンプンヌ)の前方に設置されている赤い門は、紅箭門(ホンサルムン)です。  紅箭門(ホンサルムン)とは、朝鮮時代の宮廷や、教育機関であった書院(ソウォン)や郷校(ヒャンギョ)、そして墓などの入り口に設けられた、",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17866.mp3",
+      "audio": {
+       "jp": {
+        "name": "紅箭門(ホンサルムン)と新豊橋(シンプンギョ)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17866.mp3",
+        "seconds": 106,
+        "script": "紅箭門(ホンサルムン)と新豊橋(シンプンギョ)  水原華城行宮(スウォン・ファソン・ヘングン)の正門、新豊樓(シンプンヌ)の前方に設置されている赤い門は、紅箭門(ホンサルムン)です。  紅箭門(ホンサルムン)とは、朝鮮時代の宮廷や、教育機関であった書院(ソウォン)や郷校(ヒャンギョ)、そして墓などの入り口に設けられた、象徴的な赤い門のことを言います。鮮やかな赤で色づけられていること、そして門の上部に一定の間隔で釘状の細い棒が装飾されているのが、この門の特徴です。  このような紅箭門が、いつの時代からどのような理由で建てられたかという記録は、詳しくは残っていません。しかし、この門が建てられた場所がどこも神聖な場所であることから、紅箭門には神聖さを象徴し、また敬意を表す意が込められていると考えられています。  水原華城行宮・紅箭門のすぐ後ろには、水路に架けられた小さな橋があります。この橋は、日本による植民地時代に壊され、一度は失われた新豊橋(シンプンギョ)と呼ばれる橋です。  以前は、八逹山(パルタルサン)から流れ出した神聖な水が、ここ水原華城行宮の右後方から、正門の新豊楼(シンプンヌ)前まで流れていました。この小川は、宮廷の官吏たちがその清い水を見ることで心を清め、不正なく誠実に業務を行うことができるようにする意味も持っていたそうです。  現在は当時のような水は流れてはいませんが、私たちもこの紅箭門と新豊橋を渡って心を清め、水原華城行宮を詳しく見ていくことにしましょう。"
+       }
+      }
      },
      {
       "id": "suwon-hwaseong-wall-2",
       "name": "화서문",
       "lat": 37.2855288,
       "lng": 127.0096638,
-      "audioSeconds": 15,
-      "description": "서쪽 성문. 팔달산 구간이 끝나는 지점이라 여기서부터 페이스를 다시 올릴 수 있다."
+      "audioSeconds": 93,
+      "description": "서쪽 성문. 팔달산 구간이 끝나는 지점이라 여기서부터 페이스를 다시 올릴 수 있다.",
+      "audio": {
+       "jp": {
+        "name": "華西門(ファソムン)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17844.mp3",
+        "seconds": 93,
+        "script": "華西門(ファソムン)  華城(ファソン)の西を守る正門、華西門(ファソムン)は、八角形の優雅な屋根が特徴的な門です。この門は、東側の正門、蒼龍門(チャンニョンムン)と同じ構造でつくられました。  華西門は、華城の南と北を守る正門、八達門(パルタルムン)と長安門(チャンアンムン)とは、門の前の外側に突き出した半円形の部分、甕城(おうじょう)の形に違いが見えます。門の前を半円形の甕城が囲んでいる八達門と長安門とは異なり、華西門はその一方が開かれた形になっています。  華西門は、当時最高の技術を駆使した最新式機器を動員して作られた門としても有名です。最も有名なのは、現代のクレーンのような挙重機(コジュンキ)と呼ばれる器具です。これは滑車とテコの原理を利用して重い物を持ち上げる機械で、実学者の丁若鏞(チョン・ヤギョン)が西洋と中国の書籍を読んで研究し、発明したものです。挙重機を利用すれば、約24kgの物を持ち上げる人が、60kgの物を25個も持ち上げることができるようになるといいます。  華城を築城する際には、この挙重機をはじめ、石を簡単に運んだり積み上げたりすることのできる駒板(クパン)、雪馬(ソルマ)、動車、ろくろなどの装置が使用されたことが記録されています。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17844.mp3"
      },
      {
       "id": "suwon-hwaseong-wall-3",
       "name": "장안문",
       "lat": 37.2888493,
       "lng": 127.0142198,
-      "audioSeconds": 15,
-      "description": "북쪽 성문이자 화성의 정문. 규모가 가장 큰 성문으로, 앞이 트여 있어 속도를 내기 좋다."
+      "audioSeconds": 139,
+      "description": "북쪽 성문이자 화성의 정문. 규모가 가장 큰 성문으로, 앞이 트여 있어 속도를 내기 좋다.",
+      "audio": {
+       "jp": {
+        "name": "長安門(チャンアンムン)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17849.mp3",
+        "seconds": 139,
+        "script": "華城(ファソン)の正門、長安門(チャンアンムン)  朝鮮第22代王の正祖(チョンジョ)は、華城の北門かつ正門であるこの門を、「長い間、安らかである」と書く長安門と名付けました。この名には「北側にはソウルの宮廷を望み、南には王陵を望みながら、万年の平安を告げる」という意味が込められています。  長安門は、南の門、八達門(パルタルムン)と並んで、華城で最も立派で格式の高い建物です。門の前には、半円形で外側に突き出した甕城(おうじょう)が設けられています。これは城を守るために二重につくられた城壁で、北甕城(プクオンソン)と呼ばれています。  2階の楼閣の屋根部分は、チュニョと呼ばれる軒を支える垂木が長くゆるやかな傾斜をなして棟と出会う、寄棟屋根の造りになっています。朝鮮時代には、これほど長くゆるやかな傾斜をなす木材を手に入れるのは困難なものでした。そのため、都城の正門や、宮廷の建物にのみ使用されました。  また、軒下には、屋根を支える木材のうち、華麗で精巧なつくりの多包(タポ)と呼ばれるものを使用しました。この多包を用いた建物は、18世紀以降の宮廷でも100年以上造られていなかったため、特別に地方出身の大工を招いて建設したといいます。  そうして完成した長安門は、ソウルの南大門と東大門の名で親しまれる崇礼門(スンネムン)、興仁之門(フンインジムン)と並んで、朝鮮時代を代表する城門となります。しかし韓国戦争の際に爆撃を受け、破壊されてしまいます。その後、1975年に復元されましたが、石垣には当時の銃跡が残されています。また、八達門とは異なり、長安門は復元の際に城郭と城門とが繋げられたことで、門の上にも上がれるようになりました。それでは、朝鮮時代を代表する雄大な長安門を見て回り、華城の歴史を感じてみてください。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17849.mp3"
      },
      {
       "id": "suwon-hwaseong-wall-4",
       "name": "창룡문",
       "lat": 37.2878066,
       "lng": 127.0251382,
-      "audioSeconds": 15,
-      "description": "동쪽 성문. 성곽 바깥으로 잔디밭이 넓어 잠깐 멈춰 숨을 고르기 좋은 자리다."
+      "audioSeconds": 59,
+      "description": "동쪽 성문. 성곽 바깥으로 잔디밭이 넓어 잠깐 멈춰 숨을 고르기 좋은 자리다.",
+      "audio": {
+       "jp": {
+        "name": "東北弩台(トンブンノデ)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17857.mp3",
+        "seconds": 59,
+        "script": "東北弩台(トンブンノデ)  ここは華城(ファソン)の北東側に位置する弩台(ノデ)、東北弩台です。弩台とは、攻撃してくる敵に向かって、高い位置から弩(ノ)と呼ばれるクロスボウのような機械式の石の弓を放つために設けられた施設を言います。華城の弩台では、弩を放つだけでなく、敵の攻撃の状況を判断する指揮所として、また、城全体に五色の旗で信号を送る場所としても使用されました。  華城には、ここ東北弩台の他にも西に位置する西弩台(ソノデ)がありますが、ここ東北弩台は高い土台を作ることなく、城壁を突出させて作られました。これは、東北弩台の周辺が平らな地形であり、高い土台がなくとも視野が十分確保できたためです。  東北弩台と城壁が繋がる部分を見ると、少しくぼんでいることが分かります。このくぼみについて、華城の築城に関するすべての内容が記された記録物『華城(ファソン)城役儀軌(じょうえきぎき)』には、くぼんだ部分がまるで「蜂の腰のようだ」と書き残されています。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17857.mp3"
      },
      {
       "id": "suwon-hwaseong-wall-5",
       "name": "방화수류정",
       "lat": 37.2875749,
       "lng": 127.0181472,
-      "audioSeconds": 15,
-      "description": "연못을 내려다보는 정자. 성곽에서 가장 아름다운 건물로 꼽히며 조망도 눈에 남는다."
+      "audioSeconds": 93,
+      "description": "연못을 내려다보는 정자. 성곽에서 가장 아름다운 건물로 꼽히며 조망도 눈에 남는다.",
+      "audio": {
+       "jp": {
+        "name": "訪花隨柳亭(パンファスリュジョン)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17854.mp3",
+        "seconds": 93,
+        "script": "訪花隨柳亭(パンファスリュジョン)  華紅門(ファホンムン)の横の丘に立つ華麗な楼閣は、二つの名前を持っています。一つは、美しい景色を楽しむための東屋としての名「訪花隨柳亭」、もう一つは、近づいてくる敵の監視を目的とした楼閣の名「東北角楼(トンブッカンヌ)」です。  この建物の持つ役割の一つは、華城の北東側を監視し、有事には火砲を用いて攻撃をすることでした。また、緊急時には、戦略を下す軍事指揮所としても使用されたといいます。  このような重要な軍事施設であったことが想像できないほど、周りには王の池である龍淵(ヨンヨン)とたくさんの樹々が美しく調和し、思わず足を止めてしまうような景色が広がっています。このことから東北角楼は、景色を楽しむための東屋としての役割も果たしていたのです。  幾重にも重なった華麗な八角の屋根は、華城にある他の建築物には見られない雰囲気を醸し出しています。このように美しい訪花隨柳亭を建てるために投じられた費用は、他の監視用の楼閣である東南角楼(トンナムガンヌ)と西北角楼(ソブッカンヌ)の10倍にも達したそうです。  朝鮮第22代王・正祖(チョンジョ)は倹約を美徳としていたため、多額の費用をかけてこの楼閣を建てた担当者を呼び、咎めたとも伝えられています。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17854.mp3"
      }
     ],
     "shape": "roundTrip"
@@ -10316,6 +10437,142 @@
       "lng": 126.900425,
       "audioSeconds": 15,
       "description": "출발점에서 약 6.8km 지점의 다리. 절반을 넘긴 기준점이자 페이스를 점검하는 자리다."
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-7034",
+      "name": "생태하천복원",
+      "lat": 37.497269,
+      "lng": 126.89361,
+      "audioSeconds": 128,
+      "description": "지금 걷고 계신 이 도림천은 사실, 한때 악취와 오염으로 외면받던 하천이었습니다.  1960년대 이후 산업화와 도시화가 본격화되면서 구로공단을 비롯한 인근 지역의 공장 폐수와 생활하수가 정화 없이 유입되었고, 도림천은 점점 오염되어 갔습니다.  그러다 2000년대에 들어 생태환경의 가치",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20587.mp3",
+      "audio": {
+       "ko": {
+        "name": "생태하천복원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20587.mp3",
+        "seconds": 128,
+        "script": "지금 걷고 계신 이 도림천은 사실, 한때 악취와 오염으로 외면받던 하천이었습니다.  1960년대 이후 산업화와 도시화가 본격화되면서 구로공단을 비롯한 인근 지역의 공장 폐수와 생활하수가 정화 없이 유입되었고, 도림천은 점점 오염되어 갔습니다.  그러다 2000년대에 들어 생태환경의 가치가 다시 주목받으면서 도림천을 복원하자는 시민과 행정의 목소리가 모였고, 2008년부터 본격적인 생태하천 복원 사업이 시작됐습니다.  복원은 단순히 옛 모습을 되살리는 것이 아니라, 자연이 스스로 회복할 수 있도록 하는 방향으로 이루어졌습니다. 징검다리, 여울, 돌무더기 등을 설치해 물길을 조절하고 생태계가 다시 자리 잡을 수 있도록 한 것이죠.  도림천은 유속은 빠르지만 유량은 적은 편이라, 여름철엔 수위가 급격히 오르기도 하고, 겨울철엔 물이 거의 없는 건천이 되기도 해요. 덕분에 물이 많지 않은 시기엔 하천 가까이에서 다양한 생물들을 자세히 관찰할 수 있어요.  지금, 이 도림천에는 왜가리, 쇠백로, 흰뺨검둥오리, 청둥오리 같은 새와 청개구리, 멸종위기종인 맹꽁이, 붕어, 잉어, 버들치 같은 물고기들도 살고 있어요. 하천 주변에는 개망초, 냉이, 조팝나무 같은 식물도 자라고 있답니다.  혹시 제가 말씀드린 생물 중 눈에 들어오는 게 있으신가요? 앞쪽에 보이는 안내판을 함께 살펴보며, 징검다리 근처에서 도림천의 생태를 직접 느껴보세요. 도심 한복판에서도 자연을 가까이서 만날 수 있는 소중한 시간이 될 거예요.  그럼, 계속해서 도림천을 걸어볼게요."
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-7033",
+      "name": "대림3유수지 종합체육시설 · 대림도서관",
+      "lat": 37.504247,
+      "lng": 126.89549,
+      "audioSeconds": 122,
+      "description": "도림천 주변에는 여가와 문화를 즐길 수 있는 공공문화시설들도 있습니다. 하천과 함께 이용해 보셔도 좋을 것 같아요.  우선, 도림천 옆으로 대림3유수지가 있습니다.  대림3유수지는 비가 많이 올 때, 하천 주변의 낮은 지역에 물이 넘치지 않도록 물의 양을 조절하고 이를 하천으로 흘려보내",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20586.mp3",
+      "audio": {
+       "ko": {
+        "name": "대림3유수지 종합체육시설 · 대림도서관",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20586.mp3",
+        "seconds": 122,
+        "script": "도림천 주변에는 여가와 문화를 즐길 수 있는 공공문화시설들도 있습니다. 하천과 함께 이용해 보셔도 좋을 것 같아요.  우선, 도림천 옆으로 대림3유수지가 있습니다.  대림3유수지는 비가 많이 올 때, 하천 주변의 낮은 지역에 물이 넘치지 않도록 물의 양을 조절하고 이를 하천으로 흘려보내기 위해 일시적으로 저장하는 시설로 1976년에 처음 조성되었어요.  현재는 2026년 준공을 목표로 종합체육시설로의 리모델링이 추진되고 있죠. 유수지의 기본 기능인 치수, 방재는 유지하는 동시에 헬스장, 수영장, 체육관 등을 갖추어 시민들이 이용할 수 있는 체육시설로 새롭게 조성 중이에요.   그 옆에는 영등포구립 대림도서관도 있어요.  다양한 시설이 마련되어 있는데, 대표적으로는 세미나와 문화 행사가 열리는 다목적실, 다양한 책을 자유롭게 읽을 수 있는 개방형 열람 공간, 그리고 옥상의 하늘공원이 있습니다.  대림도서관은 구민 활동이나 지역 기록 사업으로 2022년 전국도서관 운영평가에서 문화체육관광부 장관상을 수상하기도 했어요. 영등포의 노동, 예술, 마을의 일상을 기록하는 프로젝트를 통해 지역자원을 새롭게 발굴하고 시민에게 전달하여 시민들이 지역의 이슈와 콘텐츠를 발굴하고 생산할 기회를 마련한 점이 높게 평가되었죠.  도림천을 산책하다가 체육시설도 이용하고, 도서관에 들러 책 한 권 읽는 여유까지. 일상에서 여가생활을 즐기기에 딱 좋은 코스네요."
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-7032",
+      "name": "도림천",
+      "lat": 37.508395,
+      "lng": 126.892824,
+      "audioSeconds": 114,
+      "description": "오늘 걸을 구간은 복원된 도림천의 일부 구간이에요.  도림천은 관악산에서 발원해 관악구, 동작구, 구로구, 영등포구 총 네 개의 자치구를 지나 신정교 근처에서 안양천으로 흘러갑니다. 서울대입구역 인근부터 안양천 합류 지점까지 약 14.2km 구간이 복원되어 시민들이 이용하고 있어요.  ",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20585.mp3",
+      "audio": {
+       "ko": {
+        "name": "도림천",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20585.mp3",
+        "seconds": 114,
+        "script": "오늘 걸을 구간은 복원된 도림천의 일부 구간이에요.  도림천은 관악산에서 발원해 관악구, 동작구, 구로구, 영등포구 총 네 개의 자치구를 지나 신정교 근처에서 안양천으로 흘러갑니다. 서울대입구역 인근부터 안양천 합류 지점까지 약 14.2km 구간이 복원되어 시민들이 이용하고 있어요.  도림천과 안양천이 만나는 곳은 ‘합수부’라고 하는데, 두 물길은 이곳에서 합쳐져 한강으로 이어집니다. 도림천 전체 구간 중 영등포구를 흐르는 길이는 약 4.3km이고, 오늘은 그중 절반 정도인 2km를 함께 걸으며 도림천의 이야기를 나눠보려 합니다.  사실 ‘도림천’이라는 이름도 이 지역의 역사에서 유래했습니다. 이 근처에는 풀이 많아 조선시대에 국가에서 말을 기르던 양마장이 있었습니다. 그래서 이 하천은 한때 ‘마장천(馬場川)’이라 불렸어요. 『세종실록 지리지』에도 금천현 지역에 목장이 있었다는 기록이 남아 있죠.  당시 대림동 일대는 과수원과 목장이 있다고 해서 ‘원지목리’, 도림동 부근은 산이 마을 뒤를 성처럼 둘러싸고 있다는 의미로 ‘도야미리’라고 불렸습니다. 이후 원지목리, 도야미리 등의 마을이 합쳐져 ‘도림리’가 되고, 또 ‘도림동’으로 행정 구역명이 변경되면서 마장천도 지금의 이름인 도림천으로 불리게 되었죠.  자, 이제 본격적으로 도림천을 따라 걸어볼까요?"
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-6999",
+      "name": "문래 창작촌",
+      "lat": 37.514153,
+      "lng": 126.897411,
+      "audioSeconds": 159,
+      "description": "영단주택단지, 문래철강골목, 문래창작촌은 모두 다른 장소를 말하는 것이 아니에요. 문래동의 골목이 시대에 따라 그 역할이 변하며 새로운 문화를 만들어 내고 있는 것이지요.  문래창작촌에서는 예술가들이 작업하면서 나는 소음이 문제가 되지 않아요. 철공소의 기계 소리 덕분에 창작 활동도 눈",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20572.mp3",
+      "audio": {
+       "ko": {
+        "name": "문래 창작촌",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20572.mp3",
+        "seconds": 159,
+        "script": "영단주택단지, 문래철강골목, 문래창작촌은 모두 다른 장소를 말하는 것이 아니에요. 문래동의 골목이 시대에 따라 그 역할이 변하며 새로운 문화를 만들어 내고 있는 것이지요.  문래창작촌에서는 예술가들이 작업하면서 나는 소음이 문제가 되지 않아요. 철공소의 기계 소리 덕분에 창작 활동도 눈치 보지 않고 자유롭게 할 수 있는 거예요!  지금, 이 골목에는 금속 가공에 필요한 금형, 절삭, 보링, 열처리, 용접, 도색에 이르기까지 모든 공정이 한곳에서 이뤄지는 철공소부터 수제 만년필, 도자기, 제과점, 화실까지, 정말 다양한 사람들이 함께 작업하고 있습니다. 철공장인들과 예술가들이 공존하는 이곳, 다른 모습이지만 또 같은 마음으로 예술을 하고 있다는 생각이 듭니다.  문래 창작촌 골목을 걷다 보면, 이곳의 상징과도 같은 작품들을 만나보실 수 있습니다.  그중 하나가 바로 마스크 모양의 조형물, ‘바가지’인데요. 철강골목에서 많이 사용하는 장비 중 하나인 용접 마스크를 형상화한 작품입니다. 마스크 안쪽을 보면, 빛이 바래 조금 흐릿하기는 하지만 이곳에 있는 철공소들의 모습이 담겨있어요.  또 하나! 앉아 있는 모습의 귀여운 로봇, 혹시 마주치셨을까요? 철공소에서 버려진 작은 철 조각을 모아 만든 ‘문로봇’은 철공소에서 일하시는 분들을 닮아있습니다. 차가운 소재인 철을 다루지만, 따뜻한 마음을 가진 분들이기에 따뜻한 햇살을 담는 가슴의 태양관 집열판은 밤에는 노란 불빛을 내고, 손에는 꽃도 들고 있죠.  주말에, 이 동네에 사는 아버지와 아이들이 함께 디자인한 것을 바탕으로 예술가가 작품으로 탄생시켰다고 합니다. 이 이야기를 들으니, 문래 창작촌이 더욱 따뜻하게 느껴지네요.  창작촌 골목을 걸으시면서 이곳의 벽화, 조형물, 작은 공방들까지 천천히 눈에 담아보시면 좋겠습니다. 그리고 마음에 드는 공간이 있다면 잠깐 멈추고 쉬어 가셔도 좋겠죠?"
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-7000",
+      "name": "문래예술종합지원센터",
+      "lat": 37.51298,
+      "lng": 126.894136,
+      "audioSeconds": 79,
+      "description": "영등포의 산업 발전과 함께 걸어온 문래동 철강골목. 이곳에는 수십 년 동안 금속을 다뤄온 기술자들이 살아왔고, 어느 날부터는 그 철공소 틈새로 예술가들이 하나둘 모여들기 시작했어요. 처음엔 서로를 이해하지 못해 싸우며 또 화해하며, 그렇게 함께 상생하는 공간을 만들어 냈습니다.  금속 ",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20573.mp3",
+      "audio": {
+       "ko": {
+        "name": "문래예술종합지원센터",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20573.mp3",
+        "seconds": 79,
+        "script": "영등포의 산업 발전과 함께 걸어온 문래동 철강골목. 이곳에는 수십 년 동안 금속을 다뤄온 기술자들이 살아왔고, 어느 날부터는 그 철공소 틈새로 예술가들이 하나둘 모여들기 시작했어요. 처음엔 서로를 이해하지 못해 싸우며 또 화해하며, 그렇게 함께 상생하는 공간을 만들어 냈습니다.  금속 기술자와 예술가들이 서로의 재능을 알아본 문래 예술창작촌, 그러한 장인들이 쉬지 않고 꿈을 연마해 가는 이곳이 바로 문래동입니다.  그런 의미에서 지금 여기 문래예술종합지원센터는 더욱 의미 있는 공간입니다. 기술의 ‘술’, 예술의 ‘술’. 그래서 이곳을 술술센터라고 부르기도 해요. 이름처럼, 예술인과 기술인, 지역 주민들이 함께 모여 다양한 협업을 통해 새로운 가치를 만들어가는 곳입니다.  안에는 전시 공간과 공유 공간도 마련되어 있으니 잠시 둘러보셔도 좋을 것 같습니다."
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-6994",
+      "name": "문래역 1번 출구",
+      "lat": 37.518048,
+      "lng": 126.894812,
+      "audioSeconds": 65,
+      "description": "문래동은 영등포의 특별한 이야기가 담겨 있는 동네입니다.  여러분이 서 있는 이곳, 문래는 한때 철공소가 빼곡하게 들어선 지역이었습니다. 하지만 시간이 흐르며 많은 철공소가 문을 닫게 되었고, 문래동은 한동안 침묵에 잠긴 듯 보였죠.  그런데요, 놀랍게도 이 문래동이 새로운 방식으로 다",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20567.mp3",
+      "audio": {
+       "ko": {
+        "name": "문래역 1번 출구",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20567.mp3",
+        "seconds": 65,
+        "script": "문래동은 영등포의 특별한 이야기가 담겨 있는 동네입니다.  여러분이 서 있는 이곳, 문래는 한때 철공소가 빼곡하게 들어선 지역이었습니다. 하지만 시간이 흐르며 많은 철공소가 문을 닫게 되었고, 문래동은 한동안 침묵에 잠긴 듯 보였죠.  그런데요, 놀랍게도 이 문래동이 새로운 방식으로 다시 활기를 찾기 시작했습니다. 예술가들이 하나둘 모여들며 자연스럽게 ‘예술 창작촌’으로 다시 태어났어요. 쇳소리가 울려 퍼지던 골목에, 어느새 예술이 피어난 것입니다.  이번 여행에서는 문래의 시간을 따라 걸으며, 골목 구석구석에 숨은 이야기를 하나하나 만나볼 거예요.  그럼, 문래를 여는 첫걸음을 함께 내디뎌볼까요?  먼저 향할 곳은 바로 문래근린공원입니다."
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-7025",
+      "name": "천변전망대",
+      "lat": 37.530252,
+      "lng": 126.888524,
+      "audioSeconds": 122,
+      "description": "안양천을 걸으면서, 산업화 시절 하천이 오염되었던 이야기를 나누었죠.  그렇다면 지금의 안양천은 어떨까요? 다행히도, 지속적인 생태 복원 노력 덕분에 안양천은 이제 도심 속에서도 자연을 느낄 수 있는 생태하천으로 다시 태어났습니다.  2005년부터는 지하수를 끌어와 실개천을 만들고, 창",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20554.mp3",
+      "audio": {
+       "ko": {
+        "name": "천변전망대",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20554.mp3",
+        "seconds": 122,
+        "script": "안양천을 걸으면서, 산업화 시절 하천이 오염되었던 이야기를 나누었죠.  그렇다면 지금의 안양천은 어떨까요? 다행히도, 지속적인 생태 복원 노력 덕분에 안양천은 이제 도심 속에서도 자연을 느낄 수 있는 생태하천으로 다시 태어났습니다.  2005년부터는 지하수를 끌어와 실개천을 만들고, 창포원 같은 자연 생태 공간도 조성했는데요. 이런 생태 복원 사업을 통해 수질이 조금씩 개선되며 지금은 철새들이 자주 찾는 생태학습장 역할도 하고 있어요.  또한, 안양천은 장마철이면 물이 흐르는 통로가 되기도 합니다. 한강은 서해의 밀물과 썰물에 영향을 받는데요, 그 한강과 연결된 안양천도 마찬가지라서 밀물 고기뿐 아니라 간혹 바닷물고기가 발견되기도 해요.  장마철 집중호우 때는 수위가 급격히 올라가는 편이라, 이 넓은 둔치 공간은 개발보다는 자연과 생태를 보전하는 방향으로 관리되고 있어요.  지금 이곳에서 안양천 옆으로 빠져나가면, 양평유수지 생태공원도 만날 수 있습니다. 유수지는 장마철처럼 갑자기 비가 많이 올 때, 넘치는 빗물을 잠시 머금어 주는 공간이에요. 2007년에 유수지 생태복원 사업으로 생태공원이 조성되었다가 2019년에는 대형 저류조를 설치해 홍수 조절 기능을 강화하면서 지금의 운동장과 산책로를 갖춘 생태체육공원으로 다시 태어났습니다. 산책도 하고 생태도 배우고, 홍수 대비 기능까지 갖춘 정말 똑똑한 공간이죠?  그러면 다음으로는, 생태보호구역으로 이동해서 안양천에 찾아온 자연을 만나볼까요?"
+       }
+      }
+     },
+     {
+      "id": "anyang-anyangcheon-jongju-story-7023",
+      "name": "안양천",
+      "lat": 37.535723,
+      "lng": 126.890526,
+      "audioSeconds": 202,
+      "description": "안양천은 경기도 의왕시 지지대고개에서 시작해 한강으로 흘러드는 하천이에요.   길이가 약 34km나 되기 때문에, 수도권 여러 지역을 지나며 흘러가죠. 경기도의 의왕, 안양, 군포, 광명, 과천, 부천, 시흥을 지나 서울의 금천, 구로, 영등포, 양천, 강서, 관악, 동작구까지 이어집니",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20552.mp3",
+      "audio": {
+       "ko": {
+        "name": "안양천",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20552.mp3",
+        "seconds": 202,
+        "script": "안양천은 경기도 의왕시 지지대고개에서 시작해 한강으로 흘러드는 하천이에요.   길이가 약 34km나 되기 때문에, 수도권 여러 지역을 지나며 흘러가죠. 경기도의 의왕, 안양, 군포, 광명, 과천, 부천, 시흥을 지나 서울의 금천, 구로, 영등포, 양천, 강서, 관악, 동작구까지 이어집니다.  이렇게 길고 넓은 안양천은 예전부터 사람들 삶과 함께한 물길이었습니다. 조선시대에는 지역마다 다른 이름으로 불리기도 했는데요, 안양에서는 ‘안양천’ 또는 ‘갈천’, 오목교 근처에서는 ‘오목내’, 금천 일대에서는 ‘염천’ 등으로 불렸습니다. 지금은 모두 ‘안양천’이라는 하나의 이름으로 통합되었죠.  1960년대까지만 해도 이 물길은 아이들의 놀이터이자 어른들의 빨래터, 그리고 마을 사람들의 목욕터였어요. 여름이면 너나 할 것 없이 냇가에 모여 더위를 식히곤 했습니다.  하지만 1970년대 이후 산업화가 급속히 진행되면서 상황이 달라졌어요. 공장 폐수와 생활하수가 쏟아지며 안양천은 점점 오염되어 갔고, 결국 생명이 살 수 없는 하천이 되고 말았죠.  다행히도 1990년대 후반부터 정비와 복원이 시작되었고, 2000년대 들어 본격적인 생태하천 복원 사업이 진행되면서 안양천은 다시 살아났습니다. 지금은 피라미와 버들치, 왜가리, 해오라기 같은 동식물들이 돌아와 사는 건강한 물길이 되었어요.  안양천 주변에는 산책길과 함께 다양한 공공체육시설도 잘 마련되어 있습니다. 안양천의 양화교와 양평교 사이의 양평누리체육공원에는 성인 및 어린이 야구장, 인조잔디 축구장, 파크골프장 등이 갖춰져 있죠. 오목교와 신정교 사이에는 초급자부터 고급자까지 즐길 수 있는 인라인스케이트장과 오목교 하부에는 게이트볼장도 마련되어 있어 남녀노소 누구나 일상 속 여가 활동부터 팀 스포츠까지 폭넓게 즐길 수 있습니다.  또, 하천을 따라 한강까지 잘 정비된 안양천의 자전거도로는 평균 폭이 2.5~3.5m 정도라 안전하게 주행할 수 있고, 봄에는 노란 개나리꽃, 여름이면 보라색 붓꽃, 가을이면 물억새가 넘실대 여느 자전거도로보다 아름다운 풍경을 자랑해요. 덕분에 안양천은 자전거도로의 경부선이라고 불릴 정도로 자전거 통행량이 많은 구간이에요. 발원지인 의왕시부터 한강 본류까지 완주하는 코스를 도전하는 사람들도 많다고 하네요.  이제, 전망데크 쪽으로 걸어가 볼까요?  안양천의 특별한 장소를 소개할게요."
+       }
+      }
      },
      {
       "id": "anyang-anyangcheon-jongju-3",
@@ -16039,16 +16296,51 @@
       "name": "오이도",
       "lat": 37.3443005,
       "lng": 126.6953864,
-      "audioSeconds": 15,
-      "description": "출발점. 간척으로 육지와 이어진 옛 섬이고, 빨간 등대가 코스의 시작을 알리는 표지다."
+      "audioSeconds": 110,
+      "description": "출발점. 간척으로 육지와 이어진 옛 섬이고, 빨간 등대가 코스의 시작을 알리는 표지다.",
+      "audio": {
+       "ko": {
+        "name": "열린관광지 - 시흥 오이도 선사유적공원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17133.mp3",
+        "seconds": 110,
+        "script": "중부 서해안 지역을 대표하는 선사유적지      오이도 선사유적공원은 우리나라 중부 서해안 지역을 대표하는 유적지입니다. 서해안에서 가장 큰 규모의 신석기시대 패총이 있으며, 2002년 대한민국 사적으로 지정됐습니다.   선사유적공원에는 선사시대의 생활상을 엿볼 수 있는 선사체험마을과 움집 체험이 가능한 야영마을이 조성돼 있습니다. 이 밖에도 오이도 유적을 이해하고 배울 수 있는 패총전시관, 서해 바다를 감상할 수 있는 전망대, 산책하기 좋은 억새길 등이 마련돼 있습니다.   가장 인기가 많은 선사체험마을은 움집에 직접 들어가 볼 수 있어 가족 단위 관광객들이 아이들과 함께 즐겨 찾는 곳입니다. 패총전시관에는 오이도에서 발굴된 신석기시대 패총의 층위와 야외노지 등 재현된 유구를 확인할 수 있으며, 우리나라 신석기 문화를 살펴볼 수 있습니다.  가을철 선사유적공원 산책길을 따라 펼쳐진 억새는 장관을 이룹니다. 이 구간은 편안한 휴식처이자 산책길 역할을 톡톡히 해, 관광객뿐 아니라 인근 주민들 사이에서도 인기가 많습니다. 전망대는 사진 동호인들이 즐겨 찾을만한 명소입니다. 노을이 질 무렵, 서해 바다의 아름다운 낙조를 감상할 수 있습니다. 이를 카메라에 담으려는 사람들로 진풍경을 이룹니다. 이처럼 다양한 볼거리뿐만 아니라 체험까지 더한 선사유적공원은 해마다 많은 관광객이 찾는 시흥의 명소로 널리 알려져 있습니다."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17133.mp3"
+     },
+     {
+      "id": "siheung-sihwa-seawall-story-4526",
+      "name": "(역사) 시흥시 오이도박물관과 선사유적공원",
+      "lat": 37.335523,
+      "lng": 126.690887,
+      "audioSeconds": 246,
+      "description": "해적왕과 함께 떠나는 두근두근 경기여행! 오늘 여행할 곳은~  선사시대로 가는 타임캡슐~ 시흥 오이도박물관과 선사유적공원! 여러분 준비되셨나요?  두근두근 경기 여행~!!  [사회자]  여러분, 반갑습니다. 저는 오이도에서 가장 큰 마을이었던 안말에서 태어나고 자란 당산나무입니다.  지",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12414.mp3",
+      "audio": {
+       "ko": {
+        "name": "(역사) 시흥시 오이도박물관과 선사유적공원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12414.mp3",
+        "seconds": 246,
+        "script": "해적왕과 함께 떠나는 두근두근 경기여행! 오늘 여행할 곳은~  선사시대로 가는 타임캡슐~ 시흥 오이도박물관과 선사유적공원! 여러분 준비되셨나요?  두근두근 경기 여행~!!  [사회자]  여러분, 반갑습니다. 저는 오이도에서 가장 큰 마을이었던 안말에서 태어나고 자란 당산나무입니다.  지금부터 저와 함께 시간여행을 떠나 보실까요? [사회자] 1987년 시화방조제 건립을 시작으로 한 대규모 간척사업으로 오이도 사람들이 집단이주하기 전까지 이곳은 집과 밭, 우물이 있는 바닷가 마을이었습니다.   [마을 아낙네] (빨래 바구니를 들고 오다가 할머니를 발견하고 급히 달려오는) 어르신, 힘드실 텐데 제가 길어드릴게요. [마을 어르신] (손을 내저으며) 아니야, 괜찮아. 다 했는데, 뭘. [마을 아낙네] (놀라며) 우물의 물을 이렇게 많이 가져다가 뭐에 쓰시게요? [마을 어르신] (한숨을 쉬며) 이제 이 마을을 떠나면 이 우물 맛을 못 보게 될 테니, 아쉬워서 말이지... [마을 아낙네] (고개를 끄덕이며 동감하는) 네, 저도 그래요. 어디에 가도 우리 안말처럼 물맛 좋은 곳은 없을거에요.  [마을 어르신] 암, 그렇고, 말고~ (당산나무를 바라보며) 그게 다 저기 저 당산나무가 우리 마을을 굽어살펴 주기 때문이라네... [사회자]   하여, 역사 속으로 사라진 안말과 큰 우물을 추억하고자 선사유적공원에도 우물 모형을 설치했다고 하네요. [사회자] 오이도 선사유적공원은 이러한 역사적, 자연적 특징을 살려 공원 내에 오이도 마을 일대와 서해가 훤히 내려다보이는 전망대를 비롯해 패총전시관, 억새길, 선사체험마을 등을 조성하였습니다. [관람객] 당산나무 할아버지, 패총이 뭐예요? [사회자] 패총이란 조개무지 또는 조개무덤라고도 하는데요, 쉽게 말해 선사시대부터 살았던 옛날 사람들이 먹고 버린 조개껍데기가 모인 일종의 생활유적이라 할 수 있어요.  [관람객] (고개를 끄덕이며 호응) 아~ 저도 바닷가에 놀러 갔을 때 조개를 먹었는데 정말 맛있어요~!  [사회자] (호응) 그랬군요~ 패총에는 조개껍데기 뿐 만 아니라 짐승의 뼈다귀, 각종 생활도구, 토기 등 당시 사람들의 생활을 알 수 있는 유물이 가득 들어있어서 (강조) 선사해안문화의 중요성을 알 수 있는 유적으로 평가받고 있어요.   [관람객] (전시관을 둘러보며 감탄) 와~ 저쪽에 조개껍데기가 정말 많이 쌓여져 있네요! 선사시대 사람들도 조개를 정말 많이 좋아했나 봐요~! [사회자] (호응) 그래요~ 이렇듯 오이도는 섬 전체가 유적이라 해도 과언이 아닐 정도로 많은 패총이 분포되어 있는데요, 2002년 섬 전체가 국가사적 제441호로 지정되었답니다. [사회자]  그리고 2019년 7월에 개관한 시흥오이도박물관 역시 오이도 유적지에 위치하고 있는데요, 시흥의 다양한 문화재 전시와 체험뿐 아니라, 아름다운 해넘이와 바다도 만날 수 있으니 꼭 방문해 보시길 바랍니다."
+       }
+      }
      },
      {
       "id": "siheung-sihwa-seawall-2",
       "name": "시화나래휴게소",
       "lat": 37.3115861,
       "lng": 126.6079036,
-      "audioSeconds": 15,
-      "description": "코스에서 유일한 보급·휴식 지점. 옆에 선 달전망대가 방조제 구간의 종반을 알린다."
+      "audioSeconds": 90,
+      "description": "코스에서 유일한 보급·휴식 지점. 옆에 선 달전망대가 방조제 구간의 종반을 알린다.",
+      "audio": {
+       "ko": {
+        "name": "시화나래 조력문화관",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17050.mp3",
+        "seconds": 90,
+        "script": "시화나래 조력문화관은 경기도 안산시 단원구에 위치한 세계 최대, 국내 최초의 조력발전 전시관으로, 대부도와 오이도를 잇는 시화방조제의 중앙에 있습니다. ‘시화나래’는 바닷물을 이용하여 만든 빛이라는 의미를 담고 있습니다. 시화나래 조력문화관은 조력발전의 근본이 되는 달을 형상한 전망대와 무한 청정에너지를 상징하는 무한대를 결합하여 입면을 구성하였습니다. 시화나래 조력문화관은 시화호의 역사와 지리적 특수성을 살려 발전소가 조성된 이야기를 전시하는 문화공간입니다. 달의 중력으로 하루 두 차례 발생하는 조석을 이용하는 조력발전은 온실가스나 폐기물이 생기지 않는 재생 가능 에너지입니다. 시화호가 속한 경기만은 강한 조석이 발생해 조석간만의 차가 크고, 해안선이 복잡해 크거나 작은 만이 여럿 존재하는 조력발전의 최적지입니다.   시화나래 조력문화관에서는 조력발전이 어떻게 이루어지는지에 대한 해설을 들을 수 있으며 달, 물, 생명, 에너지의 원리를 체험으로 이해해볼 수 있는 체험형 전시물 등이 다양하게 마련되어 있습니다. 시화호와 서해를 조망할 수 있는 달 전망대에서는 스카이워크도 즐길 수 있습니다. 바닥이 360도 원 모양의 투명 유리바닥으로 이루어져 있으며 75m 높이에서 아름다운 안산시를 한눈에 감상하실 수 있습니다. 달 전망대에서 안산시의 해질녁 노을과 밤하늘의 아름다운 도시 야경을 바라보는 것은 어떨까요?"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17050.mp3"
      }
     ],
     "sources": [

@@ -232,7 +232,8 @@ public class CourseResourceTest {
             Assertions.assertTrue(guide.isArray() && !guide.isEmpty(), "guide 누락: " + id);
             Assertions.assertTrue(checkpoints.isArray() && !checkpoints.isEmpty(),
                     "checkpoints 누락: " + id);
-            Assertions.assertEquals(course.path("poi").size(), checkpoints.size(),
+            // 경유지는 전부 checkpoint 여야 하되, 그 사이에 오디 도슨트가 더 끼어들 수 있다
+            Assertions.assertTrue(checkpoints.size() >= course.path("poi").size(),
                     "모든 실제 경유지는 checkpoint여야 함: " + id);
 
             for (var point : polyline) {
@@ -249,6 +250,13 @@ public class CourseResourceTest {
                         "checkpoint description 누락: " + id);
                 Assertions.assertTrue(item.path("audioSeconds").asInt() > 0,
                         "checkpoint audioSeconds 오류: " + id);
+                // 앱이 http를 https로 강제 치환하므로(ATS) http 주소는 재생이 실패한다
+                String audioUrl = item.path("audioUrl").asText("");
+                Assertions.assertTrue(audioUrl.isEmpty() || audioUrl.startsWith("https://"),
+                        "checkpoint 오디오가 https가 아님: " + id);
+                // 오디 규격은 jp다. ja로 넣으면 앱이 일본어를 못 찾는다
+                Assertions.assertFalse(item.path("audio").has("ja"),
+                        "언어 키는 jp여야 함(ja 발견): " + id);
             }
         }
     }

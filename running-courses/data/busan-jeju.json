@@ -1035,16 +1035,46 @@
       "name": "해운대해수욕장",
       "lat": 35.1581445,
       "lng": 129.1583542,
-      "audioSeconds": 15,
-      "description": "출발점. 백사장 옆 산책로는 폭이 넓고 바닥이 골라, 몸을 데우며 페이스를 잡기 좋은 구간이다."
+      "audioSeconds": 101,
+      "description": "출발점. 백사장 옆 산책로는 폭이 넓고 바닥이 골라, 몸을 데우며 페이스를 잡기 좋은 구간이다.",
+      "audio": {
+       "en": {
+        "name": "Haeundae Beach",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9846.mp3",
+        "seconds": 101,
+        "script": "Haeundae Beach  Haeundae Beach is the first name that probably pops up in your head when talking about the beaches of Busan. The beach became even more popular thanks to the film “Haeundae” and is one of the beaches in Busan that attracts the most visitors.  The name, “Haeundae”, comes from Choe Chiwon, one of the geniuses from the Silla Dynasty, who built a stone platform here and engraved “海雲臺 (Haeundae)” in Chinese characters. One of the pen names used by Choe Chiwon was “Haeun (海運)” but the character “Un” is different when it comes to the name and place. But, because they are both pronounced as “Haeun”, people theorize that one of those two names was created here. The letters known to have been engraved by Choe Chiwon are located on the southern rock face.  Haeundae Beach spans broadly between Dongbaekseom Island and the Dalmaji-gil cliffs, and thanks to the cool sea breeze that continues to blow, no matter how hot the day is, it has the advantage to letting you enjoy yourself in the water. Parks and trails are nicely set up around the beach making it great to go for a walk to warm up.  Haeundae is most known for its view at night; fancy hotels and high-rise apartments near the beach allows for an urban night view, which can be enjoyed from a variety of chic cafes nearby. It is visited by a grand number of people during the summer but there are many tourists wanting to take photos of their trip to Busan who come to Haeundae even during the winter, so it is a beach that is always filled with people all year long."
+       },
+       "jp": {
+        "name": "海雲台海水浴場",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9628.mp3",
+        "seconds": 126,
+        "script": "釜山の海水浴場といえば、最初に思い出すのは海雲台海水浴場でしょう。韓国映画『TSUNAMI-ツナミ-(原題：海雲台)』を通してさらに有名になりましたが、もともと韓国内外の観光客が最も多く訪れる釜山屈指の海水浴場です。  「海雲台」という名前は、かつて天才と呼ばれた新羅末の文人・崔致遠が、岩壁に座って海辺の景色を眺めていたところ、その美しさに感動し、岩壁に「海雲台」と刻んだことから由来しています。崔致遠の雅号である「海雲」に広々とした土地を表す「台」をつけて「海雲台」と刻んだそうです。崔致遠が刻んだといわれる文字は今も南側の岩壁に残っています。  海雲台海水浴場は、冬柏島とタルマジ(月見)道の絶壁の間に広く長く続く海水浴場です。海から吹き寄せる涼しい潮風のおかげで、どんなに暑い日でも楽しく水遊びができるというメリットがあります。海水浴場の周りには公園や散策路がよく整っているので、準備運動を兼ねて散歩するのもいいでしょう。  海雲台は夜景が美しいことでも有名です。海水浴場の周辺に建ち並ぶ数多くのホテルや高層マンションにより、都会的なきらびやかな夜景が満喫できます。お洒落なカフェもたくさんあるのできれいな夜景を楽しむのに最適です。夏には大勢の避暑客が訪れますが、釜山の美しい風景を写真に残そうと観光客が一年中訪れるため、海雲台海水浴場はいつも大勢の人々で賑わいます。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9846.mp3"
      },
      {
       "id": "busan-haeundae-2",
       "name": "동백섬",
       "lat": 35.1539199,
       "lng": 129.152185,
-      "audioSeconds": 15,
-      "description": "숲 그늘 아래 데크가 깔린 순환 구간. 파도 소리가 가장 가깝게 들리는 곳이다."
+      "audioSeconds": 149,
+      "description": "숲 그늘 아래 데크가 깔린 순환 구간. 파도 소리가 가장 가깝게 들리는 곳이다.",
+      "audio": {
+       "en": {
+        "name": "Dongbaekseom",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9847.mp3",
+        "seconds": 149,
+        "script": "Dongbaekseom  Named Dongbaekseom due to its abundance of Dongbaek Trees, it was transformed into a place for the 2005 APEC Summit Meeting in Busan and has since become a famous attraction where many world leaders have visited.  Dongbaekseom used to be a small island just off the coast of Haeundae however due to sedimentation, over a long period of time, became connected to the mainland. The island was also called “Darimiseom” for its resemblance to an iron. In “Come Back to Busan Port”, a song by Cho Yong-pil, there is a line that goes, “Spring came to Dongbaekseom, where flowers are”, and the Dongbaekseom in the lyrics is in fact this island itself. Every spring, it becomes a red island on top a blue sea due to its complete covereage in red flowers.  Dongbaekseom is where the “Asia-Pacific Economic Cooperation (APEC) Summit Meeting” was held in November 2005. APEC is an international organization and summit of countries on the Pacific Rim that discuss a variety of topics such as economics and politics while solidifying their partnerships. When the summit was held in Busan, the status and details of the meeting were reported in real time around the world showcasing the amount of attention that the event had gotten globally.  No cars are allowed on Dongbaekseom. Instead, one can only walk throughout the island because while the yacht club side has flat paths, the Haeundae side is made of cliffs. Where the flat road meets the cliffs sits the “Nurimaru House,” the place where the APEC Summit Meeting was held. The inside of the meeting house still remains as it was so visitors can see with their own eyes the desks and chairs that were used by the leaders of the countries in attendance.  On the side where the Dongbaekseom lighthouse is, there is a stone on which the story of Choe Chiwon, who is known to have created the name “Haeundae,” and the name in Chinese characters are engraved. As you walk along the cliff path from the lighthouse you will see a short suspension bridge and a mermaid statue depicting the legend of Princess Hwangok who came for marriage from the kingdom of mermaids. The cliff section is narrow and has steep steps so make sure to pass safely and let other people pass by first, if needed."
+       },
+       "jp": {
+        "name": "釜山・冬柏島",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9629.mp3",
+        "seconds": 183,
+        "script": "椿(韓国語で「冬柏」という)の木が多いことから｢冬柏島｣と名付けられたこの島は、2005年に開催されたアジア太平洋経済協力(APEC)首脳会議の会場となったところで、その後は「世界の首脳が訪問した場所」という観光スポットになりました。  冬柏島は本来、海雲台から少し離れた小さな島だったのですが、長年の堆積作用によって陸地とつながりました。島の形がアイロンに似ていることから、以前は「アイロン島」とも呼ばれていたそうです。韓国の人気歌手チョ・ヨンピルの「釜山港へ帰れ」という歌の中に「つばき咲く春なのに」という歌詞がありますが、この椿が咲いている場所こそが「冬柏島」なのです。毎年春になると真っ赤な椿の花が咲き乱れ、青い海の上に赤い島が浮いているように見えるそうです。  冬柏島では2005年11月、「アジア太平洋経済協力(Asia-Pacific Economic Cooperation, APEC)首脳会議」が開催されました。APECはアジア太平洋地域の国々が経済や政治など様々なテーマを議論し、パートナーシップを確認するための首脳会議であり、国際機関の名称でもあります。釜山で首脳会議が開かれたとき、その様子が生中継されるほど世界中の関心を集めました。  冬柏島は車が入れないので、歩いて観光するしかありません。ヨットハウスの方には平坦な道がありますが、海雲台側は絶壁だからです。平坦な道と絶壁が出会うところに「ヌリマルハウス」と呼ばれる建物がありますが、ここがかつてAPEC首脳会議が開催されたところです。建物の内部は会談当時のまま残されており、参加国の首脳が実際に座っていた会場を見物することができます。  冬柏島灯台がある方には、「海雲台」という地名の由来となった崔致遠に関する物語と漢字で「海雲台」と刻まれた岩があります。灯台から絶壁沿いの道を歩いて行くと、短い吊り橋を渡ったところに人魚の像が見えてきます。この人魚の像には、ナランダ国から無窮国に嫁いできた黄玉姫の伝説が秘められています。絶壁沿いの道は狭く、昇り降りする階段も多いので、すれ違う時はお互いに譲り合って安全に通行しましょう。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9847.mp3"
      },
      {
       "id": "busan-haeundae-3",
@@ -2153,8 +2183,17 @@
       "name": "광안리해수욕장",
       "lat": 35.15412,
       "lng": 129.12014,
-      "audioSeconds": 15,
-      "description": "출발점. 백사장 어디에서든 광안대교가 정면으로 보이고, 옆 산책로는 평탄해 몸 풀기 좋다."
+      "audioSeconds": 84,
+      "description": "출발점. 백사장 어디에서든 광안대교가 정면으로 보이고, 옆 산책로는 평탄해 몸 풀기 좋다.",
+      "audio": {
+       "ko": {
+        "name": "광안대교",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12218.mp3",
+        "seconds": 84,
+        "script": "안녕하세요 첫번째 세븐브릿지, 광안대교입니다.  어떤 다리는 도시의 랜드마크가 됩니다.  금문교가 샌프란시스코의 얼굴이듯 광안대교는 부산을 상징합니다.  광안대교를 달리는 자동차 내부는 오페라극장 1등석이 됩니다   다리 좌우에 해운대와 광안리 해변이 펼쳐지고 기암절벽 이기대, 황령산, 센텀시티, 벡스코, 누리마루까지  극적인 광경이 카메라의 연속 샷처럼 이어집니다.   광안대교에서 이어지는 어느 길을 걸어도 즐거움은 끝이 없습니다. 해리단길, 달맞이길, 동백섬, 블루라인파크, 모래축제, 불꽃축제, 북극곰 수영대회…  문제는 스마트폰으로 검색되지 않는 명소와 이벤트가  더 많다는 점입니다. 그러니까 당신이 거리 곳곳을 직접 찾아 나서야 하는 거죠.  지금, 여기에서, 당신의 행운을 발견하세요.   Discover your _________________________ inSEVEN BRIDGES"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12218.mp3"
      },
      {
       "id": "busan-gwangalli-night-2",
@@ -4502,8 +4541,23 @@
       "name": "삼락생태공원",
       "lat": 35.1690453,
       "lng": 128.9736606,
-      "audioSeconds": 15,
-      "description": "출발점. 낙동강 둔치의 너른 들머리로, 어느 방향으로든 길이 길게 뻗어 있다."
+      "audioSeconds": 129,
+      "description": "출발점. 낙동강 둔치의 너른 들머리로, 어느 방향으로든 길이 길게 뻗어 있다.",
+      "audio": {
+       "ko": {
+        "name": "삼락생태공원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19339.mp3",
+        "seconds": 129,
+        "script": "삼락생태공원  부산 사상구에 자리하고 있는 삼락생태공원은 낙동강 하구의 둔치 중 가장 넓은 지역에 있는 생태공원이에요. 과거 비닐하우스 경작지였던 이곳은, 여러 번의 재정비와 복원 사업을 거쳐 철새도 쉬어 갈 만큼 잘 보존된 자연환경, 시민들을 위한 체육시설과 산책코스, 그리고 야생화단지가 있는 아름다운 생태공원으로 탈바꿈했답니다.  삼락생태공원은 크게 세 부분으로 나누어지는데요, 우선 최상단부와 중앙 부분에는 시민들을 위한 체육시설이 위치하고 있어요. 그리고 다음으로 상단부에는 갈대와 갯버들 군락이 있는 거대한 자연초지, 그리고 산책로가 자리하고 있답니다. 마지막으로 하단부에는 갈대습지와 철새들이 찾아올 수 있는 먹이터가 조성되어 있어요.  생태공원인 만큼, 이곳은 다양한 생물들의 서식처가 된답니다. 엄궁 습지는 겨울철새의 주요 서식지가 되고, 수로형 습지는 다양한 조류 서식지이자 사계절 꽃단지가 되고 있어요. 특히 멸종위기종 2급인 맹꽁이가 서식하고 있는 맹꽁이 서식지도 있답니다! 정말 흥미롭지 않나요? 매년 6월에서 8월이 되면 맹꽁이 울음소리를 들을 수 있다고 하니, 정말 자연 생태학습장으로 손색없는 곳이네요.  그 밖에도 감전야생화단지에서는 70여 종이 넘는 야생화를 만나볼 수 있고, 삼락습지생태원에서는 연꽃단지나 갈대 체험장, 그리고 물억새 군락이 조성되어 있답니다. 또한 자전거도로와 산책로, 수상 레저를 위한 시설도 갖추어져 있어 건강과 휴식을 한 번에 챙길 수 있어요.  자연의 숨결이 잘 살아있는 삼락생태공원에서 소중한 사람들과 함께 배움과 즐거움이 가득한 시간을 보내는 건 어떨까요?"
+       },
+       "en": {
+        "name": "Samnak Eco Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19408.mp3",
+        "seconds": 160,
+        "script": "Samrak Eco Park, located in Sasang District, Busan, is the largest ecological park along the Nakdong River estuary. This area, once used for vinyl greenhouse farming, has undergone several rounds of renovation and restoration projects. As a result, it has transformed into a beautiful ecological park with well-preserved natural environments, where migratory birds can stop and rest. The park now offers sports facilities for citizens, walking paths, and a wildflower garden, making it a popular destination for both relaxation and recreation.   Samrak Eco Park is divided into three main sections. The upper and central areas feature sports facilities for citizens. The upper section also includes a vast natural grassland with reed and willow clusters, along with walking paths. The lower section is home to reed wetlands and feeding grounds where migratory birds can stop by.   As an ecological park, Samrak Eco Park serves as a habitat for a variety of species. The Eomgung Wetland is an important wintering site for migratory birds, while the canal-shaped wetland provides a habitat for various bird species and blooms with flowers throughout the four seasons. One of the most interesting features is the habitat of the endangered species, narrow-mouthed toad (Classified as endangered level 2), which can be found in the park! Isn’t that fascinating? From June to August every year, you can hear the croaking sounds of the tree frogs, making this park an excellent spot for natural ecological education.   In addition, at the Gamjeon Wildflower Garden, you can see over 70 species of wildflowers, and at the Samrak Wetland Eco Center, there are lotus flower gardens, reed experience zones, and water reed colonies. The park is also equipped with bike paths, walking trails, and facilities for water sports, offering a perfect combination of health and relaxation.   How about spending a fun and educational time with your loved ones in Samrak Eco Park, where the breath of nature is alive and thriving?"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19339.mp3"
      },
      {
       "id": "busan-samnak-lsd-2",
@@ -5548,24 +5602,81 @@
       "name": "송도해수욕장",
       "lat": 35.0759052,
       "lng": 129.0175547,
-      "audioSeconds": 15,
-      "description": "출발점. 백사장 옆 산책로가 이 코스에서 속도를 낼 수 있는 드문 평지 구간이다."
+      "audioSeconds": 104,
+      "description": "출발점. 백사장 옆 산책로가 이 코스에서 속도를 낼 수 있는 드문 평지 구간이다.",
+      "audio": {
+       "en": {
+        "name": "Songdo Beach",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9851.mp3",
+        "seconds": 104,
+        "script": "Songdo Beach  Songdo Beach of Busan has everything you want from things to see, things to eat and things to play with. It especially attracts many visitors since the beach offers views of Busan from the land, sea, and sky.  The Marine Cable Car offers the sky view of Busan at Songdo Beach. It goes back and forth between the building in front of Songnim Park and Amnam Park, travels over the sea and presents a view of Geobukseom Island, Namhangdaegyo Bridge, Haeparang-gil and Sinseondae Cliff. From large fishing boats to motor boats for leisure sports, you can see a variety of ships that depart from the Port of Busan and float along the sea in front of Songdo.  The view from the sea can be enjoyed from the Skywalk on Geobukseom Island. Geobukseom  Island is named for its resemblance to a turtle but it is also called Songdo because of the pine trees that populate the island. It is connected to the mainland through the cloud trail. If you walk along the trail and enter Geobukseom Island, you reach the entrance to the Skywalk. Here, you may look around with your shoes on, and if you look up at the sky from the Skywalk, you will see the cable car pass right above you.  The most popular attraction on land is, of course, the sandy beach. Looking at Geobukseom Island, the Cable Cars and the blue sea of Busan from the beach, you are due for a great and exciting time of fun. At night, it is possible to enjoy the beautiful sea in harmony with the bright lights emitted by the Cable Cars and large ships."
+       },
+       "jp": {
+        "name": "釜山・松島海水浴場",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9633.mp3",
+        "seconds": 186,
+        "script": "釜山(プサン)の魅力がぎゅっと詰まった、釜山松島(ソンド)海水浴場  釜山の松島海水浴場は見どころ、遊びどころ、食べどころの三拍子が揃っている海水浴場です。特に、釜山でしか見られない美しい景色を、空・海・陸から楽しめる施設が整っていることから、四季を通じてたくさんの観光客で賑わいます。  まず、松島海水浴場の「空」の見どころを担当するのは、松島海上ケーブルカーです。松林(ソンニム)公園前に位置する松島ベイステーションと、岩南(アムナム)公園に位置する松島スカイステーションを行き来する海上ケーブルカーは、プライベートな空間で、360度広がる釜山の海をひとり占めすることができます。岩島のコブク島(ソム)をはじめ、近隣の二つの区を結ぶ橋・南港大橋(ナマンデギョ)、海沿いのトレッキングコースである太陽と波の道・ヘパランギル、また、南(ナム)区に位置する山・神仙台(シンソンデ)など、周辺の見どころが満載です。さらに、煌めく青い海の上には、釜山港を出発する大きな漁船など、松島近海を走る多種多様な船が見下ろせます。  つづいて、松島海水浴場の「海」の見どころを担当するのは、コブク島にあるスカイウォークです。コブク島は亀の形に似ていることから、韓国語で亀を意味する「コブク島」と名付けられました。しかし、松の木も多く生えていることから「松の島」と書く「松島」とも呼ばれています。この岩島は、海上に設置された長さ365mの散策路・クルム(雲)散策路を利用して陸地から渡って行けるようになっており、松島を訪れた人々が思い思いの時間を過ごしています。  散策路を歩いてコブク島に着くと、今度は橋の一部が透明になっているスカイウォークが皆さんを待っています。靴のままで入ることができ、まるで海の上を歩いているかのような気分を味わうことができます。スカイウォークに立って空を見上げると、海上ケーブルカーが真上を通るのを見ることもできるでしょう。  最後に、松島海水浴場の「陸」の見どころは何と言っても、眩いほどの白い砂浜が広がる海水浴場です。ここでは、海に浮かぶコブク島やケーブルカーなどを眺めながら、釜山の海を堪能することができます。夜には色とりどりの光を放ちながら移動する大きな船やケーブルカーなど、自然と港街とが調和をなす、釜山ならではの美しい夜景を堪能することができます。  皆さんも、釜山の魅力がぎゅっと詰まったここ松島海水浴場で、釜山旅行の特別な思い出をつくってみてはいかがでしょうか。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/9851.mp3"
      },
      {
       "id": "busan-songdo-cloud-2",
       "name": "송도구름산책로",
       "lat": 35.0753876,
       "lng": 129.0226137,
-      "audioSeconds": 15,
-      "description": "거북섬 곁에서 바다 위로 이어지는 보행교. 발아래로 파도가 들여다보이는 코스의 절정 구간이다."
+      "audioSeconds": 182,
+      "description": "거북섬 곁에서 바다 위로 이어지는 보행교. 발아래로 파도가 들여다보이는 코스의 절정 구간이다.",
+      "audio": {
+       "ko": {
+        "name": "송도구름산책로",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12317.mp3",
+        "seconds": 182,
+        "script": "송도구름산책로(거북섬)  우리나라에서 가장 아름다운 곡선형 해상산책로  선생님: \t 여러분!  부산 서구에 곡선형 해상산책로가 있다는 것 알고 있나요?  학생:\t\t 저요! 뉴스에서 봤어요! 송도구름산책로 맞죠?  선생님:\t 정답이에요. 송도해수욕장 동편 거북섬 인근 바다 위  5.5~9m 높이에 설치된 송도구름산책로는 총길이가 365m인  곡선형 해상산책로에요.  학생:\t\t 대부분 직선형인 다른 해상산책로와 달리 곡선형으로 설계해 더 인상적이네요. 어떻게 그런 생각을 했을까요?  선생님:\t 젊은 어부와 용왕의 딸 인룡(人龍)의 전설을 품은 거북섬에서 디자인을 착안해 용이 바다를 누비는 듯한 유려한 형태로  다리를 설계했다고 해요.   학생:\t\t 어떤 전설인지 궁금해요~  선생님: 옛날에 송도에 홀어머니를 모시고 살던 젊은 어부가  용왕의 딸인 공주와 사랑에 빠졌어요. 어부와 혼인하고 싶었던  \t\t 공주는 온전한 사람이 되기 위해 용굴에서 천일기도를 했지만, \t\t 마지막 기도일에 바다 괴물의 공격을 받아요. 이 사실을  알게 된 어부는 공주를 구하고 바다 괴물을 물리쳤지만  생명을 잃고 바다의 혼이 되고 말았죠. 공주 또한 온전한  사람이 되지 못한 채 반인반용인 인룡이 되었고요.  이를 가엾게 여긴 용왕이 어부를 거북섬으로 만들어  인룡 공주와 영원히 함께하도록 했다는 전설이에요.  그래서 거북섬을 찾는 사람들에게 장수복과 재물복을 주고  사랑하는 남녀가 함께 오면 그 사랑을 이루게 해주었다고 해요.  학생:\t\t 그렇다면~~ 당장 거북섬으로 가봐야겠어요. 와~근데 이 스카이워크 바닥에 강화유리로 된 부분이 있어요. 그 사이로 파도도 보이니깐 스릴도 있고  정말 바다 위를 걷는 기분이에요.  선생님:\t 고개를 들어 하늘을 보면 색색의 송도해상케이블카가 보이죠?  학생:\t\t 송도구름산책로를 걸으며  바다 한가운데서 보는 송도해수욕장의 모습이 참 멋지네요. \t\t 선생님:\t 아침 6시부터 밤 11시까지 개방해  밤바다에 비친 구름다리와 송도해수욕장 주변의  불빛이 어우러져 꽤 낭만적인 풍경을 보여줘요. 시간이 된다면 이곳에서 야경을 감상하는 것도 추천할게요~"
+       },
+       "en": {
+        "name": "Songdo Cloud Trail (Geobukseom Island)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17745.mp3",
+        "seconds": 133,
+        "script": "Songdo Cloud Trail in Seo-gu, Busan is a 365-meter long seatrail. It’s installed at a height of 5.5 to 9 meters above the sea near Geobukseom Island on the east side of Songdo Beach. Unlike most of the other sea trails, it is impressively curved. It’s because the bridge was designed in the flowing shape of a dragon navigating through the sea. It’s based on a Geobukseom Island’s legend of a young fisherman and the dragon king’s daughter.  Once upon a time, a young fisherman lived in Songdo with his single mother. One day, he fell in love with Princess Inryoung, the daughter of the dragon king. Inryoung, who was also a dragon, wanted to marry the fisherman. She decided to pray for a thousand days in the dragon cave to become a human. However, on the last day of her prayer, Inryoung was attacked by a sea monster. The fisherman bravely fought with the monster. After a deadly fight, he did save the princess and defeated the sea monster, but he lost his own life and became a spirit of the sea. Princess Inryoung didn’t become a human, either. Instead, she turned into a half-human half-dragon. The dragon king, who took pity on this, turned the fisherman into Geobuksom Island, so he could be with Princess Inryoung forever. It’s said that the island gives longevity and wealth to those who visit. If a man and a woman who are in love with each other visit, the island blesses their love.  Visiting the trail is a fulfilling experience in multiple ways. Part of the floor of the skywalk is made of tempered glass. It’s a thrilling experience to see the waves through the glass. You may even feel like you are walking on the ocean. The trail is open from 6 am to 11 pm every day. In the daytime, if you look up to the sky, you can see the colorful Busan Air Cruise cable cars. You can also enjoy the beautiful view of Songdo Beach as you walk along the trail. At night, the suspension bridge reflected in the night sea and the lights around Songdo Beach create a romantic scene."
+       },
+       "jp": {
+        "name": "松島(ソンド)クルム散策路(スカイウォーク)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/17899.mp3",
+        "seconds": 149,
+        "script": "韓国で最も美しい、曲線を帯びた海上散策路  松島(ソンド)海水浴場の東に位置する亀島(コブクソム)と陸地とを結ぶのは、曲線を帯びた海上散策路、松島(ソンド)クルム散策路です。一部の区間が透明な強化ガラスでつくられており、まるで海の上を歩いているかのような気分を味わうことができます。長さは365メートルで、高さは5.5メートルから9メートルの位置に設置されています。  ほとんどの海上散策路が直線型でつくられているのに対し、ここ松島クルム散策路は曲線を描いているのが特徴です。これは、亀島に伝わるある伝説を基に、龍が海を飛び回る姿をイメージして設計されたのだそうです。  昔々、松島には母親と一緒に暮らす若い漁師がいました。その漁師は、海で出会った龍王の娘である姫と恋に落ちます。姫は漁師と結婚するために、龍窟(ヨングル)と呼ばれる洞窟で人になるための祈りを千日間にも渡って捧げます。しかし、ついに訪れたその最後の日、姫は海の怪物に攻撃されてしまいました。これを知った漁師はすぐさま姫を救い、海の怪物をやっつけましたが、漁師は悲しくも命を失い、海を漂う魂となってしまいました。また、千日の祈りを終えることのできなかった姫も、半分は人、半分は龍の姿になってしまいます。そんな二人の愛の結末を哀れに思った姫の父・龍王は、魂になって海を漂っていた漁師を亀島にすることで、人と龍の両方の姿を持った姫と永遠に幸せになれるようにしました。  そんな伝説が伝わるここ亀島は、訪れる人に長寿と財産の福を与え、愛し合う男女にはその愛が生涯続くよう、叶えてくれる場所だったといいます。  松島クルム散策路は、青い海にきらめく姿はもちろん、漆黒の海に輝く夜景もとても美しいことで有名です。真実の愛の伝説が伝わるこの場所で、波の音を聞きながら、思い思いの時間をゆっくりとお楽しみください。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12317.mp3"
      },
      {
       "id": "busan-songdo-cloud-3",
       "name": "송도해상케이블카",
       "lat": 35.0766432,
       "lng": 129.0233986,
-      "audioSeconds": 15,
-      "description": "머리 위로 케이블카가 바다를 건너는 중간 조망 지점. 여기서부터 암남공원 방면 오르막이 시작된다."
+      "audioSeconds": 126,
+      "description": "머리 위로 케이블카가 바다를 건너는 중간 조망 지점. 여기서부터 암남공원 방면 오르막이 시작된다.",
+      "audio": {
+       "ko": {
+        "name": "송도해상케이블카",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12316.mp3",
+        "seconds": 126,
+        "script": "1.62km 바다 위를 가로지르는 짜릿함  선생님: \t 여러분이 탑승할 송도해상케이블카는  1988년 운영이 중단되었던 송도의 옛 케이블카를 복원해서   2017년 6월에 개장한 부산에어크루즈에요.  학생:\t\t 거의 30년 만에 복원됐네요. 지금 보니 높이가 정말 높아서 아찔해요.  선생님:\t 최고 86m 높이니깐요.  송도해수욕장 동쪽 송림공원에서 서쪽 암남공원까지  1.62km 바다 위를 가로질러 운행하니깐 바다 한가운데에서 짜릿함을 만끽할 수 있어요. 송도해수욕장, 부산 영도와 남항대교, 송도해안산책로,  파도치는 기암절벽까지 멋진 경치도 감상할 수 있고요.  학생:\t\t 저기 보이는 케이블카는 바닥이 투명한가봐요. 좀 무서울 것 같은데요?  선생님:\t 바닥이 투명한 크리스탈 캐빈이에요.  바닥이 막혀있는 일반 캐빈보다 요금은 좀 더 비싸지만 바다와 하늘 그 오묘한 경계에 서 있는  환상적인 기분을 느낄 수 있죠. 송도해상케이블카의 모든 캐빈은 사방이 유리로 되어  탁 트인 푸른 바다의 파노라마 뷰를 즐길 수 있어요.  학생:\t\t 답답한 마음이 뻥 뚫리고 바다 위를 나는 기분일 것 같아요. 케이블카에서 보는 풍경은 얼마나 더 멋질지 너무 기대돼요.  선생님:\t 매시간 변하는 하늘색과 바다색의 절경을 볼 수 있죠. 해 질 녘의 고즈넉함도 좋고 화려한 조명으로 물든  밤바다를 보며 송도의 이색야경을 즐기기도 좋은 곳이랍니다. 하늘에서 보는 송도해수욕장은 어떤 모습일지  케이블카에서 확인해보죠~"
+       },
+       "en": {
+        "name": "Busan Air Cruise",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12341.mp3",
+        "seconds": 126,
+        "script": "Busan Air Cruise  The thrill of crossing 1.62 km over the ocean  Teacher: \tThe Busan Air Cruise you will be boarding opened in June 2017 by restoring the old cable cars of Songdo that were discontinued in 1988.  Student:\tIt was restored after almost 30 years.  It’s really high and quite thrilling.  Teacher: \tIt goes up to 86 m high. It runs 1.62 km from Songnim Park on the east side of Songdo Beach to Amnam Park on the west side, so you can feel the thrill as you go across the ocean. You can take in the beautiful scenery of Songdo Beach, Busan Yeongdo and Namhang Bridge, Songdo Coast Walk, and the waves crashing against unique rocks and cliffs.  Student:\tThe floor of the cable car over there looks clear It looks a little scary.  Teacher:\tIt’s the crystal cabin with a transparent floor. It is a little more expensive than a regular cabin with a closed floor, but you can experience the fantastic feeling of standing on the mysterious boundary between the sea and the sky. All cabins of Busan Air Cruise are made of glass, so you can enjoy a panoramic view of the open blue sea.   Student:\tI think it will relieve stress and make me feel like I’m flying over the sea. I’m excited to see how magnificent the view from the cable car will be.  Teacher:\tYou can have a superb view of the sky and the sea that change every hour. It is also a good place to take in the unique night view of Songdo while watching the tranquil sunset and the night sea colored with glamorous lights. Let's check out what Songdo Beach looks like from the sky in the cable car…."
+       },
+       "jp": {
+        "name": "松島海上ケーブルカー",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12366.mp3",
+        "seconds": 150,
+        "script": "1.62km海の上を横切るスリル 先生：皆さんが乗る松島海上ケーブルカーは、1988年に運営が中断されていた松島の昔のケーブルカーを復元して、2017年6月にオープンした釜山エアクルーズです。  学生：ほぼ30年ぶりに復元されましたね。今見ると本当に高くてくらっとします。    先生：最高86mの高さですから。 松島海水浴場の東の松林公園から西の岩南公園まで1.62km海の上を横切って運行するので、海の真ん中でスリルを満喫することができます。 松島海水浴場、釜山影島と南港大橋、松島海岸散策路、波打つ奇岩絶壁まで素敵な景色も鑑賞できます。  学生：あそこに見えるケーブルカーは床が透明みたいですね。ちょっと怖そう。  先生：床が透明なクリスタルキャビンです。  床が塞がっている一般キャビンより料金は少し高いですが、海と空の境界に立っている幻想的な気分を感じることができます。 松島海上ケーブルカーのすべてのキャビンは四方がガラス張りになっていて、広々とした青い海のパノラマビューが楽しめます。  学生：気持ちがすっきりして海の上を飛んでいるような気分です。 ケーブルカーから見る風景はどれだけ素敵なのかとても楽しみです。   先生：毎時間変わる空の色と海の色の絶景を見ることができます。 夕暮れの静けさも良く、華やかな照明で染まった夜の海を眺めながら、松島の異色の夜景を楽しむのに最適な場所です。 空から見る松島海水浴場はどんな姿かケーブルカーで確認してみましょう～"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12316.mp3"
      }
     ],
     "shape": "roundTrip"
@@ -6565,8 +6676,17 @@
       "name": "용두암",
       "lat": 33.51608,
       "lng": 126.51173,
-      "audioSeconds": 15,
-      "description": "출발점. 용암이 용의 머리 형상으로 굳었다는 전설이 붙은, 해안도로의 대표 지점이다."
+      "audioSeconds": 120,
+      "description": "출발점. 용암이 용의 머리 형상으로 굳었다는 전설이 붙은, 해안도로의 대표 지점이다.",
+      "audio": {
+       "ko": {
+        "name": "용두암(초등 교과연계)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16367.mp3",
+        "seconds": 120,
+        "script": "날아오르는 용의 모습을 쏙 빼닮은 용두암은 우리나라에서 가장 큰 섬인 제주도에 있어. 제주 사람들도, 타지에서 방문한 관광객들도 꼭 한 번은 들릴 정도로 정말 유명한 관광지이지. 푸른 색깔의 바다와 특이한 모양의 돌이 어우러져서 신비로운 모습을 뽐내고 있어.    용두암에는 재밌는 전설이 전해지고 있다는 사실을 알고 있니? 전설에 의하면 제주 용담동 바다 깊은 곳에 용이 되고 싶은 이무기가 살고 있었대. 이무기는 전설에 자주 등장하는 동물로, 저주를 받아 용이 되지 못하고 물속에 살고 있는 큰 구렁이를 말해. 이무기는 번쩍번쩍 빛나는 비늘과 날카로운 발, 그리고 멋진 수염과 커다란 눈을 가진 용을 부러워하며 용이 되는 날만을 손꼽아 기다리고 있었어. 천 년이라는 긴 세월이 흐르고 드디어 이무기는 승천할 수 있게 되었지. 용의 모습을 하고 하늘로 기세등등 승천하던 그때였어. 이무기는 한라산 신이 쏜 화살에 맞아서 바다로 떨어지게 되었어. 긴 세월 용이 되고 싶어 참고 참았던 것이 물거품이 되어 너무 억울한 나머지 용으로 변하지 못한 이무기는 차마 죽지 못했고, 머리를 바다 위로 치켜들어 포효를 하다가 바위가 되고 말았대. 아직도 억울한지 바위를 자세히 살펴보면 입은 크게 벌리고 눈은 하늘을 쳐다보고 있어.    용두암에서 파도치는 모습을 보면, 마치 용이 ‘으르르’ 소리를 내며 울분을 토하는 것 같은 느낌이 들 거야. 해가 저물고 노을이 지면 용두암이 더 인상적으로 보이지. 그리고, 용두암 주변에서는 해녀가 작업하는 모습을 볼 수 있을 뿐만 아니라, 해녀들이 갓 잡아 올린 해산물을 먹을 수도 있어. 조금만 더 걸어가면 카페와 맛집이 늘어서 있는데 바다 경치를 감상하며 맛있는 음식을 즐기기에 제격이지. 멋진 경치를 감상하고, 맛있는 음식도 먹을 수 있는 눈과 입이 즐거운 여행을 떠나봐."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16367.mp3"
      },
      {
       "id": "jeju-yongdam-coast-2",
@@ -7601,8 +7721,23 @@
       "name": "붉은오름자연휴양림",
       "lat": 33.4020415,
       "lng": 126.6754261,
-      "audioSeconds": 15,
-      "description": "붉은오름 쪽 숲길 진입 구간. 편도로 관통하는 날은 이쪽이 날머리가 되니 복귀 동선을 미리 정해 두면 좋다."
+      "audioSeconds": 115,
+      "description": "붉은오름 쪽 숲길 진입 구간. 편도로 관통하는 날은 이쪽이 날머리가 되니 복귀 동선을 미리 정해 두면 좋다.",
+      "audio": {
+       "ko": {
+        "name": "붉은오름자연휴양림",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19373.mp3",
+        "seconds": 115,
+        "script": "붉은오름자연휴양림  제주 서귀포시에 자리하고 있는 붉은오름 자연휴양림은 자연을 훼손하지 않은 원시 그대로의 자연휴양림이라고 해요. 한라산 동쪽에 위치한 이곳은, 제주도 어디에서든 접근하기 쉽고 다양한 탐방코스와 숙박 시설을 갖추고 있어 청량한 숲속에서 휴식하기에 최적의 장소랍니다.  붉은오름 자연휴양림 뒤편으로는 붉은오름이 솟아 있는데요, 오름에 덮인 흙이 붉은색을 띠고 있어 붉은오름이라는 이름이 붙었답니다. 자연휴양림의 이름도, 이 붉은오름에서 왔다는 사실을 짐작할 수 있겠지요? 또 휴양림 입구 옆으로는 사려니숲길도 산책할 수 있답니다.  이곳에는 다양한 탐방코스가 조성되어 있어요. 붉은오름 정상으로 가는 1.7km가량의 붉은오름 등산로, 목장과 경계를 만들기 위해 쌓은 돌담인 상잣성을 감상할 수 있는 3.2km의 상잣성 숲길도 있답니다. 또한 6.7km의 해맞이 숲길을 따라 걸으면 말찻오름 정상에서 아름다운 제주의 일출을 감상할 수도 있어요. 남녀노소, 장애인 비장애인이 함께 즐길 수 있는 1km의 무장애 숲길도 조성되어 있는데요, 산책로 전체를 방부목으로 설치하고 점자 안내판 등을 설치한 길이랍니다.  휴양림에는 제주 전통가옥 형태로 건축된 숙박시설이 있어 온 가족이 함께 휴양림에서 자연과 함께하는 휴식을 즐길 수 있어요. 또한 숲속 야영장에서는 캠핑도 가능하다고 하니, 붉은오름 자연휴양림에서 편안한 숙박과 함께 제주의 청정한 숲을 온전히 느껴보는 건 어떨까요?"
+       },
+       "en": {
+        "name": "Red Oreum Natural Recreation Forest",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19449.mp3",
+        "seconds": 137,
+        "script": "The Red Oreum Natural Recreation Forest, located in Seogwipo, Jeju Island, is a pristine nature park that has preserved its original, untouched landscape. Situated on the eastern side of Hallasan, this tranquil retreat is easily accessible from anywhere on the island and offers a variety of trails and accommodations, making it an ideal spot to relax in the refreshing forest.   The name Red Oreum comes from the hill behind the forest, which is covered with reddish soil, giving the area its distinctive appearance. The name of the recreation forest is derived from this striking red hill. At the entrance of the forest, visitors can also enjoy a walk along the Saryeoni Forest Trail, which offers different hiking options.   There is the 1.7-kilometer-long Red Oreum Trail, which takes you to the peak of the hill, offering scenic views. For those interested in history, the 3.2-kilometer-long Sangjatseong Trail features stone walls that were built to demarcate pastures. Additionally, the Haemaji Forest Trail is 6.7 kilometers in length and leads to the Malchach Oreum, where you can witness the beautiful sunrise over Jeju Island. For visitors of all ages and abilities, there is also a 1-kilometer-long barrier-free trail that is equipped with durable wooden pathways and Braille signs, ensuring an inclusive experience for everyone.   The recreation forest offers accommodation in traditional Jeju Island-style houses, allowing families to fully immerse themselves in the natural surroundings. For camping enthusiasts, there is also a forest campsite where you can enjoy a night under the stars. Why not enjoy a peaceful stay at the Red Oreum Natural Recreation Forest, embracing Jeju Island's pristine nature while experiencing the refreshing atmosphere of the island's forests?"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19373.mp3"
      }
     ],
     "sources": [

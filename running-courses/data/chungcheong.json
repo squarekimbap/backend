@@ -1282,16 +1282,52 @@
       "name": "엑스포다리",
       "lat": 36.3727586,
       "lng": 127.3880279,
-      "audioSeconds": 15,
-      "description": "약 7.7km 지점의 다리. 밤이면 조명이 들어와 야간 러닝의 기준점 역할을 한다."
+      "audioSeconds": 168,
+      "description": "약 7.7km 지점의 다리. 밤이면 조명이 들어와 야간 러닝의 기준점 역할을 한다.",
+      "audio": {
+       "ko": {
+        "name": "대전 엑스포다리",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20618.mp3",
+        "seconds": 168,
+        "script": "밤이 더 아름다운 야간 관광 명소를 찾아 떠나는 대한민국 밤밤곡곡. 오늘 함께할 여행지는, 대전 엑스포의 영광을 품고 사랑의 다리로 다시 태어난, 대전 엑스포다리입니다.  갑천을 가로지르며 엑스포과학공원과 한밭수목원을 잇는 엑스포다리는 1993년 대전세계박람회를 기념하여 건설된 대전의 상징적인 다리입니다. 30여 년이 지난 지금도 여전히 대전을 대표하는 랜드마크로 사랑받고 있죠.  다리 중앙에 설치된 거대한 두 아치는 우리나라 전통의 태극 무늬를 연상시키며, 조화와 균형을 상징합니다. 우리나라 전통 태극 무늬를 연상시키는 두 아치가 서로 교차하며 조화로운 아름다움을 자아내고, 마치 하늘에서 내려온 무지개처럼 갑천 위에 우아하게 걸쳐져 있습니다.  대전 엑스포다리는 ‘견우직녀다리’라는 낭만적인 별칭을 가지고 있습니다. 시민들의 공모를 통해 붙여진 이 이름에는 갑천 은하수에 놓인 견우직녀 다리에서 사랑을 고백하면 사랑이 이뤄진다라는 낭만적인 의미가 담겨있습니다.  낮에는 갑천의 푸른 물결과 어우러져 웅장한 모습을 자랑하고, 밤이 되면 화려한 조명으로 물든 환상적인 야경을 선사하는 대전 엑스포다리. 일몰 시각에 맞춰 점등되는 경관 조명은 밤 11시까지 오색찬란한 빛으로 다리를 수놓으며, 갑천의 잔잔한 물결 위에 반사되어 마치 또 다른 다리가 물속에 떠 있는 듯한 환상적인 풍경을 연출합니다.  다리에서 내려다보는 대전의 밤 풍경은 도시와 자연의 아름다운 대비를 보여줍니다. 둔산 신도시의 빛나는 고층빌딩들과 웅장한 한빛탑의 미디어파사드가 어우러져 화려한 매력을 뽐내는 한편, 한밭수목원의 짙은 녹음과 잔잔히 흐르는 갑천의 물결이 평온함을 더해주죠.  갑천을 따라 부는 잔잔한 바람, 물 위에 흔들리는 별빛, 그리고 견우와 직녀의 전설이 깃든 이 다리. 대전 엑스포다리에서, 여러분만의 특별한 사랑 이야기를 써보는 건 어떨까요?"
+       },
+       "en": {
+        "name": "Expo Bridge, Daejeon",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20623.mp3",
+        "seconds": 141,
+        "script": "Nightscapes of Korea takes you to places where the night shines even brighter. Today, we journey to Expo Bridge in Daejeon, a landmark that carries the legacy of the Daejeon Expo and has been reborn as a bridge of love.  Spanning the Gapcheon River and connecting Expo Science Park with Hanbat Arboretum, Expo Bridge was built to celebrate the 1993 Daejeon Expo. Now, more than 30 years later, it still stands as one of the city’s most beloved landmarks.  The two giant arches at the center of the bridge are a modern take on the traditional Korean taegeuk symbol, representing harmony and balance. These arches cross over each other gracefully, creating a beautiful sight. They look like a rainbow that has come down from the sky and settled elegantly over the Gapcheon River.  Expo Bridge also has a romantic nickname, the Gyeonu and Jingnyeo Bridge. This name was chosen by the public, and it comes with a touching belief. The story goes that if you confess your love on this bridge, your love will come true. It's said that the bridge is like the Milky Way over the Gapcheon River.  By day, Expo Bridge looks grand, blending beautifully with the blue waters of the Gapcheon River. But by night, it shows off a spectacular view as it lights up with dazzling colors. Starting at sunset and lasting until 11 p.m., the lights cover the bridge in brilliant colors. They reflect off the calm water of the Gapcheon River, creating a magical scene that looks like another bridge is floating beneath the water.  The night view from the bridge shows a stunning contrast between the city and nature. You'll see the glowing high-rises of Dunsan New Town and the beautiful media façade on the majestic Hanbit Tower. These sights add a touch of brilliance to the city. In contrast, the dark green of Hanbat Arboretum and the gentle flow of the Gapcheon River create a sense of calm and peace.  A gentle breeze along the Gapcheon River, starlight shimmering on the water, and the legend of Gyeonu and Jingnyeo that lives on in this bridge. At Daejeon Expo Bridge, why not write your own special love story?"
+       },
+       "jp": {
+        "name": "大田（テジョン）エキスポブリッジ",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20628.mp3",
+        "seconds": 172,
+        "script": "夜がより美しいナイトツアースポットを紹介する韓国の夜のあちこち。 今日のスポットは、大田（テジョン）万博の栄光を胸に、愛の橋として生まれ変わった大田の「エキスポブリッジ」です。  甲川（カプチョン）を横切り、エキスポ科学公園とハンバッ樹木園を結ぶエキスポブリッジは、1993年の大田万国博覧会を記念して建設された大田を象徴するブリッジです。30年以上経った今もなお、大田を代表するランドマークとして愛され続けています。  橋の真ん中に建っている大きな二つのアーチは、韓国の伝統的な太極模様を連想させ、調和と均衡を象徴します。その美しい曲線のアーチが交差し、まるで天から降りてきた虹のように甲川の上に優雅にかかっています。  このブリッジは「牽牛織女橋」というロマンチックな別称も持っています。そのネーミングは市民の皆様から名前公募して名付けられましたが、「甲川の天の川に架かる牽牛織女橋で愛を告白すると、恋が叶う」というとてもロマンチックな話しが伝えられています。  昼は甲川の青い水流が雄大な姿を誇り、夜になると華やかな照明に彩られた幻想的な夜景をお届けします。また、日が暮れると灯り始める照明は夜11時まで五色に輝く光で橋を彩り、甲川の穏やかな水面に反射して、まるで別の橋が水面に浮かんでいるかのような幻想的な風景を創り出します。  橋から眺める大田の夜景は、都会と自然の美しいコントラストが絶景です。屯山（ドゥンサン）新都市の高層ビル群から輝く明かりや雄大なハンビットタワーのメディアファサードが華やかな魅力を放ちます。またハンバツ樹木園の濃い緑と静かに流れる甲川の水流が穏やかな雰囲気をさらに増します。  甲川に沿って吹くそよ風、水面に揺れる星明り、そして牽牛と織女の伝説が宿るこの大田エキスポブリッジで、皆様だけの特別な恋の物語を書いてみてはいかがでしょうか。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20618.mp3"
      },
      {
       "id": "daejeon-gapcheon-3",
       "name": "한빛탑",
       "lat": 36.3766279,
       "lng": 127.3880342,
-      "audioSeconds": 15,
-      "description": "1993년 대전엑스포의 상징탑. 다리에서 500m 남짓 거리로, 코스에서 가장 알아보기 쉬운 표지다."
+      "audioSeconds": 118,
+      "description": "1993년 대전엑스포의 상징탑. 다리에서 500m 남짓 거리로, 코스에서 가장 알아보기 쉬운 표지다.",
+      "audio": {
+       "ko": {
+        "name": "대전 엑스포 과학공원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16749.mp3",
+        "seconds": 118,
+        "script": "대전 엑스포 과학공원은 1993년에 개최된 대전세계박람회를 기념하기 위해 조성된 과학공원입니다. 과학도시 대전의 상징인 대전 엑스포 과학공원은 오랜 시간 동안 대전 시민과 관광객들의 많은 사랑을 받았는데요. 지금은 대전시의 엑스포 재창조 사업이 추진되어 새로운 모습으로 우리를 기다리고 있다고 합니다.   대전 엑스포 과학공원 하면 빼놓을 수 없는 상징이 있지요. 바로 한빛탑입니다. 지혜로운 과거를 바탕으로 현재와 미래를 잇는 한줄기의 빛이라는 의미의 한빛탑은 1993년부터 지금까지, 오랜 시간 동안 대전의 든든한 상징이 되어 주었지요. 원뿔 모양의 탑을 고리가 둘러싸고 있는 것 같은 독특한 모양이 인상 깊습니다. 우주정거장을 연상하게 하는 모습은 실제로 빛과 과학 그리고 우주를 모티브로 만든 형태로 미래의 도약의지를 의미한다고 해요. 1993년 엑스포를 기념하기 위해 만든 만큼 한빛탑의 높이 또한 93m라고 하니 더 의미가 있는 것 같습니다. 한빛탑의 전망대에서는 엑스포 과학공원과 대전시의 주요 지역을 한눈에 조망할 수 있어요.   엑스포의 기원부터 근대 엑스포까지의 이야기를 만날 수 있는 엑스포기념관도 있습니다. 1993년 열린 대전 엑스포의 주제는 '새로운 도약에의 길'이었는데요. 이러한 대전엑스포의 성과와 정신을 기념품과 사진, 영상을 통해 관람할 수 있다고 해요. 엑스포 재창조 사업으로 새롭게 만들어진 음악분수와 물빛광장은 또 하나의 즐거움입니다. 다양한 음악과 신나는 음악분수 쇼를 감상할 수 있는 휴식공간이자 쉼터이지요.   대전 엑스포 과학공원은 주변의 엑스포 시민광장, 엑스포 다리와 함께 엑스포를 기념하는 대전의 대표적인 공간이에요. 대전의 자랑스러운 과거와 현재, 그리고 더 높게 도약할 미래가 있는 대전 엑스포 과학공원에서 과학의 도시 대전을 즐겨 보시기 바랍니다."
+       },
+       "en": {
+        "name": "Daejeon Expo Science Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19477.mp3",
+        "seconds": 153,
+        "script": "The Daejeon Expo Science Park was established to commemorate the 1993 Daejeon Expo and stands as a symbol of Daejeon, the city of science. For many years, the park has been beloved by both Daejeon residents and visitors. Recently, it underwent a renovation as part of Daejeon City’s Expo Re-Creation Project.  Hanbit Tower is the Daejeon Expo Science Park’s major landmark. The name ‘Hanbit’ signifies ‘a single ray of light connecting the past, present, and future through wisdom.’ Since its establishment in 1993, Hanbit Tower has remained a steadfast symbol of Daejeon. Its unique design—featuring a conical shape encircled by a ring—leaves a lasting impression. Reminiscent of a space station, the tower was inspired by the themes of light, science, and space, symbolizing a leap into the future. Its height of 93 meters pays tribute to the 1993 Expo, making it even more meaningful. From the observation deck of Hanbit Tower, visitors can enjoy panoramic views of the Park and key areas of Daejeon.  The park also houses the Expo Memorial Hall, where visitors can explore the history of expos, from their origins to the modern era. The theme of the 1993 Daejeon Expo was ‘The Way to a New Leap,’ and the Hall showcases the Expo’s achievements and spirit through memorabilia, photographs, and videos. The recently added Musical Fountain and Water Light Plaza, created as part of the Expo Re-Creation Project, add another layer of enjoyment. These areas provide a relaxing space where visitors can enjoy vibrant fountain shows set to a variety of music.  The Daejeon Expo Science Park, along with the nearby Expo Citizens’ Plaza and Expo Bridge, forms a representative space commemorating the 1993 Expo. It is a place where Daejeon’s proud past, dynamic present, and ambitious future converge. Visit the Daejeon Expo Science Park to experience the spirit of this scientific city and its vision for the future."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/16749.mp3"
      },
      {
       "id": "daejeon-gapcheon-4",
@@ -3371,6 +3407,29 @@
       "description": "출발점. 평탄한 호수 순환로에서 몸을 데운 뒤 금강 둔치로 내려서는 구성이 무난하다."
      },
      {
+      "id": "sejong-eung-bridge-story-7300",
+      "name": "희귀·특산식물전시온실",
+      "lat": 36.49422,
+      "lng": 127.2818,
+      "audioSeconds": 178,
+      "description": "희귀·특산식물전시온실은 수변 식물이 흐드러진 '청류지원'을 배경으로, 물잔에 띄운 나뭇잎을 형상화한 전시원입니다. 남부 지방에 분포하는 식물을 전시한 온실과 희귀 난이 전시된 온실로 2개의 온실로 구성되어 있습니다.   희귀·특산식물전시온실에서는 이름 그대로 우리나라에만 자생하는 특산식",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21471.mp3",
+      "audio": {
+       "ko": {
+        "name": "희귀·특산식물전시온실",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21471.mp3",
+        "seconds": 178,
+        "script": "희귀·특산식물전시온실은 수변 식물이 흐드러진 '청류지원'을 배경으로, 물잔에 띄운 나뭇잎을 형상화한 전시원입니다. 남부 지방에 분포하는 식물을 전시한 온실과 희귀 난이 전시된 온실로 2개의 온실로 구성되어 있습니다.   희귀·특산식물전시온실에서는 이름 그대로 우리나라에만 자생하는 특산식물과 서식지에서 사라져 가는 희귀식물이 전시되어 있습니다. 이 곳은 수목원의 역할인 ‘식물종의 보존’을 가장 잘 수행하고 있는 주제 전시원이기도 합니다. 희귀·특산식물전시온실에는 굴거리나무, 도깨비쇠고비 등을 볼 수 있으며, 난초과식물전시온실에서는 땅에 뿌리를 내리는 자생란과 나무에 뿌리를 내리는 착생란, 보춘화, 풍란 등 다양한 난초과 식물들이 식재되어 있습니다.   온실 앞에 위치한 희귀특산식물원은 식물의 생육 특성에 따른 5개의 구역으로 구분해서 전시하고 있습니다. 우리나라에는 350여 종의 특산식물과 570여 종의 희귀식물이 존재합니다. 국립세종수목원에서는 온대 중부권역과 남부지방에 분포하는 특산식물과 희귀식물 전시를 위주로 하여 서식지 보전의 중요성을 알리고 있습니다."
+       },
+       "en": {
+        "name": "The Rare and Endemic Plants Exhibition Greenhouse",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/21912.mp3",
+        "seconds": 97,
+        "script": "The Rare and Endemic Plants Exhibition Greenhouse, set against the backdrop of Cheongnyujiwon where waterside plants grow in lush profusion, is designed in the shape of a leaf floating on a bowl of water. It is made up of two greenhouses: one displaying plants native to the southern regions, and one displaying rare orchids.  As its name suggests, the Rare and Endemic Plants Exhibition Greenhouse displays endemic plants that grow only in Korea, along with rare plants that are disappearing from their natural habitats. It is also the themed exhibition space that best fulfills one of an arboretum's core roles, the conservation of plant species. Here you can see plants such as the gulgeori tree and the Japanese holly fern, while the orchid greenhouse is planted with a wide range of orchids, including terrestrial orchids that root in the ground, epiphytic orchids that root on trees, the noble orchid, and the wind orchid.  The Rare and Endemic Plants Garden located in front of the greenhouse presents its collection across five zones, organized according to the growth characteristics of the plants. Korea is home to some 350 endemic plant species and around 570 rare plant species. The Sejong National Arboretum focuses on displaying endemic and rare plants found in the central temperate region and the southern regions, raising awareness of the importance of habitat conservation."
+       }
+      }
+     },
+     {
       "id": "sejong-eung-bridge-2",
       "name": "세종중앙공원",
       "lat": 36.4917742,
@@ -3383,8 +3442,17 @@
       "name": "국립세종수목원",
       "lat": 36.4980635,
       "lng": 127.2857893,
-      "audioSeconds": 15,
-      "description": "거리 확장 지점. 중앙공원에서 1.5km 남짓이라 6km가 짧게 느껴질 때 반환점으로 삼는다."
+      "audioSeconds": 167,
+      "description": "거리 확장 지점. 중앙공원에서 1.5km 남짓이라 6km가 짧게 느껴질 때 반환점으로 삼는다.",
+      "audio": {
+       "ko": {
+        "name": "국립세종수목원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15372.mp3",
+        "seconds": 167,
+        "script": "\"우리나라 전체에는 자그마치 110여 개가 넘는 수목원이 등록되어 있습니다. 하지만 나라가 직접 관리하는 수목원은 손에 꼽는데요. 세종특별자치시의 국립세종수목원이 그중 하나입니다. 국립수목원인 만큼 국립세종수목원은 특별한 점이 많습니다.   먼저, 다른 수목원이 산자락이나 깊은 산속에 위치한 것에 반해 국립세종수목원은 도시에 위치하고 있습니다. 행정중심복합도시를 건설하며 예전에 논이었던 평지를 정리해 만든 곳이지요. 국내 최초의 도심형 수목원으로 2020년에 설립된 새내기 수목원이랍니다. 도심형 수목원답게 시민들과 함께하는 교육 행사와 공연 등 다양한 프로그램도 진행되고 있습니다.    또, 국립세종수목원에는 국내 최대의 온실이 위치하고 있는데요. 우리나라에서 흔히 보기 힘든 다양한 식물을 만날 수 있는 곳으로 붓꽃의 꽃잎 모양을 형상화하고 있습니다. 스페인 알람브라궁전을 본뜬 지중해 온실에서는 소설 어린 왕자에 등장하는 바오밥나무와 항아리를 닮은 물병나무, 파인애플처럼 생긴 대추야자 등 지중해 지역에 서식하는 식물들이 빼곡히 자리 잡고 있습니다. 멋진 자태를 뽐내는 식물들의 모습에 자연스레 카메라를 꺼내들게 되지요. 한편 열대온실은 열대우림의 정글을 고스란히 옮겨놓은 모습인데요. 이곳에서는 벌집을 빼닮은 벌집생강, 연꽃처럼 꽃잎을 활짝 펼친 황금연꽃바나나 등 독특한 모양의 식물이 눈길을 사로잡습니다. 고약한 외계 생명체같이 생긴 벌레잡이 식물인 파리지옥은 아이들이 특히 좋아합니다.   온실에 들렀다면 전망대에 들러보시는 것을 추천드립니다. 32m나 되는 전망대에 올라서면 수목원의 아름다운 전경은 물론이고, 세종시의 스카이라인까지 한눈에 감상하실 수 있습니다. 하늘과 맞닿은 것처럼 보이는 건물의 모습이 참 매력적이지요. 계단 이용이 어려우시다면 계단 옆에 마련된 엘리베이터를 이용해 전망대까지 올라 보세요.온실 구경을 마친 후에는 넓은 야외 공간을 둘러보시길 바랍니다. 한국전통정원, 청류지원, 희귀특산식물원, 유아숲체험원 등 총 25개의 공간으로 나뉘어져 있지요. 하루에 작정하고 돌기에 만만치 않을 정도로 넓은 크기입니다. 모든 공간이 각각의 매력을 가지고 있어 발길이 이끄는 어느 곳을 가도 좋습니다.    식물에 대해 학습하기에도, 가볍게 산책하기에도, 예쁜 추억 사진을 남기기에도 최고의 장소인 국립세종수목원에서 다양한 식물들과 힐링을 해 보시는 것은 어떨까요?  \""
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15372.mp3"
      }
     ],
     "shape": "roundTrip"
@@ -4499,6 +4567,35 @@
       "lng": 127.4734123,
       "audioSeconds": 15,
       "description": "사직대로변 도심 구간의 표지. 1.8km 남짓 거리라 초반 페이스를 가늠하는 지점으로 쓴다."
+     },
+     {
+      "id": "cheongju-musimcheon-story-5159",
+      "name": "청주시립미술관",
+      "lat": 36.6347691,
+      "lng": 127.4783967,
+      "audioSeconds": 31,
+      "description": "‘문화도시 청주’를 이끌어 가고 있는 문화공간으로, 역동성이 넘치는 미술관이라는 평을 받고 있습니다. 최근 '스마트미술관'을 개관해 디지털 실감영상, VR체험, 디지털 아카이브 등을 경험할 수 있도록 했습니다. 문화예술에 대한 청주시민의 열망에 따라 청주시가 옛 KBS청주방송국 건물을 ",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15745.mp3",
+      "audio": {
+       "ko": {
+        "name": "청주시립미술관",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15745.mp3",
+        "seconds": 31,
+        "script": "‘문화도시 청주’를 이끌어 가고 있는 문화공간으로, 역동성이 넘치는 미술관이라는 평을 받고 있습니다. 최근 '스마트미술관'을 개관해 디지털 실감영상, VR체험, 디지털 아카이브 등을 경험할 수 있도록 했습니다. 문화예술에 대한 청주시민의 열망에 따라 청주시가 옛 KBS청주방송국 건물을 리모델링해 2016년 문을 열었습니다."
+       },
+       "en": {
+        "name": "Cheongju Museum of Art",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15835.mp3",
+        "seconds": 40,
+        "script": "Cheongju Museum of Art is a dynamic and inviting cultural space that promotes Cheongju as a Cultural City. The museum recently opened a Smart Museum program, providing users with lifelike digital images, virtual reality experiences, and access to digital archives. The museum was opened in 2016 at the former KBS Cheongju Broadcasting Station building to meet the community’s demand for culture and the arts."
+       },
+       "jp": {
+        "name": "チョンジュ市立美術館",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15925.mp3",
+        "seconds": 34,
+        "script": "‘文化都市チョンジュ’をリードする文化空間として、ダイナミズムあふれる美術館と評価されています。 最近は‘スマート美術館’がオープンし、デジタル実感映像、VR体験、デジタルアーカイブなどの体験ができるようになりました。 文化芸術に対するチョンジュ市民の熱望により、チョンジュ市が旧KBSチョンジュ放送局の建物をリノベーションし、2016年に開館しました。"
+       }
+      }
      }
     ],
     "shape": "roundTrip"

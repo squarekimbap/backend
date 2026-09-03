@@ -147,10 +147,29 @@ def validate(courses: list[dict]) -> list[str]:
             if finish_guide_m > 1:
                 errors.append(f"{course_id}: oneWay 종점과 마지막 guide가 {finish_guide_m:.1f}m 불일치")
 
-        checkpoints = course.get("checkpoints")
-        checkpoint_names = [str(item.get("name") or "") for item in checkpoints or []]
-        if checkpoint_names != poi_names:
-            errors.append(f"{course_id}: checkpoints와 POI 이름·순서 불일치")
+        # 체크포인트는 경유지를 모두 순서대로 담되, 그 사이에 오디 도슨트가 끼어들 수 있다.
+        # (refresh_stories.py가 경로 진행 순서로 끼워 넣는다 — 경유지 부분수열은 그대로 유지)
+        checkpoints = course.get("checkpoints") or []
+        checkpoint_names = [str(item.get("name") or "") for item in checkpoints]
+        remaining = list(poi_names)
+        for name in checkpoint_names:
+            if remaining and name == remaining[0]:
+                remaining.pop(0)
+        if remaining:
+            errors.append(f"{course_id}: checkpoints에 POI가 순서대로 들어 있지 않다 "
+                          f"(빠짐: {', '.join(remaining)})")
+
+        for item in checkpoints:
+            url = str(item.get("audioUrl") or "")
+            # 앱이 http를 https로 강제 치환하므로(ATS) http 주소는 재생이 실패한다
+            if url and not url.startswith("https://"):
+                errors.append(f"{course_id}/{item.get('name')}: 오디오가 https가 아니다")
+            audio = item.get("audio") or {}
+            # 오디 규격은 jp다. ja로 넣으면 앱이 일본어를 못 찾는다
+            if "ja" in audio:
+                errors.append(f"{course_id}/{item.get('name')}: 언어 키는 jp여야 한다(ja 발견)")
+            if url and not item.get("audioSeconds"):
+                errors.append(f"{course_id}/{item.get('name')}: 오디오가 있는데 길이가 없다")
 
     return errors
 

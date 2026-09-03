@@ -1588,8 +1588,69 @@
       "name": "수성교",
       "lat": 35.8614093,
       "lng": 128.6088817,
-      "audioSeconds": 15,
-      "description": "중간 반환 후보. 여기서 북으로 방향을 돌리면 침산교까지 긴 직선 구간이 시작된다."
+      "audioSeconds": 70,
+      "description": "중간 반환 후보. 여기서 북으로 방향을 돌리면 침산교까지 긴 직선 구간이 시작된다.",
+      "audio": {
+       "en": {
+        "name": "Kim Kwang-seok Bus Tour   2_Passing Sincheon, Daegu",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12908.mp3",
+        "seconds": 70,
+        "script": "2_Passing Sincheon, Daegu  Road that passes Sincheon, Daegu Where The Wind Comes From   You've all sat down comfortably, right? Okay, let’s begin the tour. There is a stream that the bus is going to pass at least once. Its name is “Sincheon,” a stream that flows next to Daebong-dong where Kim Kwang-seok used to live. This stream goes around Daegu and eventually flows to Geumhogang and Nakdonggang Rivers, also serving as a shelter for Daegu citizens. Shade of a willow like your hair, beautiful flowers blossom every season. In a small rest area on the waterfront, you will be able to feel nature within the city. The view of Sincheon Stream and Daegu that we see as we pass over Suseonggyo Bridge next to Daebong-dong takes us to Kim Kwang-seok's younger days and brings us many different feelings. Everyone, don't forget to request a song by being immersed into the scenery. How about sending a little note to the DJ to request one of Kim Kwang-seok’s songs?   <This guide was recorded by Kim So-yeon of Korea Tourism Organization through talent donation.>"
+       },
+       "jp": {
+        "name": "金光石(キム・グァンソク)バスツアー   2_大邱・新川(シンチョン)を通って",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12965.mp3",
+        "seconds": 87,
+        "script": "大邱・新川(シンチョン)を通る道 風が吹いてくる場所   バスの席に着かれましたか？それでは出発します。 バスに乗ると、必ず通り過ぎる川。金光石が住んでいた大鳳洞(テボンドン)のすぐ隣を流れる川、新川(シンチョン)です。大邱を一周し、琴湖江(クムホガン)や洛東江(ナクトンガン)にまで続くこの川は、大邱市民にとって憩いの場になっています。「君の髪のようにサラサラした」柳の木の影、四季折々咲く美しい花。土手にある小さな憩いの場では、都心にいながら自然を感じ取ることが可能です。 大鳳洞(テボンドン)の隣にある寿城橋(スソンギョ)を通る時に見える新川と大邱の風景は、金光石が幼年時代に見て育った同じ風景だと思うと、感慨深くなります。 皆さん、景色に気を取られて、どんな曲が聴きたいか申し込むのを忘れていませんか？メモ用紙に金光石の曲を書いて、DJに渡してみましょう。   〈このガイドは韓国観光公社キム・ソヨンさんの声のプロボノにより録音されました。〉"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12908.mp3"
+     },
+     {
+      "id": "daegu-sincheon-story-2269",
+      "name": "Kim Kwang-seok Bus Tour: 1_Awaiting Kim Kwang-seok",
+      "lat": 35.858919,
+      "lng": 128.606129,
+      "audioSeconds": 79,
+      "description": "1_Awaiting Kim Kwang-seok  Waiting for Kim Kwang-seok Bus Journey with Kim Kwang-seok   Many visitors come to Daegu in search of Kim Kwang-seok. “Hello, everyon",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12907.mp3",
+      "audio": {
+       "en": {
+        "name": "Kim Kwang-seok Bus Tour: 1_Awaiting Kim Kwang-seok",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12907.mp3",
+        "seconds": 79,
+        "script": "1_Awaiting Kim Kwang-seok  Waiting for Kim Kwang-seok Bus Journey with Kim Kwang-seok   Many visitors come to Daegu in search of Kim Kwang-seok. “Hello, everyone. This is Kim Kwang-seok.” They will be greeted by a friendly welcome and a bright smile on the Kim Kwang-seok Bus. You must be filled with expectations for a unique trip where you get to enjoy the songs of Kim Kwang-seok in Daegu, his hometown where he spent his childhood. However, out of his entire lifetime, the period during which he lived in Daegu actually wasn’t that long. Still, his younger days where he played around and appreciated the charm of Daebong-dong and Bangcheon Market and the beautiful nature of Sincheon Stream are expressed in the form of melodies and lyrics and continue to live within us today. His hometown, Daegu, made a street for him and holds the “Re-Singing Kim Kwang-seok Contest” to commemorate him. Of course, Kim Kwang-seok Bus is our small attempt to get a step closer to him. It looks like the bus has arrived. Now, comfortably take a seat and let’s set out on a tour of Daegu together with Kim Kwang-seok.   <This guide was recorded by Kim So-yeon of Korea Tourism Organization through talent donation.>"
+       },
+       "jp": {
+        "name": "歌手、金光石(キム・グァンソク)",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19195.mp3",
+        "seconds": 108,
+        "script": "20世紀の韓国を代表する歌手、金光石(キム・グァンソク)  『二等兵の手紙』、『三十の頃に』、『風の吹いてくる場所』など、20世紀の韓国音楽界を代表する数々のヒット曲を生み出した歌手、金光石。大邱(テグ)には、この地で幼少期を過ごした金光石の面影が残る場所が多く残されています。  金光石は5歳になる年まで、大邱中(チュン)区の町、大鳳洞(テボンドン)で育ちました。町のすぐ隣には、大邱を一周するように流れる川・新川(シンチョン)が位置しています。都心にいながらのどかな自然を楽しめるこの川は、現在でも大邱市民の憩いの場です。土手に美しく開く四季折々の花を横目に、木々の間をサラサラと通り抜ける風を感じれば、金光石の代表曲『風の吹いてくる場所』の主人公になったかのような感覚に陥ります。彼もきっと、幼い頃ここ新川の景色を見ていたことに違いありません。  ここ大邱の地を離れ、いつしか立派な青年になった金光石は、大学生時代に音楽活動を本格化しました。その後、人生の儚さや美しさを歌ったフォークソングを発表し、一躍大スターになります。しかし、人気絶頂の真っただ中にあって、31歳の若さでこの世を去りました。  短すぎる人生を歩んだ金光石ですが、その人生は、常に音楽と共にありました。彼が経験してきた出来事、人生観は、残された歌の旋律と歌詞、そしてその声を通して、現在まで生き続けています。"
+       }
+      }
+     },
+     {
+      "id": "daegu-sincheon-story-2207",
+      "name": "Gukchaebosang Memorial Park",
+      "lat": 35.868844,
+      "lng": 128.602276,
+      "audioSeconds": 80,
+      "description": "Gukchaebosang Memorial Park Pay off the country’s debts  This is a park to commemorate the National Debt Repayment Movement. The National Debt Repayment was a m",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12891.mp3",
+      "audio": {
+       "en": {
+        "name": "Gukchaebosang Memorial Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12891.mp3",
+        "seconds": 80,
+        "script": "Gukchaebosang Memorial Park Pay off the country’s debts  This is a park to commemorate the National Debt Repayment Movement. The National Debt Repayment was a movement insisted and led by Seo Sang-don. It aimed at repaying the debt that Japan had forced onto Joseon by quitting smoking and collecting gold rings, for instance. Everyone, including commoners and the Emperor Gojong, participated in this movement. Although the National Debt Repayment Movement was not successful due to the opposition from Japan, it still has great significance in that the entire population united under the idea of saving the country.  In addition, the park was established in Daegu, which is the city where the National Debt Repayment Movement first began, with the will to overcome the IMF (International Monetary Fund) crisis by remembering those times without falling in despair.  There is the Foreign Debt Redemption Movement Memorial Hall inside the park where you can see and hear stories from those days. There is also a large bell called “Dalgubeol Big Bell” where the bell-tolling ceremony is held every New Year’s Day.   <This guide was recorded by Park Jin of Korea Tourism Organization through talent donation.>"
+       },
+       "jp": {
+        "name": "国債報償運動記念公園",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/13058.mp3",
+        "seconds": 87,
+        "script": "国債報償運動記念公園 国の借金を返す   ここは国債報償運動を記念するための公園です。国債報償運動とは、徐相敦(ソ・サンドン)が最初に主張・展開した運動で、最下層の賤民から高宗(コジョン)皇帝に至るまで、禁煙し金の指輪を集めて募金し、日本に無理やり負わされた借金を返済するために繰り広げられた運動のことです。国債報償運動は日本の妨害により失敗に終わりましたが、救国という名の下、全国民が団結したという点で大きな意味があります。  また、国債報償運動が始まった大邱だからこそ、アジア通貨危機のときにも絶望せず、過去を思い出して、もう一度危機を乗り越えようという意味を込めて作られたそうです。  公園には国債報償運動記念館があり、当時の話を体験することができます。また、「達句伐(タルクボル)大鐘」と呼ばれる大きな鐘があり、元旦にはここで鐘撞きイベントが開かれます。   〈このガイドは韓国観光公社パク・チンさんの声のプロボノにより録音されました。〉"
+       }
+      }
      },
      {
       "id": "daegu-sincheon-4",
@@ -3692,12 +3753,50 @@
       "description": "코스의 기준점이 되는 전망 타워. 공원 어디서든 보여 초행자도 방향을 잡기 쉽다."
      },
      {
+      "id": "daegu-duryu-park-story-2263",
+      "name": "February 28 Democratic Movement Memorial Monument in Duryu Park",
+      "lat": 35.851757,
+      "lng": 128.559789,
+      "audioSeconds": 104,
+      "description": "Towards democratization   On February 28, 1960, students eager for democratization gathered and started a protest in Daegu. In the chaos created after the Korea",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12901.mp3",
+      "audio": {
+       "en": {
+        "name": "February 28 Democratic Movement Memorial Monument in Duryu Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12901.mp3",
+        "seconds": 104,
+        "script": "Towards democratization   On February 28, 1960, students eager for democratization gathered and started a protest in Daegu. In the chaos created after the Korean War, President Rhee Syng-man became a dictator through rigged election. Students in Daegu who wished for the Republic of Korea to be reborn as an upright democratic nation put their lives on the line and ran out to Daegu Jungangno. Holding their first independent demonstration in which they shouted for freedom and justice, they revolted against the school becoming a political tool.  The students convened at the Gyeongsangbuk-do Provincial Office Plaza, which was in Daegu at the time, cried out, “We are just! Justice is alive!” and the police forces were deployed to suppress the resisting students. This demonstration had a significant influence on the whole country, eventually leading to the March 15 Masan Democracy Movement in the same year and helping to ignite the April 19 Revolution.  The memorial monument, which is now in Duryu Park, was originally erected on Myeongdeok Rotary in 1961. It was then relocated here in November 1989 to celebrate its 30th anniversary and was completed on February 28, 1990. Though the students who cried out for democratization have now become old men and women, young students today remember and carry on its significance.   <This guide was recorded by Baek Ji-yoon of Korea Tourism Organization through talent donation.>"
+       },
+       "jp": {
+        "name": "頭流(トゥリュ)公園 2・28民主義挙記念塔",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12959.mp3",
+        "seconds": 124,
+        "script": "民主化に向けて   1960年2月28日。大邱では民主化を求める学生が集まり、デモを始めました。韓国戦争により国内が混乱を極めていたさなか、李承晩(イ・スンマン)大統領は不正選挙により再選を果たし、独裁者となりました。大韓民国に真の民主主義が根付くことを切に願っていた大邱の学生たちは、命を懸けて大邱中央通りに集まりました。自由と正義を求め、はじめて自主的にデモに参加した学生たちは、学校が政治の道具になることに反発しました。  当時は大邱にあった慶尚北道庁(キョンサンプクドちょう)広場に集まった学生たちは、「我々は正当だ！正義は生きている！」と口々に叫びましたが、投入された警察軍に鎮圧されました。このデモが全国に広まり、同年の3・15義挙に影響を及ぼすとともに、四月革命(4・19革命)に発展する火種となりました。  現在、頭流(トゥリュ)公園にある記念塔は本来、1961年明徳(ミョンドク)ロータリーに建てられた記念塔でしたが、2・28義挙30周年を記念して1989年11月、ここに着工して1990年2月28日に完工したものです。あのときに民主化を叫んだ学生たちは今では高齢になりましたが、現在の学生たちがその志をしっかりと受け継いでいます。   〈このガイドは韓国観光公社ペク・チユンさんの声のプロボノにより録音されました。〉"
+       }
+      }
+     },
+     {
       "id": "daegu-duryu-park-2",
       "name": "두류공원 야외음악당",
       "lat": 35.85108,
       "lng": 128.55616,
-      "audioSeconds": 15,
-      "description": "순환로 절반쯤에서 만나는 광장. 공연과 행사가 열리는 곳이고 러닝 전후 스트레칭 공간으로 넓다."
+      "audioSeconds": 65,
+      "description": "순환로 절반쯤에서 만나는 광장. 공연과 행사가 열리는 곳이고 러닝 전후 스트레칭 공간으로 넓다.",
+      "audio": {
+       "en": {
+        "name": "Outdoor music hall in Duryu Park",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12903.mp3",
+        "seconds": 65,
+        "script": "The music hall on the green grassland   A place that offers a beautiful scenery in Duryu Park is the outdoor music hall. The lawn that stretches along the hill becomes an auditorium, and numerous performances held here become stages that spread happiness to the audience. Even on days without any performance, you can bring a mat and delicious snacks to enjoy a picnic if the weather is good. Daegu locals call this place by “Yadang” or “Duryu Yadang” for short.  Thanks to its wide open surroundings, it is a great photo spot where you can see the blue sky, green grass and a panoramic view of downtown Daegu. You can take jumping shots with your friends on a soft lawn, take neat pictures of the clouds traveling in the sky, or take landscape pictures of the city like the ones you can take from an observatory!  While you take the picture of your lifetime here at Daegu Yadang, make sure to throw garbage in trash bins and separate the recyclable waste!    <This guide was recorded by Baek Ji-yoon of Korea Tourism Organization through talent donation.>"
+       },
+       "jp": {
+        "name": "頭流(トゥリュ)公園 野外音楽堂",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12961.mp3",
+        "seconds": 90,
+        "script": "あの青い草原の上の野外音楽堂   頭流(トゥリュ)公園の景観のシンボルとなっている名所！それこそが、野外音楽堂です。丘にそって広がる芝生がそのまま客席となり、ここで行われる数々の公演は、観客に幸せを届けています。 公演のない日でも、天気が良ければ御座の上に食べものをいっぱい広げて、ピクニックを楽しむことができます。大邱の市民は、ここを略して「野堂」、または「頭流野堂」と呼んでいるそうです。  ここは視界を遮るものがなく、青空と緑の芝生、大邱市内が一望できるので、素敵な写真を残すのにうってつけの場所です。友だちといっしょに芝生をジャンプする姿や空を流れる雲を写真に収めたり、まるで展望台で見たような都市を背景にした風景写真を撮ることもできます！  皆さんも「大邱野堂」で一生の思い出になる写真を撮ってみてください。お帰りの際にはゴミを決まった場所にきちんと分別して捨ててくださいね！よろしくお願いします。   〈このガイドは韓国観光公社ペク・チユンさんの声のプロボノにより録音されました。〉"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/12903.mp3"
      }
     ],
     "sources": [
@@ -6385,16 +6484,75 @@
       "name": "십리대숲",
       "lat": 35.5458717,
       "lng": 129.2971766,
-      "audioSeconds": 15,
-      "description": "강변을 따라 길게 이어지는 대나무 터널. 머리 위가 덮여 한여름에도 시원하지만 노면은 어둡다."
+      "audioSeconds": 104,
+      "description": "강변을 따라 길게 이어지는 대나무 터널. 머리 위가 덮여 한여름에도 시원하지만 노면은 어둡다.",
+      "audio": {
+       "ko": {
+        "name": "태화강국가정원 – 태화강전망대",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14235.mp3",
+        "seconds": 104,
+        "script": "태화강을 한 눈에 담다   태화강 전망대는 울산의 도심을 가로지르는 태화강의 동서남북을 한눈에 볼 수 있는 곳입니다. 붉은 노을이 멋져 일몰 사진을 찍는 장소로도 인기가 좋지요.  태화강 전망대는 울산 국가산업단지에 공업용수를 대기 위해 취수탑으로 지어졌던 건물입니다. 1995년 정책이 바뀌면서 사용하지 않다가, 2004년 태화강 전망대로 재탄생했습니다.   1층에서는 태화강에 사는 토종물고기를 볼 수 있고, 3층의 360도 회전식 카페와 4층의 전망대에서는 생태 공간인 ‘삼호대숲’과 ‘십리대숲’을 감상할 수 있습니다.  ‘삼호대숲’은 여름엔 약 6~7,000여 마리의 백로가 찾아오고, 겨울엔 북쪽에서 내려온 약 10만 마리의 갈까마귀와 떼까마귀가 군무를 펼치는 곳입니다. 8월~9월 에는 보랏빛 맥문동꽃, 늦가을엔 노란 은행나무가 화려하고요. 산책이나 자전거, 피크닉과 치맥(치킨과 맥주) 파티, 텐트를 빌려 캠핑도 할 수 있지요.  태화강 전망대에서 서쪽으로 가다보면 은하수 다리가 보입니다. 투명 바닥으로 된 은하수 다리를 걸어서 태화강을 건널 수 있습니다."
+       },
+       "en": {
+        "name": "Taehwagang National Garden– Taehwagang Observatory",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14312.mp3",
+        "seconds": 115,
+        "script": "The Taehwagang River at a glance  From the Taehwa River Observatory, you can see all sides of the Taehwa River, which flows through Ulsan's downtown. It is a popular place to take photos because of the beautiful red sunset.  The Taehwa River Observatory was constructed as a water intake tower for the Ulsan National Industrial Complex. It was no longer used due to a change in industrial water policy in 1995. But it was remodeled in 2004 as a river observatory.  You can see fish native to the Taehwa River on the first floor. And you can explore “Samho Bamboo Grove” and “Simni Bamboo Grove,” the two ecological spaces, at the 360-degree revolving cafe on the third floor and the observatory on the fourth floor, respectively.  About 6,000 to 7,000 white herons migrate to Samho Bamboo Grove in the summer, and about 100,000 jackdaws and rooks from the north perform their dances in the winter. Blue lily-turfs and yellow ginkgo trees are beautiful in autumn, between August and mid-September. There are many things you can do: such as going for a walk, riding your bike, having a picnic, enjoying Chimaeg (fried chicken and beer), or even going camping.  You will find the Milky Way Bridge about 700 meters west of Taehwagang Observatory. You can cross the Taehwa River through the Milky Way Bridge, which allows you to walk on a transparent floor. However, children are prohibited for safety reasons."
+       },
+       "jp": {
+        "name": "太和江国家庭園 – 太和江展望台",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14389.mp3",
+        "seconds": 100,
+        "script": "テファガン(太和江)展望台からは、ウルサン(蔚山)の都心を横切る太和江の東西南北が一望できます。真っ赤な夕焼けがよく見られるので、夕日の撮影スポットとして人気があります。  この展望台は、蔚山国家産業団地に工業用水を供給するために取水塔として建てられた建物です。1995年に工業用水政策が変わって使用されなくなり、2004年に太和江展望台として生まれ変わりました。  1階では太和江に生息する在来種の魚を見ることができ、3階の360度回転するカフェと4階の展望台からは、生態空間である「サムホ(三湖)竹林」と「シムニ(十里)竹林」を観賞することができます。  「三湖竹林」は、夏には約6,000から7,000羽のシラサギが飛来し、冬には北から飛んできた約10万羽のコクマルガラスとミヤマガラスがここで群舞を繰り広げます。8月から9月中旬には紫のヤブランが、晩秋には黄色いイチョウがきれいです。お散歩やサイクリング、ピクニックやチメク(チキンとビール)パーティーのほか、テントを借りてキャンプもできます。  太和江展望台から西へ700メートルほど歩くと、ウンハス(銀河水)橋が見えてきます。床が透明なガラス張りになっているこの橋を歩いて太和江を渡れます。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14235.mp3"
      },
      {
       "id": "ulsan-taehwagang-3",
       "name": "태화루",
       "lat": 35.5533713,
       "lng": 129.3077113,
-      "audioSeconds": 15,
-      "description": "도심 방면 반환점. 강가에 있던 옛 누각을 다시 지은 곳으로, 위에서 강줄기와 시가지가 함께 보인다."
+      "audioSeconds": 100,
+      "description": "도심 방면 반환점. 강가에 있던 옛 누각을 다시 지은 곳으로, 위에서 강줄기와 시가지가 함께 보인다.",
+      "audio": {
+       "ko": {
+        "name": "태화루",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/2151.mp3",
+        "seconds": 100,
+        "script": "태화강 풍경이 한눈에 들어오는 누각  태화강변을 따라 걷다 보면 강가 절벽 위에 세워진 태화루가 시선을 사로잡습니다.   태화루는 진주 촉석루, 밀양 영남루와 더불어 ‘영남 3루’로 불릴 만큼 빼어난 경관을 자랑하는 누각인데요. 신라시대 고승인 자장율사가 선덕여왕 때 태화사라는 절을 창건하고, 그 경내에 태화루를 조성했다고 《삼국유사》에 전해옵니다. 하지만 임진왜란을 전후해 완전히 소실된 것으로 추정되는데요, 안타깝게도 형태와 양식을 알 수 있는 기록이 전무해서 태화루가 가장 번성했던 때인 고려시대 배흘림 양식으로 2014년 4월에 새롭게 건립했습니다.   태화루의 대들보와 서까래에는 태화루 아래 용금소에 용이 살았다는 전설에 따라 용의 형상을 그려 넣었고, 처마 가장자리에는 울산을 대표하는 설화의 주인공인 처용의 얼굴을 새겨 넣었는데요, 전체적으로 곡선이 많고 짜임새가 정교해서 단아한 멋이 느껴집니다. 태화루 2층 누각에 오르면 태화강의 긴 물줄기와 태화강대공원 십리대밭이 시원한 풍광을 선사합니다."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/2151.mp3"
+     },
+     {
+      "id": "ulsan-taehwagang-story-4858",
+      "name": "기타 – 이휴정 + 용연서원",
+      "lat": 35.5476307,
+      "lng": 129.3019517,
+      "audioSeconds": 139,
+      "description": "후손이 지킨 문화유산 ‘이휴정 & 용연서원’ 이휴정은 1997년에 울산광역시 문화재 자료로 지정된 전통 한옥 건물입니다.  울산 도호부의 객사(지방 출장 관리와 외국 사신이 머물던 장소)였던 ‘학성관’의 남쪽 출입구 위에 있던 문루(문을 겸한 누각)였습니다. 조선 시대부터 있었던 이 문",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14311.mp3",
+      "audio": {
+       "ko": {
+        "name": "기타 – 이휴정 + 용연서원",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14311.mp3",
+        "seconds": 139,
+        "script": "후손이 지킨 문화유산 ‘이휴정 & 용연서원’ 이휴정은 1997년에 울산광역시 문화재 자료로 지정된 전통 한옥 건물입니다.  울산 도호부의 객사(지방 출장 관리와 외국 사신이 머물던 장소)였던 ‘학성관’의 남쪽 출입구 위에 있던 문루(문을 겸한 누각)였습니다. 조선 시대부터 있었던 이 문루는 한때 도서관으로 사용되다가 1940년 울산초등학교의 교정을 넓히기 위해 건물을 헐게 되면서 매물로 나왔습니다. 이 누각을 울산 학성이씨 문중에서 사들여 온돌방을 만들고, 주택으로 개조했습니다. 그 후 2003년 9월에 화재로 소실되었다가 2005년 6월 복원했고 2007년 11월에 단청 보수작업을 마치면서 조선 후기의 문루 형태를 확인할 수 있는 건축물로 지금까지 남아있습니다.   ‘이휴정’이라 써진 ‘현판’도 사연이 많습니다. 이 현판은 원래 ‘태화루’ 현판이었지만 조선 후기에 화재가 나면서 태화루 현판은 학성관 현판이 되었고, 그 후 다시 매물로 나온 경매에서 당시 화폐가치 1500원에 팔려, 이휴정 현판으로 쓰이게 된 것입니다.   이휴정 옆엔 전통 한옥 건물인 ‘용연서원’과 부속건물이 있습니다. 용연서원은 세종대에 조선 최초 통신사로 활약한 이예 선생을 추모하는 곳입니다. 지금도 건너기 어려운 한국과 일본 사이의 바닷길을 그 시절에 무려 40여 회나 왕복하면서 조선인 667명을 구해온 통신사입니다. 용연서원은 영조 13년(1737년)에 창건됐는데 고종 5년(1868년)에 대원군의 서원 철폐령으로 철거되었다가, 2001년에 약 10억여원을 들여 복원했습니다.     동굴피아를 가시게 되면 근처 주택가 안쪽에 한적하게 자리하고 있는 ‘이휴정’과 ‘용연 서원’을 들러서 고즈넉한 조선시대 한옥의 운치를 느껴보세요."
+       },
+       "en": {
+        "name": "Other Areas – Ihyujeong Pavilion+ Yongyeon Seowon Confucian Academy",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14388.mp3",
+        "seconds": 149,
+        "script": "Cultural assets preserved by descendants, “Ihyujeong Pavilion+ Yongyeon seowon Confucian Academy” Ihyujeong pavilion is a hanok designated as cultural heritage material of Ulsan in 1997. This is the gatehouse (a house with a gate) above the south entrance of Hakseonggwan Guesthouse, which was the guesthouse (where officials on business trips and foreign envoys stayed) of Ulsan's local government. This gatehouse has existed since the Joseon Dynasty, but it was converted and used as a library for some time until it was demolished in 1940 when Ulsan Elementary School expanded its campus. The house of Hakseong Yi in Ulsan purchased it and converted it into a house with an ondol room. The building was then destroyed by a fire in 2003, but was restored in June 2005 and completed in November 2007. The building still preserves the shape of the gatehouse of the late Joseon Dynasty. Next to Ihyujeong pavilion, there is a hanok called Yongyeon Seowon Confucian Academy and its annexes. Yongyeon Seowon Confucian Academy is a place to commemorate Yi Ye, who served as the first envoy to Japan during the reign of King Sejong. He was an envoy to Japan who saved 667 Koreans by travelling back and forth 40 times on the sea road between Korea and Japan, which is difficult to do even today. Yongyeon Seowon Confucian Academy was built in the 13th year of King Yeongjo (1737 AD), and was demolished in the 5th year of King Gojong (1868) by an abolition order issued by Daewongun. It was restored in 2001 at a cost of about 1 billion won. If you visit Donggulpia, you should stop by the Ihyujeong pavilion and the Yongyeon Seowon Confucian Academy, which are located in nearby residential areas, and feel the quiet atmosphere of a Joseon Dynasty hanok."
+       },
+       "jp": {
+        "name": "その他 – イヒュジョン(二休亭)とヨンヨン(龍淵)書院",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/14538.mp3",
+        "seconds": 155,
+        "script": "子孫が守った文化遺産「イヒュジョン(二休亭)とヨンヨン(龍淵)書院」 イヒュジョン(二休亭)は、1997年にウルサン(蔚山)広域市文化財資料に指定された伝統韓屋様式の建物です。 ウルサン(蔚山)都護府の客舍(地方に出張する官吏や外国の使臣が泊った施設)だった「鶴城館」の南の出入口の上にあった門楼(門を兼ねた楼閣)でした。 朝鮮時代からあったこの門楼は、一時期図書館として使用されていましたが、1940年にウルサン(蔚山)小学校の校庭を広げるために取り壊されることになり、売りに出されました。 この楼閣をウルサン(蔚山)ハクソン(鶴城)イ(李)氏の家が買い入れ、オンドル部屋を作り、住宅に改造しました。その後、2003年に火災で焼失しましたが、2005年に復元され、2007年11月にはタンチョンの改修作業も終えて、朝鮮時代後期の門楼の姿を見ることのできる建物として現在まで保存されています。  「イヒュジョン(二休亭)」と書かれた扁額にまつわるエピソードもあります。この扁額は、もともと「テファ(太和)楼」の扁額でしたが、朝鮮時代後期に起きた火災によってテファ(太和)楼の扁額が鶴城館の扁額になり、後に売りに出されたオークションで1,500ウォンで落札され、イヒュジョン(二休亭)の扁額として使われることになったものです。  イヒュジョン(二休亭)のそばには、伝統韓屋の建物「ヨンヨン(龍淵)書院」とその付属建物があります。ヨンヨン(龍淵)書院は、セジョン(世宗)王の時代に朝鮮最初の通信使として活躍したイ・イェ(李藝)先生を祀る場所です。今でも渡るのが簡単ではない韓国と日本の間の海を、当時何と40回以上往復し、朝鮮の667人の人々を救った通信使です。ヨンヨン(龍淵)書院は1737年に創建されましたが、1868年に大院君の書院撤廃令によって撤去されました。現代になって、2001年に約10億ウォンをかけて復元されました。  洞窟ピアに行ったら、近くの住宅街の中に佇む「イヒュジョン(二休亭)」と「ヨンヨン(龍淵)書院」に立ち寄って、趣のある朝鮮時代の韓屋の風情を感じてみてください。"
+       }
+      }
      }
     ],
     "shape": "roundTrip",
@@ -7450,8 +7608,23 @@
       "name": "영일대해수욕장",
       "lat": 36.0558264,
       "lng": 129.3781837,
-      "audioSeconds": 15,
-      "description": "출발점이 되는 백사장 옆길. 데크와 자전거도로가 나란히 나 있어 노면이 고르다."
+      "audioSeconds": 141,
+      "description": "출발점이 되는 백사장 옆길. 데크와 자전거도로가 나란히 나 있어 노면이 고르다.",
+      "audio": {
+       "ko": {
+        "name": "영일대해수욕장",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19390.mp3",
+        "seconds": 141,
+        "script": "영일대해수욕장  경상북도 포항의 대표 해수욕장인 영일대해수욕장은 드넓은 백사장과 아름다운 해상누각으로 유명한 곳이에요.  영일대해수욕장은 백사장의 길이가 1,750m, 너비는 40에서 70m, 그리고 면적 38만㎡로, 우리나라 동해안에서 가장 큰 규모를 자랑하고 있어요. 인근에 위치한 송도 해수욕장과 함께 포항 대표 해수욕장으로 불릴 만하지요? 또한 포항 도심에서 가까이 위치하고 있어 대중교통을 통해 접근하기도 쉬울뿐 아니라 주변 상권도 커 볼거리도 풍성하답니다. 여름철이면 넓은 백사장에 가족과 친구, 연인과 함께하는 관광객들이 삼삼오오 모여 물놀이를 즐기는 광경을 볼 수 있어요. 도심에 위치한 만큼 샤워장, 탈의실 등의 편의시설도 잘 갖추어져 있다고 하니, 편리하고 쾌적한 해수욕을 즐기기에 최적의 조건이랍니다.  영일대해수욕장의 하이라이트는 바로 우리나라 최초의 해상누각 '영일대'랍니다. 이곳의 이름 또한 과거에는 포항 북부 해수욕장이었지만, 2013년 영일대가 개장하면서 영일대해수욕장으로 바뀌게 되었어요. 80m 정도의 영일교를 따라 가면 영일대 전망대에 오를 수 있는데요, 2013년 대한민국 공간문화대상을 받기도 한 이곳은 한국적인 건축양식으로 지어져 아름다운 기와지붕 아래에서 바다 풍경을 마음껏 감상할 수 있답니다. 또한, 밤이면 영일교와 영일대 전망대에 조명이 들어와서 환상적인 야경을 연출하고, 포스코와 영일만까지 한눈에 담을 수 있어요.   그 밖에도 영일대해수욕장에서는 매년 포항국제불빛축제, 영일대 샌드페스티벌 등 흥미롭고 다양한 행사가 열린다고 해요. 볼거리, 즐길거리가 가득한 영일대해수욕장에서 아름다운 포항 바다의 매력에 풍덩 빠져보는 건 어떨까요?"
+       },
+       "en": {
+        "name": "Yeongildae Beach",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19443.mp3",
+        "seconds": 140,
+        "script": "Yeongildae Beach, the representative beach of Pohang, Gyeongsangbuk-do, is famous for its vast sandy shore and the beautiful Yeongildae Pavilion. Stretching 1,750 meters in length and 40 to 70 meters in width, the beach covers an area of 380,000 square meters, making it the largest beach on the East Coast of South Korea. Along with nearby Songdo Beach, Yeongildae Beach is considered one of the key attractions in Pohang.   Conveniently located near Pohang's city center, the beach is easily accessible by public transportation, and the surrounding area offers various amenities and attractions. In the summer, the beach becomes a lively gathering spot for families, friends, and couples, all enjoying the water and the sun. The beach is well-equipped with facilities such as showers and changing rooms, making it ideal for a comfortable beach experience.   A major highlight of Yeongildae Beach is the Yeongildae Pavilion, the first of its kind on the water in South Korea. Originally called Pohang North Beach, it was renamed after the pavilion opened in 2013. Visitors can walk along the 80-meter-long Yeongil Bridge to reach the Yeongildae Observatory, which won the 2013 Korea Space Culture Award. The pavilion is designed with traditional Korean architectural style, featuring a beautiful tiled roof, offering panoramic views of the sea. At night, the bridge and pavilion are illuminated, creating a spectacular nightscape with views of POSCO and Yeongil Bay.   Additionally, Yeongildae Beach hosts exciting events such as the Pohang International Fireworks Festival and the Yeongildae Sand Festival every year, providing even more reasons to visit. With plenty of attractions and activities, why not dive into the charm of Pohang's beautiful sea at Yeongildae Beach?"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19390.mp3"
      },
      {
       "id": "pohang-yeongildae-2",
@@ -7466,8 +7639,29 @@
       "name": "환호공원",
       "lat": 36.0659833,
       "lng": 129.3933249,
-      "audioSeconds": 15,
-      "description": "북쪽 반환점이 되는 언덕 위 공원. 바다를 내려다보는 시야가 트이고 스페이스워크 조형물이 서 있다."
+      "audioSeconds": 57,
+      "description": "북쪽 반환점이 되는 언덕 위 공원. 바다를 내려다보는 시야가 트이고 스페이스워크 조형물이 서 있다.",
+      "audio": {
+       "ko": {
+        "name": "나무 꿈을 - 문병두 작가",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/13517.mp3",
+        "seconds": 57,
+        "script": "이 작품은 문병두 작가가 2010년에 만든〈나무 꿈을 꾸었어>예요.  스테인리스 스틸 와이어로 제작한 사슴 형상의 조각이죠.  망으로 만들어진 작품은 눈, 바람, 비, 햇빛을 통과시키고, 풍경을 비추며 자연과 조화를 이뤄요.  작품 내부에는 생명을 의미하는 달팽이 모양의 물체가 있어요.  달팽이는 식물처럼 성장해서 사슴의 뿔을 만들고, 뿔은 나뭇가지처럼 하늘을 향해 자란답니다.  사슴은 점점 자연과 동화되고 함께 어우러지죠.  작가는 “행복, 사랑, 번영, 번창”이라는 희망의 메시지를 전하며 자연과 인간이 어우러져 사는 작은 우주를 표현해요.  여기에는 자연의 순환과 공생이라는 주제 의식이 담겨 있답니다."
+       },
+       "en": {
+        "name": "Dream of Being a Tree - Artist Moon Byeong-Doo",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/13538.mp3",
+        "seconds": 108,
+        "script": "This sculptural work titled “Dream of Being a Tree” was created by the artist Moon Byeong-Doo in 2010. It takes the form of a deer made of stainless-steel wire. Made of steel mesh, the work allows sunlight, wind, rain and snow to pass through it while fitting in harmony with its surroundings by blending into the background. Inside, there is a snail-shaped form symbolizing life. This snail grows in a form and shape resembling deer antlers, which grow like tree branches towards the sky, while the deer gradually assimilates with nature. The artist aimed to deliver a message of hope “Happiness, Love, Prosperity and Success” and to represent a small universe where man and nature coexist. The artist’s idea included themes of the cycle and symbiosis of nature."
+       },
+       "jp": {
+        "name": "木の夢を見た - 作家 ムン•ビョンドゥ",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/13585.mp3",
+        "seconds": 1529,
+        "script": "この作品は、ムン•ビョンドゥ作家が2010年に制作した＜木の夢を見た＞です。 ステンレススチールワイヤーで制作されており、鹿の形をしています。 網状に作られた作品は、雪、風、雨、日光を通し、風景を映しながら自然と調和します。 作品内部には、生命を意味するカタツムリ状の物体があります。 カタツムリは植物のように成長して鹿の角を形作り、角は木の枝のように天に向かって伸びていきます。 そして、鹿は次第に自然と同化し、一つに融合していくのです。 作家は、「幸福、愛、繁栄、発展」という希望のメッセージを伝え、自然と人間が共存する小さな宇宙を表現します。 そして、そこには「自然の循環と共生」というテーマ意識が込められています。"
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/13517.mp3"
      }
     ],
     "shape": "roundTrip"
@@ -9722,8 +9916,17 @@
       "name": "장복산조각공원",
       "lat": 35.172929,
       "lng": 128.6570659,
-      "audioSeconds": 15,
-      "description": "출발점이 되는 임도 진입부. 여기서부터 곧장 고도를 올려 능선으로 붙는다."
+      "audioSeconds": 87,
+      "description": "출발점이 되는 임도 진입부. 여기서부터 곧장 고도를 올려 능선으로 붙는다.",
+      "audio": {
+       "ko": {
+        "name": "진해 치유의 숲",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/6453.mp3",
+        "seconds": 87,
+        "script": "‘진해 치유의 숲’은 도심 근교에 위치해 있지만 30~40년생 이상의 건강한 편백나무가 울창한 산림을 형성하고 있어 자연치유 성분인 피톤치드와 ‘공기의 비타민’이라 불리는 음이온이 풍부하여 숲이 주는 건강증진 및 자연치유 효능을 극대화한 치유의 공간입니다.  또한, 진해만을 한눈에 바라볼 수 있는 천혜의 자연경관으로 시민들과 관광객들이 즐겨 찾는 대표적인 산림 휴식처로 널리 알려져 있는데요.  특히 치유의 숲 내에 조성된 유아숲 체험원은 나무 숲 속 교실, 모험 놀이마당 등이 조성돼 자연의 아름다움을 오감으로 느낄 수 있으며 부모와 자녀가 함께 자연 속에서 놀이 체험이 가능합니다.  다른 치유의 숲과는 달리 도심에 위치해 있어 접근성이 우수해 당일형 치유 프로그램 체험도 가능한데요. 프로그램 운영을 위한 시설로는 산림치유센터 1동, 숲 속 명상장 및 체조장 각 1개소, 특화된 치유 숲길 5개 노선(14.5km) 등이 있으며 가족 및 친구, 직장동료 등 대상자별 맞춤형 프로그램으로 운영됩니다."
+       }
+      },
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/6453.mp3"
      },
      {
       "id": "changwon-jinhae-dreamroad-2",
@@ -9740,6 +9943,75 @@
       "lng": 128.67632,
       "audioSeconds": 15,
       "description": "동쪽 반환점. 진해와 창원을 잇는 고갯길이자 벚꽃길로 알려진 곳이라, 봄에는 사람과 차가 함께 몰린다."
+     },
+     {
+      "id": "changwon-jinhae-dreamroad-story-2293",
+      "name": "Jinhae Central Market",
+      "lat": 35.151756,
+      "lng": 128.665756,
+      "audioSeconds": 72,
+      "description": "Jinhae daily market Jinhae Central Market is the largest market in the city which was opened in 1946 as a private market. Many people who returned home after li",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15001.mp3",
+      "audio": {
+       "en": {
+        "name": "Jinhae Central Market",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15001.mp3",
+        "seconds": 72,
+        "script": "Jinhae daily market Jinhae Central Market is the largest market in the city which was opened in 1946 as a private market. Many people who returned home after liberation together with refugees during the Korean War settled down here and established the market. As it obtained permission as a public market in 1958, it grew into today’s market. The large market is divided into the ground and underground floors. In the 1980s, a new apartment building with stores on the ground floor was newly built. There are stores on the first floor, and the second to fourth floors are general residential spaces. It is packed with stores that sell all kinds of daily necessities. There is a raw fish center underground where you can enjoy fresh sea foods. Jinhae Central Market is the first to issue its own vouchers to revitalize the traditional market. Visitors can still purchase products and foods with these vouchers. During the Gunhangje Festival, you can see various performances at the Meeting Plaza located behind the market."
+       },
+       "jp": {
+        "name": "鎮海中央市場",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/15078.mp3",
+        "seconds": 94,
+        "script": "毎日立つ鎮海の市場   鎮海最大の市場である中央市場は、1946年、私設の市場として開場しました。植民地支配からの解放後、帰郷した多くの人や韓国戦争の時に避難してきた人々が中心となり、住宅を兼ねた店舗の形で始まりましたが、1958年に公設市場として認可を受け、ますます規模が大きくなり、現在の姿を整えました。  ここは規模が大きく、地上と地下に分かれていますが、地上は1980年代に建て直された商業施設と住居が一体となった複合施設(中央商店街アパート)です。1階はほとんど商店街として利用されており、2～4階は一般的なマンションです。衣食住に必要なものを販売する店舗が集まっており、地下は刺身センターで構成され、新鮮な海鮮を堪能することができます。  鎮海中央市場は伝統市場を活性化するために全国で初めて「伝統市場商品券」が発行されましたが、今でも伝統市場商品券で買い物ができるようになっています。軍港祭期間中は、市場の裏にある出会いの広場で、様々な公演が行われます。"
+       }
+      }
+     },
+     {
+      "id": "changwon-jinhae-dreamroad-story-6762",
+      "name": "열린관광지 - 창원시 여좌천",
+      "lat": 35.1643462,
+      "lng": 128.6601269,
+      "audioSeconds": 128,
+      "description": "진해, 벚꽃의 향연  여좌천은 진해의 대표적인 벚꽃 명소로, 약 1.5킬로미터에 걸쳐 하천을 따라 길게 이어진 벚꽃나무들이 장관을 이루는 곳입니다.  봄이 되면 하천 양옆에 심어진 벚나무가 하얗게 꽃을 피워, 마치 눈이 내린 듯한 화사한 벚꽃 터널이 형성됩니다. 이 벚꽃 터널은 걷기만 ",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19104.mp3",
+      "audio": {
+       "ko": {
+        "name": "열린관광지 - 창원시 여좌천",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/19104.mp3",
+        "seconds": 128,
+        "script": "진해, 벚꽃의 향연  여좌천은 진해의 대표적인 벚꽃 명소로, 약 1.5킬로미터에 걸쳐 하천을 따라 길게 이어진 벚꽃나무들이 장관을 이루는 곳입니다.  봄이 되면 하천 양옆에 심어진 벚나무가 하얗게 꽃을 피워, 마치 눈이 내린 듯한 화사한 벚꽃 터널이 형성됩니다. 이 벚꽃 터널은 걷기만 해도 그 자체로 아름다움을 느낄 수 있어, 매년 많은 관광객들이 이곳을 방문해 봄의 정취를 즐기곤 합니다.  여좌천은 장복산 서쪽에서 발원하여 여좌동을 지나 바다로 이어지는 하천입니다. 진해의 벚꽃길을 걷다 보면, 잔잔히 흐르는 하천과 함께 펼쳐지는 벚꽃의 풍경이 어우러져 일상에서 벗어난 특별한 순간을 선사합니다. 벚꽃이 만개하는 시기에는 하천을 따라 이어진 벚꽃나무들이 마치 천을 드리운 것처럼 이어져, 흐드러진 꽃잎 아래를 걷는 기분을 만끽할 수 있습니다. 또한 여좌천은 진해 구 도심과 가까워 주변에 여러 편의시설이 있으며, 접근성이 좋아 많은 방문객이 쉽게 찾아올 수 있습니다.  여좌천은 야간에도 그 매력을 더합니다. 곳곳에 설치된 경관조명 덕분에 어두워진 밤에도 벚꽃들이 은은하게 빛나며, 낮과는 또 다른 몽환적인 풍경을 자아냅니다. 이곳에서 산책을 하거나 잠시 멈추어 벚꽃에 둘러싸인 여좌천을 바라보면, 고요한 밤의 정취와 함께 벚꽃의 화사함을 오롯이 느낄 수 있습니다. 늦은 밤에도 조명 덕분에 환하게 밝아진 길은 안전하게 산책하기 좋으며, 낮과 밤 모두 다른 매력을 간직한 여좌천에서 특별한 추억을 만들 수 있습니다.  또한, 여좌천에 보행로와 편의시설을 개선하여 휠체어를 이용하는 분들도 어렵지 않게 접근할 수 있습니다. 진해의 자연과 도시가 조화를 이루는 여좌천에서 가족, 연인, 친구들과 함께 즐거운 시간을 보내보세요."
+       }
+      }
+     },
+     {
+      "id": "changwon-jinhae-dreamroad-story-6982",
+      "name": "벚꽃 명소, 힐링 드라이브, 계절 감성",
+      "lat": 35.1692054,
+      "lng": 128.6594929,
+      "audioSeconds": 117,
+      "description": "“창원이나 진해 지역 하면 벚꽃 축제만 떠오르시죠? 근데 이맘때쯤은 축제만큼 아름답지만 한적한 드라이브 코스도 있다는 걸 아시나요?”  이쪽에서 활동하는 저희 우버 택시 드라이버들 사이에서 가장 입소문 난 코스가 바로 이 진해드림로드예요. 제황산에서 출발해 안민고개를 넘어 장복산공원까지",
+      "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20491.mp3",
+      "audio": {
+       "ko": {
+        "name": "벚꽃 명소, 힐링 드라이브, 계절 감성",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20491.mp3",
+        "seconds": 117,
+        "script": "“창원이나 진해 지역 하면 벚꽃 축제만 떠오르시죠? 근데 이맘때쯤은 축제만큼 아름답지만 한적한 드라이브 코스도 있다는 걸 아시나요?”  이쪽에서 활동하는 저희 우버 택시 드라이버들 사이에서 가장 입소문 난 코스가 바로 이 진해드림로드예요. 제황산에서 출발해 안민고개를 넘어 장복산공원까지 이어지는 이 길은, 창원의 숨은 매력을 오롯이 담은 구간이에요.  제황산에 있는 모노레일이나 전망대는 이미 유명하지만, 그 아래 드라이브 코스는 비교적 덜 알려져 있어요. 봄이 되면 도로 양옆으로 벚꽃이 흐드러지게 피어나고, 여름에는 초록빛 그늘이 시원하게 드리워져서 사계절 모두 매력이 다르죠.  특히 안민고개는 창원과 진해를 잇는 고갯길로, 높은 곳에서 내려다보는 진해만의 풍경은 압도적이에요. 창원, 진해 시민들도 일부러 산책 겸 이 코스를 찾곤 하는데, 차로 올라가면 더 여유롭게 즐길 수 있어요.  장복산공원에 도착하면, 산책도 좋지만 일단 잠시 차를 세우고 전망대를 올라가 보세요. 진해 시내가 한눈에 펼쳐지고, 멀리 바다와 군항이 어우러져 영화의 한 장면 같은 느낌이에요.  사실 이 코스는 계절에 따라 전혀 다른 감성을 선사해서, 봄엔 벚꽃, 여름엔 초록, 가을엔 단풍까지 모두 챙길 수 있는 사계절 드라이브 명소예요. 북적이는 축제를 피해서, 조금 더 조용하고 감성적인 진해를 느끼고 싶다면 이 길을 따라 달려보세요.  오늘도 우버 택시 드라이버가 소개하는 진해드림로드, 한번 달려보실래요?  (이 콘텐츠는 우버 택시 드라이버의 목소리로 녹음되었습니다.)"
+       },
+       "en": {
+        "name": "Cherry blossom spots, relaxing drive, year-round scenery",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20790.mp3",
+        "seconds": 106,
+        "script": "“When people think of Changwon or Jinhae, they picture the cherry blossom festival. But there’s a quiet drive just as beautiful, but without the crowds.”  Among Uber Taxi drivers, the most recommended drive is the Jinhae Dream Road. It starts at Jehwangsan Mountain, crosses Anmin Hill, and leads to Jangboksan Park — a drive that captures the hidden charms of Changwon.  At Jehwangsan, the monorail and observatory are well known to visitors, but few people know the quiet road below. In spring, cherry blossoms line both sides of the street. In summer, cool green shade covers the way. Each season gives the drive a different mood.  Anmin Hill connects Changwon and Jinhae and offers a wide view of Jinhae Bay. Locals often come here for a walk, and by car, you can take it slowly and enjoy the scenery at your own pace.  At Jangboksan Park, park your car and walk up to the observatory. The city of Jinhae spreads out below, where the sea and the naval port meet in the distance, like a scene from a film.  This drive changes with the seasons — blossoms in spring, deep greens in summer, and red and gold leaves in autumn. It’s a drive worth taking all year round. If you want to avoid the festival crowds and feel a quieter side of Jinhae, drive this road.  Today, let’s drive the Jinhae Dream Road, a drive recommended by Uber Taxi drivers."
+       },
+       "jp": {
+        "name": "桜の名所、ヒーリングドライブ、季節感性",
+        "audioUrl": "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/20797.mp3",
+        "seconds": 143,
+        "script": "「昌原や鎮海といえば、桜祭りが先に思い浮かびますよね？でも、この時期はお祭りと同様に美しいけれど、静かなドライブコースもあることをご存知ですか？」  この街で働くUberタクシードライバーたちの間で最も評判のコースが、この鎮海ドリームロードなんです。帝皇山から出発して、安民峠を越えて長福山公園まで続くこの道は、昌原の隠れた魅力を余すところなく詰め込んだコースです。  帝皇山にあるモノレールや展望台はもう有名なスポットとなっていますが、その下のドライブコースはまだ知られておりません。春になると道路の両側に桜が咲き乱れ、夏には緑の影が涼やかに差し込んでいるので、四季折々の魅力が満喫できます。  特に、安民峠は昌原と鎮海を結ぶ峠道で、高い場所から眺める鎮海湾の景色はもう圧倒的です。昌原や鎮海の市民の皆様もわざわざ散歩がてらこのコースを訪れますが、車で登るとよりゆったりと楽しめます。  長福山公園に着いたら、散歩もいいですが、まずは車を停めて展望台に上がってみてください。鎮海市街が一望でき、遠くには海と軍港が調和して、まるで映画のワンシーンを観ているのような気分になります。  実は、このコースは春は桜、夏は緑、秋は紅葉などなど、季節ごとに全く違う雰囲気が味わえる四季折々のドライブスポットなのです。賑やかなお祭りよりは、もう少し静かで落ち着いた風趣の鎮海を感じたいなら、この道を走ってみてください。  今日もUberタクシーのドライバーが紹介するジンヘドリームロード、一度走ってみませんか？"
+       }
+      }
      }
     ],
     "shape": "roundTrip"
