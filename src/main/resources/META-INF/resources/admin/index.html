@@ -476,8 +476,8 @@ const PARA_FIELDS = [
 ];
 const PHOTO_FIELDS = [
   ['photo', '사진 URL', ''],
-  ['photoTitle', '사진 제목', '사진 위에 겹쳐 나오는 이름'],
-  ['photoLicense', '저작권 표기', ''],
+  ['photoTitle', '사진 제목', '앱에는 안 나온다 — 권리 기록용'],
+  ['photoLicense', '저작권 표기', '앱에는 안 나온다 — 권리 기록용'],
 ];
 const toText = v => Array.isArray(v) ? v.join('\n') : (v ?? '');
 const toPara = s => s.split('\n').map(x => x.trim()).filter(Boolean);

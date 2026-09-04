@@ -106,6 +106,11 @@ def validate(courses: list[dict]) -> list[str]:
         if display_m <= 0 or abs(distance_m - display_m) > 100:
             errors.append(f"{course_id}: distanceM={distance_m:.0f}와 km={course.get('km')} 불일치")
 
+        # 앱이 제목 바로 아래에 km·분·난이도를 따로 찍는다. 제목에 또 적으면 두 번 나온다.
+        for field in ("n", "headline"):
+            if "km" in str(course.get(field) or "").lower():
+                errors.append(f"{course_id}: {field}에 거리를 적지 않는다 ({course.get(field)})")
+
         for field, allowed in (("lv", LEVELS), ("mood", MOODS), ("scene", SCENES)):
             value = course.get(field)
             if value not in allowed:

@@ -37,9 +37,12 @@ import java.util.List;
  * 편집 코스 카탈로그 라우트 (홈 피드·코스 상세 화면용).
  * 응답은 수집본 스키마 그대로 — 상세: id·n·km·min·lv·mood·tags·headline·subhead·
  * body[]·deep[]·ops[]·unsure[]·sources[{title,url,type,checkedAt}]·
- * poi[{n,d,photo}]·photo·photoTitle·photoLicense·city·region과
- * shape(roundTrip|oneWay)·polyline[[lat,lng]]·guide[{lat,lng,text}]·
+ * poi[{n,d,photo}]·photo·city·region과
+ * shape(roundTrip|oneWay)·routed·polyline[[lat,lng]]·guide[{lat,lng,text}]·
  * checkpoints[{id,name,lat,lng,audioSeconds,description}]·landmarks[].
+ *
+ * <p>사진 출처·이용조건(photoTitle·photoLicense)은 앱 화면에서 빼기로 해 응답에 넣지 않는다.
+ * 데이터와 검수 화면에는 그대로 남아 있다(권리 기록).
  */
 @Path("/v1/courses")
 @Produces(MediaType.APPLICATION_JSON)
@@ -79,6 +82,7 @@ public class CourseResource {
     @Operation(summary = "코스 상세",
             description = "id로 코스 형태(shape: roundTrip|oneWay), 전체 원고와 정적 보행 경로(polyline), "
                     + "경로 위 안내(guide), 100m 진입 도슨트(checkpoints)를 조회한다. "
+                    + "routed=true면 따라 달릴 경로가 있다는 뜻이며 목록 응답에도 같은 값이 들어 있다. "
                     + "상세 poi는 실제 경로 100m 안의 경유지이며 멀리서 보는 장소는 landmarks로 분리한다. "
                     + "목록의 waypoints 문자열 배열과 구분한다. 지원하는 구 ID는 같은 코스의 신 ID로 정규화해 반환한다. "
                     + "예: seoul-banpo-10k")
@@ -89,7 +93,7 @@ public class CourseResource {
     public Response detail(
             @Parameter(description = "코스 id", required = true, example = "seoul-banpo-10k")
             @PathParam("id") String id) {
-        JsonNode c = catalog.byId(id);
+        JsonNode c = catalog.appById(id);
         if (c == null) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(new ApiError("not_found", "코스 없음: " + id)).build();

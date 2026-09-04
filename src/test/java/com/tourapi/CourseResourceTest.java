@@ -140,13 +140,32 @@ public class CourseResourceTest {
         var waypoints = properties.path("waypoints");
         Assertions.assertEquals("array", waypoints.path("type").asText());
         Assertions.assertEquals("string", waypoints.path("items").path("type").asText());
-        for (String property : new String[]{"photo", "photoTitle", "photoLicense"}) {
-            var photoField = properties.path(property);
-            boolean nullable = photoField.path("nullable").asBoolean()
-                    || (photoField.path("type").isArray() && photoField.path("type").toString().contains("null"));
-            Assertions.assertTrue(nullable, property + " nullable 계약 누락: " + photoField.toPrettyString());
+        var photoField = properties.path("photo");
+        boolean nullable = photoField.path("nullable").asBoolean()
+                || (photoField.path("type").isArray() && photoField.path("type").toString().contains("null"));
+        Assertions.assertTrue(nullable, "photo nullable 계약 누락: " + photoField.toPrettyString());
+    }
+
+    @Test
+    public void 앱_응답에는_사진_출처가_없고_routed가_있다() {
+        // 데이터에는 권리 기록으로 남기고 앱 화면에서만 뺀다 — 두 쪽을 함께 확인한다
+        var stored = catalog.byId("busan-haeundae");
+        Assertions.assertFalse(stored.path("photoLicense").asText().isBlank(), "권리 기록이 사라졌다");
+
+        var app = catalog.appById("busan-haeundae");
+        Assertions.assertFalse(app.has("photoTitle"));
+        Assertions.assertFalse(app.has("photoLicense"));
+        Assertions.assertTrue(app.path("routed").asBoolean(), "실제 경로가 있는 코스인데 routed=false");
+        Assertions.assertTrue(app.path("polyline").size() >= 2);
+        Assertions.assertNull(catalog.appById("없는-코스"));
+
+        for (var item : catalog.list(null)) {
+            String id = item.path("id").asText();
+            Assertions.assertFalse(item.has("photoLicense"), "목록에 사진 출처가 남았다: " + id);
+            Assertions.assertTrue(item.path("routed").asBoolean(), "목록 routed=false: " + id);
         }
     }
+
 
     @Test
     public void 상세_조회() {

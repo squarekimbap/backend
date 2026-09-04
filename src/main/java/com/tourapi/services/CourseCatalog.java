@@ -11,6 +11,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.io.InputStream;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,10 +39,17 @@ public class CourseCatalog {
     /** 목록(카드) 응답에 내려줄 필드 — 본문(body 등)은 상세에서만. */
     private static final String[] SUMMARY_FIELDS = {
             "id", "n", "city", "cityId", "region", "km", "min", "lv", "mood",
-            "tags", "headline", "subhead", "photo", "photoTitle", "photoLicense", "url",
+            "tags", "headline", "subhead", "photo", "url",
             // 홈 피드에서 지도에 찍거나 현재 위치와의 거리를 계산할 수 있게 좌표도 내려준다
             "lat", "lng"
     };
+
+    /**
+     * 사진 출처·이용조건. 데이터에는 그대로 두고(권리 기록·검수용) 앱 응답에서만 감춘다.
+     * 화면에서 빼기로 한 것이지 권리 표기 의무가 사라진 게 아니다 — 공공누리 1·3·4유형과
+     * CC BY는 모두 출처표시 조건이라, 앱은 다른 자리에라도 표기할 수 있어야 한다.
+     */
+    private static final List<String> HIDDEN_FROM_APP = List.of("photoTitle", "photoLicense");
 
     @Inject
     ObjectMapper mapper;
@@ -90,6 +98,9 @@ public class CourseCatalog {
                     }
                 }
                 s.set("waypoints", waypoints);
+                // 앱은 polyline 유무로 "길 안내는 아직 준비 중이에요"를 띄운다. 목록에는
+                // polyline(코스당 최대 200점)을 싣지 않으므로 결론만 내려준다.
+                s.put("routed", routed(c));
                 sums.add(s);
             }
             for (Map.Entry<String, String> alias : LEGACY_IDS.entrySet()) {
@@ -124,7 +135,8 @@ public class CourseCatalog {
         for (JsonNode s : summaries) {
             if (all || q.equals(s.path("city").asText())
                     || q.equalsIgnoreCase(s.path("cityId").asText())) {
-                out.add(overrides.apply(s));
+                // 관리자가 사진 출처를 고쳐 뒀어도 앱 목록에는 다시 실리지 않게 한 번 더 거른다
+                out.add(hideFromApp(overrides.apply(s)));
             }
         }
         return out;
@@ -143,9 +155,35 @@ public class CourseCatalog {
         return id == null ? null : byId.get(LEGACY_IDS.getOrDefault(id, id));
     }
 
-    /** 상세(전체 필드, 수정 반영). 없으면 null. */
+    /** 상세(전체 필드, 수정 반영). 검수·편집 화면용 — 앱에는 {@link #appById}를 쓴다. 없으면 null. */
     public JsonNode byId(String id) {
         JsonNode c = originalById(id);
         return c == null ? null : overrides.apply(c);
+    }
+
+    /** 앱에 내려줄 상세. 사진 출처·이용조건을 빼고 routed를 붙인다. */
+    public JsonNode appById(String id) {
+        JsonNode c = byId(id);
+        if (c == null) {
+            return null;
+        }
+        ObjectNode out = c.deepCopy();
+        out.remove(HIDDEN_FROM_APP);
+        out.put("routed", routed(c));
+        return out;
+    }
+
+    private static JsonNode hideFromApp(JsonNode node) {
+        if (HIDDEN_FROM_APP.stream().noneMatch(node::has)) {
+            return node;
+        }
+        ObjectNode out = node.deepCopy();
+        out.remove(HIDDEN_FROM_APP);
+        return out;
+    }
+
+    /** 따라 달릴 수 있는 실제 보행 경로가 있는가. 없으면 앱이 "길 안내 준비 중"을 띄운다. */
+    private static boolean routed(JsonNode course) {
+        return course.path("polyline").size() >= 2;
     }
 }

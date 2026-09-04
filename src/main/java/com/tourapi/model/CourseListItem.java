@@ -21,10 +21,9 @@ public record CourseListItem(
         String subhead,
         @Schema(description = "대표 사진 URL. 사진을 확보하지 못한 코스는 null", nullable = true)
         String photo,
-        @Schema(description = "대표 사진 제목. 없으면 null", nullable = true)
-        String photoTitle,
-        @Schema(description = "대표 사진 출처·이용조건. 없으면 null", nullable = true)
-        String photoLicense,
+        @Schema(description = "따라 달릴 보행 경로가 있는가. false면 '길 안내는 아직 준비 중이에요'. "
+                + "목록에는 polyline을 싣지 않으므로 이 값을 그대로 쓴다(직접 파생 금지).",
+                example = "true") boolean routed,
         @Schema(description = "공유용 코스 상세 URL") String url,
         @Schema(description = "대표 위도") double lat,
         @Schema(description = "대표 경도") double lng,
