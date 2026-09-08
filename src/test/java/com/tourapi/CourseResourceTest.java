@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.startsWith;
 
 /**
  * 번들 데이터만 쓰므로 외부 의존 없이 도는 테스트.
@@ -338,6 +339,20 @@ public class CourseResourceTest {
         Assertions.assertEquals(200, response.getStatus());
         Assertions.assertEquals("attachment; filename=\"seoul-banpo-10k.gpx\"",
                 response.getHeaderString("Content-Disposition"));
+    }
+
+    @Test
+    public void GPX는_JSON만_받는다는_요청에도_내려간다() {
+        // 앱 HTTP 클라이언트가 Accept: application/json 을 전역으로 붙이면 여기가 406이 됐다.
+        // 기존 테스트는 리소스 메서드를 직접 불러 협상을 건너뛰어 이 회귀를 못 잡았다.
+        // (경로가 가장 짧은 코스를 쓴다 — 큰 응답은 MockEventServer가 끊는다)
+        for (String accept : new String[]{"application/json", "application/xml", "*/*"}) {
+            RestAssured.given().accept(accept)
+                    .when().get("/v1/courses/gyeongsan-nammaeji/gpx")
+                    .then().statusCode(200)
+                    .contentType("application/gpx+xml")
+                    .body(startsWith("<?xml"));
+        }
     }
 
     @Test

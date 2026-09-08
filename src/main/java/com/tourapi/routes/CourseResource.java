@@ -103,7 +103,10 @@ public class CourseResource {
 
     @GET
     @Path("/{id}/gpx")
-    @Produces("application/gpx+xml")
+    // ⚠️ WILDCARD 를 빼면 `Accept: application/json` 요청이 406 으로 떨어진다. 앱 HTTP
+    //    클라이언트가 그 헤더를 전역으로 붙이는 게 보통이라 GPX 내보내기가 통째로 죽는다.
+    //    응답 Content-Type 은 아래에서 명시하므로 협상 결과에 흔들리지 않는다.
+    @Produces({"application/gpx+xml", MediaType.WILDCARD})
     @Operation(summary = "Garmin 호환 GPX 코스 파일",
             description = "코스 polyline을 GPX 1.1 Track(trk/trkseg/trkpt)으로 내보낸다. "
                     + "Garmin Connect의 코스 가져오기에서 사용하며 poi는 표준 waypoint로 함께 넣는다.")
