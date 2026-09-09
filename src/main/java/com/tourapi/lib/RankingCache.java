@@ -656,8 +656,11 @@ public class RankingCache {
             return USED_UNKNOWN;
         }
         try {
+            // 관리 화면이 "0으로 되돌리기" 직후 바로 이 값을 다시 읽는다. 기본(최종 일관성)
+            // 읽기는 방금 지운 항목을 그대로 돌려줘서 관리자에겐 초기화가 안 된 것으로 보인다.
             GetItemResponse res = client().getItem(b -> b.tableName(table())
-                    .key(Map.of("pk", AttributeValue.fromS(quotaKey))));
+                    .key(Map.of("pk", AttributeValue.fromS(quotaKey)))
+                    .consistentRead(true));
             return res.hasItem() ? (int) numberValue(res.item(), "hits", 0) : 0;
         } catch (Exception e) {
             LOG.warnf("사용량 조회 실패: %s", e.toString());

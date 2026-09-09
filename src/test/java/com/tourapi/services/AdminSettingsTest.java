@@ -107,6 +107,18 @@ public class AdminSettingsTest {
     }
 
     @Test
+    public void 관리화면_조회는_다른_실행환경의_저장도_바로_본다() throws Exception {
+        // update()는 그 요청을 처리한 Lambda 환경의 기억만 버린다. 화면이 기억을 그대로 쓰면
+        // 저장 뒤 새로고침이 다른 환경에 닿았을 때 옛 값이 보여 "반영이 안 된다"가 된다.
+        saved("{\"dailyLimit\":3}");
+        assertEquals(3, settings.dailyLimit());       // 기억을 데운다
+
+        saved("{\"dailyLimit\":30}");                  // 다른 환경에서 저장된 상태
+        assertEquals(30, settings.freshDailyLimit());
+        assertEquals(30, (int) (Integer) settings.snapshot().get("dailyLimit"));
+    }
+
+    @Test
     public void 저장_실패는_삼키지_않는다() throws Exception { // 관리자가 누른 변경이 사라지면 안 된다
         saved(null);
         doThrow(new IllegalStateException("write failed")).when(store).put(any(), any());

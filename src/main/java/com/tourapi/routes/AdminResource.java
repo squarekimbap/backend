@@ -199,7 +199,7 @@ public class AdminResource {
         if (denied != null) {
             return denied;
         }
-        int fallback = adminSettings.dailyLimit();
+        int fallback = adminSettings.freshDailyLimit();
         Instant now = Instant.now();
         List<Map<String, Object>> out = new ArrayList<>();
         for (Map<String, String> row : userStore.listAll()) {

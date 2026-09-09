@@ -91,6 +91,8 @@ Cognito 계정도 함께 사라졌다. 키는 `R2V626HA7Y`("Dali Sign in with Ap
 - **코스 생성 제한을 화면에서 조절**(`services/AdminSettings`): 하루 N회·분당 N회. 저장값이 없으면 배포 설정값, 저장소 장애 시에도 설정값으로 폴백(제한을 못 읽었다고 서비스를 막지 않는다). 1~100/1~60 범위 밖은 거절. `RunningGenerationRateLimiter`가 요청마다 여기서 읽는다(60초 메모).
 - **사용자별 한도와 남은 횟수**: users 행의 `dailyLimit`(숫자)이 있으면 그 사용자만 그 값을 쓰고, 없으면 전체 기본값(`AdminSettings.dailyLimitFor`). 오늘 쓴 횟수는 쿼터 항목의 `hits`를 읽는다 — 키는 `RunningGenerationRateLimiter.dailyQuotaKey()` 한 군데서만 만든다(`quota#running-generation#<userId>#<KST yyyyMMdd>`). 가입자 화면은 users 테이블 속성을 **전부** 내보내고(Apple 폐기 토큰은 값 없이 존재 여부만) 행을 열면 한도 수정·오늘 사용량 초기화가 있다.
   ⚠️ 한도를 올려도 오늘 이미 쓴 횟수는 그대로다 — 당장 풀어주려면 `DELETE /v1/admin/users/{id}/quota`로 사용량을 지워야 한다.
+  ⚠️ **관리 화면 조회는 메모를 건너뛴다**(`AdminSettings.freshDailyLimit`) — `update`는 그 요청을 처리한 실행 환경의 60초 메모만 버려서, 저장 후 새로고침이 다른 환경에 닿으면 옛 값이 보였다(2026-09-04). 실제 제한 적용은 여전히 최대 1분 뒤 퍼진다(의도).
+  ⚠️ `RankingCache.generationUsed`는 **consistentRead** 여야 한다 — 사용량 초기화 직후 같은 요청이 바로 다시 읽는데, 기본 최종 일관성 읽기는 방금 지운 항목을 돌려줘 "초기화가 안 됐다"로 보였다(2026-09-04).
   ponytail: 목록이 사용자마다 쿼터 항목을 하나씩 읽는다. 가입자가 수백을 넘으면 목록에서 빼고 상세에서만 읽을 것.
 - **코스 원고를 화면에서 수정**(`services/CourseOverrides`): 번들 JSON은 그대로 두고 **바뀐 필드만** 따로 저장해 읽을 때 덮는 오버레이 방식 — 코스를 DB로 옮기지 않으려고 이렇게 했다. 고칠 수 있는 건 앱이 보여주는 글과 사진뿐(`n·headline·subhead` 문자열, `body·deep·ops` 문단배열, `photo` — `photoTitle·photoLicense`는 앱 응답에서 빠졌지만 권리 기록이라 계속 고칠 수 있다). **경로·경유지·도슨트 좌표는 거절**한다(배포 게이트가 검증하고 앱의 100m 도슨트 트리거가 걸려 있음). 빈 값으로 저장하면 그 필드는 원본으로 되돌아간다.
   ⚠️ 메모가 60초라 저장 후 다른 Lambda 실행 환경에는 최대 1분 뒤 퍼진다.

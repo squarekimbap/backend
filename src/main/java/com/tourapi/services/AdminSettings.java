@@ -63,10 +63,22 @@ public class AdminSettings {
         return read("perMinuteLimit", configuredPerMinute, MAX_PER_MINUTE);
     }
 
+    /**
+     * 관리 화면이 읽을 하루 한도. <b>기억한 값을 버리고 저장소에서 바로 읽는다.</b>
+     *
+     * <p>{@link #update}는 그 요청을 처리한 Lambda 실행 환경의 기억만 버린다. 다음 조회가
+     * 다른 환경에 닿으면 최대 {@link #MEMO} 동안 옛 값이 돌아오고, 관리자에게는 저장이
+     * 반영되지 않은 것으로 보인다. 화면 조회는 드물어 매번 읽어도 비용이 없다.
+     */
+    public int freshDailyLimit() {
+        invalidate();
+        return dailyLimit();
+    }
+
     /** 화면에 뿌릴 현재값과 배포 기본값. 무엇이 바뀐 상태인지 사람이 알아야 한다. */
     public Map<String, Object> snapshot() {
         Map<String, Object> m = new LinkedHashMap<>();
-        m.put("dailyLimit", dailyLimit());
+        m.put("dailyLimit", freshDailyLimit());   // 여기서 기억을 버려 아래도 같이 새로 읽는다
         m.put("perMinuteLimit", perMinuteLimit());
         m.put("defaultDailyLimit", configuredDaily);
         m.put("defaultPerMinuteLimit", configuredPerMinute);
