@@ -21,8 +21,8 @@ public final class LocationAccessLog {
     private static final DateTimeFormatter KST = DateTimeFormatter
             .ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").withZone(ZoneId.of("Asia/Seoul"));
 
-    /** 위치정보사업자를 거치지 않고 단말이 직접 보낸 좌표다. */
-    private static final String SOURCE = "단말GPS(앱 전송)";
+    /** 위치정보사업자를 거치지 않고 iOS 앱이 Core Location으로 받아 보낸 좌표다. */
+    private static final String SOURCE = "애플 Core Location API(단말GPS)";
 
     /** 이용자가 지정하는 제3자에게 제공하지 않는다. */
     private static final String RECIPIENT = "-";

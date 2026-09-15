@@ -18,7 +18,7 @@ public class LocationAccessLogTest {
                 "8b1c4e2a-sub", "running-route-options", Instant.parse("2026-09-15T00:32:41Z"));
 
         assertTrue(line.contains("대상=8b1c4e2a-sub"), line);
-        assertTrue(line.contains("취득경로=단말GPS(앱 전송)"), line);
+        assertTrue(line.contains("취득경로=애플 Core Location API(단말GPS)"), line);
         assertTrue(line.contains("제공서비스=running-route-options"), line);
         assertTrue(line.contains("제공받는자=-"), line);
         assertTrue(line.contains("이용일시=2026-09-15T09:32:41+09:00"), line);  // KST·초 단위
