@@ -99,6 +99,13 @@ Cognito 계정도 함께 사라졌다. 키는 `R2V626HA7Y`("Dali Sign in with Ap
 - 화면 파일은 **한 벌**(`src/main/resources/META-INF/resources/admin/index.html`)이고 세 모드로 돈다: 배포본(로그인+편집), `admin/serve.py`(로컬, `~/.aws` 사용, 편집 불가), `--export`(단일 파일, 가입자·편집 없음).
   ⚠️ 전체 검수 목록은 응답이 커서 **HTTP 테스트 금지**(코스 목록과 같은 MockEventServer 함정) — 계산은 `CourseReviewTest`가 서비스 레벨로 본다.
 
+## 위치정보 취급대장 (2026-09-15 구현)
+위치정보법상 **이용·제공 사실 자동 기록** 의무. 좌표를 받는 5개 경로(`running/{candidates,route-options,summary}` · `tour/{places,popular}`)가 요청마다 `lib/LocationAccessLog`로 한 줄 남긴다: `위치정보 취급대장 | 대상 | 취득경로 | 제공서비스 | 제공받는자 | 이용일시`. 저장소는 CloudWatch 로그 그룹 `/aws/lambda/tour-api`(보존 무기한)이고 **별도 테이블을 만들지 않았다**(provisioned 합계 always-free 25/25 유지).
+⚠️ **좌표는 절대 남기지 않는다** — 대장 항목이 아니고, 남기면 개인식별자와 위치가 한 줄에 묶여 방통위에 신고한 "개인위치정보 미결합 저장"과 어긋난다. `LocationAccessLog.line()` 시그니처에 좌표 파라미터가 아예 없는 게 그 장치다.
+⚠️ 항목 이름·KST 초 단위 형식을 바꾸면 **제출한 캡처와 실제 로그가 달라진다**(`LocationAccessLogTest`가 잡는다).
+⚠️ 비로그인 공개 경로는 `대상=미로그인`으로 남는다. 빠뜨리는 것보다 기록이 남는 게 맞다.
+방통위 신고 증빙 캡처 16장 + 작성 문구는 `~/Downloads/위치기반_증빙캡처/`(로컬, 깃 미포함).
+
 ## CI/CD (GitHub Actions)
 - `.github/workflows/deploy.yml` — **main 푸시 → 테스트 → `sam deploy` → 스모크 테스트**. PR은 빌드/테스트만(AWS 미접근), 문서만 바뀌면 아예 안 돎(`paths-ignore`, 비공개 저장소라 Actions 분이 과금 대상 — 무료 2,000분/월).
 - 인증은 **OIDC**(액세스 키 없음). 역할은 `infra/github-oidc.yaml`로 생성 — `github-actions-tour-api-deploy`, 신뢰 조건은 `repo:squarekimbap/backend:ref:refs/heads/main` 하나뿐. 권한은 PowerUserAccess + `tour-api-*` 역할 IAM 쓰기(PowerUser는 IAM을 막아서 SAM의 Lambda 실행 역할 생성이 실패함).

@@ -2,6 +2,7 @@ package com.tourapi.routes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tourapi.lib.LocationAccessLog;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.CandidatesResponse;
@@ -94,6 +95,8 @@ public class RunningResource {
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
 
+        LocationAccessLog.record(tokenSubject(), "running-candidates");
+
         try {
             return Response.ok(runningService.candidates(lat, lng, distanceKm, shape, count)).build();
         } catch (UpstreamException e) {
@@ -166,6 +169,8 @@ public class RunningResource {
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
 
+        LocationAccessLog.record(jwt.getSubject(), "running-route-options");
+
         RunningGenerationRateLimiter.Reservation reservation = generationRateLimiter.acquire(
                 jwt.getSubject(), idempotencyKey, requestFingerprint("route-options", req));
         Response limited = rateLimitResponse(reservation, idempotencyKey);
@@ -233,6 +238,8 @@ public class RunningResource {
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
 
+        LocationAccessLog.record(tokenSubject(), "running-summary");
+
         try {
             return Response.ok(runningService.summary(req.option(), radius)).build();
         } catch (Exception e) {
@@ -242,6 +249,15 @@ public class RunningResource {
     }
 
     // ── 검증 헬퍼 ───────────────────────────────────────────────
+
+    /** candidates·summary는 공개라 토큰이 없을 수 있다. 취급대장에는 미로그인으로 남는다. */
+    private String tokenSubject() {
+        try {
+            return jwt.getSubject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     private static double require(String name, Double v, double min, double max) {
         if (v == null) {

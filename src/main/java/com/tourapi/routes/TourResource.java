@@ -1,5 +1,6 @@
 package com.tourapi.routes;
 
+import com.tourapi.lib.LocationAccessLog;
 import com.tourapi.lib.UpstreamException;
 import com.tourapi.model.ApiError;
 import com.tourapi.model.PlacesResponse;
@@ -89,6 +90,8 @@ public class TourResource {
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
 
+        LocationAccessLog.record(null, "tour-places");  // 인증 없는 공개 경로
+
         try {
             PlacesResponse body = tourService.nearbyPlaces(lat, lng, radius, type, page, size);
             return Response.ok(body).build();
@@ -135,6 +138,8 @@ public class TourResource {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(new ApiError("bad_request", e.getMessage())).build();
         }
+
+        LocationAccessLog.record(null, "tour-popular");  // 인증 없는 공개 경로
 
         try {
             PopularResponse body = tourService.popular(lat, lng, size);
